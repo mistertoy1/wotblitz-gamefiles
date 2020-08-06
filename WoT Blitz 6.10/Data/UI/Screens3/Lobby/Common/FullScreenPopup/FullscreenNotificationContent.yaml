@@ -1,0 +1,162 @@
+Header:
+    version: "93"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/RichTextSimpleParameter.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "FullscreenNotificationContent"
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        LinearLayout:
+            orientation: "TopDown"
+            spacing: 32.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "isButtonVisible", "true", "true"]
+            - ["control", "topPart", "null", "TopPart"]
+            - ["control", "description", "null", "DescriptionHeader"]
+            - ["control", "content", "null", "DescriptionHeader"]
+            - ["string", "congratulationText", "\"\"", "localize(\"shop/Congrats/Title\")"]
+            - ["string", "buttonText", "\"\"", "\"#common:DialogButton/OK\""]
+            events:
+            - "ACCENT_CLICKED"
+    children:
+    -   class: "UIControl"
+        name: "MainContent"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            LinearLayout:
+                orientation: "TopDown"
+                spacing: 16.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfMaxChild"
+                verticalPolicy: "PercentOfChildrenSum"
+        children:
+        -   class: "UIControl"
+            name: "TopPart"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    topAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfFirstChild"
+                    verticalPolicy: "PercentOfFirstChild"
+                UIChildComponent0:
+                    childType: "kControl"
+                    condition: "not isNull(topPart)"
+                    control: "topPart"
+        -   class: "UIControl"
+            name: "CongratulationHeader"
+            input: false
+            classes: "t-title light color=white-wild-sand-text"
+            components:
+                UITextComponent:
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    align: ["LEFT", "VCENTER"]
+                Anchor:
+                    hCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "congratulationText != \"\""]
+            - ["UITextComponent.text", "congratulationText"]
+        -   class: "UIControl"
+            name: "Description"
+            position: [-12.000000, 106.000000]
+            input: false
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfFirstChild"
+                    verticalPolicy: "PercentOfFirstChild"
+                UIChildComponent0:
+                    childType: "kControl"
+                    condition: "not isNull(description)"
+                    control: "description"
+        -   class: "UIControl"
+            name: "Content"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfFirstChild"
+                    verticalPolicy: "PercentOfFirstChild"
+                UIChildComponent0:
+                    childType: "kControl"
+                    condition: "not isNull(content)"
+                    control: "content"
+    -   class: "UIControl"
+        name: "ButtonHolder"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfMaxChild"
+                verticalPolicy: "PercentOfMaxChild"
+        bindings:
+        - ["visible", "isButtonVisible"]
+        children:
+        -   prototype: "Button/Button"
+            name: "ButtonPositive"
+            position: [-60.000000, 0.000000]
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                UIDataParamsComponent:
+                    args:
+                        "size": "eButtonSize.NORMAL"
+                        "type": "eButtonType.POSITIVE"
+                        "enabled": "true"
+                        "caption": "buttonText"
+                    eventActions:
+                    - ["ON_CLICK_BUTTON", "ACCENT_CLICKED", ""]
+Slots:
+-   class: "UIControl"
+    name: "DescriptionHeader"
+    input: false
+    classes: "t-body regular color=white-wild-sand-70-text"
+    components:
+        UITextComponent:
+            text: "#Закончилась временная премилизация"
+            colorInheritType: "COLOR_IGNORE_PARENT"
+            align: ["LEFT", "VCENTER"]
+        SizePolicy:
+            horizontalPolicy: "PercentOfContent"
+            horizontalMax: 322.000000
+            verticalPolicy: "PercentOfContent"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+-   class: "UIControl"
+    name: "TopPart"
+    input: false
+    components:
+        Background:
+            sprite: "~res:/Gfx/UI/LobbyCommon/finish_premilisation"
+        Anchor:
+            hCenterAnchorEnabled: true
+            topAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfContent"
+            verticalPolicy: "PercentOfContent"

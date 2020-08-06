@@ -1,0 +1,112 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Resource/Currencies.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "Price"
+    size: [207.000000, 108.000000]
+    input: false
+    components:
+        LinearLayout:
+            spacing: 28.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["ArtefactProviderModel", "artefacts", "null", "{ }"]
+            - ["StatsDataModel", "stats", "null", "{ }"]
+            - ["Price", "priceGet", "null", "{ }"]
+            - ["Price", "pricePay", "null", "{ }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "pricesEqual", "PriceEqual(priceGet, pricePay)"]
+            - ["map<string,bool>", "canAfford", "CanAffordResources(PriceDiff(pricePay, priceGet), stats.resources, artefacts.artefactIds)"]
+    children:
+    -   class: "UIControl"
+        name: "PriceToGet"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            LinearLayout:
+                orientation: "TopDown"
+                spacing: 2.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfMaxChild"
+                verticalPolicy: "PercentOfChildrenSum"
+        bindings:
+        - ["visible", "not priceGet.resources.Empty() and not pricesEqual"]
+        children:
+        -   class: "UIControl"
+            name: "Label"
+            input: false
+            classes: "t-caption regular color=white-wild-sand-50-text"
+            components:
+                UITextComponent:
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    align: ["LEFT", "VCENTER"]
+                Anchor:
+                    rightAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["UITextComponent.text", "localize(\"InventoryPanel/Return\")"]
+        -   prototype: "Currencies/Resources"
+            name: "Resources"
+            components:
+                Anchor:
+                    rightAnchorEnabled: true
+                UIDataParamsComponent:
+                    args:
+                        "price": "priceGet"
+    -   class: "UIControl"
+        name: "PriceToPay"
+        position: [201.000000, 0.000000]
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            LinearLayout:
+                orientation: "TopDown"
+                spacing: 2.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfMaxChild"
+                verticalPolicy: "PercentOfChildrenSum"
+        bindings:
+        - ["visible", "not pricePay.resources.Empty() and not pricesEqual"]
+        children:
+        -   class: "UIControl"
+            name: "Label"
+            position: [36.000000, 0.000000]
+            input: false
+            classes: "t-caption regular color=white-wild-sand-50-text"
+            components:
+                UITextComponent:
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    align: ["LEFT", "VCENTER"]
+                Anchor:
+                    rightAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "not priceGet.resources.Empty()"]
+            - ["UITextComponent.text", "localize(\"InventoryPanel/Remove\")"]
+        -   prototype: "Currencies/Resources"
+            name: "Resources"
+            components:
+                Anchor:
+                    rightAnchorEnabled: true
+                UIDataParamsComponent:
+                    args:
+                        "canAfford": "canAfford"
+                        "showDiscount": "true"
+                        "visible": "true"
+                        "price": "pricePay"

@@ -1,0 +1,196 @@
+Header:
+    version: "99"
+Prototypes:
+-   class: "UIControl"
+    name: "Content"
+    size: [96.000000, 96.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["ResourceDetailed", "resource", "{ }", "{ type = ResourceType.free_xp; }"]
+            - ["bool", "showVehicleInfo", "true", "true"]
+            - ["bool", "showVehicleLabel", "true", "true"]
+            - ["bool", "showUnlockStub", "true", "false"]
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "isBasicResource", "resource.type == ResourceType.gold or resource.type == ResourceType.free_xp or resource.type == ResourceType.elite_xp or resource.type == ResourceType.premium or resource.type == ResourceType.xp or resource.type == ResourceType.tankmenXP or resource.type == ResourceType.credits or resource.type == ResourceType.slots or resource.type == ResourceType.equipment_slots"]
+            - ["string", "spriteType", "when resource.type == ResourceType.gold -> \"gold\", resource.type == ResourceType.credits -> \"silver\", resource.type == ResourceType.free_xp -> \"free-xp\", resource.type == ResourceType.elite_xp -> \"elite-xp\", resource.type == ResourceType.xp -> \"battle-xp\", resource.type == ResourceType.tankmenXP -> \"crew-xp\", resource.type == ResourceType.premium -> \"premium\", resource.type == ResourceType.slots -> \"slot\", \"\""]
+            - ["string", "spriteSize", "\"xl\""]
+        UIChildComponent0:
+            childType: "kPrototype"
+            condition: "resource.type == ResourceType.stuff and not isNull(resource.stuff)"
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/Detailed/StuffIcon.yaml"
+            args:
+                "stuff": "resource.stuff"
+        UIChildComponent1:
+            childType: "kControl"
+            condition: "resource.type == ResourceType.vehicle"
+            control: "VehicleIcon"
+        UIChildComponent2:
+            childType: "kControl"
+            condition: "resource.type != ResourceType.stuff and resource.type != ResourceType.vehicle"
+            control: "ItemHolder"
+Slots:
+-   class: "UIControl"
+    name: "ItemHolder"
+    size: [96.000000, 96.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            leftAnchor: 8.000000
+            rightAnchorEnabled: true
+            rightAnchor: 8.000000
+            topAnchorEnabled: true
+            topAnchor: 8.000000
+            bottomAnchorEnabled: true
+            bottomAnchor: 8.000000
+        UIChildComponent0:
+            childType: "kControl"
+            condition: "resource.type == ResourceType.unlocks and not isNull(resource.unlock)"
+            control: "UnlockIcon"
+        UIChildComponent1:
+            childType: "kControl"
+            condition: "isBasicResource"
+            control: "BasicIcon"
+-   class: "UIControl"
+    name: "BasicIcon"
+    size: [96.000000, 96.000000]
+    pivot: [0.500000, 0.500000]
+    input: false
+    components:
+        UITextureComponent:
+            drawType: "DRAW_SCALE_PROPORTIONAL"
+            perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            horizontalMax: 96.000000
+            verticalPolicy: "PercentOfParent"
+            verticalMax: 96.000000
+    bindings:
+    - ["UITextureComponent.spritePath", "\"~res:/Gfx/Lobby/currency/currency_\" + spriteType + \"_\" + spriteSize"]
+-   class: "UIControl"
+    name: "UnlockIcon"
+    size: [96.000000, 96.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+    children:
+    -   class: "UIControl"
+        name: "Stub"
+        pivot: [0.500000, 0.500000]
+        input: false
+        components:
+            UITextureComponent:
+                spritePath: "~res:/Gfx/UI/BattleLoadingScreen/Tips/camouflage_tank"
+                drawType: "DRAW_SCALE_PROPORTIONAL"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                horizontalMax: 256.000000
+                verticalPolicy: "PercentOfParent"
+                verticalMax: 128.000000
+        bindings:
+        - ["visible", "showUnlockStub"]
+    -   class: "UIControl"
+        name: "Icon"
+        pivot: [0.500000, 0.500000]
+        input: false
+        components:
+            UITextureComponent:
+                drawType: "DRAW_SCALE_PROPORTIONAL"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                horizontalMax: 90.000000
+                verticalPolicy: "PercentOfParent"
+                verticalMax: 90.000000
+        bindings:
+        - ["visible", "not showUnlockStub and not isNull(resource.unlock)"]
+        - ["UITextureComponent.spritePath", "resource.unlock.icon"]
+-   class: "UIControl"
+    name: "VehicleIcon"
+    size: [96.000000, 96.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+    children:
+    -   class: "UIControl"
+        name: "Icon"
+        pivot: [0.500000, 0.500000]
+        input: false
+        components:
+            UITextureComponent:
+                drawType: "DRAW_SCALE_PROPORTIONAL"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalMax: 160.000000
+                horizontalFormula: "parent - 8"
+                verticalPolicy: "Formula"
+                verticalMax: 100.000000
+                verticalFormula: "parent -8"
+        bindings:
+        - ["UITextureComponent.spritePath", "when isNull(resource.vehicle) -> \"~res:/Gfx/UI/LobbyCommon/covered_tank\", resource.vehicle.info.bigIconPath"]
+    -   class: "UIControl"
+        name: "VehicleInfo"
+        input: false
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                leftAnchor: 4.000000
+                topAnchorEnabled: true
+                topAnchor: 4.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent0:
+                childType: "kPrototype"
+                condition: "not isNull(resource.vehicle)"
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/Vehicle/VehicleInfo.yaml"
+                args:
+                    "class": "resource.vehicle.info.tankClass"
+                    "level": "resource.vehicle.info.level"
+                    "type": "when resource.vehicle.info.isPremium -> eVehicleDescriptionType.PREMIUM, resource.vehicle.info.isCollectible -> eVehicleDescriptionType.COLLECTIBLE, resource.vehicle.stats.isPremiumized -> eVehicleDescriptionType.PREMIUMISED, eVehicleDescriptionType.NORMAL"
+                    "elite": "resource.vehicle.stats.isElite"
+        bindings:
+        - ["visible", "showVehicleInfo"]
+    -   class: "UIControl"
+        name: "NameLabel"
+        input: false
+        components:
+            UITextComponent:
+                fitting: "FITTING_POINTS"
+            Anchor:
+                hCenterAnchorEnabled: true
+                bottomAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "parent - 8"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;"
+        bindings:
+        - ["visible", "showVehicleLabel"]
+        - ["classes", "\"t-caption bold \" + (when resource.vehicle.info.isPremium or resource.vehicle.stats.isPremiumized -> \"yellow-lightning-text\", resource.vehicle.info.isCollectible -> \"blue-rimmi-text\", \"white-wild-sand-text\")"]
+        - ["UITextComponent.text", "when not isNull(resource.vehicle) -> localize(resource.vehicle.info.shortName), \"\""]

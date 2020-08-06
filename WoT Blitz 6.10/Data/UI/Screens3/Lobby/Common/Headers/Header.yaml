@@ -1,0 +1,90 @@
+Header:
+    version: "96"
+Prototypes:
+-   class: "UIControl"
+    name: "Header"
+    size: [960.000000, 48.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "FixedSize"
+            verticalValue: 48.000000
+        UIDataParamsComponent:
+            params:
+            - ["string", "bgStyle", "\"\"", "\"black-15-bg\""]
+            - ["control", "background", "null", "null"]
+            - ["control", "content", "null", "null"]
+            - ["bool", "isFullScreen", "false", "true"]
+            events: []
+    children:
+    -   class: "UIControl"
+        name: "Background"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            UIChildComponent0:
+                childType: "kControl"
+                condition: "isNull(background) and not empty(bgStyle)"
+                control: "DefaultBg"
+            UIChildComponent1:
+                childType: "kControl"
+                condition: "not isNull(background)"
+                control: "background"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+    -   class: "UIControl"
+        name: "Layout"
+        components:
+            LinearLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   class: "UIControl"
+            name: "LeftSafeArea"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfFirstChild"
+                    verticalPolicy: "PercentOfParent"
+                UIChildComponent0:
+                    childType: "kPrototype"
+                    condition: "isFullScreen"
+                    prototypePath: "~res:/UI/Screens3/Lobby/Common/Sidebar/SideBarSafeArea.yaml"
+            bindings:
+            - ["visible", "isFullScreen"]
+        -   class: "UIControl"
+            name: "Content"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                UIChildComponent0:
+                    childType: "kControl"
+                    condition: "not isNull(content)"
+                    control: "content"
+        -   class: "UIControl"
+            name: "RightSafeArea"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "Formula"
+                    horizontalFormula: "max(safeAreaInsets.right, 8)"
+                    verticalPolicy: "PercentOfParent"
+Slots:
+-   class: "UIControl"
+    name: "DefaultBg"
+    input: false
+    components:
+        Background: {}
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml"
+    bindings:
+    - ["classes", "bgStyle"]

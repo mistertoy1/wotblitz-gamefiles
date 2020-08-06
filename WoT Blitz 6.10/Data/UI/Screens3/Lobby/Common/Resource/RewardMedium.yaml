@@ -1,0 +1,386 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Selection.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Timer.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Vehicle/VehicleInfo.yaml"
+Controls:
+-   class: "UIControl"
+    name: "RewardMedium"
+    classes: "reward-medium button-choose-sound"
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 86.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 104.000000
+        UIInputEventComponent:
+            onTouchUpInside: "ON_REWARD_CLICK"
+            onTouchUpInsideData: "id"
+        UISwitchBarElementComponent: {}
+        UIDataParamsComponent:
+            params:
+            - ["int", "id", "0", "0"]
+            - ["bool", "isSelected", "false", "true"]
+            - ["bool", "isLocked", "false", "false"]
+            - ["bool", "showBadge", "false", "true"]
+            - ["bool", "isVisible", "true", "true"]
+            - ["bool", "interactive", "true", "true"]
+            - ["ResourceDetailed", "resource", "null", "{ type = ResourceType.xp; stuff = { type = ArtefactType.player_avatar; lifetime = 1000L; }; }"]
+            events:
+            - "ON_REWARD_CLICK(int id)"
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "temporary", "resource.type == ResourceType.stuff and resource.stuff.lifetime > 0L"]
+            - ["bool", "hasNumericValue", "resource.type == ResourceType.stuff or resource.type == ResourceType.unlocks or resource.type == ResourceType.achievement or not isNull(resource.basic)"]
+            - ["bool", "showGrade", "resource.type == ResourceType.stuff and resource.stuff.type != ArtefactType.player_avatar and not resource.stuff.hideGrade"]
+            - ["bool", "isAvatar", "resource.type == ResourceType.stuff and resource.stuff.type == ArtefactType.player_avatar"]
+            - ["bool", "isUrlStuff", "resource.type == ResourceType.stuff and resource.stuff.type != ArtefactType.player_avatar and not empty(resource.stuff.iconUrl)"]
+            - ["int", "quantity", "when resource.type == ResourceType.stuff -> resource.stuff.quantity, resource.type == ResourceType.unlocks -> resource.unlock.quantity, resource.type == ResourceType.achievement -> 1, not isNull(resource.basic) -> resource.basic.quantity, 0"]
+            - ["int", "iconFrame", "when resource.type == ResourceType.premium -> 7, 0"]
+            - ["string", "stringedValue", "when resource.type == ResourceType.real_currency -> resource.realCurrency.localizedValue, resource.type == ResourceType.premium and toDays(resource.basic.quantity) > 0L -> str(toDays(resource.basic.quantity)) + localize(\"#common:Time/Days\"), resource.type == ResourceType.premium -> str(toHours(resource.basic.quantity)) + localize(\"#common:Time/Hours\"), quantity < 1000000 -> str1000Separated(quantity), shortStr(quantity)"]
+            - ["string", "gradeClass", "when not showGrade -> \"\", resource.stuff.grade == ArtefactGrade.common -> \"grades-common-bg\", resource.stuff.grade == ArtefactGrade.rare -> \"grades-rare-bg\", resource.stuff.grade == ArtefactGrade.unique -> \"grades-unique-bg\", resource.stuff.grade == ArtefactGrade.legendary -> \"grades-legendary-bg\", \"\""]
+            - ["string", "iconPath", "when resource.type == ResourceType.gold -> \"~res:/Gfx/Lobby/currency/currency_gold_xl\", resource.type == ResourceType.free_xp -> \"~res:/Gfx/Lobby/currency/currency_free-xp_xl\", resource.type == ResourceType.tankmenXP -> \"~res:/Gfx/Lobby/currency/currency_crew-xp_xl\", resource.type == ResourceType.xp -> \"~res:/Gfx/Lobby/currency/currency_battle-xp_xl\", resource.type == ResourceType.premium -> \"~res:/Gfx/Lobby/currency/currency_premium_xl\", resource.type == ResourceType.credits -> \"~res:/Gfx/Lobby/currency/currency_silver_xl\", resource.type == ResourceType.slots -> \"~res:/Gfx/UI/StorageItemIcons/SlotCertificate_1\", resource.type == ResourceType.equipment_slots -> \"~res:/Gfx/UI/Hangar/EquipmentCommon\", resource.type == ResourceType.stuff and empty(resource.stuff.iconUrl) -> resource.stuff.icon, resource.type == ResourceType.achievement -> resource.achievement.icon, resource.type == ResourceType.unlocks -> resource.unlock.icon, \"\""]
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/ButtonSound.style.yaml"
+    bindings:
+    - ["visible", "isVisible"]
+    - ["selected", "isSelected"]
+    - ["input", "interactive"]
+    - ["UISwitchBarElementComponent.id", "id"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        pivot: [0.500000, 0.500000]
+        input: false
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/Common/Resource/RewardMedium.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "Background"
+            input: false
+            components:
+                Background:
+                    drawType: "DRAW_STRETCH_BOTH"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_item-dark_r4"
+                    leftRightStretchCap: 4.000000
+                    topBottomStretchCap: 4.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+        -   class: "UIControl"
+            name: "Hover"
+            input: false
+            classes: "white-wild-sand-10-bg hover"
+            components:
+                Background:
+                    drawType: "DRAW_STRETCH_BOTH"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_r4"
+                    frame: 0
+                    leftRightStretchCap: 4.000000
+                    topBottomStretchCap: 4.000000
+                UIOpacityComponent: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Resource/RewardMedium.style.yaml"
+        -   class: "UIControl"
+            name: "Container"
+            input: false
+            components:
+                LinearLayout:
+                    orientation: "TopDown"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+            children:
+            -   class: "UIControl"
+                name: "Top"
+                input: false
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 72.000000
+                children:
+                -   class: "UIControl"
+                    name: "Grade"
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_PROPORTIONAL"
+                            sprite: "~res:/Gfx/UI/Storage/Items_back"
+                        Anchor:
+                            leftAnchorEnabled: true
+                            leftAnchor: 4.000000
+                            rightAnchorEnabled: true
+                            rightAnchor: 4.000000
+                            topAnchorEnabled: true
+                            topAnchor: 4.000000
+                            bottomAnchorEnabled: true
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["visible", "showGrade"]
+                    - ["classes", "gradeClass"]
+                -   class: "UIControl"
+                    name: "Icon"
+                    input: false
+                    components:
+                        UITextureComponent:
+                            drawType: "DRAW_SCALE_PROPORTIONAL"
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            bottomAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "FixedSize"
+                            horizontalValue: 64.000000
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 64.000000
+                    bindings:
+                    - ["visible", "not isAvatar and resource.type != ResourceType.vehicle and (resource.type != ResourceType.stuff or empty(resource.stuff.iconUrl))"]
+                    - ["UITextureComponent.spritePath", "iconPath"]
+                    - ["UITextureComponent.frame", "iconFrame"]
+                -   class: "UIControl"
+                    name: "UrlIcon"
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_PROPORTIONAL"
+                        UIUrlImageComponent: {}
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            bottomAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "FixedSize"
+                            horizontalValue: 64.000000
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 64.000000
+                    bindings:
+                    - ["visible", "isUrlStuff"]
+                    - ["UIUrlImageComponent.imageUrl", "when isUrlStuff -> resource.stuff.iconUrl, \"\""]
+                -   class: "UIControl"
+                    name: "VehicleIcon"
+                    input: false
+                    components:
+                        UITextureComponent:
+                            drawType: "DRAW_SCALE_PROPORTIONAL"
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            bottomAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "FixedSize"
+                            horizontalValue: 64.000000
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 64.000000
+                    bindings:
+                    - ["visible", "resource.type == ResourceType.vehicle"]
+                    - ["UITextureComponent.spritePath", "when resource.type == ResourceType.vehicle -> resource.vehicle.info.bigIconPath, \"\""]
+                -   class: "UIControl"
+                    name: "Avatar"
+                    input: false
+                    components:
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            bottomAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfMaxChild"
+                            verticalPolicy: "PercentOfMaxChild"
+                        UIChildComponent:
+                            control: "when isAvatar -> \"~res:/UI/Screens3/Lobby/Common/Resource/PlayerAvatar.yaml\", \"\""
+                            args:
+                                "avatar": "resource.stuff.avatar"
+                                "interactive": "false"
+            -   class: "UIControl"
+                name: "Bottom"
+                input: false
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                children:
+                -   class: "UIControl"
+                    name: "Value"
+                    input: false
+                    classes: "t-subtitle bold"
+                    components:
+                        UITextComponent:
+                            colorInheritType: "COLOR_IGNORE_PARENT"
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            topAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "parent - 16"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                    bindings:
+                    - ["visible", "hasNumericValue and not temporary"]
+                    - ["UITextComponent.text", "stringedValue"]
+                -   class: "UIControl"
+                    name: "VehicleInfo"
+                    input: false
+                    components:
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            vCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfMaxChild"
+                            verticalPolicy: "PercentOfMaxChild"
+                        UIChildComponent:
+                            control: "when resource.type == ResourceType.vehicle -> \"~res:/UI/Screens3/Lobby/Common/Vehicle/VehicleInfo.yaml\", \"\""
+                            args:
+                                "class": "resource.vehicle.info.tankClass"
+                                "level": "resource.vehicle.info.level"
+                                "type": "when resource.vehicle.info.isPremium -> eVehicleDescriptionType.PREMIUM, resource.vehicle.info.isCollectible -> eVehicleDescriptionType.COLLECTIBLE, eVehicleDescriptionType.NORMAL"
+                                "elite": "resource.vehicle.stats.isElite"
+                -   prototype: "Timer/Timer"
+                    name: "Timer"
+                    components:
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            topAnchorEnabled: true
+                        UIDataParamsComponent:
+                            args:
+                                "visible": "temporary"
+                                "serverTime": "0L"
+                                "time": "when temporary -> resource.stuff.lifetime, 0L"
+                                "bgVisible": "false"
+                                "iconVisible": "true"
+                                "alertTime": "0L"
+            -   class: "UIControl"
+                name: "IconMore"
+                input: false
+                components:
+                    Background:
+                        colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    LinearLayout:
+                        spacing: 5.000000
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfChildrenSum"
+                        verticalPolicy: "PercentOfMaxChild"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+                bindings:
+                - ["visible", "resource.type == ResourceType.undefined"]
+                children:
+                -   class: "UIControl"
+                    name: "Dot_1"
+                    input: false
+                    classes: "white-wild-sand-bg"
+                    components:
+                        Background:
+                            colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                        SizePolicy:
+                            horizontalPolicy: "FixedSize"
+                            horizontalValue: 5.000000
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 5.000000
+                -   class: "UIControl"
+                    name: "Dot_2"
+                    input: false
+                    classes: "white-wild-sand-bg"
+                    components:
+                        Background:
+                            colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                        SizePolicy:
+                            horizontalPolicy: "FixedSize"
+                            horizontalValue: 5.000000
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 5.000000
+                -   class: "UIControl"
+                    name: "Dot_3"
+                    input: false
+                    classes: "white-wild-sand-bg"
+                    components:
+                        Background:
+                            colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                        SizePolicy:
+                            horizontalPolicy: "FixedSize"
+                            horizontalValue: 5.000000
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 5.000000
+        -   class: "UIControl"
+            name: "Badge"
+            input: false
+            classes: "red-red-bg"
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_TO_RECT"
+                    sprite: "~res:/Gfx/UI/CommonUIElements/WhiteCircle"
+                Anchor:
+                    rightAnchorEnabled: true
+                    rightAnchor: 4.000000
+                    topAnchorEnabled: true
+                    topAnchor: 4.000000
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 8.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 8.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "showBadge"]
+        -   class: "UIControl"
+            name: "Locked"
+            input: false
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 32.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 32.000000
+            bindings:
+            - ["visible", "isLocked"]
+            children:
+            -   class: "UIControl"
+                name: "Background"
+                input: false
+                classes: "black-50-bg"
+                components:
+                    Background: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   class: "UIControl"
+                name: "Icon"
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_FILL"
+                        color: [1.000000, 1.000000, 1.000000, 0.200000]
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 24.000000
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 24.000000
+        -   prototype: "Selection/Selection"
+            name: "Selection"
+            components:
+                UIDataParamsComponent:
+                    args:
+                        "selectionType": "eSelectionBorderType.kR4"
+                        "isVisible": "isSelected"

@@ -1,0 +1,4 @@
+animation Initialization
+{
+	PlaySound(sound="GUI/buttons/premialization_off");
+}

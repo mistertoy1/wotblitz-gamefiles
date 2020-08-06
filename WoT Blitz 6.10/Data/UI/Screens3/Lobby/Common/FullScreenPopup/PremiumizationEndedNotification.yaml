@@ -1,0 +1,31 @@
+Header:
+    version: "93"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/FullScreenPopup/FullscreenPopupWithContentSlot.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "PremiumizationEndedNotification"
+    size: [900.000000, 600.000000]
+    input: false
+    components:
+        UIAnimationComponent:
+            animations: "_INIT,~res:/UI/Screens3/Lobby/Common/FullScreenPopup/PremiumizationEndedNotification.animation"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["vector<string>", "tankNames", "null", "[ \"a\"; \"b\"; \"c\"; ]"]
+            events:
+            - "CLOSE_NOTIFICATION"
+    children:
+    -   prototype: "FullscreenPopupWithContentSlot/FullscreenPopupWithContentSlot"
+        name: "FullscreenPopupWithContentSlot"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "isButtonVisible": "false"
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/FullScreenPopup/PremiumizationEndedNotificationContent.yaml\", { tankNames = tankNames; }, [ { event = \"ACCENT_CLICKED\"; action = \"CLOSE_NOTIFICATION\"; }; ])"
+                eventActions:
+                - ["CLOSE_NOTIFICATION", "CLOSE_NOTIFICATION", ""]
+                - ["ACCENT_CLICKED", "ACCENT_CLICKED", ""]

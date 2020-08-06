@@ -1,0 +1,83 @@
+Header:
+    version: "99"
+Prototypes:
+-   class: "UIControl"
+    name: "StuffIcon"
+    size: [96.000000, 96.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["StuffResource", "stuff", "null", "{ }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "gradeClass", "when stuff.grade == ArtefactGrade.common -> \"grades-common-bg\", stuff.grade == ArtefactGrade.rare -> \"grades-rare-bg\", stuff.grade == ArtefactGrade.unique -> \"grades-unique-bg\", stuff.grade == ArtefactGrade.legendary -> \"grades-legendary-bg\", \"\""]
+    children:
+    -   class: "UIControl"
+        name: "Grade"
+        pivot: [0.500000, 0.500000]
+        input: false
+        components:
+            Background:
+                drawType: "DRAW_ALIGNED"
+                sprite: "~res:/Gfx/UI/Storage/Items_back"
+            UIOpacityComponent: {}
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            ScalePolicy:
+                horizontalFormula: "min(1.0, min(parentSize.X / size.X, parentSize.Y / size.Y))"
+                verticalFormula: "min(1.0, min(parentSize.X / size.X, parentSize.Y / size.Y))"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["classes", "gradeClass"]
+        - ["UIOpacityComponent.opacity", "when stuff.grade == ArtefactGrade.unknown -> 0.000000, 1.000000"]
+    -   class: "UIControl"
+        name: "Icon"
+        pivot: [0.500000, 0.500000]
+        input: false
+        components:
+            UITextureComponent:
+                drawType: "DRAW_SCALE_PROPORTIONAL"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                horizontalMax: 96.000000
+                verticalPolicy: "PercentOfParent"
+                verticalMax: 116.000000
+        bindings:
+        - ["visible", "empty(stuff.iconUrl)"]
+        - ["UITextureComponent.spritePath", "stuff.icon"]
+    -   class: "UIControl"
+        name: "IconUrl"
+        pivot: [0.500000, 0.500000]
+        input: false
+        components:
+            Background:
+                drawType: "DRAW_SCALE_PROPORTIONAL"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            UIUrlImageComponent:
+                placeholderScenePath: "~res:/UI/Screens3/Common/LoadingOverlay.yaml"
+                placeholderControlName: "LoadingOverlay"
+                downscaleEnabled: false
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                horizontalMax: 96.000000
+                verticalPolicy: "PercentOfParent"
+                verticalMax: 116.000000
+        bindings:
+        - ["visible", "not empty(stuff.iconUrl)"]
+        - ["UIUrlImageComponent.imageUrl", "stuff.iconUrl"]

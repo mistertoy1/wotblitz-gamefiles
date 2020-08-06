@@ -1,0 +1,367 @@
+Header:
+    version: "85"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/RichTextSimpleParameter.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "PremiumAccountNotificationContent"
+    size: [900.000000, 600.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["int", "days", "0", "30"]
+            - ["int", "hours", "0", "23"]
+            events:
+            - "ACCENT_CLICKED"
+        UIDataLocalsComponent:
+            locals:
+            - ["vector<string>", "benefits", "[ \"premiumAccount/benefits/descr1\"; \"premiumAccount/benefits/descr2\"; \"premiumAccount/benefits/descr3\"; \"premiumAccount/benefits/descr4\"; ]"]
+            - ["bool", "isDaysNumbersVisible", "days > 0"]
+            - ["bool", "isPremiumHoursVisible", "hours > 0 and days <= 0"]
+            - ["int", "hundred", "(days / 100) % 10"]
+            - ["int", "ten", "(days / 10) % 10"]
+            - ["int", "one", "days % 10"]
+            - ["string", "spritePathHundred", "\"~res:/Gfx/UI/LobbyCommon/PremNumbers/\" + str(hundred) + \".psd\""]
+            - ["string", "spritePathTen", "\"~res:/Gfx/UI/LobbyCommon/PremNumbers/\" + str(ten) + \".psd\""]
+            - ["string", "spritePathOne", "\"~res:/Gfx/UI/LobbyCommon/PremNumbers/\" + str(one) + \".psd\""]
+            - ["int", "hoursTen", "(hours / 10) % 10"]
+            - ["int", "hoursOne", "hours % 10"]
+            - ["string", "spritePathTenHours", "\"~res:/Gfx/UI/LobbyCommon/PremNumbers/\" + str(hoursTen) + \".psd\""]
+            - ["string", "spritePathOneHours", "\"~res:/Gfx/UI/LobbyCommon/PremNumbers/\" + str(hoursOne) + \".psd\""]
+            - ["string", "timePeriod", "when isDaysNumbersVisible -> \"#common:Time/Days\", \"#common:Time/Hours\""]
+            - ["string", "time", "when isDaysNumbersVisible -> str(days), str(hours)"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        position: [0.000000, 182.000000]
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            LinearLayout:
+                spacing: 32.000000
+                useRtl: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "Left"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfMaxChild"
+                    verticalPolicy: "PercentOfMaxChild"
+            children:
+            -   class: "UIControl"
+                name: "ImageHolder"
+                position: [251.000000, 246.000000]
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    Background:
+                        sprite: "~res:/Gfx/UI/LobbyCommon/icon_premium_wreath.psd"
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        topAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        verticalPolicy: "PercentOfContent"
+            -   class: "UIControl"
+                name: "DaysNumbers"
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                        vCenterAnchor: -12.000000
+                    LinearLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfChildrenSum"
+                        verticalPolicy: "PercentOfMaxChild"
+                bindings:
+                - ["visible", "isDaysNumbersVisible"]
+                children:
+                -   class: "UIControl"
+                    name: "Hundred"
+                    input: false
+                    components:
+                        Background: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                    bindings:
+                    - ["visible", "hundred"]
+                    - ["Background.sprite", "spritePathHundred"]
+                -   class: "UIControl"
+                    name: "Ten"
+                    input: false
+                    components:
+                        Background: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                    bindings:
+                    - ["visible", "ten > 0 or hundred > 0"]
+                    - ["Background.sprite", "spritePathTen"]
+                -   class: "UIControl"
+                    name: "One"
+                    input: false
+                    components:
+                        Background: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                    bindings:
+                    - ["Background.sprite", "spritePathOne"]
+            -   class: "UIControl"
+                name: "PremiumHours"
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                        vCenterAnchor: -5.000000
+                    LinearLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfChildrenSum"
+                        verticalPolicy: "PercentOfMaxChild"
+                bindings:
+                - ["visible", "isPremiumHoursVisible"]
+                children:
+                -   class: "UIControl"
+                    name: "Digit"
+                    position: [0.000000, 0.000000]
+                    size: [48.000000, 95.000000]
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_PROPORTIONAL"
+                            colorInherit: "COLOR_IGNORE_PARENT"
+                            perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "content*0.58"
+                            verticalPolicy: "PercentOfContent"
+                    bindings:
+                    - ["Background.sprite", "spritePathTenHours"]
+                -   class: "UIControl"
+                    name: "Digit"
+                    position: [48.000000, 0.000000]
+                    size: [48.000000, 95.000000]
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_PROPORTIONAL"
+                            colorInherit: "COLOR_IGNORE_PARENT"
+                            perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "content*0.58"
+                            verticalPolicy: "PercentOfContent"
+                    bindings:
+                    - ["Background.sprite", "spritePathOneHours"]
+                -   class: "UIControl"
+                    name: "Separator"
+                    position: [96.000000, 0.000000]
+                    size: [17.000000, 95.000000]
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_PROPORTIONAL"
+                            sprite: "~res:/Gfx/UI/LobbyCommon/PremNumbers/double_dots.psd"
+                            colorInherit: "COLOR_IGNORE_PARENT"
+                            perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                        Anchor:
+                            vCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "content*0.58"
+                            verticalPolicy: "PercentOfContent"
+                -   class: "UIControl"
+                    name: "Digit"
+                    position: [113.000000, 0.000000]
+                    size: [48.000000, 95.000000]
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_PROPORTIONAL"
+                            sprite: "~res:/Gfx/UI/LobbyCommon/PremNumbers/0.psd"
+                            colorInherit: "COLOR_IGNORE_PARENT"
+                            perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "content*0.58"
+                            verticalPolicy: "PercentOfContent"
+                -   class: "UIControl"
+                    name: "Digit"
+                    position: [161.000000, 0.000000]
+                    size: [48.000000, 95.000000]
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_PROPORTIONAL"
+                            sprite: "~res:/Gfx/UI/LobbyCommon/PremNumbers/0.psd"
+                            colorInherit: "COLOR_IGNORE_PARENT"
+                            perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "content*0.58"
+                            verticalPolicy: "PercentOfContent"
+        -   class: "UIControl"
+            name: "Right"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                LinearLayout:
+                    orientation: "TopDown"
+                    spacing: 32.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfMaxChild"
+                    verticalPolicy: "PercentOfChildrenSum"
+            children:
+            -   class: "UIControl"
+                name: "Header"
+                input: false
+                components:
+                    Anchor:
+                        leftAnchorEnabled: true
+                        useRtl: true
+                    LinearLayout:
+                        orientation: "TopDown"
+                        spacing: 16.000000
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfChildrenSum"
+                children:
+                -   class: "UIControl"
+                    name: "CongratulationHeader"
+                    input: false
+                    classes: "t-title regular white-wild-sand-text"
+                    components:
+                        UITextComponent:
+                            text: "shop/Congrats/Title"
+                            colorInheritType: "COLOR_IGNORE_PARENT"
+                        Anchor:
+                            leftAnchorEnabled: true
+                            useRtl: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+                -   class: "UIControl"
+                    name: "RichTextSimpleParameter"
+                    input: false
+                    components:
+                        RichContent:
+                            baseClasses: "t-body regular white-wild-sand-70-text"
+                        RichContentAliases0:
+                            aliases: "t-body_highlighted,<span class=\"t-body bold white-wild-sand-text\" />;"
+                        Anchor:
+                            leftAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfChildrenSum"
+                            verticalPolicy: "PercentOfChildrenSum"
+                        FlowLayout:
+                            hSpacing: 5.000000
+                            useRtl: true
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                    bindings:
+                    - ["RichContent.text", "format(localize(\"HANGAR_NOTIFICATION_PREMIUM\"), { time = \"<t-body_highlighted>\" + localize(time) + \"</t-body_highlighted>\"; timePeriod = \"<t-body_highlighted>\" + localize(timePeriod) + \"</t-body_highlighted>\"; })"]
+            -   class: "UIControl"
+                name: "Description"
+                input: false
+                components:
+                    Anchor:
+                        leftAnchorEnabled: true
+                    LinearLayout:
+                        orientation: "TopDown"
+                        spacing: 8.000000
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 336.000000
+                        verticalPolicy: "PercentOfChildrenSum"
+                children:
+                -   class: "UIControl"
+                    name: "Title"
+                    input: false
+                    classes: "t-body regular white-wild-sand-70-text"
+                    components:
+                        UITextComponent:
+                            text: "premiumAccount/benefits/Subheader"
+                            multiline: "MULTILINE_ENABLED"
+                        Anchor:
+                            leftAnchorEnabled: true
+                            useRtl: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+                -   class: "UIControl"
+                    name: "TextDescription"
+                    input: false
+                    components:
+                        Anchor:
+                            leftAnchorEnabled: true
+                        LinearLayout:
+                            orientation: "TopDown"
+                            spacing: 8.000000
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfChildrenSum"
+                        UIRepeatComponent:
+                            control: "~res:/UI/Screens3/Lobby/Common/FullScreenPopup/Benefit.yaml"
+                            dataContainer: "benefits"
+                            args:
+                                "text": "_item"
+            -   class: "UIControl"
+                name: "ButtonWrapper"
+                input: false
+                components:
+                    Anchor:
+                        leftAnchorEnabled: true
+                        useRtl: true
+                    LinearLayout:
+                        orientation: "TopDown"
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfChildrenSum"
+                children:
+                -   prototype: "Button/Button"
+                    name: "ButtonPositive"
+                    components:
+                        Anchor:
+                            leftAnchorEnabled: true
+                            useRtl: true
+                        UIDataParamsComponent:
+                            args:
+                                "locked": "false"
+                                "caption": "\"#common:DialogButton/OK\""
+                                "type": "eButtonType.POSITIVE"
+                                "size": "eButtonSize.NORMAL"
+                                "sound": "eButtonSound.UNKNOWN"
+                                "enabled": "true"
+                            eventActions:
+                            - ["ON_CLICK_BUTTON", "ACCENT_CLICKED", ""]
+                -   class: "UIControl"
+                    name: "SafeAreaBottom"
+                    input: false
+                    components:
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "Formula"
+                            verticalFormula: "safeAreaInsets.bottom"

@@ -1,0 +1,25 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/RichText.yaml"
+Prototypes:
+-   prototype: "RichText/RichText"
+    name: "RichTankName"
+    components:
+        RichContent: {}
+        RichContentAliases1:
+            aliases: "body_highlighted,<span class=\"t-body bold white-wild-sand-text\" />;fs-50-regular-op-70,<span class=\"t-content-h2 regular white-wild-sand-70-text\" />;fs-50-bold,<span class=\"t-content-h2 bold white-sand-text\" />"
+        UIDataParamsComponent:
+            params:
+            - ["string", "baseFontSize", "\"t-body\"", "\"t-subtitle\""]
+            - ["string", "baseFontStyle", "\"regular\"", "\"regular\""]
+            - ["string", "baseFontColor", "\"white-wild-sand-50-text\"", "\"white-wild-sand-50-text\""]
+            - ["string", "key", "\"\"", "\"Увеличивает на <fs-50-bold>700%</fs-50-bold> колличество кредитов\""]
+            - ["string", "linkKey", "\"\"", "\"VK 72.01\""]
+            - ["ResourceModel", "resource1Model", "null", "{ quantity = 1500; type = ResourceType.premium; }"]
+            - ["ResourceModel", "resource2Model", "null", "{ quantity = 560000; type = ResourceType.free_xp; }"]
+            - ["ResourceModel", "resource3Model", "null", "{ quantity = 300; type = ResourceType.credits; }"]
+            - ["ResourceModel", "resource4Model", "null", "{ }"]
+            - ["string", "customKeyProperty", "\"\"", "\"\""]
+    bindings:
+    - ["RichContent.baseClasses", "\"t-content-h2 bold white-wild-sand-text\""]

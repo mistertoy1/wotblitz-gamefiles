@@ -1,0 +1,130 @@
+Header:
+    version: "99"
+Prototypes:
+-   class: "UIControl"
+    name: "HangarHeader"
+    size: [960.000000, 48.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "FixedSize"
+            verticalValue: 48.000000
+        UIDataParamsComponent:
+            params:
+            - ["StatsDataModel", "statsData", "null", "{ }"]
+            - ["LobbyDataModel", "lobby", "null", "{ }"]
+            - ["int64", "serverTime", "0L", "0L"]
+            - ["string", "playerName", "\"\"", "\"Konstantinopolsky\""]
+            - ["string", "clanTag", "\"\"", "\"WG\""]
+            - ["bool", "isGeneralPackLoaded", "true", "true"]
+            - ["bool", "isTutorialActive", "false", "false"]
+            - ["bool", "firstLessonCompleted", "true", "true"]
+            - ["bool", "showBackButton", "false", "false"]
+            - ["bool", "isBackButtonInitiallyClickable", "true", "false"]
+            - ["bool", "showStatsPanel", "true", "true"]
+            - ["bool", "showPremium", "true", "true"]
+            - ["bool", "showGold", "true", "true"]
+            - ["bool", "showCredits", "true", "true"]
+            - ["bool", "showFreeXp", "true", "true"]
+            - ["bool", "showShopButton", "true", "true"]
+            - ["bool", "isFullScreen", "false", "true"]
+            events:
+            - "PREMIUM_INFO_EVENT"
+            - "SHOP_BUTTON(eRequiredResource requiredResource)"
+            - "BACK_EVENT"
+            - "SHOW_ACHIEVEMENTS"
+        UIChildComponent0:
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/Headers/BaseHeader.yaml"
+            args:
+                "statsData": "statsData"
+                "lobby": "lobby"
+                "serverTime": "serverTime"
+                "leftContent": "PlayerName"
+                "background": "HangarBg"
+                "isGeneralPackLoaded": "isGeneralPackLoaded"
+                "isTutorialActive": "isTutorialActive"
+                "firstLessonCompleted": "firstLessonCompleted"
+                "showBackButton": "showBackButton"
+                "isBackButtonInitiallyClickable": "isBackButtonInitiallyClickable"
+                "showStatsPanel": "showStatsPanel"
+                "showPremium": "showPremium"
+                "showGold": "showGold"
+                "showCredits": "showCredits"
+                "showFreeXp": "showFreeXp"
+                "showShopButton": "showShopButton"
+                "isFullScreen": "isFullScreen"
+            eventActions:
+            - ["SHOP_BUTTON", "SHOP_BUTTON", "_event.requiredResource"]
+            - ["BACK_EVENT", "BACK_EVENT", ""]
+            - ["PREMIUM_INFO_EVENT", "PREMIUM_INFO_EVENT", ""]
+Slots:
+-   class: "UIControl"
+    name: "HangarBg"
+    size: [960.000000, 48.000000]
+    input: false
+    classes: "black-bg"
+    components:
+        Background:
+            drawType: "DRAW_STRETCH_BOTH"
+            sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_vertical_0-100"
+            spriteModification: ["FLIP_VERTICAL"]
+        UIOpacityComponent:
+            opacity: 0.600000
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "FixedSize"
+            verticalValue: 104.000000
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml"
+-   class: "UIControl"
+    name: "PlayerName"
+    size: [220.000000, 48.000000]
+    input: true
+    components:
+        ClipContent: {}
+        Anchor:
+            leftAnchorEnabled: true
+        LinearLayout:
+            orientation: "LeftToRight"
+        SizePolicy:
+            horizontalPolicy: "Formula"
+            horizontalFormula: "when parent == 0 -> childrenSum, min(childrenSum, parent)"
+            verticalPolicy: "PercentOfParent"
+        UIInputEventComponent:
+            onTouchUpInside: "SHOW_ACHIEVEMENTS"
+        Focus: {}
+        UIShortcutEventComponent:
+            perform: "SHOW_ACHIEVEMENTS"
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Lobby/StatsInfoPanelItem.style.yaml;~res:/UI/Screens3/ButtonSound.style.yaml"
+    bindings:
+    - ["classes", "\"button-open-sound \" + (when isGeneralPackLoaded -> \"header-currency\", \"\")"]
+    children:
+    -   class: "UIControl"
+        name: "Spacer"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 16.000000
+                verticalPolicy: "PercentOfParent"
+    -   class: "UIControl"
+        name: "Content"
+        input: false
+        classes: "content"
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/PlayerName.yaml"
+                args:
+                    "clanTag": "clanTag"
+                    "playerName": "playerName"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/StatsInfoPanelItem.style.yaml"

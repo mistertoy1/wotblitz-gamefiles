@@ -1,0 +1,34 @@
+Header:
+    version: "93"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/FullScreenPopup/FullscreenPopupWithContentSlot.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "LeaugeChangedNotification"
+    size: [900.000000, 600.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "isNetease", "false", "false"]
+            - ["eLeagueNotification", "notificationType", "eLeagueNotification.kDefault", "eLeagueNotification.kRecalibration"]
+            - ["eLeague", "lastInformedLeague", "eLeague.NO_LEAGUE", "eLeague.BRONZE"]
+            - ["RatingBattleModel", "rating", "null", "{ }"]
+            - ["int", "recalibrationInactiveDays", "0", "0"]
+            - ["int", "recalibrationBattlesCount", "0", "0"]
+            events:
+            - "CLOSE_NOTIFICATION"
+    children:
+    -   prototype: "FullscreenPopupWithContentSlot/FullscreenPopupWithContentSlot"
+        name: "FullscreenPopupWithContentSlot"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "isButtonVisible": "true"
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/FullScreenPopup/LeagueChangedNotificationContent.yaml\", { isNetease = isNetease; notificationType = notificationType; lastInformedLeague = lastInformedLeague; rating = rating; recalibrationInactiveDays = recalibrationInactiveDays; recalibrationBattlesCount = recalibrationBattlesCount; }, [ { event = \"ACCENT_CLICKED\"; action = \"SHOW_LEADERBOARDS\"; }; ])"
+                eventActions:
+                - ["CLOSE_NOTIFICATION", "CLOSE_NOTIFICATION", ""]
+                - ["ACCENT_CLICKED", "SHOW_LEADERBOARDS", ""]

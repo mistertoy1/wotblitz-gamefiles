@@ -1,0 +1,140 @@
+Header:
+    version: "96"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/FullScreenPopup/FullscreenNotificationContent.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "MaxMasteryNotificationContent"
+    size: [322.000000, 600.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["string", "vehicleType", "\"\"", "\"lightTank\""]
+            - ["string", "vehicleName", "\"\"", "\"T-26\""]
+            events:
+            - "ACCENT_CLICKED"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "vehicleTypeRich", "\"#crew:mastery/congratulation/vehicleType/\" + vehicleType"]
+            - ["string", "baseFontStyle", "\"t-body\""]
+            - ["string", "baseFontSize", "\"regular\""]
+            - ["string", "baseFontColor", "\"white-wild-sand-50-text\""]
+            - ["string", "baseTextStyle", "baseFontSize + \" \" + baseFontStyle + \" \" + baseFontColor"]
+            - ["string", "highlightStartRichAlias", "\"<\" + baseFontSize + \"_highlighted>\""]
+            - ["string", "highlightEndRichAlias", "\"</\" + baseFontSize + \"_highlighted>\""]
+    children:
+    -   prototype: "FullscreenNotificationContent/FullscreenNotificationContent"
+        name: "FullscreenNotificationContent"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "isButtonVisible": "true"
+                    "topPart": "TopPart"
+                    "description": "Description"
+                    "content": "null"
+                    "congratulationText": "localize(\"#vehicle_birthday:Congratulations/Title\")"
+                    "buttonText": "\"#common:DialogButton/OK\""
+                eventActions:
+                - ["ACCENT_CLICKED", "ACCENT_CLICKED", ""]
+Slots:
+-   class: "UIControl"
+    name: "TopPart"
+    size: [10.000000, 10.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            topAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            verticalPolicy: "FixedSize"
+            verticalValue: 120.000000
+    children:
+    -   class: "UIParticles"
+        name: "sparks"
+        position: [16.000000, 4.000000]
+        size: [32.000000, 32.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        effectPath: "~res:/3d/FX/UI/crew_sparks.sc2"
+        autoStart: true
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+    -   class: "UIControl"
+        name: "UIControl"
+        position: [16.000000, 4.000000]
+        scale: [0.500000, 0.500000]
+        components:
+            Background:
+                drawType: "DRAW_BATCH"
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            UISpineComponent:
+                skeletonPath: "~res:/Gfx/Spine/Json/PopUp_Perk100/skeleton.json"
+                atlasPath: "~res:/Gfx/Spine/Atlas/PopUp_Perk100/skeleton.atlas"
+                animationName: "animation"
+                animationState: "Played"
+                skinName: "default"
+                loopedPlayback: true
+    -   class: "UIParticles"
+        name: "glow"
+        position: [16.000000, 4.000000]
+        size: [32.000000, 32.000000]
+        pivot: [0.500000, 0.500000]
+        visible: true
+        input: false
+        effectPath: "~res:/3d/FX/UI/crew_glow.sc2"
+        autoStart: true
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+-   class: "UIControl"
+    name: "Description"
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+            spacing: 16.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            horizontalMax: 600.000000
+            verticalPolicy: "PercentOfChildrenSum"
+    children:
+    -   class: "UIControl"
+        name: "RichText"
+        position: [32.000000, 0.000000]
+        input: false
+        components:
+            RichContent: {}
+            RichContentAliases0:
+                aliases: "t-body_highlighted,<span class=\"t-body bold white-wild-sand-text\" />;text_white_bold,<span class=\"t-body bold white-wild-sand-text\" />;t-subtitle_highlighted,<span class=\"t-subtitle bold white-wild-sand-text\" />;"
+            Anchor:
+                leftAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                horizontalMax: 600.000000
+                verticalPolicy: "PercentOfChildrenSum"
+                verticalMax: 200.000000
+            FlowLayout:
+                enabled: true
+                hDynamicPadding: true
+                hDynamicInLinePadding: true
+                hSpacing: 5.000000
+                skipInvisible: true
+                useRtl: true
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["RichContent.text", "localize(\"#crew:mastery/congratulation\", { vehicleName = localize(vehicleName); vehicleType = localize(vehicleTypeRich); })"]
+        - ["RichContent.baseClasses", "baseTextStyle"]

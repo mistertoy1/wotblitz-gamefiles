@@ -1,0 +1,182 @@
+Header:
+    version: "93"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/FullScreenPopup/FullscreenNotificationContent.yaml"
+- "~res:/UI/Screens3/Lobby/Common/RichTextSimpleParameter.yaml"
+- "~res:/UI/Screens3/Lobby/Profile/Common/LeagueIcon.yaml"
+- "~res:/UI/Screens3/Lobby/Profile/Common/LeagueInfoPrototype.yaml"
+- "~res:/UI/Screens3/Lobby/Common/RichText.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "LeagueChangedNotificationContent"
+    size: [322.000000, 600.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "isNetease", "false", "false"]
+            - ["eLeagueNotification", "notificationType", "eLeagueNotification.kDefault", "eLeagueNotification.kLeagueChanged"]
+            - ["eLeague", "lastInformedLeague", "eLeague.NO_LEAGUE", "eLeague.BRONZE"]
+            - ["RatingBattleModel", "rating", "null", "{ }"]
+            - ["int", "recalibrationInactiveDays", "0", "0"]
+            - ["int", "recalibrationBattlesCount", "0", "0"]
+            events:
+            - "ACCENT_CLICKED"
+        UIDataLocalsComponent:
+            locals:
+            - ["eLeague", "league", "rating.leagueType"]
+            - ["string", "leagueColorTextStyle", "when league == eLeague.NO_LEAGUE -> \"white-wild-sand-50-text\", league == eLeague.BRONZE -> \"orange-tango-text\", league == eLeague.SILVER -> \"blue-riptide-text\", league == eLeague.GOLD -> \"yellow-lightning-text\", league == eLeague.PLATINUM -> \"orange-orange-peel-text\", league == eLeague.DIAMOND -> \"purple-chupretto-text\", \"\""]
+            - ["string", "leagueStyle", "when league == eLeague.NO_LEAGUE -> \"t-content-h2 regular not-localize \" + leagueColorTextStyle, \"t-content-h2 bold not-localize \" + leagueColorTextStyle"]
+            - ["string", "congrtatsText", "when notificationType == eLeagueNotification.kLeagueChanged -> \"ratingBattles/leagueChanged/Title\", notificationType == eLeagueNotification.kCalibrationStart -> \"ratingBattles/calibrationStarted/Title\", notificationType == eLeagueNotification.kResetRating -> \"ratingBattles/resetRating/Title\", notificationType == eLeagueNotification.kCalibrationCompleted -> \"ratingBattles/calibrationCompleted/Title\", notificationType == eLeagueNotification.kRecalibration -> \"ratingBattles/calibrationStarted/Title\", \"\""]
+            - ["string", "leagueChangedText", "when lastInformedLeague < league -> \"ratingBattles/leagueIncreased/\" + str(league, eLeague, \"lower_case\"), \"ratingBattles/leagueDecreased/\" + str(league, eLeague, \"lower_case\")"]
+            - ["string", "calibrationCompletedText", "\"ratingBattles/calibrationCompleted/\" + str(league, eLeague, \"lower_case\")"]
+            - ["string", "richTextWithParameterKey", "when notificationType == eLeagueNotification.kCalibrationStart -> \"ratingBattles/calibrationStarted/Description\", \"ratingBattles/resetRating/Description\""]
+            - ["string", "richTextWithParameterValue", "when notificationType == eLeagueNotification.kCalibrationStart -> str(rating.calibrationBattlesCount), str(rating.calibrationBattlesCount)"]
+    children:
+    -   prototype: "FullscreenNotificationContent/FullscreenNotificationContent"
+        name: "FullscreenNotificationContent"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "isButtonVisible": "not isNetease"
+                    "topPart": "null"
+                    "description": "Description"
+                    "content": "Content"
+                    "congratulationText": "localize(congrtatsText)"
+                    "buttonText": "localize(\"ratingBattles/GoToRating/Button\")"
+                eventActions:
+                - ["ACCENT_CLICKED", "ACCENT_CLICKED", ""]
+Slots:
+-   class: "UIControl"
+    name: "Description"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            horizontalMax: 600.000000
+            verticalPolicy: "PercentOfMaxChild"
+    children:
+    -   class: "UIControl"
+        name: "CalibrationStartAndResetRating"
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfMaxChild"
+        bindings:
+        - ["visible", "notificationType == eLeagueNotification.kCalibrationStart or notificationType == eLeagueNotification.kResetRating"]
+        children:
+        -   prototype: "RichTextSimpleParameter/RichTextSimpleParameter"
+            name: "RichTextSimpleParameter"
+            components:
+                SizePolicy:
+                    horizontalMax: 322.000000
+                FlowLayout:
+                    hDynamicPadding: true
+                    hDynamicInLinePadding: true
+                UIDataParamsComponent:
+                    args:
+                        "baseFontSize": "\"t-body\""
+                        "baseFontStyle": "\"regular\""
+                        "baseFontColor": "\"white-wild-sand-50-text\""
+                        "key": "richTextWithParameterKey"
+                        "value": "richTextWithParameterValue"
+    -   class: "UIControl"
+        name: "LeagueChangedAndCalibrationComplete"
+        size: [278.000000, 0.000000]
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfMaxChild"
+        bindings:
+        - ["visible", "notificationType == eLeagueNotification.kLeagueChanged or notificationType == eLeagueNotification.kCalibrationCompleted"]
+        children:
+        -   prototype: "RichText/RichText"
+            name: "RichText"
+            components:
+                FlowLayout:
+                    hDynamicPadding: true
+                    hDynamicInLinePadding: true
+                UIDataParamsComponent:
+                    args:
+                        "baseFontSize": "\"t-body\""
+                        "baseFontStyle": "\"regular\""
+                        "baseFontColor": "\"white-wild-sand-50-text\""
+                        "key": "when notificationType == eLeagueNotification.kLeagueChanged -> leagueChangedText, notificationType == eLeagueNotification.kCalibrationCompleted -> calibrationCompletedText, \"\""
+                        "linkKey": "\"\""
+                        "resource1Model": "null"
+                        "resource2Model": "null"
+                        "resource3Model": "null"
+                        "resource4Model": "null"
+                        "customKeyProperty": "\"\""
+    -   class: "UIControl"
+        name: "Recalibration"
+        input: false
+        components:
+            RichContent:
+                baseClasses: "t-body regular white-wild-sand-70-text"
+            RichContentAliases0:
+                aliases: "t-body_highlighted,<span class=\"t-body bold white-wild-sand-text\" />;"
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                horizontalMax: 600.000000
+                verticalPolicy: "PercentOfChildrenSum"
+            FlowLayout:
+                hDynamicInLinePadding: true
+                hSpacing: 5.000000
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["visible", "notificationType == eLeagueNotification.kRecalibration"]
+        - ["RichContent.text", "format(localize(\"ratingBattles/recalibrationRequired/Description\"), { days = \"<t-body_highlighted>\" + localize(str(recalibrationInactiveDays)) + \"</t-body_highlighted>\"; battles = \"<t-body_highlighted>\" + localize(str(recalibrationBattlesCount)) + \"</t-body_highlighted>\"; })"]
+-   class: "UIControl"
+    name: "Content"
+    size: [10.000000, 10.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            topAnchorEnabled: true
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfChildrenSum"
+    children:
+    -   prototype: "LeagueIcon/LeagueIcon"
+        name: "LeagueIcon"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "showAnimation": "true"
+                    "league": "when notificationType != eLeagueNotification.kLeagueChanged and notificationType != eLeagueNotification.kCalibrationCompleted -> eLeague.NO_LEAGUE, league"
+    -   class: "UIControl"
+        name: "Rating"
+        size: [73.000000, 36.000000]
+        input: false
+        components:
+            UITextComponent: {}
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "notificationType == eLeagueNotification.kLeagueChanged or notificationType == eLeagueNotification.kCalibrationCompleted or notificationType == eLeagueNotification.kRecalibration"]
+        - ["classes", "leagueStyle"]
+        - ["UITextComponent.text", "rating.currentRating"]

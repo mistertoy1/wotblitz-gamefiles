@@ -1,0 +1,80 @@
+action CloseDialogAnimation(bool accent, bool playSound)
+{
+  Event("START_CLOSING_ANIMATION");
+  parallel
+  {
+    ChangeProperty("**/Blur", "UIOpacityComponent", "opacity", 0.0, 0.15, EASE_IN);
+    ChangeProperty("**/Fade", "UIOpacityComponent", "opacity", 0.0, 0.15, EASE_IN);
+    ChangeProperty("**/DialogContent", "UIOpacityComponent", "opacity", 0.0, 0.15, EASE_IN);
+    Scale (path="**/DialogContent", time = 0.15, x = 0.0001,y = 0.0001, interpolation=EASE_IN);
+  }
+
+  if (accent)
+  {
+    if (playSound)
+    {
+      DirectEvent("PLAY_SOUND", "**/Footer/ButtonAccept");
+    }
+    Event("ACCENT_CLICKED");
+  }
+  else
+  {
+    if (playSound)
+    {
+      DirectEvent("PLAY_SOUND", "**/Footer/OptionalButtonContainer/ButtonOptionalLight");
+    }
+    Event("OPTIONAL_CLICKED");
+  }
+}
+
+action OPTIONAL_ACTION(bool playSound)
+{
+  if (type == eDialogType.PUSH)
+  {
+    ChangeProperty("**/TapArea","","input",false);
+    ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", 12, 0.05, SINE_OUT);
+    ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", -24, 0.05, SINE_IN);
+    ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", 8, 0.05, SINE_IN);
+    ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", -16, 0.05, SINE_IN);
+    ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", 6, 0.05, SINE_IN);
+    ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", -12, 0.05, SINE_IN);
+    ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", 4, 0.05, SINE_IN);
+    ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", -8, 0.05, SINE_IN);
+    ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", 2, 0.05, SINE_IN);
+    ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", -4, 0.05, SINE_IN);
+    ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", 0, 0.05, SINE_OUT);
+    ChangeProperty("**/TapArea","","input",true);
+  }
+  if (type == eDialogType.INFO)
+  {
+    Event("CloseDialogAnimation", arg1=true, arg2=playSound);
+  }
+  if (type == eDialogType.CHOOSE or type == eDialogType.FILL)
+  {
+    Event("CloseDialogAnimation", arg1=false, arg2=playSound);
+  }
+}
+
+action ACCENT_ACTION(bool playSound)
+{
+    Event("CloseDialogAnimation", arg1=true, arg2=playSound);
+}
+
+action BACK_SHORTCUT
+{
+  Event("OPTIONAL_ACTION", arg1=true);
+}
+
+action ENTER_SHORTCUT
+{
+  Event("ACCENT_ACTION", arg1=true);
+}
+
+// FloatParamPack
+// first - size of scroll content
+// second - size of scroll view
+action ScrollContentSizeChanged(FloatParamPack params)
+{
+    Opacity("**/SeparatorTop", when params.first > params.second -> 1.0, 0.0);
+    Opacity("**/SeparatorBottom", when params.first > params.second -> 1.0, 0.0);
+}

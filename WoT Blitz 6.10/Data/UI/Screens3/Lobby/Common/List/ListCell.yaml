@@ -1,0 +1,88 @@
+Header:
+    version: "85"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/List/Separator-1px.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "ListCell"
+    size: [400.000000, 3540.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "visible", "true", "true"]
+            - ["string", "name", "\"#name\"", "\"#name\""]
+            - ["string", "value", "\"#value\"", "\"#value\""]
+            - ["bool", "showBottomSeparator", "false", "true"]
+    bindings:
+    - ["visible", "visible"]
+    - ["SizePolicy.verticalValue", "when visible -> 100, 0"]
+    children:
+    -   class: "UIControl"
+        name: "MainParamWrapper"
+        input: false
+        components:
+            LinearLayout:
+                orientation: "TopDown"
+                padding: "10"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "MainParam"
+            position: [0.000000, 0.000000]
+            input: false
+            components:
+                LinearLayout:
+                    spacing: 16.000000
+                    dynamicSpacing: true
+                    useRtl: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfMaxChild"
+            children:
+            -   class: "UIControl"
+                name: "Title"
+                input: false
+                classes: "t-body regular color=white-wild-sand-text"
+                components:
+                    UITextComponent:
+                        multiline: "MULTILINE_ENABLED"
+                        align: ["LEFT", "VCENTER"]
+                    SizePolicy:
+                        horizontalPolicy: "Formula"
+                        horizontalFormula: "min(parentRest, content)"
+                        verticalPolicy: "PercentOfContent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Font.style.yaml"
+                bindings:
+                - ["UITextComponent.text", "name"]
+            -   class: "UIControl"
+                name: "Value"
+                input: false
+                classes: "t-body bold color=white-wild-sand-text not-localize"
+                components:
+                    UITextComponent: {}
+                    Anchor:
+                        topAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        verticalPolicy: "PercentOfContent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Font.style.yaml"
+                bindings:
+                - ["UITextComponent.text", "value"]
+    -   prototype: "Separator-1px/Separator"
+        name: "Separator"
+        components:
+            Anchor:
+                bottomAnchorEnabled: true
+            IgnoreLayout: {}
+        bindings:
+        - ["visible", "showBottomSeparator"]

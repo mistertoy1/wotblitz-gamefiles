@@ -1,0 +1,18 @@
+Header:
+    version: "77"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Touch.style.yaml"
+- "~res:/UI/Screens3/Common/Hover.style.yaml"
+StyleSheets:
+-   selector: ".reward-medium:selected:hover * .hover"
+    properties:
+        visible: false
+-   selector: ".reward-medium:pressed_inside * .hover"
+    properties:
+        visible: false
+-   selector: ".reward-medium * #Content, .reward-medium:pressed_inside:selected * #Content"
+    properties:
+        opacity-opacity: 1.000000
+-   selector: ".reward-medium:pressed_inside * #Content"
+    properties:
+        opacity-opacity: 0.700000

@@ -1,0 +1,33 @@
+Header:
+    version: "70"
+Prototypes:
+-   class: "UIControl"
+    name: "Resources"
+    size: [183.000000, 32.000000]
+    input: false
+    components:
+        LinearLayout:
+            spacing: 8.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["eCurrencySize", "currencySize", "eCurrencySize.BIG", "eCurrencySize.BIG"]
+            - ["bool", "forButton", "false", "false"]
+            - ["map<string,bool>", "canAfford", "null", "{ }"]
+            - ["bool", "showDiscount", "true", "true"]
+            - ["bool", "visible", "true", "true"]
+            - ["Price", "price", "null", "{ }"]
+        UIRepeatComponent:
+            control: "~res:/UI/Screens3/Lobby/Common/Resource/CurrencyWithDiscount.yaml"
+            dataContainer: "price.resources"
+            args:
+                "currencySize": "currencySize"
+                "forButton": "forButton"
+                "canAfford": "when isNull(canAfford) -> true, when canAfford.Contains(_item.name) -> canAfford[_item.name], true"
+                "showDiscount": "showDiscount"
+                "plusVisible": "not (_index == price.resources.Size() - 1)"
+                "resource": "_item"
+    bindings:
+    - ["visible", "visible", "Read"]

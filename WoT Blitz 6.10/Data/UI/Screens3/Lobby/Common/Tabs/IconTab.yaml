@@ -1,0 +1,109 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/BadgeHolder.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "TabIcon"
+    input: false
+    components:
+        UIAnimationComponent:
+            animations: "ON_SELECTED,~res:/UI/Screens3/Lobby/Common/Tabs/TextTab.animation"
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 48.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 48.000000
+        UIDataParamsComponent:
+            params:
+            - ["bool", "isSelected", "false", "false"]
+            - ["TabIconInfo", "tabInfo", "null", "{ badge = { type = eBadgeType.EMPTY; value = \" \"; }; isLocked = true; }"]
+            - ["int", "tabID", "0", "0"]
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "isLocked", "tabInfo.isLocked"]
+        UIEventOnDataComponent0:
+            watchedDataExpression: "isSelected"
+            ifExpression: "_value == true"
+            eventName: "ON_SELECTED"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/ButtonSound.style.yaml"
+    children:
+    -   class: "UIControl"
+        name: "TapArea"
+        size: [32.000000, 32.000000]
+        input: true
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            UISwitchBarElementComponent: {}
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/Common/Tabs/Tab.style.yaml"
+        bindings:
+        - ["classes", "\"tab tap-area \" + (when isLocked -> \"locked\", \"\")"]
+        - ["UISwitchBarElementComponent.id", "tabID"]
+        children:
+        -   class: "UIControl"
+            name: "Content"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "content-area"
+            components:
+                Anchor:
+                    leftAnchorEnabled: true
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Lobby/Common/Tabs/Tab.style.yaml"
+            children:
+            -   prototype: "BadgeHolder/BadgeHolder"
+                name: "BadgeHolder"
+                components:
+                    Anchor:
+                        rightAnchorEnabled: true
+                        topAnchorEnabled: true
+                        topAnchor: 4.000000
+                    UIDataParamsComponent:
+                        args:
+                            "type": "tabInfo.badge.type"
+                            "value": "tabInfo.badge.value"
+            -   class: "UIControl"
+                name: "Selection"
+                pivot: [0.500000, 0.500000]
+                input: false
+                classes: "selection orange-orange-peel-bg"
+                components:
+                    Background: {}
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        bottomAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 4.000000
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Tabs/Tab.style.yaml"
+            -   class: "UIControl"
+                name: "Icon"
+                pivot: [0.500000, 0.500000]
+                input: false
+                classes: "content"
+                components:
+                    UIOpacityComponent: {}
+                    UITextureComponent: {}
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 24.000000
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 24.000000
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Lobby/Common/Tabs/Tab.style.yaml"
+                bindings:
+                - ["UITextureComponent.spritePath", "tabInfo.sprite"]

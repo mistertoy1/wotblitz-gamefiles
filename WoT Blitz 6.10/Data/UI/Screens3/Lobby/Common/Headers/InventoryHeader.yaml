@@ -1,0 +1,134 @@
+Header:
+    version: "96"
+Prototypes:
+-   class: "UIControl"
+    name: "InventoryHeader"
+    size: [960.000000, 48.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfFirstChild"
+        UIDataParamsComponent:
+            params:
+            - ["StatsDataModel", "statsData", "null", "{ }"]
+            - ["LobbyDataModel", "lobby", "null", "{ }"]
+            - ["int64", "serverTime", "0L", "0L"]
+            - ["string", "title", "\"\"", "\"Дерево танков\""]
+            - ["string", "subtitle", "\"\"", "\"СССР\""]
+            - ["bool", "isGeneralPackLoaded", "true", "true"]
+            - ["bool", "isTutorialActive", "false", "false"]
+            - ["bool", "firstLessonCompleted", "true", "true"]
+            - ["eCurrentScreen", "currentScreen", "eCurrentScreen.kUnknown", "eCurrentScreen.kHangar"]
+            - ["bool", "showBackButton", "false", "true"]
+            - ["bool", "isBackButtonInitiallyClickable", "true", "false"]
+            - ["bool", "showStatsPanel", "true", "true"]
+            - ["bool", "showPremium", "true", "true"]
+            - ["bool", "showGold", "true", "true"]
+            - ["bool", "showCredits", "true", "true"]
+            - ["bool", "showFreeXp", "true", "true"]
+            - ["bool", "showShopButton", "true", "true"]
+            - ["bool", "isFullScreen", "false", "true"]
+            events:
+            - "PREMIUM_INFO_EVENT"
+            - "BACK_EVENT"
+            - "SHOP_BUTTON(eRequiredResource requiredResource)"
+        UIChildComponent0:
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/Headers/BaseHeader.yaml"
+            args:
+                "statsData": "statsData"
+                "lobby": "lobby"
+                "serverTime": "serverTime"
+                "leftContent": "LeftContent"
+                "bgStyle": "when currentScreen == eCurrentScreen.kInventoryCamouflages -> \"grey-shark-70-bg\", \"black-15-bg\""
+                "isGeneralPackLoaded": "isGeneralPackLoaded"
+                "isTutorialActive": "isTutorialActive"
+                "firstLessonCompleted": "firstLessonCompleted"
+                "showBackButton": "showBackButton"
+                "isBackButtonInitiallyClickable": "isBackButtonInitiallyClickable"
+                "showStatsPanel": "showStatsPanel"
+                "showPremium": "showPremium"
+                "showGold": "showGold"
+                "showCredits": "showCredits"
+                "showFreeXp": "showFreeXp"
+                "showShopButton": "showShopButton"
+                "isFullScreen": "isFullScreen"
+            eventActions:
+            - ["PREMIUM_INFO_EVENT", "PREMIUM_INFO_EVENT", ""]
+            - ["BACK_EVENT", "BACK_EVENT", ""]
+            - ["SHOP_BUTTON", "SHOP_BUTTON", "_event.requiredResource"]
+Slots:
+-   class: "UIControl"
+    name: "LeftContent"
+    size: [256.000000, 48.000000]
+    input: false
+    components:
+        LinearLayout: {}
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+    children:
+    -   class: "UIControl"
+        name: "Spacer"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 16.000000
+                verticalPolicy: "PercentOfParent"
+    -   class: "UIControl"
+        name: "ScreenNameWrapper"
+        input: false
+        components:
+            Anchor:
+                vCenterAnchorEnabled: true
+            LinearLayout:
+                spacing: 4.000000
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "when parent == 0 -> childrenSum, min(childrenSum, parentRest)"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "TItle"
+            input: false
+            classes: "t-subtitle regular white-wild-sand-text"
+            components:
+                UITextComponent:
+                    fitting: "FITTING_POINTS"
+                    align: ["LEFT", "VCENTER"]
+                SizePolicy:
+                    horizontalPolicy: "Formula"
+                    horizontalFormula: "when parent == 0 -> content, min(parentRest, content)"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+            bindings:
+            - ["UITextComponent.text", "title"]
+        -   class: "UIControl"
+            name: "Slash"
+            input: false
+            classes: "t-subtitle regular white-wild-sand-text"
+            components:
+                UITextComponent:
+                    text: "/"
+                    align: ["LEFT", "VCENTER"]
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+        -   class: "UIControl"
+            name: "Subtitle"
+            input: false
+            classes: "t-subtitle regular white-wild-sand-50-text"
+            components:
+                UITextComponent:
+                    align: ["LEFT", "VCENTER"]
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+            bindings:
+            - ["UITextComponent.text", "localize(subtitle)"]

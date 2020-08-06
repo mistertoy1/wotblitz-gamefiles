@@ -1,0 +1,24 @@
+Header:
+    version: "92"
+Prototypes:
+-   class: "UIControl"
+    name: "Value"
+    input: false
+    classes: "t-body regular white-wild-sand-70-text"
+    components:
+        UITextComponent:
+            colorInheritType: "COLOR_IGNORE_PARENT"
+            multiline: "MULTILINE_ENABLED"
+            align: ["HCENTER", "TOP"]
+        Anchor:
+            hCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfContent"
+        UIDataParamsComponent:
+            params:
+            - ["string", "contentText", "\"\"", "\"Его многочисленные, убого тонкие по сравнению с остальным телом ножки беспомощно копошились у него перед глазами. «Что со мной случилось?\""]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Font.style.yaml"
+    bindings:
+    - ["UITextComponent.text", "contentText"]

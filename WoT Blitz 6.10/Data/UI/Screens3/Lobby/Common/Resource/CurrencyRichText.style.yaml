@@ -1,0 +1,27 @@
+Header:
+    version: "77"
+StyleSheets:
+-   selector: ".t-caption"
+    properties:
+        linearLayout-padding: "0"
+        sizePolicy-verticalValue: 20.000000
+-   selector: ".t-caption * .currency"
+    properties:
+        anchor-bottomAnchorEnabled: true
+        anchor-bottomAnchor: 0.000000
+-   selector: ".t-body"
+    properties:
+        linearLayout-padding: "0"
+        sizePolicy-verticalValue: 20.000000
+-   selector: ".t-body * .currency"
+    properties:
+        anchor-bottomAnchorEnabled: true
+        anchor-bottomAnchor: 0.000000
+-   selector: ".t-subtitle"
+    properties:
+        linearLayout-padding: "2"
+        sizePolicy-verticalValue: 24.000000
+-   selector: ".t-subtitle * .currency"
+    properties:
+        anchor-bottomAnchorEnabled: true
+        anchor-bottomAnchor: 0.000000

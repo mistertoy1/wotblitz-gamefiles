@@ -1,0 +1,185 @@
+Header:
+    version: "95"
+Prototypes:
+-   class: "UIControl"
+    name: "NotificationBase"
+    size: [608.000000, 64.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+            padding: "8; 0"
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["string", "buttonText", "\"\"", "\"Go\""]
+            - ["bool", "isButtonVisible", "false", "true"]
+            - ["control", "content", "null", "Content"]
+            - ["string", "iconPath", "\"\"", "\"~res:/Gfx/Lobby/icons/icon_like_s\""]
+            events:
+            - "ON_BUTTON_CLICK"
+    children:
+    -   class: "UIControl"
+        name: "Body"
+        size: [608.000000, 64.000000]
+        input: false
+        components:
+            LinearLayout:
+                orientation: "LeftToRight"
+                padding: "0;1"
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 608.000000
+                verticalPolicy: "PercentOfMaxChild"
+                verticalMin: 64.000000
+                verticalMax: 80.000000
+        children:
+        -   class: "UIControl"
+            name: "Bg"
+            input: false
+            components:
+                UITextureComponent:
+                    spritePath: "~res:/Gfx/Lobby/backgrounds/bg_dark_r8"
+                    drawType: "DRAW_STRETCH_BOTH"
+                    leftRightStretchCap: 8.000000
+                    topBottomStretchCap: 8.000000
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+        -   class: "UIControl"
+            name: "IconWrapper"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 56.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 56.000000
+            children:
+            -   class: "UIControl"
+                name: "IconHolder"
+                position: [11.000000, 4.000000]
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfMaxChild"
+                    UIChildComponent0:
+                        childType: "kPrototype"
+                        prototypePath: "~res:/UI/Screens3/Lobby/Common/Notifications/Common/NotificationIcon.yaml"
+                        control: ""
+                        args:
+                            "iconPath": "iconPath"
+                bindings:
+                - ["visible", "iconPath != \"\""]
+        -   class: "UIControl"
+            name: "ContentHolder"
+            input: false
+            components:
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "Formula"
+                    verticalFormula: "when parent == 0 -> maxChild + 20, min(parent - 20, maxChild)"
+                UIChildComponent0:
+                    childType: "kControl"
+                    condition: "not isNull(content)"
+                    control: "content"
+        -   class: "UIControl"
+            name: "Spacer"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 16.000000
+                    verticalPolicy: "PercentOfParent"
+        -   class: "UIControl"
+            name: "ButtonsHolder"
+            position: [519.000000, 1.000000]
+            size: [88.000000, 78.000000]
+            input: false
+            components:
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfChildrenSum"
+                    verticalPolicy: "Formula"
+                    verticalFormula: "parent - 2"
+                UIChildComponent0:
+                    childType: "kPrototype"
+                    condition: "isButtonVisible"
+                    prototypePath: "~res:/UI/Screens3/Lobby/Common/Notifications/Common/NotificationButtonWithText.yaml"
+                    args:
+                        "text": "buttonText"
+                    eventActions:
+                    - ["ON_BUTTON_CLICK", "ON_BUTTON_CLICK", ""]
+            bindings:
+            - ["visible", "isButtonVisible"]
+Slots:
+-   class: "UIControl"
+    name: "Content"
+    size: [379.000000, 60.000000]
+    input: false
+    components:
+        Anchor:
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "Formula"
+            verticalFormula: "when parent == 0 -> childrenSum, min(parent, childrenSum)"
+    children:
+    -   class: "UIControl"
+        name: "ContentWrapper"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            LinearLayout:
+                orientation: "TopDown"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "Formula"
+                verticalFormula: "when parent == 0 -> childrenSum, min(parent, childrenSum)"
+        children:
+        -   class: "UIControl"
+            name: "Control"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "t-body bold red-red-text"
+            components:
+                UITextComponent:
+                    text: "Вынесено наказание!"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+        -   class: "UIControl"
+            name: "BodyBold"
+            position: [56.000000, 8.000000]
+            input: false
+            classes: "t-body regular  white-wild-sand-70-text align-left"
+            components:
+                UITextComponent:
+                    text: "Один из игроков, на которого вы отправили жалобу, получил предупреждение Один из игроков, на которого вы отправили жалобу, получил предупреждение"
+                    multiline: "MULTILINE_ENABLED"
+                    fitting: "FITTING_POINTS"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "Formula"
+                    verticalFormula: "when parent == 0 -> content, min(parentRest, content)"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"

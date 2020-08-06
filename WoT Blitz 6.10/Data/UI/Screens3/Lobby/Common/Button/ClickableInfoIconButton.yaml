@@ -1,0 +1,50 @@
+Header:
+    version: "82"
+Prototypes:
+-   class: "UIControl"
+    name: "InfoButton"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 24.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 24.000000
+        UIDataParamsComponent:
+            events:
+            - "ON_CLICK_BUTTON"
+    children:
+    -   class: "UIControl"
+        name: "TapArea"
+        position: [-8.000000, -8.000000]
+        classes: "clickable-info-button pressed-opacity button-open-sound"
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 40.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 40.000000
+            UIInputEventComponent:
+                onTouchUpInside: "ON_CLICK_BUTTON"
+            Sound: {}
+            StyleSheet:
+                styles: "~res:/UI/Screens3/ButtonSound.style.yaml;~res:/UI/Screens3/Common/Touch.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "Icon"
+            pivot: [0.500000, 0.500000]
+            input: false
+            classes: " content-area"
+            components:
+                Background:
+                    sprite: "~res:/Gfx/Lobby/icons/icon_info-color_xs"
+                UIOpacityComponent: {}
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"

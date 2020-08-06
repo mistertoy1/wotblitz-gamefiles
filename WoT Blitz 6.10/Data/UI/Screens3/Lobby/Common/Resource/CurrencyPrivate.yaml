@@ -1,0 +1,262 @@
+Header:
+    version: "96"
+Prototypes:
+-   class: "UIControl"
+    name: "Currency"
+    input: false
+    components:
+        LinearLayout: {}
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["eCurrencySize", "currencySize", "eCurrencySize.BIG", "eCurrencySize.SMALL"]
+            - ["bool", "forButton", "false", "false"]
+            - ["bool", "canAfford", "true", "true"]
+            - ["bool", "isPlusTopPaneVisible", "false", "false"]
+            - ["int64", "serverTime", "0L", "0L"]
+            - ["bool", "plusVisible", "false", "false"]
+            - ["ResourceType", "type", "ResourceType.undefined", "ResourceType.gold"]
+            - ["int", "quantity", "0", "12345"]
+            - ["int", "bonusQuantity", "0", "0"]
+            - ["string", "localizedQuantity", "\"\"", "\"\""]
+            - ["string", "icon", "\"\"", "\"\""]
+            - ["string", "imageURL", "\"\"", "\"\""]
+            - ["ArtefactGrade", "grade", "ArtefactGrade.unknown", "ArtefactGrade.rare"]
+            - ["bool", "showGrade", "false", "true"]
+            - ["bool", "forceFullValue", "false", "false"]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "iconSpriteType", "when type == ResourceType.gold -> \"gold\", type == ResourceType.credits -> \"silver\", type == ResourceType.free_xp -> \"free-xp\", type == ResourceType.elite_xp -> \"elite-xp\", type == ResourceType.xp -> \"battle-xp\", type == ResourceType.tankmenXP -> \"crew-xp\", type == ResourceType.vehicle -> \"tank\", type == ResourceType.unlocks -> \"camo-unlock\", type == ResourceType.premium -> \"premium\", type == ResourceType.achievement -> \"achievement\", type == ResourceType.real_currency -> \"real-currency\", type == ResourceType.slots -> \"slot\", \"\""]
+            - ["string", "iconSpriteSize", "when currencySize == eCurrencySize.SMALL or currencySize == eCurrencySize.BODY -> \"s\", \"m\""]
+            - ["string", "iconSprite", "when type != ResourceType.stuff -> \"~res:/Gfx/Lobby/currency/currency_\" + iconSpriteType + \"_\" + iconSpriteSize, \"\""]
+            - ["string", "premiumText", "when isPlusTopPaneVisible -> localize(\"hangar/Header/ZeroDaysPremium\"), timeDiff(quantity, serverTime)"]
+            - ["bool", "showImageURL", "not empty(imageURL) and type == ResourceType.stuff"]
+            - ["bool", "showBuiltInIcon", "not empty(icon) and type == ResourceType.stuff and not showImageURL"]
+            - ["string", "gradeClass", "when grade != ArtefactGrade.unknown -> \"grade \" + str(grade, ArtefactGrade), \"\""]
+            - ["eCurrencySize", "finalCurrency", "when forButton -> eCurrencySize.BIG_BOLD, currencySize"]
+            - ["string", "quanitityStringed", "when not empty(localizedQuantity) -> localizedQuantity, type == ResourceType.premium -> premiumText, finalCurrency == eCurrencySize.SMALL and not forceFullValue -> shortStr(quantity), str1000Separated(quantity)"]
+            - ["string", "textColor", "when not canAfford or (isPlusTopPaneVisible and type == ResourceType.premium) -> \"red-red-text\", \"white-wild-sand-text\""]
+            - ["string", "bonusQuanitityStringed", "format(\"+%(value)\", { value = str1000Separated(bonusQuantity); })"]
+            - ["string", "fontStyle", "when finalCurrency == eCurrencySize.HUGE_BOLD -> \"t-headline bold\", finalCurrency == eCurrencySize.SMALL -> \"bold t-caption\", finalCurrency == eCurrencySize.BIG_BOLD -> \"bold t-subtitle\", finalCurrency == eCurrencySize.BODY -> \"t-body bold\", finalCurrency == eCurrencySize.BUTTON_BOLD -> \"t-button bold\", \"regular t-subtitle\""]
+            - ["string", "textStyle", "fontStyle + \" \" + textColor"]
+            - ["string", "iconSizeStyle", "when currencySize == eCurrencySize.SMALL -> \"~res:/Gfx/UI/LobbyCommon/CurrencyIconsSmall\", \"~res:/Gfx/UI/LobbyCommon/CurrencyIconsHuge\""]
+            - ["int", "iconSize", "when currencySize == eCurrencySize.HUGE_BOLD -> 24, currencySize == eCurrencySize.SMALL or currencySize == eCurrencySize.BODY -> 16, 20"]
+    children:
+    -   class: "UIControl"
+        name: "PlusTopPanel"
+        input: false
+        components:
+            Anchor:
+                rightAnchorEnabled: true
+                rightAnchor: -4.000000
+                topAnchorEnabled: true
+                topAnchor: -2.000000
+            IgnoreLayout: {}
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 14.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 14.000000
+        bindings:
+        - ["visible", "isPlusTopPaneVisible"]
+        children:
+        -   class: "UIControl"
+            name: "Bg"
+            input: false
+            classes: "green-la-palma-bg"
+            components:
+                Background:
+                    drawType: "DRAW_STRETCH_BOTH"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_r1"
+                    perPixelAccuracy: "PER_PIXEL_ACCURACY_FORCED"
+                    leftRightStretchCap: 1.000000
+                    topBottomStretchCap: 1.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "Icon"
+            input: false
+            classes: "white-wild-sand-bg"
+            components:
+                Background:
+                    drawType: "DRAW_ALIGNED"
+                    sprite: "~res:/Gfx/Lobby/icons/icon_plus_xxs"
+                    perPixelAccuracy: "PER_PIXEL_ACCURACY_FORCED"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+    -   class: "UIControl"
+        name: "Value"
+        input: false
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+                perPixelAccuracyType: "PER_PIXEL_ACCURACY_FORCED"
+                fitting: "FITTING_POINTS"
+                align: ["RIGHT", "VCENTER"]
+                useRtlAlign: "USE_BY_CONTENT"
+            Anchor:
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "quantity >= 0 or not empty(localizedQuantity)"]
+        - ["classes", "textStyle"]
+        - ["UITextComponent.text", "quanitityStringed"]
+    -   class: "UIControl"
+        name: "BonusValue"
+        input: false
+        classes: "t-subtitle regular color=green-la-palma-text"
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+                align: ["LEFT", "VCENTER"]
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "bonusQuantity > 0"]
+        - ["UITextComponent.text", "bonusQuanitityStringed"]
+    -   class: "UIControl"
+        name: "Spacer"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["visible", "type != ResourceType.real_currency"]
+        - ["SizePolicy.horizontalValue", "when currencySize == eCurrencySize.SMALL or currencySize == eCurrencySize.BODY -> 2, 4"]
+    -   class: "UIControl"
+        name: "BackWrapper"
+        input: false
+        components:
+            Anchor:
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent0:
+                childType: "kControl"
+                condition: "type != ResourceType.real_currency"
+                control: "Back"
+        bindings:
+        - ["visible", "type != ResourceType.real_currency"]
+    -   class: "UIControl"
+        name: "PlusWrapper"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "maxChild + 4"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["visible", "plusVisible"]
+        children:
+        -   class: "UIControl"
+            name: "Plus"
+            input: false
+            classes: "regular t-body white-wild-sand-text"
+            components:
+                UITextComponent:
+                    text: "+"
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    fitting: "FITTING_POINTS"
+                    align: ["RIGHT", "VCENTER"]
+                    useRtlAlign: "USE_BY_CONTENT"
+                Anchor:
+                    rightAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+Slots:
+-   class: "UIControl"
+    name: "Back"
+    input: false
+    components:
+        Anchor:
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            verticalPolicy: "FixedSize"
+    bindings:
+    - ["SizePolicy.horizontalValue", "iconSize"]
+    - ["SizePolicy.verticalValue", "iconSize"]
+    children:
+    -   class: "UIControl"
+        name: "Grade"
+        input: false
+        components:
+            Background:
+                drawType: "DRAW_SCALE_PROPORTIONAL"
+                sprite: "~res:/Gfx/UI/Storage/Items_back"
+                colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/Common/Resource/Grade.style.yaml"
+        bindings:
+        - ["visible", "showGrade or showBuiltInIcon"]
+        - ["classes", "gradeClass"]
+    -   class: "UIControl"
+        name: "Icon"
+        input: false
+        components:
+            Background:
+                drawType: "DRAW_SCALE_PROPORTIONAL"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_FORCED"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["visible", "not showImageURL and not showBuiltInIcon"]
+        - ["Background.sprite", "iconSprite"]
+    -   class: "UIControl"
+        name: "StuffIcon"
+        input: false
+        components:
+            Background:
+                drawType: "DRAW_SCALE_PROPORTIONAL"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["visible", "showBuiltInIcon"]
+        - ["Background.sprite", "icon"]
+    -   class: "UIControl"
+        name: "ImageURLIcon"
+        input: false
+        classes: "item_icon"
+        components:
+            Background:
+                drawType: "DRAW_SCALE_PROPORTIONAL"
+                colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            UIUrlImageComponent:
+                downscaleEnabled: false
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["visible", "showImageURL"]
+        - ["UIUrlImageComponent.imageUrl", "imageURL"]

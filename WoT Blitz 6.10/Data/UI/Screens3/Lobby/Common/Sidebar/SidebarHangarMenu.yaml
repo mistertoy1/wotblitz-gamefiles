@@ -1,0 +1,282 @@
+Header:
+    version: "92"
+Prototypes:
+-   class: "UIControl"
+    name: "HangarMenu"
+    size: [88.000000, 394.000000]
+    input: false
+    components:
+        UIAnimationComponent:
+            animations: "NOTIFICATION_PLAY_SOUND,~res:/UI/Screens3/Lobby/Hangar/BadgePlaySound.animation"
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "communitySubMenuShow", "false", "false"]
+            - ["LobbyDataModel", "lobby", "null", "{ }"]
+            - ["bool", "squadSubMenuShow", "false", "false"]
+            - ["SessionDataModel", "session", "null", "{ }"]
+            - ["AppDataModel", "app", "null", "{ sDlc = { isGeneralPackLoaded = true; }; }"]
+            - ["AccountDataModel", "account", "null", "{ \"tutorialData\" = { \"isTutorialActive\" = false; \"isAccountLessonCompleted\" = true; }; \"isKorea\" = false; \"prebattleModel\" = { \"squadTeamMateInfo\" = { }; \"settings\" = { \"prebattleType\" = PrebattleType.UNDEFINED; }; }; }"]
+            events:
+            - "SKIP_TUTORIAL_PRESSED"
+            - "NEWS_PRESSED"
+            - "SHOW_TANKS_TREE"
+            - "TASK_JOURNAL_PRESSED"
+            - "STORAGE_PRESSED"
+            - "CLANS_PRESSED"
+            - "SQUAD_INVITE_SHOW"
+            - "TOURNAMENTS_PRESSED"
+            - "TRAINING_PRESSED"
+            - "COMMUNITY_SHOW"
+            - "SETTINGS_PRESSED"
+        UIDataLocalsComponent:
+            locals:
+            - ["int", "prebattleId", "account.prebattleModel.prebattleId"]
+            - ["int", "incomingAutoInvitesCount", "when session.prebattleInvites.incomingAutoInvitesId.Contains(prebattleId) -> session.prebattleInvites.incomingAutoInvitesCount - 1, session.prebattleInvites.incomingAutoInvitesCount"]
+            - ["int", "newsTournamentNotifications", "session.tournamentPlayerinfo.playerNotifications + incomingAutoInvitesCount"]
+            - ["int", "newsNotification", "session.systemMessages.unreadCount + session.newsNotifications.unreadCount + newsTournamentNotifications"]
+            - ["bool", "isDemoAccount", "not (Contains(session.stats.accountAuthMethods, eAccountAuthMethods.kExternalEmail) or Contains(session.stats.accountAuthMethods, eAccountAuthMethods.kExternalGamecenter) or Contains(session.stats.accountAuthMethods, eAccountAuthMethods.kExternalGoogle) or Contains(session.stats.accountAuthMethods, eAccountAuthMethods.kExternalFacebook) or Contains(session.stats.accountAuthMethods, eAccountAuthMethods.kExternalLive) or Contains(session.stats.accountAuthMethods, eAccountAuthMethods.kExternalSteam) or Contains(session.stats.accountAuthMethods, eAccountAuthMethods.kExternalNetease))"]
+            - ["bool", "needShowCommunityLinks", "when app.constants.showCommunity -> not app.netease.neteaseAvailable or app.featuresCustomization.showCommunityLinks, false"]
+            - ["bool", "isTournament", "account.prebattleModel.settings.prebattleType == PrebattleType.TOURNAMENT or account.prebattleModel.settings.prebattleType == PrebattleType.QUICK_TOURNAMENT"]
+            - ["bool", "isSquadEnabled", "account.prebattleModel.settings.prebattleType == PrebattleType.SQUAD and not isNull(account.prebattleModel.squadTeamMateInfo)"]
+            - ["int", "clanApplications", "when account.clanData.clanRole == eClanRole.COMMANDER or account.clanData.clanRole == eClanRole.EXECUTIVE_OFFICER -> session.clanNotifications.applicationsCount, 0"]
+            - ["int", "clanInvites", "when app.gameOptions.playerOption.enableClanInvites -> session.clanNotifications.invitesCount, 0"]
+            - ["int", "clanNotifications", "session.clanNotifications.unreadNotifications + clanInvites + clanApplications"]
+            - ["bool", "isTutorialActive", "account.tutorialData.isTutorialActive"]
+            - ["int", "settingsBadge", "when not account.tutorialSyncData.isAccountLessonCompleted and not account.tutorialData.isTutorialActive and lobby.accountNotifications == 0 -> (when app.netease.neteaseAvailable -> 0, 1), lobby.accountNotifications"]
+        UIEventOnDataComponent0:
+            watchedDataExpression: "newsNotification"
+            ifExpression: "_value > _lastValue"
+            eventName: "NOTIFICATION_PLAY_SOUND"
+        UIEventOnDataComponent1:
+            watchedDataExpression: "clanNotifications"
+            ifExpression: "_value > _lastValue"
+            eventName: "NOTIFICATION_PLAY_SOUND"
+        UIEventOnDataComponent2:
+            watchedDataExpression: "lobby.tournamentBadges.tournamentBadgesCount"
+            ifExpression: "_value > _lastValue"
+            eventName: "NOTIFICATION_PLAY_SOUND"
+        UIEventOnDataComponent3:
+            watchedDataExpression: "lobby.questsNotifications"
+            ifExpression: "_value > _lastValue"
+            eventName: "NOTIFICATION_PLAY_SOUND"
+    children:
+    -   class: "UIControl"
+        name: "SkipTutorial"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+            UIChildComponent0:
+                childType: "kOldExpression"
+                control: "when account.tutorialData.isTutorialActive -> \"~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.yaml\", \"\""
+                args:
+                    "attachId": "\"\""
+                    "badge": "\"\""
+                    "badgeType": "eBadgeType.DIGIT"
+                    "frame": "12"
+                    "icon": "\"~res:/Gfx/Lobby/icons/icon_skip_m\""
+                    "select": "false"
+                eventActions:
+                - ["ON_PRESSED", "SKIP_TUTORIAL_PRESSED", ""]
+    -   class: "UIControl"
+        name: "News"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+            UIChildComponent0:
+                childType: "kOldExpression"
+                control: "when not account.tutorialData.isTutorialActive -> \"~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.yaml\", \"\""
+                args:
+                    "attachId": "\"\""
+                    "icon": "\"~res:/Gfx/Lobby/icons/icon_news_n.psd\""
+                    "lock": "not app.sDlc.isGeneralPackLoaded"
+                    "select": "false"
+                    "badge": "when app.sDlc.isGeneralPackLoaded -> badge(newsNotification), badge(false)"
+                    "badgeType": "eBadgeType.DIGIT"
+                eventActions:
+                - ["ON_PRESSED", "NEWS_PRESSED", ""]
+    -   class: "UIControl"
+        name: "TanksTree"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+            UIChildComponent0:
+                childType: "kOldExpression"
+                control: "when not isTutorialActive or account.tutorialData.currentLesson == eTutorialLesson.kNewNation -> \"~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.yaml\", \"\""
+                args:
+                    "attachId": "\"TREE\""
+                    "icon": "\"~res:/Gfx/Lobby/icons/icon_tanks-tree_n.psd\""
+                    "lock": "false"
+                    "select": "false"
+                    "badge": "badge(false)"
+                    "badgeType": "eBadgeType.DIGIT"
+                eventActions:
+                - ["ON_PRESSED", "SHOW_TANKS_TREE", ""]
+    -   class: "UIControl"
+        name: "TaskJournal"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+            UIChildComponent0:
+                childType: "kOldExpression"
+                control: "when account.tutorialSyncData.isQuestsAvailable -> \"~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.yaml\", \"\""
+                args:
+                    "attachId": "\"MISSIONS_BUTTON_UNLOCKED\""
+                    "icon": "\"~res:/Gfx/Lobby/icons/icon_task-journal_n.psd\""
+                    "lock": "not app.sDlc.isGeneralPackLoaded"
+                    "select": "false"
+                    "badge": "when app.sDlc.isGeneralPackLoaded -> badge(lobby.questsNotifications), \"\""
+                    "badgeType": "eBadgeType.DIGIT"
+                eventActions:
+                - ["ON_PRESSED", "TASK_JOURNAL_PRESSED", ""]
+    -   class: "UIControl"
+        name: "Storage"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+            UIChildComponent0:
+                childType: "kOldExpression"
+                control: "when account.tutorialSyncData.isStorageAvailable -> \"~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.yaml\", \"\""
+                args:
+                    "attachId": "\"STORAGE_UNLOCKED\""
+                    "icon": "\"~res:/Gfx/Lobby/icons/icon_storage_m\""
+                    "lock": "not app.sDlc.isGeneralPackLoaded"
+                    "select": "false"
+                    "lockPressed": "false"
+                    "badge": "when app.sDlc.isGeneralPackLoaded and lobby.storageNotifications -> \"\", \" \""
+                    "badgeType": "eBadgeType.CAMOUFLAGE"
+                eventActions:
+                - ["ON_PRESSED", "STORAGE_PRESSED", ""]
+    -   class: "UIControl"
+        name: "Clans"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+            UIChildComponent0:
+                childType: "kOldExpression"
+                control: "when not account.tutorialData.isTutorialActive -> \"~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.yaml\", \"\""
+                args:
+                    "attachId": "\"\""
+                    "icon": "\"~res:/Gfx/Lobby/icons/icon_clans_n.psd\""
+                    "lock": "not app.sDlc.isGeneralPackLoaded"
+                    "select": "false"
+                    "badge": "badge(clanNotifications)"
+                    "badgeType": "eBadgeType.DIGIT"
+                eventActions:
+                - ["ON_PRESSED", "CLANS_PRESSED", ""]
+    -   class: "UIControl"
+        name: "Squad"
+        position: [0.000000, 288.000000]
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+            UIChildComponent0:
+                childType: "kOldExpression"
+                control: "when not account.tutorialData.isTutorialActive -> \"~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.yaml\", \"\""
+                args:
+                    "attachId": "\"\""
+                    "icon": "\"~res:/Gfx/Lobby/icons/icon_platoon_m\""
+                    "lock": "not app.sDlc.isGeneralPackLoaded or isSquadEnabled or isTournament"
+                    "inputEnabled": "not (isSquadEnabled or isTournament)"
+                    "select": "squadSubMenuShow"
+                    "badge": "when app.sDlc.isGeneralPackLoaded -> badge(session.prebattleInvites.activeSquadInvitesNumber), \"\""
+                    "badgeType": "eBadgeType.DIGIT"
+                eventActions:
+                - ["ON_PRESSED", "SQUAD_INVITE_SHOW", ""]
+    -   class: "UIControl"
+        name: "Tournaments"
+        position: [0.000000, 360.000000]
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+            UIChildComponent0:
+                childType: "kOldExpression"
+                control: "when not account.tutorialData.isTutorialActive -> \"~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.yaml\", \"\""
+                args:
+                    "attachId": "\"\""
+                    "icon": "\"~res:/Gfx/Lobby/icons/icon_tournaments_n.psd\""
+                    "lock": "not app.sDlc.isGeneralPackLoaded"
+                    "select": "false"
+                    "badge": "when app.sDlc.isGeneralPackLoaded -> badge(lobby.tournamentBadges.tournamentBadgesCount), \"\""
+                    "badgeType": "when lobby.tournamentBadges.liveBadge -> eBadgeType.LIVE, eBadgeType.DIGIT"
+                eventActions:
+                - ["ON_PRESSED", "TOURNAMENTS_PRESSED", ""]
+    -   class: "UIControl"
+        name: "TrainingRooms"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+            UIChildComponent0:
+                childType: "kOldExpression"
+                control: "when not account.tutorialData.isTutorialActive and account.tutorialSyncData.isTrainingRoomsAvailable -> \"~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.yaml\", \"\""
+                args:
+                    "frame": "13"
+                    "attachId": "\"TRAINING_ROOMS\""
+                    "icon": "\"~res:/Gfx/Lobby/icons/icon_road-cone_m\""
+                    "lock": "not app.sDlc.isGeneralPackLoaded"
+                    "select": "false"
+                    "badge": "\"\""
+                    "badgeType": "eBadgeType.DIGIT"
+                eventActions:
+                - ["ON_PRESSED", "TRAINING_PRESSED", ""]
+    -   class: "UIControl"
+        name: "Community"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+            UIChildComponent0:
+                childType: "kOldExpression"
+                control: "when not account.tutorialData.isTutorialActive and needShowCommunityLinks and not app.netease.neteaseAvailable -> \"~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.yaml\", \"\""
+                args:
+                    "attachId": "\"\""
+                    "frame": "11"
+                    "icon": "\"~res:/Gfx/Lobby/icons/icon_community_n.psd\""
+                    "lock": "false"
+                    "select": "communitySubMenuShow"
+                    "badge": "\"\""
+                    "badgeType": "eBadgeType.DIGIT"
+                eventActions:
+                - ["ON_PRESSED", "COMMUNITY_SHOW", ""]
+    -   class: "UIControl"
+        name: "Settings"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 72.000000
+            UIChildComponent0:
+                childType: "kOldExpression"
+                control: "\"~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.yaml\""
+                args:
+                    "enabled": "true"
+                    "icon": "\"~res:/Gfx/Lobby/icons/icon_settings_n.psd\""
+                    "lock": "false"
+                    "select": "false"
+                    "badge": "when not account.tutorialData.isAccountLessonCompleted and (not account.isKorea or (account.isKorea and not isDemoAccount)) and app.sDlc.isGeneralPackLoaded and not account.tutorialData.isTutorialActive -> badge(settingsBadge), \"\""
+                eventActions:
+                - ["ON_PRESSED", "SETTINGS_PRESSED", ""]

@@ -1,0 +1,32 @@
+Header:
+    version: "84"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Tabs/IconTab.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "IconTabsBar"
+    size: [96.000000, 0.000000]
+    input: false
+    components:
+        LinearLayout:
+            useRtl: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfMaxChild"
+        UISwitchBarComponent:
+            onSelectElement: "ON_SELECT_TAB"
+            onSelectElementData: " when info[_selectedElement].isLocked -> activeTab, _selectedElement"
+            selectionEventType: "TOUCH_UP"
+        UIDataParamsComponent:
+            params:
+            - ["int", "activeTab", "0", "2"]
+            - ["vector<TabIconInfo>", "info", "null", "[ { badge = { type = eBadgeType.EMPTY; value = \" \"; }; }; { badge = { value = \"\"; }; }; { badge = { type = eBadgeType.EMPTY; value = \" \"; }; }; ]"]
+        UIRepeatComponent:
+            control: "~res:/UI/Screens3/Lobby/Common/Tabs/IconTab.yaml"
+            dataContainer: "info"
+            args:
+                "isSelected": "_index == activeTab"
+                "tabID": "_index"
+                "tabInfo": "_item"
+    bindings:
+    - ["UISwitchBarComponent.selectedElement", "activeTab"]

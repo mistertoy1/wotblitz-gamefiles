@@ -1,0 +1,89 @@
+Header:
+    version: "82"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Resource/Currency.yaml"
+Controls:
+-   class: "UIControl"
+    name: "Container"
+    size: [500.000000, 872.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            horizontalFormula: "firstChild"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["int", "goldQuantity", "0", "345"]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "baseContent", "localize(\"#modules_tech_tree:TopModules/Confirmation\")"]
+            - ["ResourceModel", "goldResource", "{ quantity = goldQuantity; type = ResourceType.gold; }"]
+    children:
+    -   class: "UIControl"
+        name: "Value1"
+        input: false
+        classes: "t-body bold white-wild-sand-70-text"
+        components:
+            UITextComponent:
+                multiline: "MULTILINE_ENABLED"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfContent"
+            FlowLayout:
+                hSpacing: 5.000000
+                vSpacing: 5.000000
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "baseContent"]
+    -   class: "UIControl"
+        name: "PriceLabel"
+        position: [124.000000, 20.000000]
+        size: [125.000000, 50.000000]
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                bottomAnchorEnabled: true
+                bottomAnchor: 115.000000
+            LinearLayout:
+                spacing: 5.000000
+                useRtl: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                horizontalFormula: "childrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "Control"
+            position: [-8.000000, 0.000000]
+            size: [13.000000, 30.000000]
+            input: false
+            classes: "t-body bold white-wild-sand-70-text"
+            components:
+                UITextComponent:
+                    text: "#modules_tech_tree:Install/Cost"
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+        -   prototype: "Currency/Currency"
+            name: "Currency"
+            components:
+                UIDataParamsComponent:
+                    args:
+                        "currencySize": "eCurrencySize.BODY"
+                        "forButton": "false"
+                        "canAfford": "true"
+                        "isPlusTopPaneVisible": "false"
+                        "serverTime": "0L"
+                        "plusVisible": "false"
+                        "resource": "goldResource"

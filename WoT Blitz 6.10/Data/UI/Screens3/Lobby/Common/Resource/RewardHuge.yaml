@@ -1,0 +1,285 @@
+Header:
+    version: "95"
+Prototypes:
+-   class: "UIControl"
+    name: "Content"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 200.000000
+            verticalPolicy: "Formula"
+            verticalFormula: "lastChild + 16"
+        UIDataParamsComponent:
+            params:
+            - ["ResourceDetailed", "reward", "null", "{ type = ResourceType.vehicle; }"]
+            - ["bool", "showVehicleInfo", "true", "true"]
+            - ["bool", "showVehicleLabel", "true", "true"]
+            - ["bool", "showUnlockStub", "false", "false"]
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "isBasicReward", "reward.type == ResourceType.gold or reward.type == ResourceType.free_xp or reward.type == ResourceType.elite_xp or reward.type == ResourceType.premium or reward.type == ResourceType.xp or reward.type == ResourceType.tankmenXP or reward.type == ResourceType.credits or reward.type == ResourceType.slots or reward.type == ResourceType.equipment_slots"]
+            - ["string", "description", "when reward.type == ResourceType.credits -> \"shop/Credits\", reward.type == ResourceType.free_xp -> \"#battle_results:DetailsPage/ExperiencePage/FreeXp\", reward.type == ResourceType.gold -> \"shop/Gold\", reward.type == ResourceType.premium -> \"storage/Items/PremiumAccount/Title\", reward.type == ResourceType.tankmenXP -> \"#battle_results:DetailsPage/ExperiencePage/CrewXp\", reward.type == ResourceType.xp -> \"#battle_results:DetailsPage/ExperiencePage/Xp\", reward.type == ResourceType.unlocks -> \"#hangar_showcase:Camouflage\", reward.type == ResourceType.vehicle -> \"storage/Items/Vehicle\", \"\""]
+    children:
+    -   class: "UIControl"
+        name: "Bg"
+        input: false
+        components:
+            UITextureComponent:
+                spritePath: "~res:/Gfx/UI/LobbyCommon/info_background"
+                drawType: "DRAW_STRETCH_BOTH"
+                leftRightStretchCap: 8.000000
+                topBottomStretchCap: 8.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+    -   class: "UIControl"
+        name: "Reward"
+        input: false
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                leftAnchor: 8.000000
+                rightAnchorEnabled: true
+                rightAnchor: 8.000000
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent0:
+                childType: "kControl"
+                condition: "reward.type == ResourceType.vehicle and not isNull(reward.vehicle)"
+                control: "Vehicle"
+            UIChildComponent1:
+                childType: "kControl"
+                condition: "reward.type == ResourceType.stuff and not isNull(reward.stuff)"
+                control: "Stuff"
+            UIChildComponent2:
+                childType: "kControl"
+                condition: "isBasicReward and not isNull(reward.basic)"
+                control: "Basic"
+            UIChildComponent3:
+                childType: "kControl"
+                condition: "reward.type == ResourceType.unlocks"
+                control: "Unlock"
+Slots:
+-   class: "UIControl"
+    name: "Basic"
+    size: [200.000000, 176.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+    children:
+    -   class: "UIControl"
+        name: "IconHolder"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 140.000000
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/Detailed/IconXL.yaml"
+                args:
+                    "resource": "reward"
+    -   class: "UIControl"
+        name: "Title"
+        input: false
+        classes: "t-body regular white-wild-sand-text"
+        components:
+            UITextComponent: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "when reward.type == ResourceType.premium -> str(toDays(reward.basic.quantity)) + \" \" + localize(\"#common:Time/Days\"), str1000Separated(reward.basic.quantity)"]
+    -   class: "UIControl"
+        name: "Description"
+        input: false
+        classes: "t-body regular white-wild-sand-text"
+        components:
+            UIOpacityComponent:
+                opacity: 0.650000
+            UITextComponent:
+                multiline: "MULTILINE_ENABLED"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["visible", "not empty(description)"]
+        - ["UITextComponent.text", "localize(description)"]
+-   class: "UIControl"
+    name: "Stuff"
+    size: [200.000000, 176.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+    children:
+    -   class: "UIControl"
+        name: "IconHolder"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 140.000000
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/Detailed/IconXL.yaml"
+                args:
+                    "resource": "reward"
+    -   class: "UIControl"
+        name: "Title"
+        input: false
+        classes: "t-body regular white-wild-sand-text"
+        components:
+            UITextComponent: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "\"x\" + str(reward.stuff.quantity)"]
+    -   class: "UIControl"
+        name: "Description"
+        input: false
+        classes: "t-body regular white-wild-sand-text"
+        components:
+            UIOpacityComponent:
+                opacity: 0.650000
+            UITextComponent:
+                multiline: "MULTILINE_ENABLED"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["visible", "not empty(reward.stuff.title)"]
+        - ["UITextComponent.text", "localize(reward.stuff.title)"]
+    -   class: "UIControl"
+        name: "Lifetime"
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent0:
+                childType: "kPrototype"
+                condition: "reward.stuff.lifetime > 0L"
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/Timer.yaml"
+                args:
+                    "serverTime": "0L"
+                    "time": "reward.stuff.lifetime"
+        bindings:
+        - ["visible", "reward.stuff.lifetime > 0L"]
+-   class: "UIControl"
+    name: "Unlock"
+    size: [200.000000, 176.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+    children:
+    -   class: "UIControl"
+        name: "IconHolder"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 140.000000
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/Detailed/IconXL.yaml"
+                args:
+                    "resource": "reward"
+                    "showUnlockStub": "showUnlockStub"
+    -   class: "UIControl"
+        name: "Title"
+        input: false
+        classes: "t-body regular white-wild-sand-text"
+        components:
+            UITextComponent: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "localize(reward.unlock.title)"]
+    -   class: "UIControl"
+        name: "Description"
+        input: false
+        classes: "t-body regular white-wild-sand-text"
+        components:
+            UIOpacityComponent:
+                opacity: 0.650000
+            UITextComponent:
+                multiline: "MULTILINE_ENABLED"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["visible", "not empty(description)"]
+        - ["UITextComponent.text", "localize(description)"]
+-   class: "UIControl"
+    name: "Vehicle"
+    size: [200.000000, 176.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+    children:
+    -   class: "UIControl"
+        name: "IconHolder"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 140.000000
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/Detailed/IconXL.yaml"
+                args:
+                    "resource": "reward"
+                    "showVehicleInfo": "true"
+                    "showVehicleLabel": "true"
+    -   class: "UIControl"
+        name: "Description"
+        input: false
+        classes: "t-body regular white-wild-sand-text"
+        components:
+            UIOpacityComponent:
+                opacity: 65.000000
+            UITextComponent:
+                multiline: "MULTILINE_ENABLED"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["visible", "not empty(description)"]
+        - ["UITextComponent.text", "localize(description)"]

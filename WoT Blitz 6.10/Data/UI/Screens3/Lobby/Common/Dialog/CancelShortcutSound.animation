@@ -1,0 +1,5 @@
+animation PlaySound
+{
+    PlaySound(sound="GUI/buttons/cancel");
+    Event("OPTIONAL_CLICKED");
+}

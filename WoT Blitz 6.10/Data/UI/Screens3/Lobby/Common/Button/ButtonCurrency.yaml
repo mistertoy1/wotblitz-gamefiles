@@ -1,0 +1,286 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/DiscountLabel.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Resource/Currency.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "Button"
+    size: [151.000000, 48.000000]
+    components:
+        SizePolicy:
+            verticalPolicy: "FixedSize"
+        UIInputEventComponent:
+            onTouchUpInside: "ON_CLICK_BUTTON"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "canAfford", "true", "true"]
+            - ["ResourceModel", "resource", "null", "{ }"]
+            - ["eButtonType", "type", "eButtonType.POSITIVE", "eButtonType.POSITIVE"]
+            - ["eButtonSize", "size", "eButtonSize.NORMAL", "eButtonSize.NORMAL"]
+            - ["eButtonSound", "sound", "eButtonSound.BUY", "eButtonSound.BUY"]
+            - ["bool", "enabled", "true", "true"]
+            - ["bool", "locked", "false", "false"]
+            events:
+            - "ON_CLICK_BUTTON"
+        UIDataLocalsComponent:
+            locals:
+            - ["eButtonSound", "soundType", "when sound != eButtonSound.UNKNOWN -> sound, type == eButtonType.POSITIVE or type == eButtonType.NO_BG -> eButtonSound.OPEN, type == eButtonType.ALTERNATIVE -> eButtonSound.OK, type == eButtonType.ALTERNATIVE -> eButtonSound.OK, type == eButtonType.NEGATIVE -> eButtonSound.SELL, eButtonSound.CANCEL"]
+            - ["string", "soundStyle", "when soundType == eButtonSound.OPEN -> \"button-open-sound\", soundType == eButtonSound.OK -> \"button-ok-sound\", soundType == eButtonSound.CANCEL -> \"button-cancel-sound\", soundType == eButtonSound.SELL -> \"button-sell-sound\", soundType == eButtonSound.BUY -> \"button-buy-sound\", \"\""]
+            - ["bool", "isColoredButton", "type == eButtonType.POSITIVE or type == eButtonType.ALTERNATIVE or type == eButtonType.NEGATIVE or type == eButtonType.SPECIAL"]
+            - ["string", "bgStyle", "str(type, eButtonType, \"color_style\")"]
+            - ["string", "coloredButtonType", "str(type, eButtonType, \"sprite_name\")"]
+    bindings:
+    - ["input", "locked"]
+    - ["SizePolicy.verticalValue", "when size == eButtonSize.NORMAL -> 48, 40"]
+    children:
+    -   class: "UIControl"
+        name: "TapArea"
+        exclusiveInput: true
+        components:
+            Background:
+                color: [0.666667, 0.333333, 1.000000, 0.196078]
+            UIOpacityComponent: {}
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            UIInputEventComponent:
+                onTouchUpInside: "ON_CLICK_BUTTON"
+            Sound: {}
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Button.style.yaml;~res:/UI/Screens3/ButtonSound.style.yaml"
+        bindings:
+        - ["enabled", "enabled and not locked"]
+        - ["classes", "\"button button-tap-area \" + str(type, eButtonType) + \" \" + soundStyle"]
+        children:
+        -   class: "UIControl"
+            name: "Content"
+            pivot: [0.500000, 0.500000]
+            input: false
+            classes: "content-area"
+            components:
+                Background: {}
+                Anchor:
+                    leftAnchorEnabled: true
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+            children:
+            -   class: "UIControl"
+                name: "Bg"
+                input: false
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                bindings:
+                - ["visible", "type != eButtonType.NO_BG"]
+                children:
+                -   class: "UIControl"
+                    name: "BasicBackground"
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_STRETCH_BOTH"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_r1"
+                            leftRightStretchCap: 1.000000
+                            topBottomStretchCap: 1.000000
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["visible", "not isColoredButton"]
+                    - ["classes", "bgStyle"]
+                -   class: "UIControl"
+                    name: "Shadows"
+                    size: [32.000000, 32.000000]
+                    pivot: [0.500000, 0.200000]
+                    input: false
+                    classes: "shadows"
+                    components:
+                        UIOpacityComponent: {}
+                        Anchor:
+                            leftAnchorEnabled: true
+                            rightAnchorEnabled: true
+                            topAnchorEnabled: true
+                            bottomAnchorEnabled: true
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Lobby/Common/Button.style.yaml"
+                    bindings:
+                    - ["visible", "isColoredButton"]
+                    children:
+                    -   class: "UIControl"
+                        name: "Common"
+                        size: [32.000000, 32.000000]
+                        input: false
+                        components:
+                            Anchor:
+                                vCenterAnchorEnabled: true
+                                vCenterAnchor: 12.000000
+                            LinearLayout:
+                                padding: "-24"
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfParent"
+                                verticalPolicy: "PercentOfMaxChild"
+                        children:
+                        -   class: "UIControl"
+                            name: "Left"
+                            size: [32.000000, 32.000000]
+                            input: false
+                            components:
+                                Background:
+                                    sprite: "~res:/Gfx/Lobby/controls/buttons/button_default/common/button_shadow_common_left"
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfContent"
+                                    verticalPolicy: "PercentOfContent"
+                        -   class: "UIControl"
+                            name: "Center"
+                            size: [32.000000, 32.000000]
+                            input: false
+                            components:
+                                Background:
+                                    drawType: "DRAW_TILED"
+                                    sprite: "~res:/Gfx/Lobby/controls/buttons/button_default/common/button_shadow_common_center"
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "PercentOfContent"
+                        -   class: "UIControl"
+                            name: "Right"
+                            size: [32.000000, 32.000000]
+                            input: false
+                            components:
+                                Background:
+                                    sprite: "~res:/Gfx/Lobby/controls/buttons/button_default/common/button_shadow_common_left"
+                                    spriteModification: ["FLIP_HORIZONTAL"]
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfContent"
+                                    verticalPolicy: "PercentOfContent"
+                    -   class: "UIControl"
+                        name: "Colored"
+                        size: [32.000000, 32.000000]
+                        input: false
+                        components:
+                            Anchor:
+                                vCenterAnchorEnabled: true
+                                vCenterAnchor: 12.000000
+                            LinearLayout:
+                                padding: "-48"
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfParent"
+                                verticalPolicy: "PercentOfMaxChild"
+                        children:
+                        -   class: "UIControl"
+                            name: "Left"
+                            size: [32.000000, 32.000000]
+                            input: false
+                            components:
+                                Background: {}
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfContent"
+                                    verticalPolicy: "PercentOfContent"
+                            bindings:
+                            - ["Background.sprite", "\"~res:/Gfx/Lobby/controls/buttons/button_default/button_shadow_\" + coloredButtonType + \"_left\""]
+                        -   class: "UIControl"
+                            name: "Center"
+                            size: [32.000000, 32.000000]
+                            input: false
+                            components:
+                                Background:
+                                    drawType: "DRAW_TILED"
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "PercentOfContent"
+                            bindings:
+                            - ["Background.sprite", "\"~res:/Gfx/Lobby/controls/buttons/button_default/button_shadow_\" + coloredButtonType + \"_center\""]
+                        -   class: "UIControl"
+                            name: "Right"
+                            size: [32.000000, 32.000000]
+                            input: false
+                            components:
+                                Background:
+                                    spriteModification: ["FLIP_HORIZONTAL"]
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfContent"
+                                    verticalPolicy: "PercentOfContent"
+                            bindings:
+                            - ["Background.sprite", "\"~res:/Gfx/Lobby/controls/buttons/button_default/button_shadow_\" + coloredButtonType + \"_left\""]
+                -   class: "UIControl"
+                    name: "ColoredBg"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_TILED_MULTILAYER"
+                            mask: "~res:/Gfx/Lobby/controls/buttons/common/button_mask_r1"
+                            detail: "~res:/Gfx/Lobby/controls/buttons/common/button_details_r1"
+                            contour: "~res:/Gfx/Lobby/controls/buttons/common/button_details_r1"
+                            leftRightStretchCap: 1.000000
+                            topBottomStretchCap: 1.000000
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                    bindings:
+                    - ["visible", "isColoredButton"]
+                    - ["Background.gradient", "\"~res:/Gfx/Lobby/controls/buttons/button_default/button_gradient_\" + coloredButtonType + \".psd\""]
+            -   class: "UIControl"
+                name: "Fade"
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_STRETCH_BOTH"
+                        sprite: "~res:/Gfx/Lobby/backgrounds/bg_r1"
+                        leftRightStretchCap: 1.000000
+                        topBottomStretchCap: 1.000000
+                    UIOpacityComponent: {}
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Button.style.yaml"
+                bindings:
+                - ["classes", "\"button-fade \" + (when type == eButtonType.OPTIONAL_DARK or type == eButtonType.SCENE -> \"black-10-bg\", \"white-wild-sand-5-bg\")"]
+            -   class: "UIControl"
+                name: "Content"
+                size: [119.000000, 24.000000]
+                input: false
+                components:
+                    Anchor:
+                        leftAnchorEnabled: true
+                        leftAnchor: 16.000000
+                        rightAnchorEnabled: true
+                        rightAnchor: 16.000000
+                        vCenterAnchorEnabled: true
+                        vCenterAnchor: 1.000000
+                children:
+                -   prototype: "Currency/Currency"
+                    name: "Currency"
+                    components:
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                        UIDataParamsComponent:
+                            args:
+                                "currencySize": "eCurrencySize.BIG"
+                                "forButton": "true"
+                                "canAfford": "canAfford"
+                                "isPlusTopPaneVisible": "false"
+                                "serverTime": "0L"
+                                "plusVisible": "false"
+                                "resource": "resource"
+            -   prototype: "DiscountLabel/DiscountLabel"
+                name: "DiscountLabel"
+                components:
+                    Anchor:
+                        leftAnchorEnabled: true
+                        leftAnchor: -8.000000
+                        topAnchorEnabled: true
+                        topAnchor: -8.000000
+                    UIDataParamsComponent:
+                        args:
+                            "discountReason": "eDiscountReason.ACTION"
+                            "discount": "resource.discount.value"
+                            "display": "resource.discount.value > 0.000000"

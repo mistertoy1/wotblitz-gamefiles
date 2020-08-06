@@ -1,0 +1,145 @@
+Header:
+    version: "93"
+Prototypes:
+-   class: "UIControl"
+    name: "Content"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfFirstChild"
+        UIDataParamsComponent:
+            params:
+            - ["eCurrencySize", "currencySize", "eCurrencySize.BIG", "eCurrencySize.BODY"]
+            - ["bool", "forButton", "false", "false"]
+            - ["bool", "canAfford", "true", "true"]
+            - ["bool", "isPlusTopPaneVisible", "false", "false"]
+            - ["int64", "serverTime", "0L", "0L"]
+            - ["bool", "plusVisible", "false", "false"]
+            - ["ResourceDetailed", "resource", "null", "{ type = ResourceType.premium; }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "isBasicResource", "resource.type == ResourceType.gold or resource.type == ResourceType.free_xp or resource.type == ResourceType.elite_xp or resource.type == ResourceType.premium or resource.type == ResourceType.credits or resource.type == ResourceType.slots or resource.type == ResourceType.equipment_slots or resource.type == ResourceType.xp or resource.type == ResourceType.tankmenXP"]
+    children:
+    -   class: "UIControl"
+        name: "Currency"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent0:
+                childType: "kControl"
+                condition: "isBasicResource and not isNull(resource.basic)"
+                control: "Basic"
+            UIChildComponent1:
+                childType: "kControl"
+                condition: "resource.type == ResourceType.stuff and not isNull(resource.stuff)"
+                control: "Stuff"
+            UIChildComponent2:
+                childType: "kControl"
+                condition: "resource.type == ResourceType.unlocks and not isNull(resource.unlock)"
+                control: "Unlock"
+            UIChildComponent3:
+                childType: "kControl"
+                condition: "resource.type == ResourceType.real_currency and not isNull(resource.realCurrency)"
+                control: "RealCurrency"
+            UIChildComponent4:
+                childType: "kControl"
+                condition: "resource.type == ResourceType.vehicle and not isNull(resource.vehicle)"
+                control: "Vehicle"
+Slots:
+-   class: "UIControl"
+    name: "Basic"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfFirstChild"
+        UIChildComponent0:
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/CurrencyPrivate.yaml"
+            args:
+                "currencySize": "currencySize"
+                "forButton": "forButton"
+                "canAfford": "canAfford"
+                "serverTime": "serverTime"
+                "isPlusTopPaneVisible": "isPlusTopPaneVisible"
+                "plusVisible": "plusVisible"
+                "type": "resource.type"
+                "quantity": "resource.basic.quantity"
+-   class: "UIControl"
+    name: "RealCurrency"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfFirstChild"
+        UIChildComponent0:
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/CurrencyPrivate.yaml"
+            args:
+                "currencySize": "currencySize"
+                "forButton": "forButton"
+                "canAfford": "canAfford"
+                "serverTime": "serverTime"
+                "isPlusTopPaneVisible": "isPlusTopPaneVisible"
+                "plusVisible": "plusVisible"
+                "type": "resource.type"
+                "localizedQuantity": "resource.realCurrency.localizedValue"
+-   class: "UIControl"
+    name: "Stuff"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfFirstChild"
+        UIChildComponent0:
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/CurrencyPrivate.yaml"
+            args:
+                "currencySize": "currencySize"
+                "forButton": "forButton"
+                "canAfford": "canAfford"
+                "serverTime": "serverTime"
+                "isPlusTopPaneVisible": "isPlusTopPaneVisible"
+                "plusVisible": "plusVisible"
+                "type": "resource.type"
+                "quantity": "resource.stuff.quantity"
+                "grade": "resource.stuff.grade"
+                "showGrade": "not resource.stuff.hideGrade"
+                "icon": "resource.stuff.icon"
+                "imageURL": "resource.stuff.iconUrl"
+-   class: "UIControl"
+    name: "Unlock"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfFirstChild"
+        UIChildComponent0:
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/CurrencyPrivate.yaml"
+            args:
+                "currencySize": "currencySize"
+                "forButton": "forButton"
+                "canAfford": "canAfford"
+                "serverTime": "serverTime"
+                "isPlusTopPaneVisible": "isPlusTopPaneVisible"
+                "plusVisible": "plusVisible"
+                "type": "resource.type"
+                "quantity": "resource.unlock.quantity"
+-   class: "UIControl"
+    name: "Vehicle"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfFirstChild"
+        UIChildComponent0:
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/CurrencyPrivate.yaml"
+            args:
+                "currencySize": "currencySize"
+                "forButton": "forButton"
+                "canAfford": "canAfford"
+                "serverTime": "serverTime"
+                "isPlusTopPaneVisible": "isPlusTopPaneVisible"
+                "plusVisible": "plusVisible"
+                "type": "resource.type"
+                "quantity": "1"

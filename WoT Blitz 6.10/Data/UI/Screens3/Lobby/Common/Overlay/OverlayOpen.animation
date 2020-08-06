@@ -1,0 +1,18 @@
+animation OpenOverlay
+{
+    if (wasPushed)
+    {
+        parallel 
+        {
+            Opacity("**/Blur", 1, time=0.6, interpolation=EASE_OUT);
+            ChangeProperty("**/Overlay", "SizePolicy", "verticalValue", 96, 0.6, SINE_OUT);
+            ChangeProperty("**/Overlay", "UIOpacityComponent", "opacity", 1, 0.6, EASE_OUT);
+            ChangeProperty("**/Fade", "UIOpacityComponent", "opacity", 0.35, 0.6, EASE_OUT);
+            Event ("OVERLAY_OPEN_BREAKPOINT");
+        } 
+
+        ChangeProperty("**/Overlay", "SizePolicy", "verticalValue", 94, 0.15, SINE_OUT);
+    }
+
+    Event ("OVERLAY_OPEN_FINISH");
+}

@@ -1,0 +1,17 @@
+animation OpenOverlay
+{
+  parallel 
+  {
+    ChangeProperty("**/Fade", "UIOpacityComponent", "opacity", 0); 
+    ChangeProperty("**/Blur", "UIOpacityComponent", "opacity", 0); 
+	ChangeProperty("**/DialogContent", "UIOpacityComponent", "opacity", 0); 
+  Scale (path="**/DialogContent", time = 0, x = 0,y = 0);
+  }
+  parallel 
+  {
+    ChangeProperty("**/Fade", "UIOpacityComponent", "opacity", 0.35, 0.3, EASE_OUT);
+    ChangeProperty("**/Blur", "UIOpacityComponent", "opacity", 1.0, 0.3, EASE_OUT);
+	ChangeProperty("**/DialogContent", "UIOpacityComponent", "opacity", 0.8, 0.3, EASE_OUT);
+  Scale (path="**/DialogContent", time = 0.2, x = 1,y = 1, interpolation=EASE_OUT);
+  } 
+}

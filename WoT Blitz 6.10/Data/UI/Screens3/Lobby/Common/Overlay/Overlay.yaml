@@ -1,0 +1,385 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/IconButton.yaml"
+- "~res:/UI/Screens3/Lobby/Common/PlayerName.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+- "~res:/UI/Screens3/Common/VerticalScrollBar.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Screenshot.yaml"
+- "~res:/UI/Screens3/Common/OverlayBlur.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "OverlayScreen"
+    size: [1024.000000, 640.000000]
+    input: true
+    components:
+        UIAnimationComponent:
+            animations: "_INIT,~res:/UI/Screens3/Lobby/Common/Overlay/OverlayOpen.animation;CLOSE_OVERLAY,~res:/UI/Screens3/Lobby/Common/Overlay/OverlayClose.animation"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        ModalInput: {}
+        UIInputEventComponent:
+            onTouchUpInside: "CLOSE_OVERLAY"
+        UIShortcutEventComponent:
+            shortcuts: "CLOSE_OVERLAY, Escape; CLOSE_OVERLAY, Back"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "hasCustomBg", "false", "true"]
+            - ["bool", "wasPushed", "true", "true"]
+            events:
+            - "OVERLAY_OPEN_FINISH"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Lobby/Common/Overlay/Overlay.style.yaml"
+    children:
+    -   prototype: "OverlayBlur/BlurAndFade"
+        name: "BlurAndFade"
+        input: true
+        children:
+        -   path: "Blur"
+            components:
+                UIOpacityComponent: {}
+                Sound: {}
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["UIOpacityComponent.opacity", "when wasPushed -> 0, 1"]
+        -   path: "Fade"
+            components:
+                UIOpacityComponent: {}
+            bindings:
+            - ["UIOpacityComponent.opacity", "when wasPushed -> 0, 0.600000"]
+    -   class: "UIControl"
+        name: "Overlay"
+        input: true
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                hCenterAnchorEnabled: true
+                bottomAnchorEnabled: true
+            LinearLayout:
+                enabled: true
+                orientation: "TopDown"
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "when parent < 1232 -> 960, 1200"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["UIOpacityComponent.opacity", "when wasPushed -> 0, 1"]
+        - ["SizePolicy.verticalValue", "when wasPushed -> 0, 94"]
+        children:
+        -   class: "UIControl"
+            name: "Bg"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+            children:
+            -   class: "UIControl"
+                name: "DefaultBg"
+                size: [32.000000, 32.000000]
+                input: false
+                classes: "grey-shark-90-bg"
+                components:
+                    Background:
+                        drawType: "DRAW_FILL"
+                    UIRoundedCornersComponent:
+                        radius: " 14;14;0"
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+                bindings:
+                - ["visible", "not hasCustomBg"]
+            -   class: "UIControl"
+                name: "CustomBg"
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    LinearLayout:
+                        orientation: "TopDown"
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                bindings:
+                - ["visible", "hasCustomBg"]
+                children:
+                -   class: "UIControl"
+                    name: "Image"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_PROPORTIONAL_ONE"
+                            align: ["HCENTER", "TOP"]
+                        ClipContent: {}
+                        UIUrlImageComponent:
+                            upscaleForHighResolution: true
+                            downscaleEnabled: false
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            topAnchorEnabled: true
+                            topAnchor: 14.000000
+                        IgnoreLayout: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                -   class: "UIControl"
+                    name: "Fade"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    components:
+                        LinearLayout:
+                            orientation: "TopDown"
+                            spacing: -1.000000
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "FixedSize"
+                    children:
+                    -   class: "UIControl"
+                        name: "Rounded"
+                        size: [960.000000, 16.000000]
+                        input: false
+                        classes: "grey-shark-bg"
+                        components:
+                            Background:
+                                leftRightStretchCap: 15.000000
+                                topBottomStretchCap: 15.000000
+                            UIRoundedCornersComponent:
+                                radius: "14;14;0"
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfParent"
+                                verticalPolicy: "FixedSize"
+                                verticalValue: 15.000000
+                            StyleSheet:
+                                styles: "~res:/UI/Screens3/Color.style.yaml"
+                    -   class: "UIControl"
+                        name: "Gradient"
+                        size: [32.000000, 32.000000]
+                        input: false
+                        classes: "grey-shark-bg"
+                        components:
+                            Background:
+                                drawType: "DRAW_SCALE_TO_RECT"
+                                sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_vertical_0-100"
+                                spriteModification: ["FLIP_VERTICAL"]
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfParent"
+                                verticalPolicy: "PercentOfParent"
+                            StyleSheet:
+                                styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "Header"
+            size: [32.000000, 32.000000]
+            visible: true
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 80.000000
+            children:
+            -   class: "UIControl"
+                name: "Bg"
+                size: [32.000000, 32.000000]
+                visible: false
+                input: false
+                components:
+                    LinearLayout:
+                        orientation: "TopDown"
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                children:
+                -   class: "UIControl"
+                    name: "DefaultBg"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    classes: "grey-shark-90-bg"
+                    components:
+                        Background:
+                            drawType: "DRAW_FILL"
+                        UIRoundedCornersComponent:
+                            radius: " 14;14;0"
+                        IgnoreLayout: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   class: "UIControl"
+                name: "Separator"
+                size: [32.000000, 32.000000]
+                visible: false
+                input: false
+                classes: "white-wild-sand-5-bg"
+                components:
+                    Background: {}
+                    Anchor:
+                        bottomAnchorEnabled: true
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 1.000000
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   class: "UIControl"
+                name: "OverlayTitle"
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    LinearLayout:
+                        orientation: "TopDown"
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfChildrenSum"
+                children:
+                -   class: "UIControl"
+                    name: "Title"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    classes: "t-subtitle regular white-wild-sand-50-text"
+                    components:
+                        UITextComponent:
+                            text: "#Overlay Title"
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                -   prototype: "PlayerName/PlayerName"
+                    name: "PlayerName"
+                    components:
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                        UIDataParamsComponent:
+                            args:
+                                "clanTag": "\"WG\""
+                                "playerName": "\"Konstantinopolsky\""
+            -   class: "UIControl"
+                name: "RightContent"
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    Anchor:
+                        rightAnchorEnabled: true
+                        rightAnchor: 16.000000
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfChildrenSum"
+                        verticalPolicy: "PercentOfParent"
+        -   class: "UIControl"
+            name: "TabBarHolder"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfMaxChild"
+        -   class: "UIScrollView"
+            name: "ScrollArea"
+            autoUpdate: true
+            centerContent: true
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+            children:
+            -   class: "UIScrollViewContainer"
+                name: "scrollContainerControl"
+                scrollDirection: "kVertical"
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfMaxChild"
+                children:
+                -   class: "UIControl"
+                    name: "ContentArea"
+                    input: false
+                    components:
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "when parent < 1200 -> 800, 1040"
+                            verticalPolicy: "PercentOfChildrenSum"
+            -   prototype: "VerticalScrollBar/VerticalScrollBar"
+                name: "VerticalScrollBar"
+                visible: true
+                components:
+                    Anchor:
+                        rightAnchorEnabled: true
+                        topAnchorEnabled: true
+                        topAnchor: 16.000000
+                        bottomAnchorEnabled: true
+                    IgnoreLayout: {}
+                    ScrollBarDelegate:
+                        delegate: ".."
+                children:
+                -   path: "slider"
+                    visible: true
+                    children: []
+        -   prototype: "IconButton/IconButton"
+            name: "CloseButton"
+            components:
+                Anchor:
+                    leftAnchorEnabled: true
+                    leftAnchor: 16.000000
+                    topAnchorEnabled: true
+                    topAnchor: 16.000000
+                IgnoreLayout: {}
+                UIDataParamsComponent:
+                    args:
+                        "locked": "false"
+                        "visible": "true"
+                        "isBgVisible": "false"
+                        "image": "\"~res:/Gfx/Lobby/icons/icon_close_n.psd\""
+                        "type": "eButtonType.OPTIONAL_LIGHT"
+                        "enabled": "true"
+                        "hasSound": "false"
+                    eventActions:
+                    - ["ON_CLICK_BUTTON", "CLOSE_OVERLAY", ""]
+        -   class: "UIControl"
+            name: "Footer"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "Formula"
+                    verticalFormula: "safeAreaInsets.bottom + lastChild"
+            children:
+            -   class: "UIControl"
+                name: "Bg"
+                input: false
+                components:
+                    Background: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   class: "UIControl"
+                name: "ContentArea"
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "Formula"
+                        horizontalFormula: "when parent < 1200 -> 800, 1040"
+                        verticalPolicy: "PercentOfMaxChild"

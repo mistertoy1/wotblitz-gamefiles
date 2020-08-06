@@ -1,0 +1,55 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Touch.style.yaml"
+- "~res:/UI/Screens3/Common/Hover.style.yaml"
+StyleSheets:
+-   selectors:
+    - ".tab * .selection"
+    properties:
+        visible: false
+-   selectors:
+    - ".tab:selected * .selection"
+    properties:
+        visible: true
+-   selectors:
+    - ".tab * .content"
+    properties:
+        opacity-opacity:
+            value: 0.500000
+            transitionTime: 0.150000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selectors:
+    - ".tab.locked * .content"
+    - ".tab.locked:hover * .content"
+    properties:
+        opacity-opacity: 0.500000
+-   selectors:
+    - ".tap-area"
+    properties:
+        anchor-leftAnchor: 0.000000
+        anchor-rightAnchor: 0.000000
+        anchor-bottomAnchor: -8.000000
+        anchor-topAnchor: -8.000000
+-   selectors:
+    - ".tap-area.Desktop"
+    properties:
+        anchor-leftAnchor: 0.000000
+        anchor-rightAnchor: 0.000000
+        anchor-bottomAnchor: 0.000000
+        anchor-topAnchor: 0.000000
+-   selectors:
+    - ".tap-area * .content-area"
+    properties:
+        anchor-leftAnchor: 0.000000
+        anchor-rightAnchor: 0.000000
+        anchor-bottomAnchor: 8.000000
+        anchor-topAnchor: 8.000000
+-   selectors:
+    - ".tap-area.Desktop"
+    - ".tap-area.Desktop * .content-area"
+    properties:
+        anchor-leftAnchor: 0.000000
+        anchor-rightAnchor: 0.000000
+        anchor-bottomAnchor: 0.000000
+        anchor-topAnchor: 0.000000

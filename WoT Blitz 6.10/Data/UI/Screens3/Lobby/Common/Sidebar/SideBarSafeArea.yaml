@@ -1,0 +1,12 @@
+Header:
+    version: "93"
+Prototypes:
+-   class: "UIControl"
+    name: "SafeArea"
+    size: [32.000000, 32.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "Formula"
+            horizontalFormula: "when safeAreaInsets.left == 0 -> 0, safeAreaInsets.left - 16"
+            verticalPolicy: "PercentOfParent"

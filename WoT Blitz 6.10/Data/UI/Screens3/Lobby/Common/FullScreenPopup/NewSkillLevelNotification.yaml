@@ -1,0 +1,29 @@
+Header:
+    version: "96"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/FullScreenPopup/FullscreenPopupWithContentSlot.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "NewSkillLevelNotification"
+    size: [900.000000, 600.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["string", "tankClassName", "\"\"", "\"lightTank\""]
+            events:
+            - "CLOSE_NOTIFICATION"
+    children:
+    -   prototype: "FullscreenPopupWithContentSlot/FullscreenPopupWithContentSlot"
+        name: "FullscreenPopupWithContentSlot"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "isButtonVisible": "true"
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/FullScreenPopup/NewSkillLevelNotificationContent.yaml\", { tankClassName = tankClassName; }, [ { event = \"ACCENT_CLICKED\"; action = \"SHOW_SKILLS\"; }; ])"
+                eventActions:
+                - ["CLOSE_NOTIFICATION", "CLOSE_NOTIFICATION", ""]
+                - ["ACCENT_CLICKED", "SHOW_SKILLS", ""]

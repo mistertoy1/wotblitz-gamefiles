@@ -1,0 +1,44 @@
+action CloseDialogAnimation(string finalEvent)
+{
+   parallel 
+  {
+    ChangeProperty("**/Blur", "UIOpacityComponent", "opacity", 0.0, 0.15, EASE_IN);
+	ChangeProperty("**/Fade", "UIOpacityComponent", "opacity", 0.0, 0.15, EASE_IN);
+	ChangeProperty("**/DialogContent", "UIOpacityComponent", "opacity", 0.0, 0.15, EASE_IN);
+	Scale (path="**/DialogContent", time = 0.15, x = 0,y = 0, interpolation=EASE_IN);
+  }
+  Event(finalEvent);
+}
+
+action CLOSE_DIALOG_OPTIONAL()
+{
+  DirectEvent("PLAY_SOUND", "**/Footer/CancelButton");
+  Event("CloseDialogAnimation", arg1="CANCEL");
+}
+
+action DECLINE_DIALOG_OPTIONAL()
+{
+  DirectEvent("PLAY_SOUND", "**/Footer/ButtonsWrapper/ButtonCancel");
+  Event("CloseDialogAnimation", arg1="DECLINE_CLICKED");
+}
+
+action CLOSE_DIALOG_ACCENT()
+{
+  DirectEvent("PLAY_SOUND", "**/Footer/ButtonsWrapper/ButtonApprove");
+  Event("CloseDialogAnimation", arg1="ACCENT_CLICKED");
+}
+
+action CLOSE_DIALOG_SHAKE()
+{
+	ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", 32, 0.05, EASE_OUT);
+	ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", -64, 0.05, EASE_IN);
+	ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", 48, 0.05, EASE_IN);
+	ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", -32, 0.05, EASE_IN);
+	ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", 24, 0.05, EASE_IN);
+	ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", -16, 0.05, EASE_IN);
+	ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", 12, 0.05, EASE_IN);
+	ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", -8, 0.05, EASE_IN);
+	ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", 6, 0.05, EASE_IN);
+	ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", -4, 0.05, EASE_IN);
+	ChangeProperty("**/DialogContent", "Anchor", "hCenterAnchor", 2, 0.05, EASE_OUT);
+} 

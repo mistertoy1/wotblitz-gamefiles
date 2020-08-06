@@ -1,0 +1,91 @@
+Header:
+    version: "92"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/IconButton.yaml"
+- "~res:/UI/Screens3/Common/OverlayBlur.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "FullscreenPopupWithContentSlot"
+    size: [1024.000000, 768.000000]
+    input: true
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        ModalInput: {}
+        UIInputEventComponent:
+            onTouchUpInside: "ON_CLOSE"
+        UIShortcutEventComponent:
+            shortcuts: "ON_CLOSE,Escape;ON_CLOSE,Back;ENTER_SHORTCUT,Enter"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "isButtonVisible", "true", "true"]
+            - ["control", "contentControl", "null", "control(\"~res:/UI/Screens3/Lobby/Common/Dialog/TextContent.yaml\", { contentText = \"Его многочисленные, убого тонкие по сравнению с остальным телом ножки беспомощно копошились у него перед глазами. «Что со мной случилось?\"; }, [ ])"]
+            events:
+            - "CLOSE_NOTIFICATION"
+            - "ACCENT_CLICKED"
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/Common/FullScreenPopup/FullScreenDialogClose.actions"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/ButtonSound.style.yaml"
+    children:
+    -   prototype: "OverlayBlur/BlurAndFade"
+        name: "BlurAndFade"
+    -   class: "UIControl"
+        name: "Content"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "parent - 32"
+                verticalPolicy: "Formula"
+                verticalFormula: "parent - 32"
+            UIChildComponent0:
+                childType: "kOldExpression"
+                control: "contentControl"
+                args: {}
+                eventActions:
+                - ["ACCENT_CLICKED", "ACCENT_CLICKED", ""]
+    -   class: "UIControl"
+        name: "CloseButton"
+        input: false
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            LinearLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   class: "UIControl"
+            name: "SafeAreaLeft"
+            input: false
+            components:
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "Formula"
+                    horizontalFormula: "safeAreaInsets.left + 16"
+                    verticalPolicy: "PercentOfParent"
+        -   prototype: "IconButton/IconButton"
+            name: "IconButtonLight"
+            components:
+                Anchor:
+                    topAnchorEnabled: true
+                    topAnchor: 16.000000
+                UIDataParamsComponent:
+                    args:
+                        "locked": "false"
+                        "visible": "isButtonVisible"
+                        "isBgVisible": "false"
+                        "image": "\"~res:/Gfx/Lobby/icons/icon_close_n.psd\""
+                        "type": "eButtonType.OPTIONAL_LIGHT"
+                        "sound": "eButtonSound.CLOSE"
+                        "enabled": "true"
+                    eventActions:
+                    - ["ON_CLICK_BUTTON", "ON_CLOSE", ""]

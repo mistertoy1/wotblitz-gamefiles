@@ -1,0 +1,25 @@
+Header:
+    version: "77"
+Prototypes:
+-   class: "UIControl"
+    name: "NationFlag"
+    input: false
+    components:
+        UITextureComponent:
+            drawType: "DRAW_SCALE_TO_RECT"
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 31.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 20.000000
+        UIDataParamsComponent:
+            params:
+            - ["eNation", "nation", "eNation.UNKNOWN", "eNation.USSR"]
+            - ["string", "subnation", "\"\"", "\"\""]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "nationSprite", "when nation == eNation.USA -> \"usa\", nation == eNation.GERMANY -> \"germany\", nation == eNation.USSR -> \"ussr\", nation == eNation.UK -> \"uk\", nation == eNation.JAPAN -> \"japan\", nation == eNation.CHINA -> \"china\", nation == eNation.FRANCE -> \"france\", nation == eNation.OTHER -> \"other\", \"\""]
+            - ["string", "subnationSprite", "when subnation == \"finland\" -> \"finland\", subnation == \"poland\" -> \"poland\", subnation == \"sweden\" -> \"sweden\", subnation == \"italy\" -> \"italy\", subnation == \"australia\" -> \"australia\", subnation == \"canada\" -> \"canada\", subnation == \"czech\" -> \"czech\", \"\""]
+            - ["string", "finalSprite", "when empty(subnationSprite) -> nationSprite, subnationSprite"]
+    bindings:
+    - ["UITextureComponent.spritePath", "\"~res:/Gfx/Lobby/flags/flag_tutor-tank_\" + (finalSprite)"]

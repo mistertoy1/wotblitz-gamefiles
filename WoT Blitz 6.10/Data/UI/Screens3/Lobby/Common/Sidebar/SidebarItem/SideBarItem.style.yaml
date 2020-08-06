@@ -1,0 +1,60 @@
+Header:
+    version: "92"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Touch.style.yaml"
+- "~res:/UI/Screens3/Common/Hover.style.yaml"
+StyleSheets:
+-   selectors:
+    - ".sidebar-item * #Selection"
+    properties:
+        visible: false
+-   selectors:
+    - ".sidebar-item:selected * #Selection"
+    properties:
+        visible: true
+-   selectors:
+    - ".sidebar-item * .pressed-bg"
+    - ".sidebar-item:hover * .pressed-bg"
+    - ".sidebar-item:pressed_inside * .hover"
+    properties:
+        opacity-opacity:
+            value: 0.000000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selectors:
+    - ".sidebar-item:pressed_inside * .pressed-bg"
+    properties:
+        opacity-opacity:
+            value: 1.000000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selectors:
+    - ".sidebar-item.locked:hover * .hover"
+    - ".sidebar-item.locked:pressed_inside * .pressed-bg"
+    - ".sidebar-item.selected:hover * .hover"
+    - ".sidebar-item.locked:selected * .pressed-bg"
+    - ".sidebar-item.locked * .pressed-bg"
+    properties:
+        visible: false
+-   selectors:
+    - ".sidebar-item * .content"
+    properties:
+        opacity-opacity:
+            value: 0.800000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selectors:
+    - ".sidebar-item.locked * .content"
+    - ".sidebar-item.locked:selected * .content"
+    properties:
+        opacity-opacity:
+            value: 0.300000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selectors:
+    - ".sidebar-item:selected * .content"
+    properties:
+        opacity-opacity:
+            value: 1.000000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"

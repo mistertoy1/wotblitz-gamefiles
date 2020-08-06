@@ -1,0 +1,24 @@
+Header:
+    version: "77"
+Prototypes:
+-   class: "UIControl"
+    name: "DefaultTankName"
+    input: false
+    classes: "t-content-h2 bold white-wild-sand-text"
+    components:
+        UITextComponent:
+            multiline: "MULTILINE_ENABLED"
+            align: ["LEFT", "VCENTER"]
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 650.000000
+            verticalPolicy: "PercentOfContent"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "visible", "true", "true"]
+            - ["string", "name", "\"\"", "\"Some stuff\""]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Font.style.yaml"
+    bindings:
+    - ["visible", "visible"]
+    - ["UITextComponent.text", "name"]

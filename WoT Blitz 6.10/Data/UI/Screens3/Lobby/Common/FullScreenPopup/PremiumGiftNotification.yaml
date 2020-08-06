@@ -1,0 +1,28 @@
+Header:
+    version: "92"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/FullScreenPopup/FullscreenPopupWithContentSlot.yaml"
+Controls:
+-   class: "UIControl"
+    name: "PremiumGiftNotification"
+    size: [900.000000, 600.000000]
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["PremiumGiftNotificationViewModel", "model", "null", "{ premiumDays = 7; isShowDlcComment = true; }"]
+            events:
+            - "CLOSE_NOTIFICATION"
+    children:
+    -   prototype: "FullscreenPopupWithContentSlot/FullscreenPopupWithContentSlot"
+        name: "FullscreenPopupWithContentSlot"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "isButtonVisible": "false"
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/FullScreenPopup/PremiumGiftNotificationContent.yaml\", { days = model.premiumDays; isPackAvailable = model.isShowDlcComment; }, [ { event = \"ACCENT_CLICKED\"; action = \"CLOSE_NOTIFICATION\"; }; ])"
+                eventActions:
+                - ["CLOSE_NOTIFICATION", "CLOSE_NOTIFICATION", ""]
+                - ["ACCENT_CLICKED", "ACCENT_CLICKED", ""]

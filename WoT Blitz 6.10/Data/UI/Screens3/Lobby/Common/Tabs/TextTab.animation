@@ -1,0 +1,7 @@
+animation SelectionAnimated
+{
+	PlaySound(sound="GUI/buttons/choose");
+	ChangeProperty("**/Selection", "SizePolicy", "horizontalValue", 0, 0);
+    ChangeProperty("**/Selection", "SizePolicy", "horizontalValue", 120, 0.2, SINE_OUT);
+    ChangeProperty("**/Selection", "SizePolicy", "horizontalValue", 100, 0.1, SINE_IN);
+}

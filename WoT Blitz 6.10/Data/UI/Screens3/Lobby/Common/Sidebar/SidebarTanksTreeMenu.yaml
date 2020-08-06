@@ -1,0 +1,34 @@
+Header:
+    version: "93"
+Prototypes:
+-   class: "UIControl"
+    name: "TechTreeMenu"
+    size: [88.000000, 500.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["SessionDataModel", "session", "null", "{ \"playerTanks\" = { \"currentTank\" = null; }; }"]
+            - ["AccountDataModel", "account", "null", "{ }"]
+            - ["eNation", "selectedNation", "eNation.USA", "eNation.UK"]
+            - ["vector<eNation>", "nations", "[ ]", "[ eNation.USA; eNation.GERMANY; eNation.USSR; eNation.UK; eNation.JAPAN; eNation.CHINA; eNation.FRANCE; eNation.EUROPEAN; ]"]
+            events:
+            - "ON_NATION"
+        UIRepeatComponent:
+            control: "~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.yaml"
+            dataContainer: "nations"
+            args:
+                "hoverOff": "account.tutorialData.isTutorialActive"
+                "currentScreen": "eCurrentScreen.kTechTree"
+                "soundOpen": "false"
+                "inputEnabled": "when isNull(session.playerTanks.currentTank) -> true, not (_item == session.playerTanks.currentTank.info.nation and account.tutorialData.isTutorialActive) and (_item != selectedNation)"
+                "lock": "when isNull(session.playerTanks.currentTank) -> false, _item == session.playerTanks.currentTank.info.nation and account.tutorialData.isTutorialActive"
+                "select": "_item == selectedNation"
+                "icon": "when _item == eNation.USA -> \"~res:/Gfx/Lobby/flags/flag_tank-tree_usa\", _item == eNation.GERMANY -> \"~res:/Gfx/Lobby/flags/flag_tank-tree_germany\", _item == eNation.USSR -> \"~res:/Gfx/Lobby/flags/flag_tank-tree_ussr\", _item == eNation.UK -> \"~res:/Gfx/Lobby/flags/flag_tank-tree_uk\", _item == eNation.JAPAN -> \"~res:/Gfx/Lobby/flags/flag_tank-tree_japan\", _item == eNation.CHINA -> \"~res:/Gfx/Lobby/flags/flag_tank-tree_china\", _item == eNation.FRANCE -> \"~res:/Gfx/Lobby/flags/flag_tank-tree_france\", _item == eNation.EUROPEAN -> \"~res:/Gfx/Lobby/flags/flag_tank-tree_european\", \"\""
+            eventActions:
+            - ["ON_PRESSED", "ON_NATION", "_item"]

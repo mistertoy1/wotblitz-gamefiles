@@ -1,0 +1,23 @@
+Header:
+    version: "92"
+StyleSheets:
+-   selectors:
+    - ".grade.common"
+    properties:
+        bg-color: [0.250980, 0.313726, 0.372549, 1.000000]
+-   selectors:
+    - ".grade.rare"
+    properties:
+        bg-color: [0.023529, 0.223529, 0.792157, 1.000000]
+-   selectors:
+    - ".grade.unique"
+    properties:
+        bg-color: [0.415686, 0.027451, 0.603922, 1.000000]
+-   selectors:
+    - ".grade.legendary"
+    properties:
+        bg-color: [0.870588, 0.600000, 0.019608, 1.000000]
+-   selectors:
+    - ".grade"
+    properties:
+        bg-color: [0.250980, 0.313726, 0.372549, 1.000000]

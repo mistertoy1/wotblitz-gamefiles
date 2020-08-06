@@ -1,0 +1,122 @@
+Header:
+    version: "100"
+Prototypes:
+-   class: "UIControl"
+    name: "TitleWithSubtitle"
+    size: [245.000000, 48.000000]
+    input: false
+    components:
+        LinearLayout:
+            padding: "16"
+            spacing: 8.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["string", "iconPath", "\"\"", "\"\""]
+            - ["string", "title", "\"\"", "\"Title\""]
+            - ["string", "subTitle", "\"\"", "\"subtitle\""]
+            - ["eButtonSound", "soundType", "eButtonSound.UNKNOWN", "eButtonSound.OPEN"]
+            events:
+            - "ON_SUBTITLE_TOUCHED"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "soundStyle", "when soundType == eButtonSound.OPEN -> \"button-open-sound\", soundType == eButtonSound.OK -> \"button-ok-sound\", soundType == eButtonSound.CANCEL -> \"button-cancel-sound\", soundType == eButtonSound.SELL -> \"button-sell-sound\", soundType == eButtonSound.BUY -> \"button-buy-sound\", soundType == eButtonSound.CLOSE -> \"button-close-sound\", \"\""]
+    children:
+    -   class: "UIControl"
+        name: "Title"
+        input: false
+        classes: "t-subtitle regular white-wild-sand-text"
+        components:
+            UITextComponent:
+                fitting: "FITTING_POINTS"
+                align: ["LEFT", "VCENTER"]
+            Anchor:
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "min(parentRest, content)"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "localize(title)"]
+    -   class: "UIControl"
+        name: "Slash"
+        position: [141.000000, 0.000000]
+        size: [32.000000, 32.000000]
+        input: false
+        classes: "t-subtitle regular white-wild-sand-text"
+        components:
+            UITextComponent:
+                text: "/"
+                align: ["LEFT", "VCENTER"]
+            Anchor:
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["visible", "subTitle != \"\""]
+    -   class: "UIControl"
+        name: "SubtitleContainer"
+        size: [32.000000, 32.000000]
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                vCenterAnchorEnabled: true
+            LinearLayout:
+                spacing: 5.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+            UIInputEventComponent:
+                onTouchUpInside: "ON_SUBTITLE_TOUCHED"
+            Sound: {}
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/Common/Button.style.yaml;~res:/UI/Screens3/ButtonSound.style.yaml"
+        bindings:
+        - ["classes", "\"button \" + soundStyle"]
+        children:
+        -   class: "UIControl"
+            name: "Subtitle"
+            position: [151.000000, 0.000000]
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "t-subtitle regular white-wild-sand-50-text"
+            components:
+                UITextComponent:
+                    align: ["LEFT", "VCENTER"]
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+            bindings:
+            - ["UITextComponent.text", "localize(subTitle)"]
+        -   class: "UIControl"
+            name: "Icon"
+            input: false
+            classes: "white-wild-sand-50-bg"
+            components:
+                Background:
+                    drawType: "DRAW_ALIGNED"
+                    colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                Anchor:
+                    vCenterAnchorEnabled: true
+                    vCenterAnchor: 1.000000
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 32.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 32.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "iconPath != \"\""]
+            - ["Background.sprite", "iconPath"]

@@ -1,0 +1,141 @@
+Header:
+    version: "92"
+Prototypes:
+-   class: "UIScrollView"
+    name: "Menu"
+    size: [88.000000, 394.000000]
+    autoUpdate: true
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["eCurrentScreen", "currentScreen", "eCurrentScreen.kUnknown", "eCurrentScreen.kUnknown"]
+            - ["eNation", "selectedNation", "eNation.USA", "eNation.USSR"]
+            - ["vector<eNation>", "nations", "[ ]", "[ eNation.USA; eNation.GERMANY; eNation.USSR; ]"]
+            - ["string", "contentPath", "\"\"", "\"~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarTanksTreeMenu.yaml\""]
+            - ["AccountDataModel", "account", "null", "{ }"]
+            - ["AppDataModel", "app", "null", "{ }"]
+            - ["SessionDataModel", "session", "null", "{ }"]
+            - ["bool", "squadSubMenuShow", "false", "false"]
+            - ["LobbyDataModel", "lobby", "null", "{ }"]
+            - ["int", "layer", "0", "0"]
+            - ["bool", "communitySubMenuShow", "false", "false"]
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "hangarScreen", "currentScreen == eCurrentScreen.kHangar"]
+            - ["bool", "techTreeScreen", "currentScreen == eCurrentScreen.kTechTree"]
+            - ["bool", "layerUpForTechTree", "techTreeScreen and account.tutorialData.isTutorialActive and (account.tutorialData.currentHighlightControl == eTutorialHighlights.kTankFirstLevel or account.tutorialData.currentHighlightControl == eTutorialHighlights.kNation)"]
+            - ["bool", "layerUpForHangar", "hangarScreen and account.tutorialData.isTutorialActive"]
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/Common/Sidebar/SideBarBottomFade.actions"
+    bindings:
+    - ["centerContent", "currentScreen == eCurrentScreen.kTechTree"]
+    children:
+    -   class: "UIScrollViewContainer"
+        name: "scrollContainerControl"
+        scrollDirection: "kVertical"
+        components:
+            Anchor: {}
+            LinearLayout:
+                orientation: "TopDown"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfChildrenSum"
+            UILayoutEventComponent:
+                positionChangedEvent: "UpdateFadeVisibility"
+                positionChangedEventData: "{first = when _position.Y < 0.0 -> min(abs(_position.Y) / 72.0, 1.0), 0.0; second = min(max(_size.Y - _parentSize.Y + _position.Y, 0.0) / 72.0, 1.0);}"
+                sizeChangedEvent: "UpdateFadeVisibility"
+                sizeChangedEventData: "{first = when _position.Y < 0.0 -> min(abs(_position.Y) / 72.0, 1.0), 0.0; second = min(max(_size.Y - _parentSize.Y + _position.Y, 0.0) / 72.0, 1.0);}"
+        children:
+        -   class: "UIControl"
+            name: "Content"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfChildrenSum"
+                UIAttachLayoutMasterComponent:
+                    attachId: "NATION"
+                UIChildComponent0:
+                    childType: "kOldExpression"
+                    control: "contentPath"
+                    args:
+                        "selectedNation": "selectedNation"
+                        "nations": "nations"
+                        "communitySubMenuShow": "communitySubMenuShow"
+                        "squadSubMenuShow": "squadSubMenuShow"
+                        "session": "session"
+                        "account": "account"
+                        "lobby": "lobby"
+                        "app": "app"
+                UILayerComponent: {}
+                UIShadowHoleComponent: {}
+            bindings:
+            - ["UILayerComponent.layer", "when layerUpForTechTree or layerUpForHangar -> 1, 0"]
+            - ["UIShadowHoleComponent.isEnabled", "layerUpForTechTree"]
+        -   class: "UIControl"
+            name: "BottomControl"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfContent"
+    -   class: "UIControl"
+        name: "BottomFade"
+        visible: true
+        input: true
+        classes: "black-bg"
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                rightAnchorEnabled: true
+                bottomAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 32.000000
+            UIInputEventComponent:
+                onTouchUpInside: "SCROLL_TO_BOTTOM"
+        children:
+        -   class: "UIControl"
+            name: "Bg"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "grey-shark-bg"
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_TO_RECT"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_vertical_0-100"
+                Anchor:
+                    bottomAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 72.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "Icon"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "white-wild-sand-50-bg"
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_PROPORTIONAL"
+                    sprite: "~res:/Gfx/Lobby/icons/icon_chevron_l"
+                    spriteModification: ["FLIP_VERTICAL"]
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    bottomAnchorEnabled: true
+                    bottomAnchor: 4.000000
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 24.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 24.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"

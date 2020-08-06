@@ -1,0 +1,39 @@
+Header:
+    version: "77"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Resource/CurrencyWithDiscount.yaml"
+Controls:
+-   class: "UIControl"
+    name: "RichTextCurrency"
+    size: [32.000000, 32.000000]
+    input: false
+    components:
+        LinearLayout: {}
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "FixedSize"
+        UIDataParamsComponent:
+            params:
+            - ["string", "stringFontStyle", "\"t-body\"", "\"t-subtitle\""]
+            - ["bool", "showDiscount", "false", "false"]
+            - ["bool", "canAfford", "true", "true"]
+            - ["eCurrencySize", "currencySize", "eCurrencySize.BIG", "eCurrencySize.BIG"]
+            - ["ResourceModel", "resource", "null", "{ }"]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Lobby/Common/Resource/CurrencyRichText.style.yaml"
+    bindings:
+    - ["classes", "stringFontStyle"]
+    children:
+    -   prototype: "CurrencyWithDiscount/CurrencyWithDiscount"
+        name: "CurrencyWithDiscount"
+        classes: "currency"
+        components:
+            Anchor: {}
+            UIDataParamsComponent:
+                args:
+                    "currencySize": "when stringFontStyle == \"t-caption\" -> eCurrencySize.SMALL, stringFontStyle == \"t-body\" -> eCurrencySize.BODY, eCurrencySize.BIG"
+                    "forButton": "stringFontStyle == \"t-subtitle\""
+                    "canAfford": "canAfford"
+                    "showDiscount": "showDiscount"
+                    "plusVisible": "false"
+                    "resource": "resource"

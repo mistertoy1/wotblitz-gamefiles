@@ -1,0 +1,93 @@
+Header:
+    version: "96"
+Prototypes:
+-   class: "UIControl"
+    name: "BaseHeader"
+    size: [960.000000, 48.000000]
+    input: false
+    components:
+        Anchor:
+            topAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "FixedSize"
+            verticalValue: 48.000000
+        UIDataParamsComponent:
+            params:
+            - ["StatsDataModel", "statsData", "null", "{ }"]
+            - ["LobbyDataModel", "lobby", "null", "{ }"]
+            - ["int64", "serverTime", "0L", "0L"]
+            - ["control", "leftContent", "null", "null"]
+            - ["control", "background", "null", "null"]
+            - ["string", "bgStyle", "\"\"", "\"black-15-bg\""]
+            - ["bool", "isGeneralPackLoaded", "true", "true"]
+            - ["bool", "isTutorialActive", "false", "false"]
+            - ["bool", "firstLessonCompleted", "true", "true"]
+            - ["bool", "showBackButton", "false", "true"]
+            - ["bool", "isBackButtonInitiallyClickable", "true", "false"]
+            - ["bool", "showStatsPanel", "true", "true"]
+            - ["bool", "showPremium", "true", "true"]
+            - ["bool", "showGold", "true", "true"]
+            - ["bool", "showCredits", "true", "true"]
+            - ["bool", "showFreeXp", "true", "true"]
+            - ["bool", "showShopButton", "true", "true"]
+            - ["bool", "isFullScreen", "false", "true"]
+            events:
+            - "PREMIUM_INFO_EVENT"
+            - "BACK_EVENT"
+            - "SHOP_BUTTON(eRequiredResource requiredResource)"
+        UIDataLocalControlComponent0:
+            name: "shopButton"
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/Button/ShopButton.yaml"
+            args:
+                "shopBadgeVisible": "lobby.isShopBadgeVisible"
+                "shopGiftVisible": "lobby.isShopGiftVisible"
+            eventActions:
+            - ["SHOP_BUTTON", "SHOP_BUTTON", "_event.requiredResource"]
+        UIDataLocalControlComponent1:
+            name: "statsPanel"
+            prototypePath: "~res:/UI/Screens3/Lobby/StatsInfoPanelPrototype.yaml"
+            args:
+                "statsData": "statsData"
+                "serverTime": "serverTime"
+                "isGeneralPackLoaded": "isGeneralPackLoaded"
+                "isTutorialActive": "isTutorialActive"
+                "firstLessonCompleted": "firstLessonCompleted"
+                "isVisible": "showStatsPanel"
+                "showPremium": "showPremium"
+                "showGold": "showGold"
+                "showCredits": "showCredits"
+                "showFreeXp": "showFreeXp"
+            eventActions:
+            - ["PREMIUM_INFO_EVENT", "PREMIUM_INFO_EVENT", ""]
+            - ["SHOP_BUTTON", "SHOP_BUTTON", "_event.requiredResource"]
+        UIDataLocalControlComponent2:
+            name: "backButton"
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/BackButton.yaml"
+            args:
+                "isInitiallyClickable": "isBackButtonInitiallyClickable"
+            eventActions:
+            - ["ON_CLICK_BUTTON", "BACK_EVENT", ""]
+        UIDataLocalControlComponent3:
+            name: "content"
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/Headers/HeaderContent.yaml"
+            args:
+                "leftContent": "leftContent"
+                "rightContent": "when not isNull(statsData) and showStatsPanel -> statsPanel, null"
+                "button": "when not isTutorialActive and showShopButton -> shopButton, null"
+                "backButton": "when showBackButton -> backButton, null"
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/Headers/Header.yaml"
+                args:
+                    "bgStyle": "bgStyle"
+                    "background": "background"
+                    "content": "content"
+                    "isFullScreen": "isFullScreen"

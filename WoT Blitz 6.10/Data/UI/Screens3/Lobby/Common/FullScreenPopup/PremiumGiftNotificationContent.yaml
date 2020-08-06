@@ -1,0 +1,222 @@
+Header:
+    version: "85"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/RichTextSimpleParameter.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "PremiumGiftNotificationContent"
+    size: [508.000000, 600.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["int", "days", "0", "1"]
+            - ["bool", "isPackAvailable", "false", "true"]
+            events:
+            - "ACCENT_CLICKED"
+        UIDataLocalsComponent:
+            locals:
+            - ["int", "hundred", "(days / 100) % 10"]
+            - ["int", "ten", "(days / 10) % 10"]
+            - ["int", "one", "days % 10"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        position: [0.000000, 216.000000]
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            LinearLayout:
+                spacing: 32.000000
+                useRtl: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "Left"
+            input: false
+            components:
+                Anchor:
+                    topAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfMaxChild"
+                    verticalPolicy: "PercentOfMaxChild"
+            children:
+            -   class: "UIControl"
+                name: "ImageHolder"
+                input: false
+                components:
+                    Background:
+                        sprite: "~res:/Gfx/UI/LobbyCommon/icon_premium_wreath.psd"
+                        frame: 9
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        topAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        verticalPolicy: "PercentOfContent"
+            -   class: "UIControl"
+                name: "DaysNumbers"
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                        vCenterAnchor: -12.000000
+                    LinearLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfChildrenSum"
+                        verticalPolicy: "PercentOfMaxChild"
+                children:
+                -   class: "UIControl"
+                    name: "Hundred"
+                    input: false
+                    components:
+                        Background: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                    bindings:
+                    - ["visible", "hundred"]
+                    - ["Background.sprite", "\"~res:/Gfx/UI/LobbyCommon/PremNumbers/\" + str(hundred) + \".psd\""]
+                -   class: "UIControl"
+                    name: "Ten"
+                    input: false
+                    components:
+                        Background: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                    bindings:
+                    - ["visible", "ten > 0 or hundred > 0"]
+                    - ["Background.sprite", "\"~res:/Gfx/UI/LobbyCommon/PremNumbers/\" + str(ten) + \".psd\""]
+                -   class: "UIControl"
+                    name: "One"
+                    input: false
+                    components:
+                        Background: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                    bindings:
+                    - ["Background.sprite", "\"~res:/Gfx/UI/LobbyCommon/PremNumbers/\" + str(one) + \".psd\""]
+        -   class: "UIControl"
+            name: "Wrapper"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                LinearLayout:
+                    orientation: "TopDown"
+                    spacing: 32.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfMaxChild"
+                    verticalPolicy: "PercentOfChildrenSum"
+            children:
+            -   class: "UIControl"
+                name: "Right"
+                input: false
+                components:
+                    Anchor:
+                        vCenterAnchorEnabled: true
+                    LinearLayout:
+                        orientation: "TopDown"
+                        spacing: 16.000000
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfChildrenSum"
+                children:
+                -   class: "UIControl"
+                    name: "CongratulationHeader"
+                    input: false
+                    classes: "t-title regular white-wild-sand-text"
+                    components:
+                        UITextComponent:
+                            text: "shop/Congrats/Title"
+                        Anchor:
+                            leftAnchorEnabled: true
+                            useRtl: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+                -   prototype: "RichTextSimpleParameter/RichTextSimpleParameter"
+                    name: "RichTextSimpleParameter"
+                    components:
+                        SizePolicy:
+                            horizontalMax: 336.000000
+                        UIDataParamsComponent:
+                            args:
+                                "baseFontSize": "\"t-body\""
+                                "baseFontStyle": "\"regular\""
+                                "baseFontColor": "\"white-wild-sand-70-text\""
+                                "key": "\"#hangar_showcase:Congratulation/FirstPremiumPurchase\""
+                                "value": "str(days)"
+                -   class: "UIControl"
+                    name: "SDlcText"
+                    input: false
+                    classes: "t-body regular white-wild-sand-70-text"
+                    components:
+                        UITextComponent:
+                            text: "dlc/Download/IncompleteData"
+                            multiline: "MULTILINE_ENABLED"
+                            align: ["LEFT", "VCENTER"]
+                            useRtlAlign: "USE_BY_SYSTEM"
+                        Anchor:
+                            leftAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            horizontalMax: 336.000000
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["visible", "isPackAvailable"]
+            -   class: "UIControl"
+                name: "ButtonWrapper"
+                input: false
+                components:
+                    Anchor:
+                        leftAnchorEnabled: true
+                        useRtl: true
+                    LinearLayout:
+                        orientation: "TopDown"
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfChildrenSum"
+                children:
+                -   prototype: "Button/Button"
+                    name: "ButtonPositive"
+                    components:
+                        Anchor:
+                            leftAnchorEnabled: true
+                            useRtl: true
+                        UIDataParamsComponent:
+                            args:
+                                "locked": "false"
+                                "caption": "\"#common:DialogButton/OK\""
+                                "type": "eButtonType.POSITIVE"
+                                "size": "eButtonSize.NORMAL"
+                                "sound": "eButtonSound.UNKNOWN"
+                                "enabled": "true"
+                            eventActions:
+                            - ["ON_CLICK_BUTTON", "ACCENT_CLICKED", ""]
+                -   class: "UIControl"
+                    name: "SafeAreaBottom"
+                    input: false
+                    components:
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "Formula"
+                            verticalFormula: "safeAreaInsets.bottom"

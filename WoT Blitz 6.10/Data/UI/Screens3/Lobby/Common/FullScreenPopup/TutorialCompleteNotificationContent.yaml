@@ -1,0 +1,90 @@
+Header:
+    version: "93"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/FullScreenPopup/FullscreenNotificationContent.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "TutorialCompleteNotificationContent"
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfFirstChild"
+        UIDataParamsComponent:
+            events:
+            - "ACCENT_CLICKED"
+    children:
+    -   prototype: "FullscreenNotificationContent/FullscreenNotificationContent"
+        name: "FullscreenNotificationContent"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "isButtonVisible": "true"
+                    "topPart": "TopPart"
+                    "description": "Description"
+                    "content": "null"
+                    "congratulationText": "localize(\"#vehicle_birthday:Congratulations/Title\")"
+                    "buttonText": "\"#common:DialogButton/OK\""
+                eventActions:
+                - ["ACCENT_CLICKED", "ACCENT_CLICKED", ""]
+Slots:
+-   class: "UIControl"
+    name: "TopPart"
+    size: [435.000000, 235.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            topAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfMaxChild"
+    children:
+    -   class: "UIParticles"
+        name: "Particle"
+        position: [311.000000, 175.000000]
+        size: [32.000000, 32.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        effectPath: "~res:/3d/FX/UI/HangarTutorialEnding.sc2"
+        autoStart: true
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+                vCenterAnchor: 16.000000
+            IgnoreLayout: {}
+    -   class: "UIControl"
+        name: "img"
+        components:
+            Background:
+                drawType: "DRAW_SCALE_PROPORTIONAL_ONE"
+                sprite: "~res:/Gfx/UI/HangarTutorial/icon_end_tutorial.psd"
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+                vCenterAnchor: 16.000000
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 380.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 205.000000
+-   class: "UIControl"
+    name: "Description"
+    input: false
+    classes: "t-body regular color=white-wild-sand-70-text"
+    components:
+        UITextComponent:
+            text: "#hangar_tutorial:hangar/congrats/descr"
+            colorInheritType: "COLOR_IGNORE_PARENT"
+            multiline: "MULTILINE_ENABLED"
+            align: ["HCENTER", "VCENTER"]
+        SizePolicy:
+            horizontalPolicy: "PercentOfContent"
+            horizontalMax: 336.000000
+            verticalPolicy: "PercentOfContent"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"

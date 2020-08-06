@@ -1,0 +1,46 @@
+Header:
+    version: "80"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/RichText.yaml"
+Controls:
+-   class: "UIControl"
+    name: "Container"
+    size: [300.000000, 60.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+            spacing: 35.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "goldIsEnough", "false", "true"]
+            - ["int", "notEnoughCredits", "0", "456"]
+            - ["int", "goldToExchange", "0", "47"]
+        UIDataLocalsComponent:
+            locals:
+            - ["ResourceModel", "goldResource", "{ quantity = goldToExchange; type = ResourceType.gold; }"]
+            - ["ResourceModel", "creditResource", "{ quantity = notEnoughCredits; type = ResourceType.credits; }"]
+    children:
+    -   prototype: "RichText/RichText"
+        name: "RichText"
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+            FlowLayout:
+                hDynamicPadding: true
+                hDynamicInLinePadding: true
+            UIDataParamsComponent:
+                args:
+                    "baseFontSize": "\"t-body\""
+                    "baseFontStyle": "\"regular\""
+                    "baseFontColor": "\"white-wild-sand-70-text\""
+                    "key": "\"notification/notEnoughResources/buyGoldAndProceed\""
+                    "linkKey": "\"\""
+                    "resource1Model": "creditResource"
+                    "resource2Model": "goldResource"
+                    "resource3Model": "null"
+                    "resource4Model": "null"
+                    "customKeyProperty": "\"\""

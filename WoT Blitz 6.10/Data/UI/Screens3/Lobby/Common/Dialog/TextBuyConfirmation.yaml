@@ -1,0 +1,46 @@
+Header:
+    version: "85"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/RichText.yaml"
+Controls:
+-   class: "UIControl"
+    name: "Container"
+    size: [400.000000, 40.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["string", "baseContent", "\"#common:Spending/Confirmation\"", "\"#common:Spending/Confirmation\""]
+            - ["ResourceModel", "resource1Model", "null", "{ }"]
+            - ["ResourceModel", "resource2Model", "null", "{ }"]
+            - ["ResourceModel", "resource3Model", "null", "{ }"]
+            - ["ResourceModel", "resource4Model", "null", "{ }"]
+        UIDataLocalsComponent:
+            locals: []
+    children:
+    -   prototype: "RichText/RichText"
+        name: "RichText"
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+            FlowLayout:
+                hDynamicPadding: true
+                hDynamicInLinePadding: true
+            UIDataParamsComponent:
+                args:
+                    "baseFontSize": "\"t-body\""
+                    "baseFontStyle": "\"regular\""
+                    "baseFontColor": "\"white-wild-sand-50-text\""
+                    "key": "baseContent"
+                    "linkKey": "\"\""
+                    "resource1Model": "when isNull(resource1Model) -> null, resource1Model"
+                    "resource2Model": "when isNull(resource2Model) -> null, resource2Model"
+                    "resource3Model": "when isNull(resource3Model) -> null, resource3Model"
+                    "resource4Model": "when isNull(resource4Model) -> null, resource4Model"
+                    "customKeyProperty": "\"\""

@@ -1,0 +1,107 @@
+Header:
+    version: "99"
+Prototypes:
+-   class: "UIControl"
+    name: "ShopButton"
+    input: true
+    classes: "shop-button button-open-sound"
+    components:
+        Anchor:
+            topAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 72.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 72.000000
+        UIAttachLayoutMasterComponent: {}
+        UIInputEventComponent:
+            onTouchUpInside: "SHOP_BUTTON"
+            onTouchUpInsideData: "eRequiredResource.kInternalBundles"
+        Focus: {}
+        UIShortcutEventComponent:
+            perform: "SHOP_BUTTON"
+            performData: "eRequiredResource.kInternalBundles"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "shopBadgeVisible", "false", "true"]
+            - ["bool", "shopGiftVisible", "false", "false"]
+            events:
+            - "SHOP_BUTTON(eRequiredResource requiredResource)"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "shopAttachId", "\"SHOP\""]
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Lobby/Common/Button/ShopButton.style.yaml;~res:/UI/Screens3/ButtonSound.style.yaml"
+    bindings:
+    - ["UIAttachLayoutMasterComponent.attachId", "shopAttachId"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        pivot: [0.500000, 0.000000]
+        input: false
+        classes: "content-area"
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+        children:
+        -   class: "UIParticles"
+            name: "Particle"
+            position: [37.000000, 40.000000]
+            size: [32.000000, 32.000000]
+            scale: [0.300000, 0.300000]
+            pivot: [0.500000, 0.500000]
+            input: false
+            effectPath: "~res:/3d/FX/UI/shop-button/shopEffect.sc2"
+            autoStart: true
+        -   class: "UIControl"
+            name: "Icon"
+            input: false
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                    vCenterAnchor: -6.000000
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 48.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 48.000000
+            children:
+            -   class: "UIControl"
+                name: "Icon"
+                input: false
+                components:
+                    Background:
+                        sprite: "~res:/Gfx/Lobby/icons/icon_shop.psd"
+                        perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 24.000000
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 24.000000
+            -   class: "UIControl"
+                name: "Badge"
+                input: false
+                components:
+                    Anchor:
+                        rightAnchorEnabled: true
+                        rightAnchor: -6.000000
+                        topAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfChildrenSum"
+                    UIChildComponent0:
+                        prototypePath: "~res:/UI/Screens3/Lobby/Common/Badge.yaml"
+                        args:
+                            "type": "when shopGiftVisible -> eBadgeType.GIFT, eBadgeType.EMPTY"
+                bindings:
+                - ["visible", "shopBadgeVisible or shopGiftVisible"]

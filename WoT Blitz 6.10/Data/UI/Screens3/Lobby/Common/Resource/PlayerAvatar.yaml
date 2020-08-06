@@ -1,0 +1,146 @@
+Header:
+    version: "85"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/BadgeHolder.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "PlayerAvatar"
+    components:
+        ClipContent:
+            enabled: true
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            verticalPolicy: "FixedSize"
+        UIInputEventComponent:
+            onTouchUpInside: "ON_PRESSED"
+        UIDataParamsComponent:
+            params:
+            - ["PlayerAvatar", "avatar", "null", "{ grade = ArtefactGrade.rare; }"]
+            - ["eAvatarSize", "size", "eAvatarSize.NORMAL", "eAvatarSize.BIG"]
+            - ["bool", "visible", "true", "true"]
+            - ["bool", "interactive", "true", "true"]
+            - ["bool", "enabled", "true", "true"]
+            - ["string", "badge", "\"\"", "\"\""]
+            events:
+            - "ON_PRESSED"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "icon", "when isNull(avatar) -> \"\", avatar.iconPathOrUrl"]
+            - ["ArtefactGrade", "grade", "when isNull(avatar) -> ArtefactGrade.unknown, avatar.grade"]
+            - ["string", "gradeStyle", "when grade == ArtefactGrade.unknown -> \"grade-unknown\", when grade == ArtefactGrade.common -> \"grade-common\", when grade == ArtefactGrade.rare -> \"grade-rare\", when grade == ArtefactGrade.unique -> \"grade-unique\", when grade == ArtefactGrade.legendary -> \"grade-legendary\", \"\""]
+            - ["string", "clickableStyle", "when enabled -> \"clickable-avatar\", \"\""]
+            - ["string", "sizeStyle", "when size == eAvatarSize.BIG -> \"size-80\", when size == eAvatarSize.NORMAL -> \"size-64\", \"size-38\""]
+            - ["string", "defaultIcon", "\"~res:/Gfx/UI/CommonUIElements/avatars/avatar-default-icon\""]
+            - ["bool", "isUrl", "when isNull(avatar) -> false, avatar.iconType == eAvatarIconType.URL"]
+            - ["bool", "isPath", "when isNull(avatar) -> false, avatar.iconType == eAvatarIconType.RESOURCE"]
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Lobby/Common/Resource/PlayerAvatar.style.yaml;~res:/UI/Screens3/ButtonSound.style.yaml"
+    bindings:
+    - ["input", "interactive"]
+    - ["classes", "clickableStyle + \" button-open-sound \" + sizeStyle + \" \" + gradeStyle"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        pivot: [0.500000, 0.500000]
+        input: false
+        classes: "content-area"
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                leftAnchorEnabled: true
+                topAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   class: "UIControl"
+            name: "Back"
+            input: false
+            components:
+                Background:
+                    drawType: "DRAW_STRETCH_BOTH"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+        -   class: "UIControl"
+            name: "Avatar"
+            input: false
+            components:
+                Background:
+                    drawType: "DRAW_TILED_MULTILAYER"
+                    gradient: "~res:/Gfx/UI/CommonUIElements/avatars/avatar-default-icon.psd"
+                    perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                UIUrlImageComponent:
+                    useGradientSprite: true
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    verticalPolicy: "FixedSize"
+            bindings:
+            - ["Background.sprite", "when isPath -> icon, when isUrl -> \"\", defaultIcon"]
+            - ["UIUrlImageComponent.imageUrl", "when isUrl -> icon, \"\""]
+        -   class: "UIControl"
+            name: "Grade"
+            input: false
+            classes: "grade"
+            components:
+                Background:
+                    perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+            bindings:
+            - ["visible", "not isNull(avatar) and avatar.iconType != eAvatarIconType.DEFAULT"]
+        -   class: "UIControl"
+            name: "Lock"
+            position: [44.000000, 44.000000]
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "white-wild-sand-50-bg"
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_PROPORTIONAL"
+                    sprite: "~res:/Gfx/Lobby/icons/icon_lock"
+                Anchor:
+                    rightAnchorEnabled: true
+                    rightAnchor: 0.000000
+                    bottomAnchorEnabled: true
+                    bottomAnchor: 0.000000
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 24.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 24.000000
+                UIAttachLayoutMasterComponent:
+                    attachId: "HINT"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "when enabled -> false, true"]
+        -   prototype: "BadgeHolder/BadgeHolder"
+            name: "BadgeHolder"
+            position: [37.000000, 0.000000]
+            components:
+                Anchor:
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                UIDataParamsComponent:
+                    args:
+                        "type": "eBadgeType.DIGIT"
+                        "value": "badge"
+            bindings:
+            - ["Anchor.rightAnchor", "when value == \" \" -> 4, 0"]
+            - ["Anchor.topAnchor", "when value == \" \" -> 4, 0"]
+        -   class: "UIControl"
+            name: "GradeTeamPanel"
+            components:
+                Background:
+                    drawType: "DRAW_FILL"
+                Anchor: {}
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 4.000000
+                    verticalPolicy: "PercentOfParent"

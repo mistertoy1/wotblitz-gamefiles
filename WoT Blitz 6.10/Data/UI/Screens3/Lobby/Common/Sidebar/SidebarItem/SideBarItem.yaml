@@ -1,0 +1,284 @@
+Header:
+    version: "99"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/BadgeHolder.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "Item"
+    size: [88.000000, 72.000000]
+    components:
+        UIAnimationComponent:
+            animations: "START_SELECTED_ANIMATION,~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItemSelect.animation"
+        Anchor:
+            hCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "FixedSize"
+            verticalValue: 72.000000
+        UIAttachLayoutMasterComponent: {}
+        UIInputEventComponent:
+            onTouchUpInside: "ON_PRESSED"
+            blockDuplicatedEvents: true
+        Focus: {}
+        UIShortcutEventComponent:
+            perform: "ON_PRESSED"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "hoverOff", "false", "false"]
+            - ["eCurrentScreen", "currentScreen", "eCurrentScreen.kUnknown", "eCurrentScreen.kUnknown"]
+            - ["bool", "soundOpen", "true", "false"]
+            - ["string", "attachId", "\"\"", "\"\""]
+            - ["bool", "select", "false", "true"]
+            - ["string", "icon", "\"\"", "\"~res:/Gfx/UI/Hangar/SidebarIcons\""]
+            - ["bool", "lock", "false", "true"]
+            - ["string", "lockIcon", "\"~res:/Gfx/UI/LobbyCommon/lock_small\"", "\"~res:/Gfx/UI/LobbyCommon/lock_small\""]
+            - ["int", "frame", "0", "0"]
+            - ["string", "badge", "\"\"", "\"44\""]
+            - ["eBadgeType", "badgeType", "eBadgeType.DIGIT", "eBadgeType.DIGIT"]
+            - ["bool", "inputEnabled", "true", "true"]
+            events:
+            - "ON_PRESSED"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "lockIconStyle", "when currentScreen == eCurrentScreen.kHangar -> \"white-wild-sand-50-bg\", \"white-wild-sand-70-bg\""]
+            - ["string", "soundStyle", "when soundOpen -> \"button-open-sound\", \"button-choose-sound\""]
+            - ["string", "badgeEmpty", "when badgeType == eBadgeType.CAMOUFLAGE -> \" \", \"\""]
+            - ["string", "stateStyle", "\"sidebar-item \""]
+            - ["string", "lockedState", "when lock -> \" locked\", \"\""]
+            - ["string", "style", "soundStyle + \" \" + stateStyle + lockedState"]
+        UIEventOnDataComponent0:
+            watchedDataExpression: "select"
+            ifExpression: "true"
+            eventName: "START_SELECTED_ANIMATION"
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.style.yaml;~res:/UI/Screens3/ButtonSound.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+    bindings:
+    - ["selected", "select"]
+    - ["input", "inputEnabled"]
+    - ["classes", "style"]
+    - ["UIAttachLayoutMasterComponent.attachId", "attachId"]
+    children:
+    -   class: "UIControl"
+        name: "HoverBg"
+        input: false
+        classes: "hover black-15-bg"
+        components:
+            Background:
+                drawType: "DRAW_FILL"
+            UIOpacityComponent: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.style.yaml"
+        bindings:
+        - ["visible", "not hoverOff"]
+    -   class: "UIControl"
+        name: "PressedBg"
+        input: false
+        classes: "pressed-bg black-35-bg"
+        components:
+            Background:
+                drawType: "DRAW_FILL"
+            UIOpacityComponent: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.style.yaml"
+    -   class: "UIControl"
+        name: "Selection"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            LinearLayout:
+                orientation: "TopDown"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   class: "UIControl"
+            name: "SelectionLine"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "orange-orange-peel-bg"
+            components:
+                Background:
+                    drawType: "DRAW_FILL"
+                Anchor:
+                    rightAnchorEnabled: true
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 4.000000
+                    verticalPolicy: "PercentOfParent"
+        -   class: "UIControl"
+            name: "Bright"
+            input: false
+            components:
+                UIOpacityComponent:
+                    opacity: 1.000000
+                Anchor:
+                    rightAnchorEnabled: true
+                    rightAnchor: 4.000000
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            children:
+            -   class: "UIControl"
+                name: "Element_1"
+                input: false
+                classes: "red-tamarillo-bg"
+                components:
+                    Background:
+                        drawType: "DRAW_SCALE_TO_RECT"
+                        sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_horizontal_0-100"
+                    UIOpacityComponent:
+                        opacity: 0.500000
+                    Anchor:
+                        rightAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "Formula"
+                        horizontalFormula: "parent * 0.6"
+                        verticalPolicy: "Formula"
+                        verticalFormula: "parent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   class: "UIControl"
+                name: "Element_2"
+                input: false
+                classes: "red-tamarillo-bg"
+                components:
+                    Background:
+                        drawType: "DRAW_SCALE_TO_RECT"
+                        sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_horizontal_0-100"
+                    UIOpacityComponent:
+                        opacity: 0.500000
+                    Anchor:
+                        rightAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "Formula"
+                        horizontalFormula: "parent * 0.85"
+                        verticalPolicy: "Formula"
+                        verticalFormula: "parent * 0.8"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   class: "UIControl"
+                name: "Element_4"
+                input: false
+                classes: "red-tamarillo-bg"
+                components:
+                    Background:
+                        drawType: "DRAW_SCALE_TO_RECT"
+                        sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_horizontal_0-100"
+                    UIOpacityComponent:
+                        opacity: 0.500000
+                    Anchor:
+                        rightAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "Formula"
+                        horizontalFormula: "parent * 0.95"
+                        verticalPolicy: "Formula"
+                        verticalFormula: "parent * 0.6"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   class: "UIControl"
+                name: "Element_5"
+                input: false
+                classes: "red-tamarillo-bg"
+                components:
+                    Background:
+                        drawType: "DRAW_SCALE_TO_RECT"
+                        sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_horizontal_0-100"
+                    UIOpacityComponent:
+                        opacity: 0.500000
+                    Anchor:
+                        rightAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "Formula"
+                        horizontalFormula: "parent"
+                        verticalPolicy: "Formula"
+                        verticalFormula: "parent * 0.2"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+    -   class: "UIControl"
+        name: "IconWrapper"
+        position: [44.000000, 36.000000]
+        size: [32.000000, 32.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfFirstChild"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "Icon"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "content white-wild-sand-bg"
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_PROPORTIONAL"
+                    perPixelAccuracy: "PER_PIXEL_ACCURACY_FORCED"
+                UIOpacityComponent: {}
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 48.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 48.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Sidebar/SidebarItem/SideBarItem.style.yaml"
+            bindings:
+            - ["Background.sprite", "icon"]
+        -   class: "UIControl"
+            name: "Lock"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_PROPORTIONAL"
+                    sprite: "~res:/Gfx/Lobby/icons/icon_lock"
+                Anchor:
+                    rightAnchorEnabled: true
+                    rightAnchor: -8.000000
+                    bottomAnchorEnabled: true
+                    bottomAnchor: -8.000000
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 24.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 24.000000
+                UIAttachLayoutMasterComponent:
+                    attachId: "HINT"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "lock"]
+            - ["classes", "lockIconStyle"]
+        -   prototype: "BadgeHolder/BadgeHolder"
+            name: "BadgeHolder"
+            components:
+                Anchor:
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                UIDataParamsComponent:
+                    args:
+                        "type": "badgeType"
+                        "value": "when lock -> badgeEmpty, badge"
+            bindings:
+            - ["Anchor.rightAnchor", "when type != eBadgeType.LIVE and value == \" \" -> 4, -8"]
+            - ["Anchor.topAnchor", "when type != eBadgeType.LIVE and value == \" \" -> 4, -8"]

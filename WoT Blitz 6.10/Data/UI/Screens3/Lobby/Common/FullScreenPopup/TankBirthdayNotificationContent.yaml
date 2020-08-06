@@ -1,0 +1,94 @@
+Header:
+    version: "93"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/FullScreenPopup/FullscreenNotificationContent.yaml"
+- "~res:/UI/Screens3/Lobby/Common/RichTextSimpleParameter.yaml"
+- "~res:/UI/Screens3/Lobby/Hangar/TanksPanel/TankBirthdayLabel.yaml"
+- "~res:/UI/Screens3/Lobby/Hangar/TanksPanel/TankBirthdayLabelBig.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "TankBirthdayNotificationContent"
+    size: [322.000000, 600.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["int", "xp", "0", "3"]
+            - ["int", "credits", "0", "4"]
+            - ["vector<string>", "tankNames", "null", "[ localize(\"#germany_vehicles:G113_SP_I_C_short\"); localize(\"#ussr_vehicles:ST_I\"); localize(\"#ussr_vehicles:KV4\"); localize(\"#germany_vehicles:G103_RU_251_short\"); ]"]
+            events:
+            - "ACCENT_CLICKED"
+    children:
+    -   prototype: "FullscreenNotificationContent/FullscreenNotificationContent"
+        name: "FullscreenNotificationContent"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "isButtonVisible": "true"
+                    "topPart": "TopPart"
+                    "description": "Description"
+                    "content": "null"
+                    "congratulationText": "localize(\"#vehicle_birthday:Congratulations/Title\")"
+                    "buttonText": "\"#common:DialogButton/OK\""
+                eventActions:
+                - ["ACCENT_CLICKED", "ACCENT_CLICKED", ""]
+Slots:
+-   class: "UIControl"
+    name: "TopPart"
+    size: [10.000000, 10.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            topAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "Formula"
+            verticalFormula: "childrenSum + 56"
+    children:
+    -   prototype: "TankBirthdayLabelBig/TankBirthdayLabelBig"
+        name: "TankBirthdayLabelBig"
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                bottomAnchorEnabled: true
+                bottomAnchor: 8.000000
+            UIDataParamsComponent:
+                args:
+                    "xpFactor": "xp"
+                    "creditsFactor": "credits"
+-   class: "UIControl"
+    name: "Description"
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+            spacing: 16.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            horizontalMax: 600.000000
+            verticalPolicy: "PercentOfChildrenSum"
+    children:
+    -   prototype: "RichTextSimpleParameter/RichTextSimpleParameter"
+        name: "RichTextSimpleParameter"
+        components:
+            SizePolicy:
+                horizontalMax: 600.000000
+                verticalMax: 200.000000
+            FlowLayout:
+                orientation: "LeftToRight"
+                hDynamicPadding: true
+                hDynamicInLinePadding: true
+            UIDataParamsComponent:
+                args:
+                    "baseFontSize": "\"t-body\""
+                    "baseFontStyle": "\"regular\""
+                    "baseFontColor": "\"white-wild-sand-70-text\""
+                    "key": "when Size(tankNames) > 1 -> \"#vehicle_birthday:Congratulations/ListOfVehicles\", \"#vehicle_birthday:Congratulations/OneVehicle\""
+                    "value": "join(tankNames, \", \", 290)"

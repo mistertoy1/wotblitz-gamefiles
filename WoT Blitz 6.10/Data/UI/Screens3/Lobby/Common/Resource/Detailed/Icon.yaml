@@ -1,0 +1,81 @@
+Header:
+    version: "95"
+Prototypes:
+-   class: "UIControl"
+    name: "Content"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfFirstChild"
+        UIDataParamsComponent:
+            params:
+            - ["ResourceDetailed", "resource", "{ }", "{ type = ResourceType.vehicle; }"]
+            - ["eCurrencySize", "size", "eCurrencySize.BIG", "eCurrencySize.BIG"]
+            - ["bool", "showVehicleInfo", "false", "true"]
+            - ["bool", "showVehicleLabel", "false", "true"]
+            - ["bool", "showUnlockStub", "true", "false"]
+        UIDataLocalsComponent:
+            locals: []
+        UIChildComponent0:
+            childType: "kControl"
+            condition: "size == eCurrencySize.BIG"
+            control: "Big"
+        UIChildComponent1:
+            childType: "kControl"
+            condition: "size == eCurrencySize.BODY"
+            control: "Body"
+        UIChildComponent2:
+            childType: "kControl"
+            condition: "size == eCurrencySize.SMALL"
+            control: "Small"
+Slots:
+-   class: "UIControl"
+    name: "Big"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 96.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 96.000000
+        UIChildComponent0:
+            childType: "kPrototype"
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/Detailed/IconXL.yaml"
+            args:
+                "resource": "resource"
+                "showVehicleInfo": "showVehicleInfo"
+                "showVehicleLabel": "showVehicleLabel"
+                "showUnlockStub": "showUnlockStub"
+-   class: "UIControl"
+    name: "Body"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 24.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 24.000000
+        UIChildComponent0:
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/Detailed/IconM.yaml"
+            args:
+                "resource": "resource"
+                "showVehicleInfo": "showVehicleInfo"
+                "showVehicleLabel": "showVehicleLabel"
+                "showUnlockStub": "showUnlockStub"
+-   class: "UIControl"
+    name: "Small"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 16.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 16.000000
+        UIChildComponent0:
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/Detailed/IconS.yaml"
+            args:
+                "resource": "resource"
+                "showVehicleInfo": "showVehicleInfo"
+                "showVehicleLabel": "showVehicleLabel"
+                "showUnlockStub": "showUnlockStub"

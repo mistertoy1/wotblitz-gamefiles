@@ -1,0 +1,88 @@
+Header:
+    version: "99"
+Prototypes:
+-   class: "UIControl"
+    name: "ResourceDetailed"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfFirstChild"
+        UIDataParamsComponent:
+            params:
+            - ["ResourceDetailed", "resource", "null", "{ \"type\" = ResourceType.premium; }"]
+            - ["bool", "isEnough", "true", "false"]
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "isBasicResource", "resource.type == ResourceType.gold or resource.type == ResourceType.free_xp or resource.type == ResourceType.premium or resource.type == ResourceType.xp or resource.type == ResourceType.tankmenXP or resource.type == ResourceType.credits or resource.type == ResourceType.slots or resource.type == ResourceType.equipment_slots"]
+            - ["bool", "isStuffResource", "resource.type == ResourceType.stuff"]
+            - ["string", "textColorClass", "when isEnough -> \"white-wild-sand-text\", \"red-red-text\""]
+            - ["string", "textStyle", "\"t-subtitle regular \" + textColorClass"]
+            - ["string", "quantity", "when isBasicResource -> str1000Separated(resource.basic.quantity), isStuffResource -> str1000Separated(resource.stuff.quantity), \"\""]
+            - ["string", "iconPackage", "when isStuffResource -> \"~res:/UI/Screens/Lobby/Story/Legacy/Utils/Resource/Small/StuffResourceIcon.yaml\", \"~res:/UI/Screens/Lobby/Story/Legacy/Utils/Resource/Small/ResourceDetailedIcon.yaml\""]
+            - ["string", "icon", "when resource.type == ResourceType.credits -> \"~res:/Gfx/UI/LobbyCommon/CurrencyIconsHuge.psd\", resource.type == ResourceType.free_xp -> \"~res:/Gfx/UI/LobbyCommon/CurrencyIconsHuge.psd\", resource.type == ResourceType.gold -> \"~res:/Gfx/UI/LobbyCommon/CurrencyIconsHuge\", resource.type == ResourceType.premium -> \"~res:/Gfx/UI/Quests/AddCurrencyIconsHuge.psd\", \"\""]
+            - ["int", "frame", "when resource.type == ResourceType.credits -> 1, resource.type == ResourceType.free_xp -> 2, resource.type == ResourceType.gold -> 0, resource.type == ResourceType.premium -> 2, 0"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        input: false
+        components:
+            LinearLayout:
+                spacing: 5.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "Quantity"
+            input: false
+            components:
+                UITextComponent:
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    fitting: "FITTING_POINTS"
+                    align: ["RIGHT", "VCENTER"]
+                    useRtlAlign: "USE_BY_CONTENT"
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    horizontalMax: 175.000000
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["classes", "textStyle"]
+            - ["UITextComponent.text", "quantity"]
+        -   class: "UIControl"
+            name: "ResourceDetailedIcon"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 32.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 32.000000
+            children:
+            -   class: "UIControl"
+                name: "Content"
+                input: false
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                children:
+                -   class: "UIControl"
+                    name: "Icon"
+                    input: false
+                    components:
+                        UITextureComponent:
+                            drawType: "DRAW_SCALE_PROPORTIONAL"
+                            perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            horizontalMax: 96.000000
+                            verticalPolicy: "PercentOfParent"
+                            verticalMax: 96.000000
+                    bindings:
+                    - ["UITextureComponent.spritePath", "icon"]
+                    - ["UITextureComponent.frame", "frame"]

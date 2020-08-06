@@ -1,0 +1,115 @@
+Header:
+    version: "93"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/FullScreenPopup/FullscreenNotificationContent.yaml"
+- "~res:/UI/Screens3/Lobby/Common/RichTextSimpleParameter.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "PremiumizationEndedNotificationContent"
+    size: [322.000000, 600.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfFirstChild"
+        UIDataParamsComponent:
+            params:
+            - ["vector<string>", "tankNames", "null", "[ localize(\"#germany_vehicles:G113_SP_I_C_short\"); localize(\"#ussr_vehicles:ST_I\"); localize(\"#ussr_vehicles:KV4\"); localize(\"#germany_vehicles:G103_RU_251_short\"); ]"]
+            events:
+            - "ACCENT_CLICKED"
+    children:
+    -   prototype: "FullscreenNotificationContent/FullscreenNotificationContent"
+        name: "FullscreenNotificationContent"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "isButtonVisible": "true"
+                    "topPart": "TopPart"
+                    "description": "Description"
+                    "content": "null"
+                    "congratulationText": "localize(\"premialization/Notification/Finish/Title\")"
+                    "buttonText": "\"#common:DialogButton/OK\""
+                eventActions:
+                - ["ACCENT_CLICKED", "ACCENT_CLICKED", ""]
+        children:
+        -   path: "MainContent/Description"
+            position: [64.000000, 202.000000]
+Slots:
+-   class: "UIControl"
+    name: "Description"
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+            spacing: 16.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            horizontalMax: 332.000000
+            verticalPolicy: "PercentOfChildrenSum"
+    children:
+    -   prototype: "RichTextSimpleParameter/RichTextSimpleParameter"
+        name: "RichTextSimpleParameter"
+        components:
+            Anchor:
+                rightAnchorEnabled: true
+            SizePolicy:
+                horizontalMax: 332.000000
+                verticalMax: 200.000000
+            FlowLayout:
+                orientation: "LeftToRight"
+                hDynamicPadding: true
+                hDynamicInLinePadding: true
+            UIDataParamsComponent:
+                args:
+                    "baseFontSize": "\"t-body\""
+                    "baseFontStyle": "\"regular\""
+                    "baseFontColor": "\"white-wild-sand-70-text\""
+                    "key": "localize(\"premialization/Notification/Finish/VehicleList\")"
+                    "value": "join(tankNames, \", \", 290)"
+    -   class: "UIControl"
+        name: "Text"
+        position: [37.000000, 40.000000]
+        input: false
+        classes: "t-body regular white-wild-sand-70-text"
+        components:
+            UITextComponent:
+                text: "premialization/Notification/Finish/PremializeAgain"
+                colorInheritType: "COLOR_IGNORE_PARENT"
+                multiline: "MULTILINE_ENABLED"
+                align: ["HCENTER", "VCENTER"]
+            Anchor:
+                leftAnchorEnabled: false
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                horizontalMax: 332.000000
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+-   class: "UIControl"
+    name: "TopPart"
+    size: [10.000000, 10.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            topAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfChildrenSum"
+    children:
+    -   class: "UIControl"
+        name: "Image"
+        input: false
+        components:
+            Background:
+                sprite: "~res:/Gfx/UI/LobbyCommon/finish_premilisation"
+            Anchor:
+                hCenterAnchorEnabled: true
+                topAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"

@@ -1,0 +1,55 @@
+Header:
+    version: "95"
+Prototypes:
+-   class: "UIControl"
+    name: "Content"
+    size: [16.000000, 16.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["ResourceDetailed", "resource", "{ }", "{ type = ResourceType.gold; }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "spriteType", "when resource.type == ResourceType.gold -> \"gold\", resource.type == ResourceType.credits -> \"silver\", resource.type == ResourceType.free_xp -> \"free-xp\", resource.type == ResourceType.elite_xp -> \"elite-xp\", resource.type == ResourceType.xp -> \"battle-xp\", resource.type == ResourceType.tankmenXP -> \"crew-xp\", resource.type == ResourceType.unlocks -> \"camo-unlock\", resource.type == ResourceType.premium -> \"premium\", resource.type == ResourceType.achievement -> \"achievement\", resource.type == ResourceType.real_currency -> \"real-currency\", resource.type == ResourceType.slots -> \"slot\", resource.type == ResourceType.vehicle -> \"tank\", \"\""]
+            - ["string", "spriteSize", "\"s\""]
+    children:
+    -   class: "UIControl"
+        name: "IconHolder"
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "min(parent, 16)"
+                verticalPolicy: "Formula"
+                verticalFormula: "min(parent, 96)"
+            UIChildComponent0:
+                childType: "kPrototype"
+                condition: "resource.type == ResourceType.stuff and not isNull(resource.stuff)"
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/Detailed/StuffIcon.yaml"
+                args:
+                    "stuff": "resource.stuff"
+            UIChildComponent1:
+                childType: "kControl"
+                condition: "resource.type != ResourceType.stuff"
+                control: "Icon"
+Slots:
+-   class: "UIControl"
+    name: "Icon"
+    size: [16.000000, 16.000000]
+    input: false
+    components:
+        UITextureComponent:
+            drawType: "DRAW_SCALE_PROPORTIONAL"
+            perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+    bindings:
+    - ["UITextureComponent.spritePath", "\"~res:/Gfx/Lobby/currency/currency_\" + spriteType + \"_\" + spriteSize"]

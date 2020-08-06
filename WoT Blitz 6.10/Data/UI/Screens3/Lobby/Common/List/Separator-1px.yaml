@@ -1,0 +1,15 @@
+Header:
+    version: "85"
+Prototypes:
+-   class: "UIControl"
+    name: "Separator"
+    input: false
+    classes: "white-wild-sand-5-bg"
+    components:
+        Background: {}
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "FixedSize"
+            verticalValue: 1.000000
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml"

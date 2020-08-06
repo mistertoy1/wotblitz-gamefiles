@@ -1,0 +1,49 @@
+Header:
+    version: "85"
+Prototypes:
+-   class: "UIControl"
+    name: "AdditionalLine"
+    position: [0.000000, 0.000000]
+    size: [400.000000, 24.000000]
+    input: false
+    components:
+        LinearLayout:
+            spacing: 16.000000
+            dynamicSpacing: true
+            useRtl: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "FixedSize"
+            verticalValue: 24.000000
+        UIDataParamsComponent:
+            params:
+            - ["string", "value", "\"#value\"", "\"#value\""]
+    children:
+    -   class: "UIControl"
+        name: "Title"
+        input: false
+        classes: "t-body regular color=white-wild-sand-50-text"
+        components:
+            UITextComponent:
+                text: "Additional Line Label"
+                multiline: "MULTILINE_ENABLED"
+                align: ["LEFT", "VCENTER"]
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "min(parentRest, content)"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+    -   class: "UIControl"
+        name: "Value"
+        input: false
+        classes: "t-body bold color=white-wild-sand-50-text not-localize"
+        components:
+            UITextComponent: {}
+            Anchor:
+                topAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"

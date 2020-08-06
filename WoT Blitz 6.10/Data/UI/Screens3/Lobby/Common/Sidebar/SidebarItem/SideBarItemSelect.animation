@@ -1,0 +1,21 @@
+animation Selection
+{
+    if (select)
+    {
+        parallel
+        {
+            ChangeProperty("**/Bright", "UIOpacityComponent", "opacity", 1, 0.3, SINE_IN_SINE_OUT);
+            
+                sequence 
+                {
+                    ChangeProperty("**/Bright", "SizePolicy", "horizontalValue", 140, 0.3, SINE_IN_SINE_OUT);
+                    ChangeProperty("**/Bright", "SizePolicy", "horizontalValue", 110, 0.15, SINE_IN_SINE_OUT);
+                }
+        }
+    }
+        else
+    {
+        ChangeProperty("**/Bright", "UIOpacityComponent", "opacity", 0, 0.3, SINE_OUT);
+        ChangeProperty("**/Bright", "SizePolicy", "horizontalValue", 0, 0, SINE_OUT);
+    }
+}

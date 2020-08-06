@@ -1,0 +1,225 @@
+Header:
+    version: "96"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+- "~res:/UI/Screens3/Lobby/Common/RichTextSimpleParameter.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "PremiumTankNotification"
+    size: [900.000000, 600.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["OwnedTank", "tank", "null", "{ }"]
+            - ["SessionDataModel", "session", "null", "{ }"]
+            - ["AccountDataModel", "account", "null", "{ }"]
+            events:
+            - "ACCENT_CLICKED"
+            - "CLOSE_NOTIFICATION"
+        UIDataLocalsComponent:
+            locals:
+            - ["vector<string>", "premiumDescription", "[ \"tankTree/premiumTanks/benefits/descr1\"; \"tankTree/premiumTanks/benefits/descr2\"; \"tankTree/premiumTanks/benefits/descr3\"; \"tankTree/premiumTanks/benefits/descr4\"; ]"]
+            - ["vector<string>", "collectibleDescription", "[ \"tankTree/collectionVehicles/benefits/descr1\"; \"tankTree/collectionVehicles/benefits/descr2\"; \"tankTree/collectionVehicles/benefits/descr3\"; ]"]
+            - ["string", "descriptionHeaderKey", "when tank.info.isPremium -> \"shop/Congrats/PremiumVehicle/Title\", tank.info.isCollectible -> \"shop/Congrats/CollectionVehicle/Title\", \"\""]
+            - ["string", "headerKey", "when tank.info.isPremium -> \"tankTree/premiumTanks/benefits/Subheader\", \"tankTree/collectionVehicles/benefits/Subheader\""]
+        UIChildComponent0:
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/FullScreenPopup/FullscreenPopupWithContentSlot.yaml"
+            args:
+                "isButtonVisible": "false"
+                "contentControl": "TankNotificationContent"
+            eventActions:
+            - ["CLOSE_NOTIFICATION", "CLOSE_NOTIFICATION", ""]
+            - ["ACCENT_CLICKED", "ACCENT_CLICKED", ""]
+Slots:
+-   class: "UIControl"
+    name: "TankNotificationContent"
+    size: [536.000000, 400.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfParent"
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            LinearLayout:
+                spacing: 32.000000
+                useRtl: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "Left"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfMaxChild"
+                    verticalPolicy: "PercentOfMaxChild"
+                UIChildComponent0:
+                    prototypePath: "~res:/UI/Screens3/Lobby/Hangar/TanksPanel/OwnedTankCell.yaml"
+                    args:
+                        "tank": "tank"
+                        "birthdayXpFactor": "int(session.shopData.birthdayXPFactor)"
+                        "birthdayCreditsFactor": "int(session.shopData.birthdayCreditsFactor)"
+                        "dailyXpFactor": "int(session.shopData.dailyXPFactor)"
+                        "levelSharedBonus": "session.stats.levelSharedDailyBonus"
+                        "serverTime": "session.serverTime"
+                        "prebattle": "account.prebattleModel"
+                        "selected": "false"
+                        "isLoading": "false"
+                        "interactive": "false"
+                        "isX2Funnel": "false"
+                        "showStatus": "false"
+        -   class: "UIControl"
+            name: "Right"
+            input: false
+            components:
+                Anchor:
+                    vCenterAnchorEnabled: true
+                LinearLayout:
+                    orientation: "TopDown"
+                    spacing: 32.000000
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 336.000000
+                    verticalPolicy: "PercentOfChildrenSum"
+            children:
+            -   class: "UIControl"
+                name: "Header"
+                input: false
+                components:
+                    Anchor:
+                        leftAnchorEnabled: true
+                        useRtl: true
+                    LinearLayout:
+                        orientation: "TopDown"
+                        spacing: 16.000000
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfChildrenSum"
+                children:
+                -   class: "UIControl"
+                    name: "CongratulationHeader"
+                    input: false
+                    classes: "t-title regular white-wild-sand-text"
+                    components:
+                        UITextComponent:
+                            text: "shop/Congrats/Title"
+                        Anchor:
+                            leftAnchorEnabled: true
+                            useRtl: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+                -   prototype: "RichTextSimpleParameter/RichTextSimpleParameter"
+                    name: "RichTextSimpleParameter"
+                    components:
+                        SizePolicy:
+                            horizontalMax: 336.000000
+                        UIDataParamsComponent:
+                            args:
+                                "baseFontSize": "\"t-body\""
+                                "baseFontStyle": "\"regular\""
+                                "baseFontColor": "\"white-wild-sand-70-text\""
+                                "key": "descriptionHeaderKey"
+                                "value": "localize(tank.nameWithCamo)"
+            -   class: "UIControl"
+                name: "Description"
+                input: false
+                components:
+                    Anchor:
+                        leftAnchorEnabled: true
+                    LinearLayout:
+                        orientation: "TopDown"
+                        spacing: 8.000000
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 336.000000
+                        verticalPolicy: "PercentOfChildrenSum"
+                children:
+                -   class: "UIControl"
+                    name: "Title"
+                    input: false
+                    classes: "t-body regular white-wild-sand-70-text"
+                    components:
+                        UITextComponent:
+                            multiline: "MULTILINE_ENABLED"
+                        Anchor:
+                            leftAnchorEnabled: true
+                            useRtl: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["UITextComponent.text", "localize(headerKey)"]
+                -   class: "UIControl"
+                    name: "TextDescription"
+                    input: false
+                    components:
+                        Anchor:
+                            leftAnchorEnabled: true
+                        LinearLayout:
+                            orientation: "TopDown"
+                            spacing: 8.000000
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfChildrenSum"
+                        UIRepeatComponent:
+                            control: "~res:/UI/Screens3/Lobby/Common/FullScreenPopup/Benefit.yaml"
+                            dataContainer: "when tank.info.isPremium -> premiumDescription, tank.info.isCollectible -> collectibleDescription, \"\""
+                            args:
+                                "text": "_item"
+            -   class: "UIControl"
+                name: "ButtonWrapper"
+                input: false
+                components:
+                    Anchor:
+                        leftAnchorEnabled: true
+                        useRtl: true
+                    LinearLayout:
+                        orientation: "TopDown"
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfChildrenSum"
+                children:
+                -   prototype: "Button/Button"
+                    name: "ButtonPositive"
+                    components:
+                        Anchor:
+                            leftAnchorEnabled: true
+                            useRtl: true
+                        UIDataParamsComponent:
+                            args:
+                                "locked": "false"
+                                "caption": "\"#common:DialogButton/OK\""
+                                "type": "eButtonType.POSITIVE"
+                                "size": "eButtonSize.NORMAL"
+                                "sound": "eButtonSound.UNKNOWN"
+                                "enabled": "true"
+                            eventActions:
+                            - ["ON_CLICK_BUTTON", "CLOSE_NOTIFICATION", ""]
+                -   class: "UIControl"
+                    name: "SafeAreaBottom"
+                    input: false
+                    components:
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "Formula"
+                            verticalFormula: "safeAreaInsets.bottom"

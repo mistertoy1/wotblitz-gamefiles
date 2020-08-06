@@ -1,0 +1,11 @@
+Header:
+    version: "70"
+StyleSheets:
+-   selector: ".tap-area"
+    properties:
+        anchor-leftAnchor: 16.000000
+        anchor-rightAnchor: 16.000000
+-   selector: ".tap-area.Desktop"
+    properties:
+        anchor-leftAnchor: 0.000000
+        anchor-rightAnchor: 0.000000

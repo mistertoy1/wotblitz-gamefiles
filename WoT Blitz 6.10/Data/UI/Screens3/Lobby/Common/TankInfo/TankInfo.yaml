@@ -1,0 +1,204 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Vehicle/VehicleClass.yaml"
+- "~res:/UI/Screens3/Lobby/Common/TankInfo/DefaultTankName.yaml"
+- "~res:/UI/Screens3/Lobby/Common/TankInfo/RichTankName.yaml"
+- "~res:/UI/Screens3/Lobby/Common/TankInfo/NationFlag.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "TankInfo"
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["VehicleDataModel", "tank", "null", "{ }"]
+            - ["bool", "premiumized", "false", "false"]
+            - ["bool", "elite", "false", "false"]
+            - ["bool", "richTextName", "false", "true"]
+            - ["string", "customName", "\"\"", "\"\""]
+        UIDataLocalsComponent:
+            locals:
+            
+            - ["string", "nationString", "when tank.nation == eNation.USA -> \"lobby/Common/TankInfo/Nation/USA\", tank.nation == eNation.GERMANY -> \"lobby/Common/TankInfo/Nation/Germany\", tank.nation == eNation.USSR -> \"lobby/Common/TankInfo/Nation/USSR\", tank.nation == eNation.UK -> \"lobby/Common/TankInfo/Nation/UK\", tank.nation == eNation.JAPAN -> \"lobby/Common/TankInfo/Nation/Japan\", tank.nation == eNation.CHINA -> \"lobby/Common/TankInfo/Nation/China\", tank.nation == eNation.FRANCE -> \"lobby/Common/TankInfo/Nation/France\", tank.nation == eNation.OTHER -> \"lobby/Common/TankInfo/Nation/Other\", \"\""]
+            - ["string", "subnationString", "when tank.subnation == \"finland\" -> \"lobby/Common/TankInfo/Nation/Finland\", tank.subnation == \"poland\" -> \"lobby/Common/TankInfo/Nation/Poland\", tank.subnation == \"sweden\" -> \"lobby/Common/TankInfo/Nation/Sweden\", tank.subnation == \"italy\" -> \"lobby/Common/TankInfo/Nation/Italy\", tank.subnation == \"australia\" -> \"lobby/Common/TankInfo/Nation/Australia\", tank.subnation == \"canada\" -> \"lobby/Common/TankInfo/Nation/Canada\", \"\""]
+            - ["string", "nationLocalizationKey", "when empty(subnationString) -> nationString, subnationString"]
+            - ["string", "nameToDisplay", "when empty(customName) -> localize(tank.name), customName"]
+    children:
+    -   class: "UIControl"
+        name: "VehicleType"
+        input: false
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+            LinearLayout:
+                spacing: 8.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   prototype: "VehicleClass/VehicleClass"
+            name: "VehicleClass"
+            components:
+                UIDataParamsComponent:
+                    args:
+                        "class": "tank.tankClass"
+                        "type": "when premiumized -> eVehicleDescriptionType.PREMIUMIZED, tank.isPremium -> eVehicleDescriptionType.PREMIUM, tank.isCollectible -> eVehicleDescriptionType.COLLECTIBLE, eVehicleDescriptionType.NORMAL"
+                        "elite": "elite"
+        -   class: "UIControl"
+            name: "TypeName"
+            input: false
+            classes: "t-overline bold white-wild-sand-text"
+            components:
+                UITextComponent: {}
+                Anchor:
+                    vCenterAnchorEnabled: true
+                    vCenterAnchor: 2.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+            bindings:
+            - ["UITextComponent.text", "localize(when tank.tankClass == eTankClass.TANK_CLASS_LIGHT -> \"tank class Light\", tank.tankClass == eTankClass.TANK_CLASS_MEDIUM -> \"tank class Medium\", tank.tankClass == eTankClass.TANK_CLASS_HEAVY -> \"tank class Heavy\", tank.tankClass == eTankClass.TANK_CLASS_AT_SPG -> \"tank class AT-SPG\", \"\")"]
+        -   class: "UIControl"
+            name: "Delimiter"
+            position: [0.000000, 0.000000]
+            input: false
+            classes: "white-wild-sand-50-bg"
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_PROPORTIONAL"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_r4"
+                Anchor:
+                    vCenterAnchorEnabled: true
+                    vCenterAnchor: 2.000000
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 4.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 4.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "Level"
+            position: [170.000000, 0.000000]
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "t-overline bold white-wild-sand-text"
+            components:
+                UITextComponent: {}
+                Anchor:
+                    vCenterAnchorEnabled: true
+                    vCenterAnchor: 2.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+            bindings:
+            - ["UITextComponent.text", "localize(\"lobby/Common/TankInfo/Level\", { level = roman(tank.level); })"]
+    -   class: "UIControl"
+        name: "Spacer"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 8.000000
+    -   class: "UIControl"
+        name: "VehicleName"
+        input: false
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                leftAnchor: -1.000000
+            LinearLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   prototype: "DefaultTankName/DefaultTankName"
+            name: "DefaultTankName"
+            components:
+                UIDataParamsComponent:
+                    args:
+                        "visible": "not richTextName"
+                        "name": "nameToDisplay"
+        -   class: "UIControl"
+            name: "RichTankNameWrapper"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfMaxChild"
+                    verticalPolicy: "PercentOfMaxChild"
+            bindings:
+            - ["visible", "richTextName"]
+            children:
+            -   prototype: "RichTankName/RichTankName"
+                name: "RichTankName"
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 650.000000
+                    UIDataParamsComponent:
+                        args:
+                            "baseFontSize": "\"t-body\""
+                            "baseFontStyle": "\"regular\""
+                            "baseFontColor": "\"white-wild-sand-50-text\""
+                            "key": "nameToDisplay"
+                            "resource1Model": "null"
+                            "resource2Model": "null"
+                            "resource3Model": "null"
+                            "resource4Model": "null"
+    -   class: "UIControl"
+        name: "Spacer_1"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 12.000000
+    -   class: "UIControl"
+        name: "VehicleCountry"
+        size: [300.000000, 64.000000]
+        input: false
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+            LinearLayout:
+                spacing: 8.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   prototype: "NationFlag/NationFlag"
+            name: "NationFlag"
+            components:
+                UIDataParamsComponent:
+                    args:
+                        "nation": "tank.nation"
+                        "subnation": "tank.subnation"
+        -   class: "UIControl"
+            name: "CountryName"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "t-overline bold white-wild-sand-text"
+            components:
+                UITextComponent: {}
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+            bindings:
+            - ["UITextComponent.text", "localize(nationLocalizationKey)"]

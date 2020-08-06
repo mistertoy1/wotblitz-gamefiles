@@ -1,0 +1,5 @@
+action CLOSE_DIALOG()
+{
+  DirectEvent("PLAY_SOUND", "**/CloseButtonSafeArea/CloseButton");
+  Event("CLOSE_NOTIFICATION");
+}

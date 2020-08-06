@@ -1,0 +1,73 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/HorizontalScrollBar.yaml"
+- "~res:/UI/Screens3/Common/VerticalScrollBar.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Tabs/TextTab.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "TextTabsBar"
+    size: [800.000000, 64.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "FixedSize"
+            verticalValue: 64.000000
+        UIDataParamsComponent:
+            params:
+            - ["int", "activeTab", "0", "1"]
+            - ["vector<TabTextInfo>", "info", "null", "[ { isLocked = false; }; { badge = { value = \"\"; }; }; { }; ]"]
+            - ["string", "bgStyle", "\"\"", "\"black-15-bg\""]
+            events:
+            - "ON_SELECT_TAB"
+    children:
+    -   class: "UIControl"
+        name: "Bg"
+        visible: true
+        input: false
+        components:
+            Background: {}
+            UIOpacityComponent: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["classes", "bgStyle"]
+    -   class: "UIScrollView"
+        name: "TabsScrollView"
+        input: false
+        autoUpdate: true
+        centerContent: true
+        components:
+            Anchor:
+                bottomAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIScrollViewContainer"
+            name: "scrollContainerControl"
+            position: [184.000000, 0.000000]
+            components:
+                LinearLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfChildrenSum"
+                    verticalPolicy: "PercentOfMaxChild"
+                UISwitchBarComponent:
+                    onSelectElement: "ON_SELECT_TAB"
+                    onSelectElementData: " when info[_selectedElement].isLocked -> activeTab, _selectedElement"
+                    selectionEventType: "TOUCH_UP"
+                UIRepeatComponent:
+                    control: "~res:/UI/Screens3/Lobby/Common/Tabs/TextTab.yaml"
+                    dataContainer: "info"
+                    args:
+                        "isSelected": "_index == activeTab"
+                        "tabID": "_index"
+                        "tabInfo": "_item"
+                    elementName: "when empty(_item.autotestKey) -> \"tab\" + str(_index), _item.autotestKey"
+                    holderName: "when empty(_item.autotestKey) -> \"tab\" + str(_index), _item.autotestKey"
+            bindings:
+            - ["UISwitchBarComponent.selectedElement", "activeTab"]

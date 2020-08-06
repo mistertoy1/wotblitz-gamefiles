@@ -1,0 +1,5 @@
+action UpdateFadeVisibility(FloatParamPack params)
+{
+    Opacity("**/BottomFade", params.second);
+	ChangeProperty("**/BottomFade","","visible",params.second != 0);
+}

@@ -1,0 +1,81 @@
+Header:
+    version: "92"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/DiscountLabel.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Resource/Currency.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "CurrencyWithDiscount"
+    size: [32.000000, 32.000000]
+    input: false
+    components:
+        Anchor:
+            vCenterAnchorEnabled: true
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["string", "label", "\"\"", "\"#modules_tech_tree:ResearchCost\""]
+            - ["eCurrencySize", "currencySize", "eCurrencySize.BIG", "eCurrencySize.BIG_BOLD"]
+            - ["bool", "forButton", "false", "false"]
+            - ["bool", "canAfford", "true", "true"]
+            - ["bool", "showDiscount", "true", "true"]
+            - ["bool", "plusVisible", "false", "false"]
+            - ["ResourceModel", "resource", "null", "{ }"]
+    children:
+    -   class: "UIControl"
+        name: "Label"
+        position: [36.000000, 0.000000]
+        input: false
+        classes: "t-caption regular color=white-wild-sand-50-text"
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+                align: ["LEFT", "VCENTER"]
+            Anchor:
+                rightAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "not label.empty()"]
+        - ["UITextComponent.text", "localize(label)"]
+    -   class: "UIControl"
+        name: "Price"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            Anchor:
+                rightAnchorEnabled: true
+            LinearLayout:
+                spacing: 8.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   prototype: "DiscountLabel/DiscountLabel"
+            name: "DiscountLabel"
+            components:
+                UIDataParamsComponent:
+                    args:
+                        "discountReason": "resource.discount.reason"
+                        "discount": "resource.discount.value"
+                        "display": "not floatEqual(resource.discount.value, 0.000000) and showDiscount"
+        -   prototype: "Currency/Currency"
+            name: "Currency"
+            components:
+                UIDataParamsComponent:
+                    args:
+                        "currencySize": "currencySize"
+                        "forButton": "forButton"
+                        "canAfford": "canAfford"
+                        "isPlusTopPaneVisible": "false"
+                        "serverTime": "0L"
+                        "plusVisible": "plusVisible"
+                        "resource": "resource"

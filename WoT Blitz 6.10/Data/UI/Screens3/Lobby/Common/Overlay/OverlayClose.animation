@@ -1,0 +1,15 @@
+animation CloseOverlay
+{
+  parallel 
+  {
+    PlaySound("GUI/buttons/close");
+    Opacity("**/Blur", 0.0, time=0.3, interpolation=EASE_IN);
+    ChangeProperty("**/Overlay", "SizePolicy", "verticalValue", 0, 0.3, EASE_IN);
+    ChangeProperty("**/Overlay", "UIOpacityComponent", "opacity", 0, 0.3, EASE_IN);
+    ChangeProperty("**/Fade", "UIOpacityComponent", "opacity", 0, 0.3, EASE_IN); 
+  }
+  Event ("BACK_EVENT");
+}
+
+
+

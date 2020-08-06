@@ -1,0 +1,23 @@
+Header:
+    version: "93"
+Prototypes:
+-   class: "UIControl"
+    name: "Icon"
+    size: [56.000000, 56.000000]
+    input: false
+    classes: "white-wild-sand-bg"
+    components:
+        Background:
+            drawType: "DRAW_ALIGNED"
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 24.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 24.000000
+        UIDataParamsComponent:
+            params:
+            - ["string", "iconPath", "\"\"", "\"~res:/Gfx/Lobby/icons/icon_like_s\""]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml"
+    bindings:
+    - ["Background.sprite", "iconPath"]

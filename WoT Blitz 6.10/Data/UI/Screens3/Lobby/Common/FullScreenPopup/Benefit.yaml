@@ -1,0 +1,59 @@
+Header:
+    version: "93"
+Prototypes:
+-   class: "UIControl"
+    name: "ItemWithBullet"
+    size: [336.000000, 40.000000]
+    input: false
+    components:
+        LinearLayout:
+            spacing: 8.000000
+            useRtl: true
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 336.000000
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["string", "text", "\"\"", "\"на 50% больше боевого и свободного опыта, а также опыта экипажа за каждый бой\""]
+            - ["string", "bulletImage", "\"\"", "\"\""]
+    children:
+    -   class: "UIControl"
+        name: "Bullet"
+        input: false
+        classes: "white-wild-sand-50-bg"
+        components:
+            Background:
+                drawType: "DRAW_SCALE_TO_RECT"
+                sprite: "~res:/Gfx/Lobby/backgrounds/bg_r4"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            Anchor:
+                leftAnchorEnabled: true
+                topAnchorEnabled: true
+                topAnchor: 9.000000
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 4.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 4.000000
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+    -   class: "UIControl"
+        name: "BodyBold"
+        position: [12.000000, 0.000000]
+        input: false
+        classes: "t-body regular white-wild-sand-70-text"
+        components:
+            UITextComponent:
+                multiline: "MULTILINE_ENABLED"
+                align: ["LEFT", "VCENTER"]
+                useRtlAlign: "USE_BY_SYSTEM"
+            Anchor:
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "localize(text)"]

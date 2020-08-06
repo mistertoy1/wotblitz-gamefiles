@@ -1,0 +1,98 @@
+Header:
+    version: "95"
+Prototypes:
+-   class: "UIControl"
+    name: "HeaderContent"
+    size: [965.000000, 48.000000]
+    components:
+        LinearLayout: {}
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["control", "leftContent", "null", "null"]
+            - ["control", "rightContent", "null", "null"]
+            - ["control", "button", "null", "null"]
+            - ["control", "backButton", "null", "null"]
+    children:
+    -   class: "UIControl"
+        name: "BackButton"
+        input: false
+        components:
+            Anchor:
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent0:
+                childType: "kControl"
+                condition: "not isNull(backButton)"
+                control: "backButton"
+        bindings:
+        - ["visible", "not isNull(backButton)"]
+    -   class: "UIControl"
+        name: "Content"
+        components:
+            LinearLayout:
+                spacing: 24.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   class: "UIControl"
+            name: "LeftContent"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                UIChildComponent0:
+                    childType: "kControl"
+                    condition: "not isNull(leftContent)"
+                    control: "leftContent"
+        -   class: "UIControl"
+            name: "RightContent"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfFirstChild"
+                    verticalPolicy: "PercentOfParent"
+                UIChildComponent0:
+                    childType: "kControl"
+                    condition: "not isNull(rightContent)"
+                    control: "rightContent"
+            bindings:
+            - ["visible", "not isNull(rightContent)"]
+        -   class: "UIControl"
+            name: "ShopButton"
+            input: false
+            components:
+                LinearLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfChildrenSum"
+                    verticalPolicy: "PercentOfParent"
+            bindings:
+            - ["visible", "not isNull(button)"]
+            children:
+            -   class: "UIControl"
+                name: "Spacer"
+                input: false
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 4.000000
+                        verticalPolicy: "PercentOfParent"
+            -   class: "UIControl"
+                name: "Button"
+                input: true
+                components:
+                    Anchor:
+                        topAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfFirstChild"
+                        verticalPolicy: "PercentOfFirstChild"
+                    UIChildComponent0:
+                        childType: "kControl"
+                        condition: "not isNull(button)"
+                        control: "button"

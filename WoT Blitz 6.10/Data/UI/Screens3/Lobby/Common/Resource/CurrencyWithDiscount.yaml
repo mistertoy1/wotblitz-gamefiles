@@ -1,0 +1,45 @@
+Header:
+    version: "95"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Resource/Currency.yaml"
+- "~res:/UI/Screens3/Common/DiscountLabel.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "CurrencyWithDiscount"
+    size: [32.000000, 32.000000]
+    input: false
+    components:
+        LinearLayout:
+            spacing: 8.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["eCurrencySize", "currencySize", "eCurrencySize.BIG", "eCurrencySize.BIG_BOLD"]
+            - ["bool", "forButton", "false", "false"]
+            - ["bool", "canAfford", "true", "true"]
+            - ["bool", "showDiscount", "true", "false"]
+            - ["bool", "plusVisible", "false", "false"]
+            - ["ResourceModel", "resource", "null", "{ \"type\" = ResourceType.gold; }"]
+    children:
+    -   prototype: "DiscountLabel/DiscountLabel"
+        name: "DiscountLabel"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "discountReason": "resource.discount.reason"
+                    "discount": "resource.discount.value"
+                    "display": "not floatEqual(resource.discount.value, 0.000000) and showDiscount"
+    -   prototype: "Currency/Currency"
+        name: "Currency"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "currencySize": "currencySize"
+                    "forButton": "forButton"
+                    "canAfford": "canAfford"
+                    "isPlusTopPaneVisible": "false"
+                    "serverTime": "0L"
+                    "plusVisible": "plusVisible"
+                    "resource": "resource"
