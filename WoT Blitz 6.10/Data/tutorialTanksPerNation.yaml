@@ -1,0 +1,33 @@
+nationTankMap: 
+    "usa":
+        name: "M2_lt"
+        locKey: "#usa_vehicles:M2_lt"
+        type: "Light"
+    "germany":
+        name: "PzII"
+        locKey: "#germany_vehicles:PzII"
+        type: "Light"
+    "ussr":
+        name: "T-26"
+        locKey: "#ussr_vehicles:T-26"
+        type: "Light"
+    "uk":
+        name: "GB69_Cruiser_Mk_II"
+        locKey: "#gb_vehicles:GB69_Cruiser_Mk_II"
+        type: "Light"
+    "japan":
+        name: "Ha_Go"
+        locKey: "#japan_vehicles:Ha_Go"
+        type: "Light"
+    "france":
+        name: "RenaultR35"
+        locKey: "#france_vehicles:RenaultR35"
+        type: "Medium"
+    "china":
+        name: "Ch07_Vickers_MkE_Type_BT26"
+        locKey: "#china_vehicles:Ch07_Vickers_MkE_Type_BT26"
+        type: "Light"
+    "european":
+        name: "F01_Vickers_MkF"
+        locKey: "#european_vehicles:F01_Vickers_MkF"
+        type: "Light"

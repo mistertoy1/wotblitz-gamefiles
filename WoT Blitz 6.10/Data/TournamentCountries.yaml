@@ -1,0 +1,534 @@
+AD:
+  loc: tournaments/country/AD
+  regions: {}
+AE:
+  loc: tournaments/country/AE
+  regions: {}
+AG:
+  loc: tournaments/country/AG
+  regions: {}
+AI:
+  loc: tournaments/country/AI
+  regions: {}
+AL:
+  loc: tournaments/country/AL
+  regions: {}
+AM:
+  loc: tournaments/country/AM
+  regions: {}
+AP:
+  loc: tournaments/country/AP
+  regions: {}
+AS:
+  loc: tournaments/country/AS
+  regions: {}
+AT:
+  loc: tournaments/country/AT
+  regions: {}
+AU:
+  loc: tournaments/country/AU
+  regions: {}
+AW:
+  loc: tournaments/country/AW
+  regions: {}
+AX:
+  loc: tournaments/country/AX
+  regions: {}
+AZ:
+  loc: tournaments/country/AZ
+  regions: {}
+BA:
+  loc: tournaments/country/BA
+  regions: {}
+BB:
+  loc: tournaments/country/BB
+  regions: {}
+BD:
+  loc: tournaments/country/BD
+  regions: {}
+BE:
+  loc: tournaments/country/BE
+  regions: {}
+BG:
+  loc: tournaments/country/BG
+  regions: {}
+BH:
+  loc: tournaments/country/BH
+  regions: {}
+BJ:
+  loc: tournaments/country/BJ
+  regions: {}
+BL:
+  loc: tournaments/country/BL
+  regions: {}
+BM:
+  loc: tournaments/country/BM
+  regions: {}
+BN:
+  loc: tournaments/country/BN
+  regions: {}
+BO:
+  loc: tournaments/country/BO
+  regions: {}
+BQ:
+  loc: tournaments/country/BQ
+  regions: {}
+BR:
+  loc: tournaments/country/BR
+  regions: {}
+BS:
+  loc: tournaments/country/BS
+  regions: {}
+BY:
+  loc: tournaments/country/BY
+  regions: {}
+BZ:
+  loc: tournaments/country/BZ
+  regions: {}
+CA:
+  loc: tournaments/country/CA
+  regions: {}
+CG:
+  loc: tournaments/country/CG
+  regions: {}
+CH:
+  loc: tournaments/country/CH
+  regions: {}
+CL:
+  loc: tournaments/country/CL
+  regions: {}
+CM:
+  loc: tournaments/country/CM
+  regions: {}
+CN:
+  loc: tournaments/country/CN
+  regions: {}
+CR:
+  loc: tournaments/country/CR
+  regions: {}
+CW:
+  loc: tournaments/country/CW
+  regions: {}
+CY:
+  loc: tournaments/country/CY
+  regions: {}
+CZ:
+  loc: tournaments/country/CZ
+  regions: {}
+DE:
+  loc: tournaments/country/DE
+  regions: {}
+DK:
+  loc: tournaments/country/DK
+  regions: {}
+DM:
+  loc: tournaments/country/DM
+  regions: {}
+DO:
+  loc: tournaments/country/DO
+  regions: {}
+DZ:
+  loc: tournaments/country/DZ
+  regions: {}
+EC:
+  loc: tournaments/country/EC
+  regions: {}
+EE:
+  loc: tournaments/country/EE
+  regions: {}
+EG:
+  loc: tournaments/country/EG
+  regions: {}
+ES:
+  loc: tournaments/country/ES
+  regions: {}
+ET:
+  loc: tournaments/country/ET
+  regions: {}
+EU:
+  loc: tournaments/country/EU
+  regions: {}
+FI:
+  loc: tournaments/country/FI
+  regions: {}
+FM:
+  loc: tournaments/country/FM
+  regions: {}
+FO:
+  loc: tournaments/country/FO
+  regions: {}
+FR:
+  loc: tournaments/country/FR
+  regions: {}
+GA:
+  loc: tournaments/country/GA
+  regions: {}
+GB:
+  loc: tournaments/country/GB
+  regions: {}
+GD:
+  loc: tournaments/country/GD
+  regions: {}
+GE:
+  loc: tournaments/country/GE
+  regions: {}
+GG:
+  loc: tournaments/country/GG
+  regions: {}
+GH:
+  loc: tournaments/country/GH
+  regions: {}
+GI:
+  loc: tournaments/country/GI
+  regions: {}
+GL:
+  loc: tournaments/country/GL
+  regions: {}
+GM:
+  loc: tournaments/country/GM
+  regions: {}
+GN:
+  loc: tournaments/country/GN
+  regions: {}
+GP:
+  loc: tournaments/country/GP
+  regions: {}
+GR:
+  loc: tournaments/country/GR
+  regions: {}
+GU:
+  loc: tournaments/country/GU
+  regions: {}
+GW:
+  loc: tournaments/country/GW
+  regions: {}
+GY:
+  loc: tournaments/country/GY
+  regions: {}
+HK:
+  loc: tournaments/country/HK
+  regions: {}
+HN:
+  loc: tournaments/country/HN
+  regions: {}
+HR:
+  loc: tournaments/country/HR
+  regions: {}
+HT:
+  loc: tournaments/country/HT
+  regions: {}
+HU:
+  loc: tournaments/country/HU
+  regions: {}
+IE:
+  loc: tournaments/country/IE
+  regions: {}
+IL:
+  loc: tournaments/country/IL
+  regions: {}
+IM:
+  loc: tournaments/country/IM
+  regions: {}
+IS:
+  loc: tournaments/country/IS
+  regions: {}
+IT:
+  loc: tournaments/country/IT
+  regions: {}
+JE:
+  loc: tournaments/country/JE
+  regions: {}
+JM:
+  loc: tournaments/country/JM
+  regions: {}
+JO:
+  loc: tournaments/country/JO
+  regions: {}
+JP:
+  loc: tournaments/country/JP
+  regions: {}
+KE:
+  loc: tournaments/country/KE
+  regions: {}
+KG:
+  loc: tournaments/country/KG
+  regions: {}
+KH:
+  loc: tournaments/country/KH
+  regions: {}
+KI:
+  loc: tournaments/country/KI
+  regions: {}
+KN:
+  loc: tournaments/country/KN
+  regions: {}
+KR:
+  loc: tournaments/country/KR
+  regions: {}
+KW:
+  loc: tournaments/country/KW
+  regions: {}
+KY:
+  loc: tournaments/country/KY
+  regions: {}
+KZ:
+  loc: tournaments/country/KZ
+  regions: {}
+LA:
+  loc: tournaments/country/LA
+  regions: {}
+LB:
+  loc: tournaments/country/LB
+  regions: {}
+LC:
+  loc: tournaments/country/LC
+  regions: {}
+LI:
+  loc: tournaments/country/LI
+  regions: {}
+LK:
+  loc: tournaments/country/LK
+  regions: {}
+LS:
+  loc: tournaments/country/LS
+  regions: {}
+LT:
+  loc: tournaments/country/LT
+  regions: {}
+LU:
+  loc: tournaments/country/LU
+  regions: {}
+LV:
+  loc: tournaments/country/LV
+  regions: {}
+MA:
+  loc: tournaments/country/MA
+  regions: {}
+MC:
+  loc: tournaments/country/MC
+  regions: {}
+MD:
+  loc: tournaments/country/MD
+  regions: {}
+ME:
+  loc: tournaments/country/ME
+  regions: {}
+MF:
+  loc: tournaments/country/MF
+  regions: {}
+MG:
+  loc: tournaments/country/MG
+  regions: {}
+MH:
+  loc: tournaments/country/MH
+  regions: {}
+MK:
+  loc: tournaments/country/MK
+  regions: {}
+ML:
+  loc: tournaments/country/ML
+  regions: {}
+MN:
+  loc: tournaments/country/MN
+  regions: {}
+MO:
+  loc: tournaments/country/MO
+  regions: {}
+MQ:
+  loc: tournaments/country/MQ
+  regions: {}
+MR:
+  loc: tournaments/country/MR
+  regions: {}
+MT:
+  loc: tournaments/country/MT
+  regions: {}
+MU:
+  loc: tournaments/country/MU
+  regions: {}
+MV:
+  loc: tournaments/country/MV
+  regions: {}
+MW:
+  loc: tournaments/country/MW
+  regions: {}
+MX:
+  loc: tournaments/country/MX
+  regions: {}
+MY:
+  loc: tournaments/country/MY
+  regions: {}
+MZ:
+  loc: tournaments/country/MZ
+  regions: {}
+NA:
+  loc: tournaments/country/NA
+  regions: {}
+NC:
+  loc: tournaments/country/NC
+  regions: {}
+NE:
+  loc: tournaments/country/NE
+  regions: {}
+NI:
+  loc: tournaments/country/NI
+  regions: {}
+NL:
+  loc: tournaments/country/NL
+  regions: {}
+'NO':
+  loc: tournaments/country/NO
+  regions: {}
+NP:
+  loc: tournaments/country/NP
+  regions: {}
+NZ:
+  loc: tournaments/country/NZ
+  regions: {}
+OM:
+  loc: tournaments/country/OM
+  regions: {}
+PA:
+  loc: tournaments/country/PA
+  regions: {}
+PE:
+  loc: tournaments/country/PE
+  regions: {}
+PF:
+  loc: tournaments/country/PF
+  regions: {}
+PG:
+  loc: tournaments/country/PG
+  regions: {}
+PH:
+  loc: tournaments/country/PH
+  regions: {}
+PK:
+  loc: tournaments/country/PK
+  regions: {}
+PL:
+  loc: tournaments/country/PL
+  regions: {}
+PT:
+  loc: tournaments/country/PT
+  regions: {}
+PY:
+  loc: tournaments/country/PY
+  regions: {}
+QA:
+  loc: tournaments/country/QA
+  regions: {}
+RE:
+  loc: tournaments/country/RE
+  regions: {}
+RO:
+  loc: tournaments/country/RO
+  regions: {}
+RS:
+  loc: tournaments/country/RS
+  regions: {}
+RU:
+  loc: tournaments/country/RU
+  regions: {}
+SA:
+  loc: tournaments/country/SA
+  regions: {}
+SC:
+  loc: tournaments/country/SC
+  regions: {}
+SE:
+  loc: tournaments/country/SE
+  regions: {}
+SG:
+  loc: tournaments/country/SG
+  regions: {}
+SI:
+  loc: tournaments/country/SI
+  regions: {}
+SJ:
+  loc: tournaments/country/SJ
+  regions: {}
+SK:
+  loc: tournaments/country/SK
+  regions: {}
+SM:
+  loc: tournaments/country/SM
+  regions: {}
+SN:
+  loc: tournaments/country/SN
+  regions: {}
+SR:
+  loc: tournaments/country/SR
+  regions: {}
+SV:
+  loc: tournaments/country/SV
+  regions: {}
+SX:
+  loc: tournaments/country/SX
+  regions: {}
+TC:
+  loc: tournaments/country/TC
+  regions: {}
+TG:
+  loc: tournaments/country/TG
+  regions: {}
+TH:
+  loc: tournaments/country/TH
+  regions: {}
+TJ:
+  loc: tournaments/country/TJ
+  regions: {}
+TM:
+  loc: tournaments/country/TM
+  regions: {}
+TN:
+  loc: tournaments/country/TN
+  regions: {}
+TR:
+  loc: tournaments/country/TR
+  regions: {}
+TT:
+  loc: tournaments/country/TT
+  regions: {}
+TW:
+  loc: tournaments/country/TW
+  regions: {}
+TZ:
+  loc: tournaments/country/TZ
+  regions: {}
+UA:
+  loc: tournaments/country/UA
+  regions: {}
+UM:
+  loc: tournaments/country/UM
+  regions: {}
+US:
+  loc: tournaments/country/US
+  regions: {}
+UY:
+  loc: tournaments/country/UY
+  regions: {}
+UZ:
+  loc: tournaments/country/UZ
+  regions: {}
+VA:
+  loc: tournaments/country/VA
+  regions: {}
+VC:
+  loc: tournaments/country/VC
+  regions: {}
+VG:
+  loc: tournaments/country/VG
+  regions: {}
+VI:
+  loc: tournaments/country/VI
+  regions: {}
+VN:
+  loc: tournaments/country/VN
+  regions: {}
+ZA:
+  loc: tournaments/country/ZA
+  regions: {}
+ZM:
+  loc: tournaments/country/ZM
+  regions: {}

@@ -1,0 +1,9 @@
+6.2.0:
+  devices: 
+    - "iPad Mini WiFi"
+    - "iPad Mini GSM LTE"
+    - "iPad Mini GSM CDMA LTE"
+    - "iPad 2 WiFi"
+    - "iPad 2 3G GSM"
+    - "iPad 2 3G CDMA"
+    - "iPhone 4S"

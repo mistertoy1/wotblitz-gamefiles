@@ -1,0 +1,416 @@
+---
+- battlesLimit: 0
+  list:
+    - image: other_tips
+      key: tips/tutorial
+      weight: 0.0
+    - image: greeting
+      key: tips/greeting
+      weight: 1.0
+    - image: hold_device
+      key: tips/hold_device
+      weight: 1.0
+      tag: no_desktop
+    - image: dispersion
+      key: tips/dispersion
+      weight: 1.0
+- battlesLimit: 1
+  list:
+    - image: aiming
+      key: tips/aiming
+      weight: 1.0
+    - image: lamp
+      key: tips/lamp
+      weight: 1.0
+    - image: enemy_discovered
+      key: tips/enemy_discovered
+      weight: 1.0
+    - image: sniper_mode
+      key: tips/sniper_mode
+      weight: 1.0
+    - image: red_armor
+      key: tips/red_armor
+      weight: 1.0
+    - image: capture_base
+      key: tips/capture_base
+      weight: 1.0
+    - image: capture_quick
+      key: tips/capture_quick
+      weight: 1.0
+    - image: capture_prevent
+      key: tips/capture_prevent
+      weight: 1.0
+    - image: modules
+      key: tips/modules
+      weight: 1.0
+    - image: module_break
+      key: tips/module_break
+      weight: 1.0
+    - image: module_disable
+      key: tips/module_disable
+      weight: 1.0
+    - image: module_autorepair
+      key: tips/module_autorepair
+      weight: 1.0
+    - image: tank_stop
+      key: tips/tank_stop
+      weight: 1.0
+    - image: module_upgrade
+      key: tips/module_upgrade
+      weight: 1.0
+    - image: crew_wounded
+      key: tips/crew_wounded
+      weight: 1.0
+    - image: ammo_destroy
+      key: tips/ammo_destroy
+      weight: 1.0
+    - image: premium_account
+      key: tips/premium_account
+      weight: 1.0
+- battlesLimit: 100
+  list:
+    - image: supremacy_possibility
+      key: tips/supremacy_possibility
+      weight: 1.0
+      tag: supremacy
+    - image: supremacy_victory
+      key: tips/supremacy_victory
+      weight: 1.0
+      tag: supremacy
+    - image: supremacy_capture_points
+      key: tips/supremacy_capture_points
+      weight: 1.0
+      tag: supremacy
+    - image: supremacy_recapture_available
+      key: tips/supremacy_recapture_available
+      weight: 1.0
+      tag: supremacy
+    - image: supremacy_get_score
+      key: tips/supremacy_get_score
+      weight: 1.0
+      tag: supremacy
+    - image: supremacy_lose_score
+      key: tips/supremacy_lose_score
+      weight: 1.0
+      tag: supremacy
+    - image: supremacy_recapture_points
+      key: tips/supremacy_recapture_points
+      weight: 1.0
+      tag: supremacy
+    - image: supremacy_left_points
+      key: tips/supremacy_left_points
+      weight: 1.0
+      tag: supremacy
+    - image: supremacy_catch_point
+      key: tips/supremacy_catch_point
+      weight: 1.0
+      tag: supremacy
+    - image: supremacy_prevent_catching
+      key: tips/supremacy_prevent_catching
+      weight: 1.0
+    - image: top_modules
+      key: tips/top_modules
+      weight: 1.0
+    - image: view_range
+      key: tips/view_range
+      weight: 1.0
+    - image: fire
+      key: tips/fire
+      weight: 1.0
+    - image: crew_fire
+      key: tips/crew_fire
+      weight: 1.0
+    - image: tank_fire
+      key: tips/tank_fire
+      weight: 1.0
+    - image: module_location
+      key: tips/module_location
+      weight: 1.0
+    - image: penetration_shells
+      key: tips/penetration_shells
+      weight: 1.0
+    - image: he_shells
+      key: tips/he_shells
+      weight: 1.0
+    - image: honor
+      key: tips/karma
+      weight: 1.0
+    - image: 01_old
+      key: tips/reinstall_optional_devices
+      weight: 1.0    
+    - image: missions_change
+      key: tips/missions_change
+      weight: 1.0
+    - image: missions_refresh
+      key: tips/missions_refresh
+      weight: 1.0
+    - image: missions_reward
+      key: tips/missions_reward
+      weight: 1.0
+    - image: provisions
+      key: tips/provisions
+      weight: 1.0
+    - image: cooldown
+      key: tips/cooldown
+      weight: 1.0
+    - image: consumables_extinguisher
+      key: tips/consumables_extinguisher
+      weight: 1.0
+    - image: consumables_healthpack
+      key: tips/consumables_healthpack
+      weight: 1.0
+    - image: consumables_repairkit
+      key: tips/consumables_repairkit
+      weight: 1.0
+    - image: consumables
+      key: tips/consumables
+      weight: 1.0
+    - image: prem_credits
+      key: tips/premialization_credits
+      weight: 1.0
+    - image: prem_tanks_levels
+      key: tips/premialization_levels
+      weight: 1.0
+    - image: prem_time
+      key: tips/premialization_duration
+      weight: 1.0
+    - image: minimap
+      key: tips/minimap
+      weight: 1.0
+    - image: camouflage
+      key: tips/camouflage
+      weight: 1.0
+    - image: camouflage_hide
+      key: tips/camouflage_hide
+      weight: 1.0
+    - image: vertical_angle
+      key: tips/vertical_angle
+      weight: 1.0
+    - image: find_platoon
+      key: tips/find_platoon
+      weight: 1.0
+    - image: shell_change
+      key: tips/shell_change
+      weight: 1.0
+      tag: no_desktop
+    - image: autogun_reload
+      key: tips/autogun_reload
+      weight: 1.0
+      tag: no_desktop
+    - image: second_fire
+      key: tips/second_fire
+      weight: 1.0
+      tag: no_desktop
+    - image: lookaround_control
+      key: tips/lookaround_control
+      weight: 1.0
+      tag: no_desktop
+    - image: capture_points
+      key: tips/capture_points
+      weight: 1.0
+    - image: capture_stop
+      key: tips/capture_stop
+      weight: 1.0
+    - image: equipment
+      key: tips/equipment
+      weight: 1.0
+    - image: consumables_spend
+      key: tips/consumables_spend
+      weight: 1.0
+    - image: armorhit_rightangle
+      key: tips/armorhit_rightangle
+      weight: 1.0
+    - image: armorhit_sharpangle
+      key: tips/armorhit_sharpangle
+      weight: 1.0
+    - image: economy_spending
+      key: tips/economy_spending
+      weight: 1.0
+    - image: clan_chat
+      key: tips/clan_chat
+      weight: 1.0
+    - image: light_tanks
+      key: tips/light_tanks
+      weight: 1.0
+    - image: tank_destroyers
+      key: tips/tank_destroyers
+      weight: 1.0
+    - image: td_tactics
+      key: tips/td_tactics
+      weight: 1.0
+    - image: medium_tanks
+      key: tips/medium_tanks
+      weight: 1.0
+    - image: heavy_tanks
+      key: tips/heavy_tanks
+      weight: 1.0
+    - image: break_track
+      key: tips/break_track
+      weight: 1.0
+    - image: immobilize
+      key: tips/immobilize
+      weight: 1.0
+    - image: free_xp
+      key: tips/free_xp
+      weight: 1.0
+    - image: exp_elite
+      key: tips/exp_elite
+      weight: 1.0
+    - image: explore_map
+      key: tips/explore_map
+      weight: 1.0
+    - image: low_level
+      key: tips/low_level
+      weight: 1.0
+    - image: premium_tanks
+      key: tips/premium_tanks
+      weight: 1.0
+    - image: camouflage_tank
+      key: tips/camo
+      weight: 1.0
+    - image: camouflage_auto
+      key: tips/camo_supply
+      weight: 1.0
+    - image: clan_supply
+      key: tips/clan_supply
+      weight: 1.0
+    - image: upgrade_supply
+      key: tips/upgrade_supply
+      weight: 1.0
+    - image: clan_platoon
+      key: tips/clan_platoon
+      weight: 1.0
+    - image: speedup_supply
+      key: tips/speedup_supply
+      weight: 1.0
+    - image: choose_clan
+      key: tips/choose_clan
+      weight: 1.0
+    - image: clan_recruiting
+      key: tips/clan_recruiting
+      weight: 1.0
+    - image: blitzcoin
+      key: tips/tournament_proxy
+      weight: 0.0
+    - image: module_damaged
+      key: tips/module_damaged
+      weight: 1.0
+- battlesLimit: 500
+  list:
+    - image: marker_switching
+      key: tips/damage_marker_style
+      weight: 1.0
+    - image: radar
+      key: tips/radar
+      weight: 1.0
+    - image: concentrate_lowhp
+      key: tips/concentrate_lowhp
+      weight: 1.0
+    - image: concentrate_fire
+      key: tips/concentrate_fire
+      weight: 1.0
+    - image: elite_tanks
+      key: tips/elite_tanks
+      weight: 1.0
+    - image: freexp_earn
+      key: tips/freexp_earn
+      weight: 1.0
+    - image: analize_team
+      key: tips/analize_team
+      weight: 1.0
+    - image: surround_enemy
+      key: tips/surround_enemy
+      weight: 1.0
+    - image: clan_creation
+      key: tips/clan_creation
+      weight: 1.0
+    - image: skills_training
+      key: tips/skills
+      weight: 1.0
+    - image: module_hp
+      key: tips/module_hp
+      weight: 1.0
+    - image: module_hit
+      key: tips/module_hit
+      weight: 1.0
+    - image: track_hit
+      key: tips/track_hit
+      weight: 1.0
+    - image: observation_hit
+      key: tips/observation_hit
+      weight: 1.0
+    - image: engine_hit
+      key: tips/engine_hit
+      weight: 1.0
+    - image: fuel_hit
+      key: tips/fuel_hit
+      weight: 1.0
+    - image: traverse_hit
+      key: tips/traverse_hit
+      weight: 1.0
+    - image: gun_hit
+      key: tips/gun_hit
+      weight: 1.0
+    - image: ammo_hit
+      key: tips/ammo_hit
+      weight: 1.0
+    - image: module_crit
+      key: tips/module_crit
+      weight: 1.0
+    - image: crew_hit
+      key: tips/crew_hit
+      weight: 1.0
+    - image: ricochet
+      key: tips/ricochet
+      weight: 1.0
+    - image: ricochet_impossible
+      key: tips/ricochet_impossible
+      weight: 1.0
+    - image: he_explode
+      key: tips/he_explode
+      weight: 1.0
+    - image: yellow_zones
+      key: tips/yellow_zones
+      weight: 1.0
+    - image: he_noricochet
+      key: tips/he_noricochet
+      weight: 1.0
+    - image: diamond_stance
+      key: tips/diamond_stance
+      weight: 1.0
+    - image: flank_td
+      key: tips/flank_td
+      weight: 1.0
+    - image: large_alfa
+      key: tips/large_alfa
+      weight: 1.0
+    - image: small_alfa
+      key: tips/small_alfa
+      weight: 1.0
+    - image: moving_target
+      key: tips/moving_target
+      weight: 1.0
+    - image: premuim_elite
+      key: tips/premuim_elite
+      weight: 1.0
+    - image: rating_battles
+      key: tips/rating_battles
+      weight: 1.0
+    - image: personal_rating
+      key: tips/personal_rating
+      weight: 1.0
+    - image: leaderboards
+      key: tips/leaderboards
+      weight: 1.0
+    - image: skill_train
+      key: tips/skill_train
+      weight: 1.0
+    - image: exp_crew
+      key: tips/exp_crew
+      weight: 1.0
+    - image: boosters_0
+      key: tips/economical_boosters
+      weight: 1.0
+    - image: boosters_1
+      key: tips/battle_boosters
+      weight: 1.0
