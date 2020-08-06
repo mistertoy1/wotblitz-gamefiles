@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2019 rel. 3 (http://www.altova.com) by Altova XMLSpy 2019 Enterprise XML Editor - Release 3, Installed for 5 users (SOOO Game Stream) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:blitz="http://wargaming.net" elementFormDefault="qualified">
+    <xs:include schemaLocation="../../../server_xml/events/bonus.xsd"/>
+    <xs:element name="root">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="dropList" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dropList">
+        <xs:annotation>
+            <xs:documentation>droplist documetation url</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="choiceRule" type="choiceRule" minOccurs="0" blitz:category="main"/>
+                <xs:element name="clientInfo" minOccurs="0" blitz:category="main"/>
+                <xs:element name="repeats" type="xs:string" minOccurs="0" blitz:category="main"/>
+                <xs:element ref="item" minOccurs="0" maxOccurs="unbounded" blitz:category="group"/>
+            </xs:sequence>
+            <xs:attribute name="name" type="nameList" use="required"/>
+            <xs:attribute name="versionFrom" type="xs:string" use="required" blitz:category="main"/>
+            <xs:attribute name="versionTo" type="xs:string" blitz:category="main"/>
+            <xs:attribute name="development" type="xs:boolean" blitz:category="main"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="nameList">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+            <xs:pattern value="[a-zA-Z][a-zA-Z_0-9]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="choiceRule">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="chance"/>
+            <xs:enumeration value="weight"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="item">
+        <xs:complexType>
+            <xs:all>
+                <!-- types as it is on \scripts\item_defs\vehicles\common\stuff.xsd -->
+                <xs:element name="choiceValue" type="xs:float" minOccurs="0"/>
+                <xs:element name="gameEventStage" type="xs:string" minOccurs="0"/>
+                <xs:element name="gameEventChoiceBonus" type="xs:float" minOccurs="0"/>
+                <xs:element name="bonusVehicle" type="bonusVehicle" minOccurs="0" blitz:type="subgroup"/>
+                <xs:element name="bonusStuff" type="xs:string" minOccurs="0" blitz:type="subgroup"/>
+                <xs:element name="vehLevelsChoiceBonus" type="xs:float" minOccurs="0"/>
+                <xs:element name="vehLevels" type="xs:string" minOccurs="0"/>
+                <xs:element name="premVehsOnly" type="xs:string" minOccurs="0"/>
+                <xs:element name="isSeparatedItem" type="xs:string" minOccurs="0"/>
+                <xs:element name="proxyStuff" type="xs:string" minOccurs="0"/>
+                <xs:element name="payProxy" type="xs:string" minOccurs="0"/>
+                <xs:element name="proxyChoiceBonus" type="xs:integer" minOccurs="0"/>
+                <xs:element name="proxyLimitBonus" type="xs:integer" minOccurs="0"/>
+                <xs:element name="proxyLimitMultiplier" type="xs:integer" minOccurs="0"/>
+                <xs:element name="winnerChoiceBonus" type="xs:float" minOccurs="0"/>
+                <xs:element name="winnerAmountBonus" type="xs:string" minOccurs="0"/>
+                <xs:element name="killsChoiceBonus" type="xs:float" minOccurs="0"/>
+                <xs:element name="killsMin" type="xs:integer" minOccurs="0"/>
+                <xs:element name="killsAmountBonus" type="xs:string" minOccurs="0"/>
+                <xs:element name="damageChoiceBonus" type="xs:float" minOccurs="0"/>
+                <xs:element name="minDamage" type="xs:integer" minOccurs="0"/>
+                <xs:element name="damageAmountBonus" type="xs:string" minOccurs="0"/>
+                <xs:element name="damageUnitSize" type="xs:integer" minOccurs="0"/>
+                <xs:element name="minFullXP" type="xs:integer" minOccurs="0"/>
+                <xs:element name="fullXPunitSize" type="xs:integer" minOccurs="0"/>
+                <xs:element name="fullXPChoiceBonus" type="xs:string" minOccurs="0"/>
+                <xs:element name="fullXPAmountBonus" type="xs:string" minOccurs="0"/>
+                <xs:element name="fullXPLimitBonus" type="xs:string" minOccurs="0"/>
+                <xs:element name="defeatChoiceBonus" type="xs:float" minOccurs="0"/>
+                <xs:element name="defeatAmountBonus" type="xs:string" minOccurs="0"/>
+                <xs:element name="drawChoiceBonus" type="xs:float" minOccurs="0"/>
+                <xs:element name="drawAmountBonus" type="xs:string" minOccurs="0"/>
+                <xs:element name="multiProxyStuff" type="xs:string" minOccurs="0"/>
+                <xs:element name="multiProxyCoeff" type="xs:string" minOccurs="0"/>
+                <xs:element name="multiProxyLimitBonus" type="xs:integer" minOccurs="0"/>
+                <xs:element name="dropListLink" type="dropListLink" minOccurs="0"/>
+                <xs:element ref="bonus" minOccurs="0" blitz:type="subgroup"/>
+                <!-- types as it is on \scripts\item_defs\vehicles\common\stuff.xsd -->
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="dropListLink">
+        <xs:attribute name="name" type="xs:string" use="required" blitz:type="dropListLink"/>
+    </xs:complexType>
+    <xs:complexType name="bonusVehicle">
+        <xs:all>
+            <xs:element name="name" type="xs:string" minOccurs="0"/>
+            <xs:element name="withModules" type="xs:integer" minOccurs="0"/>
+            <xs:element name="withShells" type="xs:integer" minOccurs="0"/>
+            <xs:element name="compensation" type="xs:string" minOccurs="0"/>
+            <xs:element name="certificate" type="xs:string" minOccurs="0"/>
+            <xs:element name="crewLevel" type="xs:integer" minOccurs="0"/>
+            <xs:element name="openOptDevSlots" type="xs:integer" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+</xs:schema>
