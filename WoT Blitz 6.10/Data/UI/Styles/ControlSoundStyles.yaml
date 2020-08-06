@@ -1,0 +1,9 @@
+Header:
+    version: "31"
+StyleSheets:
+-   selector: ".switch-sound"
+    properties:
+        sound-valueChanged: "GUI/buttons/checkbox"
+-   selector: ".slider-sound"
+    properties:
+        sound-valueChanged: "GUI/buttons/drag"

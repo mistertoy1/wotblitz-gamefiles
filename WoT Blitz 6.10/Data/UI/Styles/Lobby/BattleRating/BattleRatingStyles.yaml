@@ -1,0 +1,54 @@
+Header:
+    version: "20"
+StyleSheets:
+-   selector: ".battle-rating.better #RatingDiff"
+    properties:
+        text-color: [0.494118, 0.827451, 0.129412, 1.000000]
+-   selector: ".battle-rating.worse #RatingDiff"
+    properties:
+        text-color: [1.000000, 0.000000, 0.000000, 1.000000]
+-   selector: ".battle-rating.better #UpDownMark"
+    properties:
+        bg-frame: 0
+-   selector: ".battle-rating.worse #UpDownMark"
+    properties:
+        bg-frame: 1
+-   selector: ".battle-rating.equal #UpDownMark, .battle-rating.equal #RatingDiff"
+    properties:
+        visible: false
+-   selector: ".battle-rating.bronze #LeagueBanner"
+    properties:
+        bg-frame: 1
+-   selector: ".battle-rating.silver #LeagueBanner"
+    properties:
+        bg-frame: 2
+-   selector: ".battle-rating.gold #LeagueBanner"
+    properties:
+        bg-frame: 3
+-   selector: ".battle-rating.platinum #LeagueBanner"
+    properties:
+        bg-frame: 4
+-   selector: ".battle-rating.diamond #LeagueBanner"
+    properties:
+        bg-frame: 5
+-   selector: ".custom-number.bronze"
+    properties:
+        bg-color: [0.992157, 0.854902, 0.560784, 1.000000]
+-   selector: ".custom-number.silver"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 1.000000]
+-   selector: ".custom-number.gold"
+    properties:
+        bg-color: [0.988235, 0.937255, 0.505882, 1.000000]
+-   selector: ".custom-number.platinum"
+    properties:
+        bg-color: [0.980392, 0.964706, 0.850980, 1.000000]
+-   selector: ".custom-number.diamond"
+    properties:
+        bg-color: [0.980392, 0.964706, 0.850980, 1.000000]
+-   selector: ".battle-rating.calibration #UpDownMark, .battle-rating.calibration #RatingDiff"
+    properties:
+        visible: false
+-   selector: ".battle-rating.calibration #LeagueBanner"
+    properties:
+        bg-frame: 6

@@ -1,0 +1,151 @@
+Header:
+    version: "70"
+StyleSheets:
+-   selector: ".1st_april.equipment_item.largeRepairkit ? #icon, .1st_april.equipment_item.largeRepairkit #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/largeRepairkit_apr.txt"
+-   selector: ".equipment_item.forsage ? #icon, .equipment_item.forsage #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/forsage"
+        bg-frame: 1
+-   selector: ".equipment_item.buff ? #icon, .equipment_item.buff #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/buff"
+        bg-frame: 1
+-   selector: ".equipment_item.dash ? #icon, .equipment_item.dash #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/dash"
+        bg-frame: 1
+-   selector: ".equipment_item.hunters ? #icon, .equipment_item.hunters #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/hunters"
+        bg-frame: 1
+-   selector: ".equipment_item.moonwalk ? #icon, .equipment_item.moonwalk #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/moonwalk"
+        bg-frame: 1
+-   selector: ".equipment_item.ram ? #icon, .equipment_item.ram #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/ram"
+        bg-frame: 1
+-   selector: ".equipment_item.shield ? #icon, .equipment_item.shield #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/shield"
+        bg-frame: 1
+-   selector: ".equipment_item.stealth ? #icon, .equipment_item.stealth #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/stealth"
+        bg-frame: 1
+-   selector: ".equipment_item.vampire ? #icon, .equipment_item.vampire #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/vampire"
+        bg-frame: 1
+-   selector: ".equipment_item.victim ? #icon, .equipment_item.victim #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/victim"
+        bg-frame: 1
+-   selector: ".equipment_item.forsage ? #IconGlow, .equipment_item.forsage #IconGlow"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/forsage"
+        bg-frame: 0
+-   selector: ".equipment_item.buff ? #IconGlow, .equipment_item.buff #IconGlow"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/buff"
+        bg-frame: 0
+-   selector: ".equipment_item.dash ? #IconGlow, .equipment_item.dash #IconGlow"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/dash"
+        bg-frame: 0
+-   selector: ".equipment_item.hunters ? #IconGlow, .equipment_item.hunters #IconGlow"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/hunters"
+        bg-frame: 0
+-   selector: ".equipment_item.moonwalk ? #IconGlow, .equipment_item.moonwalk #IconGlow"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/moonwalk"
+        bg-frame: 0
+-   selector: ".equipment_item.ram ? #IconGlow, .equipment_item.ram #IconGlow"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/ram"
+        bg-frame: 0
+-   selector: ".equipment_item.shield ? #IconGlow, .equipment_item.shield #IconGlow"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/shield"
+        bg-frame: 0
+-   selector: ".equipment_item.stealth ? #IconGlow, .equipment_item.stealth #IconGlow"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/stealth"
+        bg-frame: 0
+-   selector: ".equipment_item.vampire ? #IconGlow, .equipment_item.vampire #IconGlow"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/vampire"
+        bg-frame: 0
+-   selector: ".equipment_item.victim ? #IconGlow, .equipment_item.victim #IconGlow"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Big/Event/MadGames/victim"
+        bg-frame: 0
+-   selector: ".equipment_item.comeback-kit ? #icon, .equipment_item.comeback-kit #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_come-back-kit_m"
+        bg-frame: 0
+-   selector: ".equipment_item.engine-boost ? #icon, .equipment_item.engine-boost #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_engine-boost_1_m"
+-   selector: ".equipment_item.engine-boost_2 ? #icon, .equipment_item.engine-boost_2 #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_engine-boost_2_m"
+-   selector: ".equipment_item.damage-boost ? #icon, .equipment_item.damage-boost #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_damage-boost_1_m"
+-   selector: ".equipment_item.damage-boost_2 ? #icon, .equipment_item.damage-boost_2 #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_damage-boost_2_m"
+-   selector: ".equipment_item.reload-boost ? #icon, .equipment_item.reload-boost #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_reload-boost_1_m"
+-   selector: ".equipment_item.reload-boost_2 ? #icon, .equipment_item.reload-boost_2 #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_reload-boost_2_m"
+-   selector: ".equipment_item.duplet ? #icon, .equipment_item.duplet #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_duplet_m"
+-   selector: ".equipment_item.ghost ? #icon, .equipment_item.ghost #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_ghost_m"
+-   selector: ".equipment_item.ramming ? #icon, .equipment_item.ramming #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_ramming_1_m"
+-   selector: ".equipment_item.ramming_2 ? #icon, .equipment_item.ramming_2 #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_ramming_2_m"
+-   selector: ".equipment_item.splash ? #icon, .equipment_item.splash #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_splash_m"
+-   selector: ".equipment_item.lightning ? #icon, .equipment_item.lightning #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_lightning_1_m"
+-   selector: ".equipment_item.lightning_2 ? #icon, .equipment_item.lightning_2 #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_lightning_2_m"
+-   selector: ".equipment_item.enemy-reload-time ? #icon, .equipment_item.enemy-reload-time #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_enemy-reload-time_m"
+        bg-frame: 1
+-   selector: ".equipment_item.curse ? #icon, .equipment_item.curse #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_curse_m"
+-   selector: ".equipment_item.tornado ? #icon, .equipment_item.tornado #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_vortex_m"
+-   selector: ".equipment_item.return-in-time ? #icon, .equipment_item.return-in-time #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_return-in-time_m"
+-   selector: ".equipment_item.halloween_hunters_mark ? #icon, .equipment_item.halloween_hunters_mark #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_hunters-mark_m"
+-   selector: ".equipment_item.halloween_moonwalk ? #icon, .equipment_item.halloween_moonwalk #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_moonwalk_m"
+-   selector: ".equipment_item.pretend-dead ? #icon, .equipment_item.pretend-dead #icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_pretend-dead_m"

@@ -1,0 +1,27 @@
+Header:
+    version: "20"
+StyleSheets:
+-   selector: ".netease.netease-hidden"
+    properties:
+        visible: false
+-   selector: ".netease.netease-content"
+    properties:
+        visible: true
+-   selector: ".netease-content"
+    properties:
+        visible: false
+-   selector: ".netease-hidden"
+    properties:
+        visible: true
+-   selector: ".netease.region-flag"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/CommonUIElements/RegionsIcon/Icons.psd"
+-   selector: ".region-flag"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/CommonUIElements/RegionsIcon/IconRegion.psd"
+-   selector: ".china-logo-url"
+    properties:
+        visible: false
+-   selector: ".china-logo-url.netease-channel-app_store, .china-logo-url.netease-channel-netease"
+    properties:
+        visible: true

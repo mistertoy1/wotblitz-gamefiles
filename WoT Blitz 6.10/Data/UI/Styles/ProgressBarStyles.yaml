@@ -1,0 +1,15 @@
+Header:
+    version: "23"
+StyleSheets:
+-   selector: ".progress-bar-ready #Overlay"
+    properties:
+        bg-color: [0.494118, 0.827451, 0.129412, 1.000000]
+-   selector: ".progress-bar-not-ready #Overlay"
+    properties:
+        bg-color: [1.000000, 0.376471, 0.000000, 1.000000]
+-   selector: ".delta-growth"
+    properties:
+        bg-color: [0.360784, 0.843137, 0.000000, 1.000000]
+-   selector: ".delta-decline"
+    properties:
+        bg-color: [0.639216, 0.050980, 0.050980, 1.000000]

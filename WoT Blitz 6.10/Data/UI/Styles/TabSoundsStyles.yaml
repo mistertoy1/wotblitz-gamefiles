@@ -1,0 +1,6 @@
+Header:
+    version: "26"
+StyleSheets:
+-   selector: ".tab-choose-sound"
+    properties:
+        sound-touchDown: "GUI/buttons/choose"

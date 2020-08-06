@@ -1,0 +1,69 @@
+Header:
+    version: "24"
+StyleSheets:
+-   selector: ".left #background"
+    properties:
+        scale: [-1.000000, 1.000000]
+-   selector: ".right #background"
+    properties:
+        scale: [1.000000, 1.000000]
+-   selector: ".equipment_item.not_available"
+    properties:
+        bg-frame: 0
+-   selector: ".equipment_item.unused"
+    properties:
+        bg-frame: 2
+-   selector: ".equipment_item.ready"
+    properties:
+        bg-frame: 2
+-   selector: ".equipment_item.active"
+    properties:
+        bg-frame: 1
+-   selector: ".equipment_item.cooldown"
+    properties:
+        bg-frame: 1
+-   selector: ".equipment_item.exhausted"
+    properties:
+        bg-frame: 1
+-   selector: ".equipment_item.enlarge.enlarge"
+    properties:
+        bg-frame: 4
+-   selector: ".equipment_item.active.in_cooldown_yes #cooldownFill"
+    properties:
+        bg-frame: 5
+        visible: true
+-   selector: ".equipment_item.cooldown.in_cooldown_yes #cooldownFill"
+    properties:
+        bg-frame: 6
+        visible: true
+-   selector: ".equipment_item.in_cooldown_no #cooldownFill"
+    properties:
+        visible: false
+-   selector: ".equipment_item.in_cooldown_no #label"
+    properties:
+        visible: false
+-   selector: ".equipment_item.in_cooldown_yes #label"
+    properties:
+        visible: true
+-   selector: ".equipment_item.ability_no.pulse_no.unused #icon"
+    properties:
+        visible: false
+-   selector: ".equipment_item.ability_no.pulse_no.unused"
+    properties:
+        bg-frame: 0
+-   selector: ".equipment_item.ability_no #icon"
+    properties:
+        visible: true
+-   selector: ".equipment_item.blink_yes #blinkLayer"
+    properties:
+        visible: true
+-   selector: ".equipment_item.blink_no #blinkLayer"
+    properties:
+        visible: false
+-   selector: ".equipment_item.pulse_yes #pulsation"
+    properties:
+        bg-frame: 7
+        visible: true
+-   selector: ".equipment_item.pulse_no #pulsation"
+    properties:
+        visible: false

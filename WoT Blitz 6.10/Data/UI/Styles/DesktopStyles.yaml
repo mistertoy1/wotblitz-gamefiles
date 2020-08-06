@@ -1,0 +1,6 @@
+Header:
+    version: "31"
+StyleSheets:
+-   selector: ".limited-width.Desktop"
+    properties:
+        sizePolicy-horizontalMax: 1100.000000

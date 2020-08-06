@@ -1,0 +1,23 @@
+Header:
+    version: "20"
+StyleSheets:
+-   selector: ".notch-tightly-right-inset"
+    properties:
+        anchorSafeArea-rightSafeInset: "INSET_ONLY_IF_NOTCH"
+        anchorSafeArea-rightInsetCorrection: -24.000000
+-   selector: ".notch-tightly-bottom-inset"
+    properties:
+        anchorSafeArea-bottomSafeInset: "INSET"
+        anchorSafeArea-bottomInsetCorrection: -21.000000
+-   selector: ".notch-tightly-bottom-inset.inventory"
+    properties:
+        anchorSafeArea-bottomSafeInset: "INSET"
+        anchorSafeArea-bottomInsetCorrection: -16.000000
+-   selector: ".smart-inset"
+    properties:
+        anchorSafeArea-leftSafeInset: "INSET"
+        anchorSafeArea-leftInsetCorrection: -15.000000
+        anchorSafeArea-rightSafeInset: "INSET"
+        anchorSafeArea-rightInsetCorrection: -15.000000
+        anchorSafeArea-bottomSafeInset: "INSET"
+        anchorSafeArea-bottomInsetCorrection: 0.000000

@@ -1,0 +1,64 @@
+Header:
+    version: "5"
+StyleSheets:
+-   selector: ".selected #Selected, #Deselected"
+    properties:
+        visible: true
+-   selector: ".selected #Deselected, #Selected"
+    properties:
+        visible: false
+-   selector: ".emptyIcon #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/Storage/empty_icons"
+-   selector: ".emptyIcon.certificates #Icon"
+    properties:
+        bg-frame: 1
+-   selector: ".emptyIcon.other #Icon"
+    properties:
+        bg-frame: 0
+-   selector: ".item.have-badge #Badge, .tab.have-badge #Badge"
+    properties:
+        visible: true
+-   selector: ".item #Badge, .tab #Badge"
+    properties:
+        visible: false
+-   selector: ".emptyIcon, .no-items .description, #Selection"
+    properties:
+        visible: false
+-   selector: ".no-items .emptyIcon, .description, .selected #Selection"
+    properties:
+        visible: true
+-   selector: ".grade.common #Common, .grade.rare #Rare, .grade.unique #Unique, .grade.legendary #Legendary"
+    properties:
+        visible: true
+-   selector: ".grade ?"
+    properties:
+        visible: false
+-   selector: ".grade.rare"
+    properties:
+        bg-color: [0.023529, 0.223529, 0.792157, 1.000000]
+-   selector: ".grade.unique"
+    properties:
+        bg-color: [0.415686, 0.027451, 0.603922, 1.000000]
+-   selector: ".grade.legendary"
+    properties:
+        bg-color: [0.870588, 0.600000, 0.019608, 1.000000]
+-   selector: ".grade"
+    properties:
+        bg-color: [0.250980, 0.313726, 0.372549, 1.000000]
+-   selector: ".item.rare #Grade"
+    properties:
+        bg-color: [0.141176, 0.349020, 0.941176, 1.000000]
+        visible: true
+-   selector: ".item.unique #Grade"
+    properties:
+        bg-color: [0.549020, 0.023529, 0.803922, 1.000000]
+        visible: true
+-   selector: ".item.legendary #Grade"
+    properties:
+        bg-color: [1.000000, 0.752941, 0.000000, 1.000000]
+        visible: true
+-   selector: ".item #Grade"
+    properties:
+        visible: true
+        bg-color: [0.517647, 0.521569, 0.525490, 1.000000]

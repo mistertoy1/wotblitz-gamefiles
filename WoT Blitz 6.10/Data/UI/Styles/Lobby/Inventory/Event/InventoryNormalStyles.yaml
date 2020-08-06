@@ -1,0 +1,86 @@
+Header:
+    version: "24"
+StyleSheets:
+-   selector: ".1st_april.equipment_item.largeRepairkit ? #icon.small, .1st_april.equipment_item.largeRepairkit #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/largeRepairkit_apr.txt"
+-   selector: ".equipment_item.forsage ? #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/forsage"
+        bg-frame: 1
+-   selector: ".equipment_item.buff ? #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/buff"
+        bg-frame: 1
+-   selector: ".equipment_item.dash ? #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/dash"
+        bg-frame: 1
+-   selector: ".equipment_item.hunters ? #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/hunters"
+        bg-frame: 1
+-   selector: ".equipment_item.moonwalk ? #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/moonwalk"
+        bg-frame: 1
+-   selector: ".equipment_item.ram ? #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/ram"
+        bg-frame: 1
+-   selector: ".equipment_item.shield ? #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/shield"
+        bg-frame: 1
+-   selector: ".equipment_item.stealth ? #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/stealth"
+        bg-frame: 1
+-   selector: ".equipment_item.vampire ? #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/vampire"
+        bg-frame: 1
+-   selector: ".equipment_item.victim ? #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/victim"
+        bg-frame: 1
+-   selector: ".equipment_item.forsage ? #IconGlow.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/forsage"
+        bg-frame: 0
+-   selector: ".equipment_item.buff ? #IconGlow.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/buff"
+        bg-frame: 0
+-   selector: ".equipment_item.dash ? #IconGlow.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/dash"
+        bg-frame: 0
+-   selector: ".equipment_item.hunters ? #IconGlow.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/hunters"
+        bg-frame: 0
+-   selector: ".equipment_item.moonwalk ? #IconGlow.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/moonwalk"
+        bg-frame: 0
+-   selector: ".equipment_item.ram ? #IconGlow.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/ram"
+        bg-frame: 0
+-   selector: ".equipment_item.shield ? #IconGlow.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/shield"
+        bg-frame: 0
+-   selector: ".equipment_item.stealth ? #IconGlow.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/stealth"
+        bg-frame: 0
+-   selector: ".equipment_item.vampire ? #IconGlow.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/vampire"
+        bg-frame: 0
+-   selector: ".equipment_item.victim ? #IconGlow.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Event/MadGames/victim"
+        bg-frame: 0

@@ -1,0 +1,424 @@
+Header:
+    version: "85"
+ImportedPackages:
+- "~res:/UI/Styles/Lobby/Inventory/Event/InventoryNormalStyles.yaml"
+StyleSheets:
+-   selectors:
+    - ".equipment_item.teapudding ? #icon.small"
+    - ".equipment_item.teapudding #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/teapudding.txt"
+-   selectors:
+    - ".equipment_item.ration_other ? #icon.small"
+    - ".equipment_item.ration_other #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/other_big-food.txt"
+-   selectors:
+    - ".equipment_item.regular_ration_other ? #icon.small"
+    - ".equipment_item.regular_ration_other #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/other_small-food.txt"
+-   selectors:
+    - ".equipment_item.largeRecoverkit ? #icon.small"
+    - ".equipment_item.largeRecoverkit #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Consumables/largeRecoverkit.txt"
+-   selectors:
+    - ".equipment_item.berserk ? #icon.small"
+    - ".equipment_item.berserk #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Consumables/berserk.txt"
+-   selectors:
+    - ".equipment_item.afterburning ? #icon.small"
+    - ".equipment_item.afterburning #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Consumables/afterburning.txt"
+-   selectors:
+    - ".equipment_item.onigiri ? #icon.small"
+    - ".equipment_item.onigiri #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/onigiri.txt"
+-   selectors:
+    - ".equipment_item.chinafood ? #icon.small"
+    - ".equipment_item.chinafood #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/chinafood.txt"
+-   selectors:
+    - ".equipment_item.autofire ? #icon.small"
+    - ".equipment_item.autofire #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Consumables/autofire.txt"
+-   selectors:
+    - ".equipment_item.russ-food ? #icon.small"
+    - ".equipment_item.russ-food #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/russ-food.txt"
+-   selectors:
+    - ".equipment_item.chocolate ? #icon.small"
+    - ".equipment_item.chocolate #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/chocolate.txt"
+-   selectors:
+    - ".equipment_item.cocacola ? #icon.small"
+    - ".equipment_item.cocacola #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/cocacola.txt"
+-   selectors:
+    - ".equipment_item.largeRepairkit ? #icon.small"
+    - ".equipment_item.largeRepairkit #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Consumables/largeRepairkit.txt"
+-   selectors:
+    - ".equipment_item.smallRepairkit ? #icon.small"
+    - ".equipment_item.smallRepairkit #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Consumables/smallRepairkit.txt"
+-   selectors:
+    - ".equipment_item.largeMedkit ? #icon.small"
+    - ".equipment_item.largeMedkit #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Consumables/largeMedkit.txt"
+-   selectors:
+    - ".equipment_item.autoExtinguishers ? #icon.small"
+    - ".equipment_item.autoExtinguishers #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Consumables/autoExtinguishers.txt"
+-   selectors:
+    - ".equipment_item.hot_coffee ? #icon.small"
+    - ".equipment_item.hot_coffee #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/hot_coffee.txt"
+-   selectors:
+    - ".equipment_item.chocolate_bar ? #icon.small"
+    - ".equipment_item.chocolate_bar #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/chocolate_bar.txt"
+-   selectors:
+    - ".equipment_item.cocacola_can ? #icon.small"
+    - ".equipment_item.cocacola_can #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/cocacola_can.txt"
+-   selectors:
+    - ".equipment_item.condensed_milk ? #icon.small"
+    - ".equipment_item.condensed_milk #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/condensed_milk.txt"
+-   selectors:
+    - ".equipment_item.black_tea ? #icon.small"
+    - ".equipment_item.black_tea #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/black_tea.txt"
+-   selectors:
+    - ".equipment_item.white_rice ? #icon.small"
+    - ".equipment_item.white_rice #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/white_rice.txt"
+-   selectors:
+    - ".equipment_item.regular_ration ? #icon.small"
+    - ".equipment_item.regular_ration #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/regular_ration.txt"
+-   selectors:
+    - ".equipment_item.pasty ? #icon.small"
+    - ".equipment_item.pasty #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/pasty.txt"
+-   selectors:
+    - ".equipment_item.regular_fuel ? #icon.small"
+    - ".equipment_item.regular_fuel #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/regular_fuel.txt"
+-   selectors:
+    - ".equipment_item.improved_fuel ? #icon.small"
+    - ".equipment_item.improved_fuel #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/improved_fuel.txt"
+-   selectors:
+    - ".equipment_item.safety_set ? #icon.small"
+    - ".equipment_item.safety_set #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/safety_set.txt"
+-   selectors:
+    - ".equipment_item.contusion ? #icon.small"
+    - ".equipment_item.contusion #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Consumables/contusion.txt"
+-   selectors:
+    - ".equipment_item.aim ? #icon.small"
+    - ".equipment_item.aim #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Consumables/aim.txt"
+-   selectors:
+    - ".equipment_item.reload ? #icon.small"
+    - ".equipment_item.reload #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Consumables/reload.txt"
+-   selectors:
+    - ".equipment_item.superburner ? #icon.small"
+    - ".equipment_item.superburner #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Consumables/superburner.txt"
+-   selectors:
+    - ".equipment_item.anti-high-explosive ? #icon.small"
+    - ".equipment_item.anti-high-explosive #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/antiFragmentationLining.txt"
+-   selectors:
+    - ".equipment_item.сamouflage-paint ? #icon.small"
+    - ".equipment_item.сamouflage-paint #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/CamouflagePaint"
+-   selectors:
+    - ".equipment_item.healing-kit ? #icon.small"
+    - ".equipment_item.healing-kit #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Consumables/RepairHP.psd"
+-   selectors:
+    - ".equipment_item.shield-kit ? #icon.small"
+    - ".equipment_item.shield-kit #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Consumables/DynamicShield.psd"
+-   selectors:
+    - ".equipment_item.comeback-kit ? #icon.small"
+    - ".equipment_item.comeback-kit #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_come-back-kit_s"
+-   selectors:
+    - ".equipment_item.small-hp-stock ? #icon.small"
+    - ".equipment_item.small-hp-stock #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/add_HP_normal.psd"
+-   selectors:
+    - ".equipment_item.large-hp-stock ? #icon.small"
+    - ".equipment_item.large-hp-stock #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/add_HP_big.psd"
+-   selectors:
+    - ".equipment_item.engine-boost ? #icon.small"
+    - ".equipment_item.engine-boost #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_engine-boost_1_s"
+-   selectors:
+    - ".equipment_item.engine-boost_2 ? #icon.small"
+    - ".equipment_item.engine-boost_2 #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_engine-boost_2_s"
+-   selectors:
+    - ".equipment_item.damage-boost ? #icon.small"
+    - ".equipment_item.damage-boost #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_damage-boost_1_s"
+-   selectors:
+    - ".equipment_item.damage-boost_2 ? #icon.small"
+    - ".equipment_item.damage-boost_2 #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_damage-boost_2_s"
+-   selectors:
+    - ".equipment_item.reload-boost ? #icon.small"
+    - ".equipment_item.reload-boost #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_reload-boost_1_s"
+-   selectors:
+    - ".equipment_item.reload-boost_2 ? #icon.small"
+    - ".equipment_item.reload-boost_2 #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_reload-boost_2_s"
+-   selectors:
+    - ".equipment_item.duplet ? #icon.small"
+    - ".equipment_item.duplet #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_duplet_s"
+-   selectors:
+    - ".equipment_item.ghost ? #icon.small"
+    - ".equipment_item.ghost #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_ghost_s"
+-   selectors:
+    - ".equipment_item.ramming ? #icon.small"
+    - ".equipment_item.ramming #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_ramming_1_s"
+-   selectors:
+    - ".equipment_item.ramming_2 ? #icon.small"
+    - ".equipment_item.ramming_2 #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_ramming_2_s"
+-   selectors:
+    - ".equipment_item.splash ? #icon.small"
+    - ".equipment_item.splash #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_splash_s"
+-   selectors:
+    - ".equipment_item.lightning ? #icon.small"
+    - ".equipment_item.lightning #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_lightning_1_s"
+-   selectors:
+    - ".equipment_item.lightning_2 ? #icon.small"
+    - ".equipment_item.lightning_2 #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_lightning_2_s"
+-   selectors:
+    - ".equipment_item.enemy-reload-time ? #icon.small"
+    - ".equipment_item.enemy-reload-time #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/provisions/2019_Halloween/provision_enemy-reload-time_s"
+        bg-frame: 1
+-   selectors:
+    - ".equipment_item.curse ? #icon.small"
+    - ".equipment_item.curse #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_curse_s"
+-   selectors:
+    - ".equipment_item.tornado ? #icon.small"
+    - ".equipment_item.tornado #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_vortex_s"
+-   selectors:
+    - ".equipment_item.return-in-time ? #icon.small"
+    - ".equipment_item.return-in-time #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_return-in-time_s"
+-   selectors:
+    - ".equipment_item.halloween_hunters_mark ? #icon.small"
+    - ".equipment_item.halloween_hunters_mark #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_hunters-mark_s"
+-   selectors:
+    - ".equipment_item.halloween_moonwalk ? #icon.small"
+    - ".equipment_item.halloween_moonwalk #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_moonwalk_s"
+-   selectors:
+    - ".equipment_item.pretend-dead ? #icon.small"
+    - ".equipment_item.pretend-dead #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/tank-supply/consumables/2019_Halloween/consumable_pretend-dead_s"
+-   selectors:
+    - ".optional_device_item.steelRollers ? #icon.small"
+    - ".optional_device_item.steelRollers #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/OptionalDevices/steelRollers.txt"
+-   selectors:
+    - ".optional_device_item.camouflageNet ? #icon.small"
+    - ".optional_device_item.camouflageNet #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/OptionalDevices/camouflageNet.txt"
+-   selectors:
+    - ".optional_device_item.coatedOptics ? #icon.small"
+    - ".optional_device_item.coatedOptics #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/OptionalDevices/coatedOptics.txt"
+-   selectors:
+    - ".optional_device_item.stereoscope ? #icon.small"
+    - ".optional_device_item.stereoscope #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/OptionalDevices/stereoscope.txt"
+-   selectors:
+    - ".optional_device_item.antifragmentationLining ? #icon.small"
+    - ".optional_device_item.antifragmentationLining #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/OptionalDevices/antifragmentationLining.txt"
+-   selectors:
+    - ".optional_device_item.toolbox ? #icon.small"
+    - ".optional_device_item.toolbox #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/OptionalDevices/toolbox.txt"
+-   selectors:
+    - ".optional_device_item.aimingStabilizer ? #icon.small"
+    - ".optional_device_item.aimingStabilizer #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/OptionalDevices/aimingStabilizer.txt"
+-   selectors:
+    - ".optional_device_item.filterCyclone ? #icon.small"
+    - ".optional_device_item.filterCyclone #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/OptionalDevices/filterCyclone.txt"
+-   selectors:
+    - ".optional_device_item.carbonDioxide ? #icon.small"
+    - ".optional_device_item.carbonDioxide #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/OptionalDevices/carbonDioxide.txt"
+-   selectors:
+    - ".optional_device_item.wetCombatPack ? #icon.small"
+    - ".optional_device_item.wetCombatPack #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/OptionalDevices/wetCombatPack.txt"
+-   selectors:
+    - ".optional_device_item.enhancedAimDrives ? #icon.small"
+    - ".optional_device_item.enhancedAimDrives #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/OptionalDevices/enhancedAimDrives.txt"
+-   selectors:
+    - ".optional_device_item.rammer ? #icon.small"
+    - ".optional_device_item.rammer #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/OptionalDevices/rammer.txt"
+-   selectors:
+    - ".optional_device_item.grousers ? #icon.small"
+    - ".optional_device_item.grousers #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/OptionalDevices/grousers.txt"
+-   selectors:
+    - ".optional_device_item.improvedVentilation ? #icon.small"
+    - ".optional_device_item.improvedVentilation #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/OptionalDevices/improvedVentilation.txt"
+-   selectors:
+    - ".ammo_item.full .ammo_bg.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Ammunition/ammo"
+-   selectors:
+    - ".ammo_item.empty .ammo_bg.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Ammunition/ammo_no"
+-   selectors:
+    - ".ammo_item.ap .ammo_icon.small"
+    - ".ammo_item.ap .ammo_bg.small"
+    properties:
+        bg-frame: 0
+-   selectors:
+    - ".ammo_item.ap_premium .ammo_icon.small"
+    - ".ammo_item.ap_premium .ammo_bg.small"
+    properties:
+        bg-frame: 1
+-   selectors:
+    - ".ammo_item.ap_cr .ammo_icon.small"
+    - ".ammo_item.ap_cr .ammo_bg.small"
+    properties:
+        bg-frame: 2
+-   selectors:
+    - ".ammo_item.he .ammo_icon.small"
+    - ".ammo_item.he .ammo_bg.small"
+    properties:
+        bg-frame: 3
+-   selectors:
+    - ".ammo_item.he_premium .ammo_icon.small"
+    - ".ammo_item.he_premium .ammo_bg.small"
+    properties:
+        bg-frame: 4
+-   selectors:
+    - ".ammo_item.hc .ammo_icon.small"
+    - ".ammo_item.hc .ammo_bg.small"
+    properties:
+        bg-frame: 5
+-   selectors:
+    - ".ammo_item.atgm_heat .ammo_icon.small"
+    - ".ammo_item.atgm_heat .ammo_bg.small"
+    properties:
+        bg-frame: 6
+-   selectors:
+    - ".ammo_item.atgm_he .ammo_icon.small"
+    - ".ammo_item.atgm_he .ammo_bg.small"
+    properties:
+        bg-frame: 7
+-   selectors:
+    - ".equipment_item.provisions_cheese ? #icon.small"
+    - ".equipment_item.provisions_cheese #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/provisions_cheese"
+-   selectors:
+    - ".equipment_item.provisions_roll ? #icon.small"
+    - ".equipment_item.provisions_roll #icon.small"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/InventoryIcons/Normal/Provisions/provisions_roll"

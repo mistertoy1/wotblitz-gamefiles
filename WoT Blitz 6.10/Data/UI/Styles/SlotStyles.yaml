@@ -1,0 +1,19 @@
+Header:
+    version: "15"
+StyleSheets:
+-   selector: ".slot-bg.uninstalled"
+    properties:
+        bg-drawType: "DRAW_TILED_MULTILAYER"
+        bg-mask: "~res:/Gfx/UI/LobbyCommon/Button/mask.psd"
+        bg-detail: "~res:/Gfx/UI/LobbyCommon/Button/detail.psd"
+        bg-gradient: "~res:/Gfx/UI/LobbyCommon/Button/gradient.psd"
+        bg-contour: "~res:/Gfx/UI/LobbyCommon/Button/countur.psd"
+        bg-gradientMode: "Overlay"
+-   selector: ".slot-bg.installed"
+    properties:
+        bg-drawType: "DRAW_TILED_MULTILAYER"
+        bg-mask: "~res:/Gfx/UI/CommonUIElements/Button/mask.psd"
+        bg-detail: "~res:/Gfx/UI/CommonUIElements/Button/detail.psd"
+        bg-gradient: "~res:/Gfx/UI/CommonUIElements/Button/gray_gradient.psd"
+        bg-contour: "~res:/Gfx/UI/CommonUIElements/Button/gray_contour.psd"
+        bg-gradientMode: "Overlay"

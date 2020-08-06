@@ -1,0 +1,23 @@
+Header:
+    version: "24"
+StyleSheets:
+-   selector: "UIStaticText.clan-name"
+    properties:
+        text-color: [0.960784, 0.650980, 0.137255, 1.000000]
+-   selector: "UIStaticText.clan-tag"
+    properties:
+        text-color: [0.960784, 0.650980, 0.137255, 1.000000]
+-   selector: ".table-header-background"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.278431, 0.372549, 0.435294, 1.000000]
+-   selector: ".leaderboard-background"
+    properties:
+        bg-color: [0.207843, 0.274510, 0.325490, 0.501961]
+        bg-drawType: "DRAW_FILL"
+-   selector: ".clan-name"
+    properties:
+        text-color: [0.960784, 0.650980, 0.137255, 1.000000]
+-   selector: ".clan-tag"
+    properties:
+        text-color: [0.960784, 0.650980, 0.137255, 1.000000]

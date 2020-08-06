@@ -1,0 +1,138 @@
+Header:
+    version: "70"
+StyleSheets:
+-   selector: ".gray-border"
+    properties:
+        bg-color: [0.313726, 0.384314, 0.423529, 1.000000]
+-   selector: ".color-black-semitransparent"
+    properties:
+        bg-color: [0.000000, 0.000000, 0.000000, 0.400000]
+-   selector: ".color-green"
+    properties:
+        bg-color: [0.494118, 0.827451, 0.129412, 1.000000]
+-   selector: ".color-green-2"
+    properties:
+        bg-color: [0.262745, 0.392157, 0.341176, 1.000000]
+-   selector: ".color-green-2-alpha-50"
+    properties:
+        bg-color: [0.262745, 0.392157, 0.341176, 0.500000]
+-   selector: ".color-green-3"
+    properties:
+        bg-color: [0.003922, 0.647059, 0.031373, 1.000000]
+-   selector: ".color-red"
+    properties:
+        bg-color: [1.000000, 0.000000, 0.000000, 1.000000]
+-   selector: ".color-red-2"
+    properties:
+        bg-color: [0.815686, 0.007843, 0.105882, 1.000000]
+-   selector: ".color-orange"
+    properties:
+        bg-color: [0.960784, 0.650980, 0.137255, 1.000000]
+-   selector: ".ping-bad"
+    properties:
+        bg-color: [0.768627, 0.023529, 0.043137, 1.000000]
+-   selector: ".ping-good"
+    properties:
+        bg-color: [0.580392, 0.768627, 0.003922, 1.000000]
+-   selector: ".ping-not-pinged"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 1.000000]
+-   selector: ".ping-normal"
+    properties:
+        bg-color: [1.000000, 0.824000, 0.000000, 1.000000]
+-   selector: ".ping-no-response"
+    properties:
+        bg-color: [0.000000, 0.000000, 0.000000, 1.000000]
+-   selector: ".friend-offline"
+    properties:
+        bg-color: [0.768627, 0.023529, 0.043137, 1.000000]
+-   selector: ".friend-online"
+    properties:
+        bg-color: [0.580392, 0.768627, 0.003922, 1.000000]
+-   selector: ".color-black"
+    properties:
+        bg-color: [0.000000, 0.000000, 0.000000, 1.000000]
+-   selector: ".color-blue"
+    properties:
+        bg-color: [0.627451, 0.725490, 0.800000, 0.549020]
+-   selector: ".color-black-semitransparent"
+    properties:
+        bg-color: [0.000000, 0.000000, 0.000000, 0.400000]
+-   selector: ".color-black"
+    properties:
+        bg-color: [0.000000, 0.000000, 0.000000, 1.000000]
+-   selector: ".color-yellow"
+    properties:
+        bg-color: [1.000000, 0.752941, 0.000000, 1.000000]
+-   selector: ".color-dialog-bg"
+    properties:
+        bg-color: [0.070588, 0.125490, 0.160784, 0.898039]
+-   selector: ".color-white"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 1.000000]
+-   selector: ".color-white-25"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.250980]
+-   selector: ".color-white-80"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.800000]
+-   selector: ".color-white-alpha-60"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.600000]
+-   selector: ".color-white-50"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.500000]
+-   selector: ".color-white-20"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.200000]
+-   selector: ".color-white-15"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.150000]
+-   selector: ".color-white-10"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.100000]
+-   selector: ".color-white-7"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.070000]
+-   selector: ".op-50"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.500000]
+-   selector: ".op-30"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.300000]
+-   selector: ".color-op-70-bg"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.701961]
+-   selector: ".color-green-3"
+    properties:
+        bg-color: [0.470588, 0.800000, 0.254902, 1.000000]
+-   selector: ".color-green-4"
+    properties:
+        bg-color: [0.270588, 0.901961, 0.270588, 1.000000]
+-   selector: ".color-black-122"
+    properties:
+        bg-color: [0.000000, 0.000000, 0.000000, 0.478431]
+-   selector: ".color-progress"
+    properties:
+        bg-color: [1.000000, 0.376471, 0.000000, 1.000000]
+-   selector: ".color-green-4"
+    properties:
+        bg-color: [0.000000, 1.000000, 0.000000, 1.000000]
+-   selector: ".color-golden-shower-100-text"
+    properties:
+        text-color: [0.913725, 0.839216, 0.631373, 1.000000]
+-   selector: ".color-golden-quest-30-bg"
+    properties:
+        bg-color: [1.000000, 0.572549, 0.356863, 0.300000]
+-   selector: ".color-grey"
+    properties:
+        bg-color: [0.000000, 0.000000, 0.000000, 0.333333]
+-   selector: ".color-black-80-bg"
+    properties:
+        bg-color: [0.000000, 0.000000, 0.000000, 0.800000]
+-   selector: ".color-lightning-bg"
+    properties:
+        bg-color: [1.000000, 0.760784, 0.149020, 1.000000]
+-   selector: ".color-lightning-25-bg"
+    properties:
+        bg-color: [1.000000, 0.760784, 0.149020, 0.250000]

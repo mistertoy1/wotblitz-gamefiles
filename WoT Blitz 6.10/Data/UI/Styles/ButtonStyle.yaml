@@ -1,0 +1,70 @@
+Header:
+    version: "24"
+StyleSheets:
+-   selector: ".button"
+    properties:
+        exclusiveInput: true
+-   selector: ".button:pressed_inside"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.501961]
+-   selector: ".button:disabled"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.501961]
+-   selector: ".button-color-gray"
+    properties:
+        bg-contour: "~res:/Gfx/UI/CommonUIElements/Button/gray_contour.txt"
+        bg-gradient: "~res:/Gfx/UI/CommonUIElements/Button/gray_gradient.txt"
+-   selector: ".button-color-red"
+    properties:
+        bg-contour: "~res:/Gfx/UI/CommonUIElements/Button/red_contour.txt"
+        bg-gradient: "~res:/Gfx/UI/CommonUIElements/Button/red_gradient.txt"
+-   selector: ".button-color-green"
+    properties:
+        bg-contour: "~res:/Gfx/UI/CommonUIElements/Button/green_contour.txt"
+        bg-gradient: "~res:/Gfx/UI/CommonUIElements/Button/green_gradient.txt"
+-   selector: ".button-color-orange"
+    properties:
+        bg-contour: "~res:/Gfx/UI/CommonUIElements/Button/orange_contour.txt"
+        bg-gradient: "~res:/Gfx/UI/CommonUIElements/Button/orange_gradient.txt"
+-   selector: ".button-color-green-dark"
+    properties:
+        bg-contour: "~res:/Gfx/UI/CommonUIElements/Button/green_dark_contour.txt"
+        bg-gradient: "~res:/Gfx/UI/CommonUIElements/Button/green_dark_gradient.txt"
+-   selector: ".button-color-orange-dark"
+    properties:
+        bg-contour: "~res:/Gfx/UI/CommonUIElements/Button/orange_dark_contour.txt"
+        bg-gradient: "~res:/Gfx/UI/CommonUIElements/Button/orange_dark_gradient.txt"
+-   selector: ".button-color-white"
+    properties:
+        bg-contour: "~res:/Gfx/UI/CommonUIElements/Button/white_contour.txt"
+        bg-detail: "~res:/Gfx/UI/CommonUIElements/Button/white_detail.txt"
+        bg-gradient: "~res:/Gfx/UI/CommonUIElements/Button/white_gradient.txt"
+        bg-mask: "~res:/Gfx/UI/CommonUIElements/Button/white_mask.txt"
+-   selector: ".button-color-blue"
+    properties:
+        bg-contour: "~res:/Gfx/UI/CommonUIElements/Button/gray_dark_contour.psd"
+        bg-gradient: "~res:/Gfx/UI/CommonUIElements/Button/blue_gradient.psd"
+-   selector: ".button-color-blue-dark"
+    properties:
+        bg-contour: "~res:/Gfx/UI/CommonUIElements/Button/gray_dark_contour.psd"
+        bg-gradient: "~res:/Gfx/UI/CommonUIElements/Button/blue_dark_gradient.psd"
+-   selector: ".button-color-gray-dark"
+    properties:
+        bg-contour: "~res:/Gfx/UI/CommonUIElements/Button/gray_contour.txt"
+        bg-gradient: "~res:/Gfx/UI/CommonUIElements/Button/gray_gradient.txt"
+        bg-color: [1.000000, 1.000000, 1.000000, 0.501961]
+-   selector: ".selectable ? #Selection"
+    properties:
+        visible: false
+-   selector: ".selectable:selected ? #Selection"
+    properties:
+        visible: true
+-   selector: ".selectable:selected #Selection"
+    properties:
+        visible: true
+-   selector: ".selectable #Selection"
+    properties:
+        visible: false
+-   selector: ".button-color-white-20"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.317647]

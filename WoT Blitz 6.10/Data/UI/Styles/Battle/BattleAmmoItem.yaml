@@ -1,0 +1,47 @@
+Header:
+    version: "3"
+StyleSheets:
+-   selector: ".ammo_item.expanded #typeLabel, .ammo_item.expanded #countBg, .ammo_item.expanded .ammo_icon, .ammo_item.expanded .ammo_bg"
+    properties:
+        visible: false
+-   selector: ".ammo_item.direction_right #altIcon"
+    properties:
+        bg-frame: 1
+        bg-spriteModification: ["FLIP_HORIZONTAL"]
+-   selector: ".ammo_item.expanded #altIcon"
+    properties:
+        visible: true
+-   selector: ".ammo_item #altIcon"
+    properties:
+        bg-frame: 1
+        visible: false
+-   selector: ".ammo_item.direction_right #overlay"
+    properties:
+        bg-spriteModification: ["FLIP_HORIZONTAL"]
+-   selector: ".ammo_item.reload #overlay"
+    properties:
+        bg-frame: 8
+        visible: true
+-   selector: ".ammo_item.current #overlay"
+    properties:
+        bg-frame: 7
+        visible: true
+-   selector: ".ammo_item.control #overlay"
+    properties:
+        bg-frame: 6
+        visible: true
+-   selector: ".ammo_item #overlay"
+    properties:
+        visible: false
+-   selector: ".ammo_item:disabled"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.500000]
+-   selector: ".ammo_item.empty .ammo_icon"
+    properties:
+        visible: false
+-   selector: ".ammo_item.empty"
+    properties:
+        bg-frame: 3
+-   selector: ".ammo_item.full"
+    properties:
+        bg-frame: 4
