@@ -1,0 +1,26 @@
+<root>
+	<nextAvailableId>29</nextAvailableId>
+	<ids>
+		<Turret_1_It08_Progetto_M40_mod_65>1</Turret_1_It08_Progetto_M40_mod_65>
+		<Turret_1_It12_Prototipo_Standard_B>2</Turret_1_It12_Prototipo_Standard_B>
+		<Turret_2_It12_Prototipo_Standard_B>3</Turret_2_It12_Prototipo_Standard_B>
+		<Turret_1_It14_P44_Pantera>4</Turret_1_It14_P44_Pantera>
+		<Turret_2_It14_P44_Pantera>5</Turret_2_It14_P44_Pantera>
+		<Turret_1_It09_P43_ter>6</Turret_1_It09_P43_ter>
+		<Turret_2_It09_P43_ter>7</Turret_2_It09_P43_ter>
+		<Turret_1_It10_P43_bis>8</Turret_1_It10_P43_bis>
+		<Turret_2_It10_P43_bis>9</Turret_2_It10_P43_bis>
+		<Turret_1_S04_Lago_I>10</Turret_1_S04_Lago_I>
+		<Turret_2_S04_Lago_I>11</Turret_2_S04_Lago_I>
+		<Turret_1_S02_Strv_M42>12</Turret_1_S02_Strv_M42>
+		<Turret_2_S02_Strv_M42>13</Turret_2_S02_Strv_M42>
+		<Turret_1_Pl07_14TP>14</Turret_1_Pl07_14TP>
+		<Turret_2_Pl07_14TP>15</Turret_2_Pl07_14TP>
+		<Turret_1_Pl06_10TP>16</Turret_1_Pl06_10TP>
+		<Turret_1_F01_Vickers_mkF>17</Turret_1_F01_Vickers_mkF>
+		<Turret_2_F01_Vickers_mkF>18</Turret_2_F01_Vickers_mkF>
+		<Turret_1_It13_Progetto_M35_mod_46>19</Turret_1_It13_Progetto_M35_mod_46>
+		<Turret_1_Pl08_50TP_prototyp>20</Turret_1_Pl08_50TP_prototyp>
+	</ids>
+	<shared/>
+</root>
