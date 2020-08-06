@@ -1,0 +1,51 @@
+Header:
+    version: "77"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Headers/SectionHeader.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "SectionPrototype"
+    size: [400.000000, 212.000000]
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+            spacing: 4.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["TankParams", "tankParams", "null", "{ }"]
+            - ["string", "sectionType", "\"\"", "\"protectability\""]
+            - ["bool", "collapsible", "true", "true"]
+            - ["string", "overrideSectionName", "\"\"", "\"\""]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParamsSectionStructure", "section", "tankParams.sectionsByType[sectionType]"]
+    children:
+    -   prototype: "SectionHeader/SectionHeader"
+        name: "SectionHeader"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "section": "section"
+                    "overrideName": "overrideSectionName"
+                    "collapsible": "collapsible"
+    -   class: "UIControl"
+        name: "Content"
+        input: false
+        components:
+            LinearLayout:
+                orientation: "TopDown"
+                padding: "0; 16"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfChildrenSum"
+            UIRepeatComponent:
+                control: "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Items/SectionItem.yaml"
+                dataContainer: "section.content"
+                args:
+                    "tankParams": "tankParams"
+                    "item": "_item"
+        bindings:
+        - ["visible", "not section.collapsed"]

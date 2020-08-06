@@ -1,0 +1,50 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/RichText.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "SubsectionHeader"
+    size: [400.000000, 52.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["string", "text", "\"\"", "\"Среднее бронирование, <text_units>мм</text_units>\""]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Background.style.yaml;~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfChildrenSum"
+                verticalValue: 100.000000
+        children:
+        -   prototype: "RichText/RichText"
+            name: "RichText"
+            components:
+                RichContentAliases2:
+                    aliases: "text_units,<span class=\"t-body regular color=white-wild-sand-50-text\" />;"
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                UIDataParamsComponent:
+                    args:
+                        "baseFontSize": "\"t-body\""
+                        "baseFontStyle": "\"regular\""
+                        "baseFontColor": "\"white-wild-sand-text\""
+                        "key": "text"
+                        "resource1Model": "null"
+                        "resource2Model": "null"
+                        "resource3Model": "null"
+                        "resource4Model": "null"
+                StyleSheet:
+                    inheritsStylesFromParent: false
+                    styles: "~res:/UI/Screens3/Font.style.yaml"

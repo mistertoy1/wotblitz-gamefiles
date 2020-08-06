@@ -1,0 +1,61 @@
+Header:
+    version: "79"
+Prototypes:
+-   class: "UIControl"
+    name: "SectionItem"
+    size: [400.000000, 38.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["TankParams", "tankParams", "null", "{ }"]
+            - ["TankParamsItemStructure", "item", "null", "{ isLastPresentedItem = false; }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParamsStringKeys", "stringKeys", "{ }"]
+            - ["string", "itemProtytypePath", "str(item.type, eSectionItemType, \"prototype\")"]
+            - ["bool", "visible", "item.isPresented"]
+    bindings:
+    - ["visible", "visible"]
+    children:
+    -   class: "UIControl"
+        name: "Item"
+        size: [300.000000, 20.000000]
+        input: false
+        components:
+            Background: {}
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+            LinearLayout:
+                orientation: "TopDown"
+            SizePolicy:
+                verticalPolicy: "PercentOfChildrenSum"
+            UIChildComponent:
+                control: "itemProtytypePath"
+                args:
+                    "tankParams": "tankParams"
+                    "item": "item"
+    -   class: "UIControl"
+        name: "LineSpacer"
+        input: false
+        classes: "white-wild-sand-5-bg"
+        components:
+            Background:
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            Anchor:
+                bottomAnchorEnabled: true
+            IgnoreLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 1.000000
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "not item.isLastPresentedItem"]

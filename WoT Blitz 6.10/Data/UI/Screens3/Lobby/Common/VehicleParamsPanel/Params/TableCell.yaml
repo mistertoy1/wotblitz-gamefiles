@@ -1,0 +1,34 @@
+Header:
+    version: "84"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Params/NumberValue.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "TableCell"
+    size: [32.000000, 32.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 104.000000
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["TankParams", "tankParams", "null", "{ }"]
+            - ["TankParamsItemStructure", "item", "null", "{ }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParam", "param", "tankParams.params[item.name]"]
+    bindings:
+    - ["visible", "param.presented"]
+    children:
+    -   prototype: "NumberValue/NumberValue"
+        name: "Value"
+        components:
+            Anchor:
+                rightAnchorEnabled: true
+                useRtl: true
+            UIDataParamsComponent:
+                args:
+                    "param": "param"
+                    "valueText": "\"\""

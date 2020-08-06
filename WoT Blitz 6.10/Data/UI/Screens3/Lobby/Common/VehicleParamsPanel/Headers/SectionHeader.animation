@@ -1,0 +1,11 @@
+animation HeaderChangeState
+{
+  if (expanded)
+    {
+      Rotate (path="**/Expander", angle = 0, time = 0.3, interpolation=SINE_OUT);
+    }
+  else
+    {
+      Rotate (path="**/Expander", angle = 180, time = 0.3, interpolation=SINE_OUT);
+    }
+}

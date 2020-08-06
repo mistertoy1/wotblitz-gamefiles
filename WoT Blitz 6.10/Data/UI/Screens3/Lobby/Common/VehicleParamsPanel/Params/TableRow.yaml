@@ -1,0 +1,74 @@
+Header:
+    version: "84"
+Prototypes:
+-   class: "UIControl"
+    name: "TableRow"
+    size: [426.000000, 34.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["TankParams", "tankParams", "null", "{ }"]
+            - ["TankParamsItemStructure", "item", "null", "{ type = eSectionItemType.ROW; name = \"frontArmor\"; content = [ { type = eSectionItemType.PARAM; name = \"turretArmorFront\"; }; { type = eSectionItemType.PARAM; name = \"primaryArmorFront\"; }; ]; }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParamsStringKeys", "stringKeys", "{ }"]
+            - ["string", "fullName", "localize(format(stringKeys.tableRowHeader, { name = item.name; }))"]
+            - ["int", "item0Index", "0"]
+            - ["int", "item1Index", "when item.content.Size() > 1 -> 1, 0"]
+            - ["int", "item2Index", "when item.content.Size() > 2 -> 2, 0"]
+            - ["TankParam", "param0", "tankParams.params[item.content[item0Index].name]"]
+            - ["TankParam", "param1", "tankParams.params[item.content[item1Index].name]"]
+            - ["TankParam", "param2", "tankParams.params[item.content[item2Index].name]"]
+            - ["bool", "isImproved", "true"]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Background.style.yaml"
+    children:
+    -   class: "UIControl"
+        name: "Container"
+        size: [396.000000, 32.000000]
+        input: false
+        components:
+            LinearLayout:
+                spacing: 8.000000
+                dynamicSpacing: true
+                useRtl: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "Name"
+            input: false
+            classes: "t-body regular white-wild-sand-50-text"
+            components:
+                UITextComponent:
+                    fitting: "FITTING_POINTS"
+                    useRtlAlign: "USE_BY_SYSTEM"
+                SizePolicy:
+                    horizontalPolicy: "Formula"
+                    horizontalFormula: "min(parentRest, content)"
+                    verticalPolicy: "PercentOfContent"
+            bindings:
+            - ["UITextComponent.text", "fullName"]
+        -   class: "UIControl"
+            name: "Params"
+            input: false
+            components:
+                LinearLayout:
+                    enabled: true
+                    useRtl: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfChildrenSum"
+                    verticalPolicy: "PercentOfMaxChild"
+                UIRepeatComponent:
+                    control: "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Params/TableCell.yaml"
+                    dataContainer: "item.content"
+                    args:
+                        "tankParams": "tankParams"
+                        "item": "_item"

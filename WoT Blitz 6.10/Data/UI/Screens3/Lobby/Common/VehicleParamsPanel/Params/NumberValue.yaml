@@ -1,0 +1,84 @@
+Header:
+    version: "84"
+Prototypes:
+-   class: "UIControl"
+    name: "NumberValue"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["TankParam", "param", "null", "{ deltaFlag = -1; biggerIsBetter = true; }"]
+            - ["string", "overrideValueText", "\"\"", "\"\""]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "valueStr", "when overrideValueText == \"\" -> str1000Separated(param.value, param.digits, false), overrideValueText"]
+            - ["string", "deltaValueStr", "str1000Separated(param.deltaValue, param.digits, false)"]
+            - ["string", "deltaValueTextColorStyle", "when param.biggerIsBetter == param.deltaFlag > 0 -> \"green-green-text\", \"red-red-text\""]
+            - ["string", "arrowStyle", "format(\"delta-%(dir)-%(better)\", { dir = when param.deltaFlag > 0 -> \"up\", \"down\"; better = when param.biggerIsBetter == param.deltaFlag > 0 -> \"good\", \"bad\"; })"]
+    children:
+    -   class: "UIControl"
+        name: "ValueContainer"
+        input: false
+        components:
+            LinearLayout:
+                orientation: "LeftToRight"
+                spacing: 8.000000
+                useRtl: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "DeltaValue"
+            input: false
+            components:
+                UITextComponent: {}
+                Anchor:
+                    enabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+            bindings:
+            - ["visible", "param.deltaFlag != 0"]
+            - ["classes", "\"t-body bold not-localize \" + deltaValueTextColorStyle"]
+            - ["UITextComponent.text", "deltaValueStr"]
+        -   class: "UIControl"
+            name: "Delta"
+            input: false
+            components:
+                Background:
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_triangle.psd"
+                    perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                Anchor:
+                    vCenterAnchorEnabled: true
+                    vCenterAnchor: 1.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/VehicleParams.style.yaml"
+            bindings:
+            - ["visible", "param.deltaFlag != 0"]
+            - ["classes", "arrowStyle"]
+        -   class: "UIControl"
+            name: "Value"
+            input: false
+            classes: "t-body bold white-wild-sand-text not-localize"
+            components:
+                UITextComponent: {}
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+            bindings:
+            - ["UITextComponent.text", "valueStr"]

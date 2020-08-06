@@ -1,0 +1,46 @@
+Header:
+    version: "79"
+Prototypes:
+-   class: "UIControl"
+    name: "SectionSubItem"
+    size: [400.000000, 38.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["TankParams", "tankParams", "null", "{ }"]
+            - ["TankParamsItemStructure", "item", "null", "{ type = eSectionItemType.SUBPARAM; }"]
+            - ["int", "index", "0", "0"]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParamsStringKeys", "stringKeys", "{ }"]
+            - ["string", "itemPrototype", "str(item.type, eSectionItemType, \"prototype\")"]
+            - ["bool", "visible", "item.isPresented"]
+    bindings:
+    - ["visible", "visible"]
+    children:
+    -   class: "UIControl"
+        name: "Item"
+        size: [300.000000, 20.000000]
+        input: false
+        classes: ""
+        components:
+            Background: {}
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+            LinearLayout:
+                orientation: "TopDown"
+            SizePolicy:
+                verticalPolicy: "PercentOfChildrenSum"
+            UIChildComponent:
+                control: "itemPrototype"
+                args:
+                    "tankParams": "tankParams"
+                    "item": "item"
+                    "index": "index"

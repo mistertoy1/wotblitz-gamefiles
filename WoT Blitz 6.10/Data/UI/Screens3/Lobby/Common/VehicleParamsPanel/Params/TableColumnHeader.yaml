@@ -1,0 +1,40 @@
+Header:
+    version: "84"
+Prototypes:
+-   class: "UIControl"
+    name: "TableColumnHeader"
+    size: [32.000000, 32.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 104.000000
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["TankParams", "tankParams", "null", "{ }"]
+            - ["TankParamsColumn", "column", "null", "{ }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParamsStringKeys", "stringKeys", "{ }"]
+            - ["string", "text", "localize(format(stringKeys.tableColumnHeader, { name = column.name; }))"]
+            - ["bool", "visible", "when column.presentedName == \"\" -> true, tankParams.params[column.presentedName].value > 0.000000"]
+    bindings:
+    - ["visible", "visible"]
+    children:
+    -   class: "UIControl"
+        name: "Header"
+        size: [32.000000, 32.000000]
+        input: false
+        classes: "t-body regular white-wild-sand-50-text"
+        components:
+            UITextComponent:
+                align: ["RIGHT", "VCENTER"]
+                useRtlAlign: "USE_BY_SYSTEM"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "text"]

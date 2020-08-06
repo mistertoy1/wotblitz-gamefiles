@@ -1,0 +1,101 @@
+Header:
+    version: "80"
+Prototypes:
+-   class: "UIControl"
+    name: "VehicleInfo"
+    input: false
+    components:
+        LinearLayout:
+            spacing: 2.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["eTankClass", "class", "eTankClass.TANK_CLASS_LIGHT", "eTankClass.TANK_CLASS_AT_SPG"]
+            - ["int", "level", "1", "2"]
+            - ["eVehicleDescriptionType", "type", "eVehicleDescriptionType.NORMAL", "eVehicleDescriptionType.PREMIUMISED"]
+            - ["bool", "elite", "false", "true"]
+        UIDataLocalsComponent:
+            locals:
+            - ["int", "tankTypeFrame", "type + 0"]
+            - ["string", "classStyle", "toLowerCaseNotForLocalizedText(str(class, eTankClass))"]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Lobby/Common/Vehicle/VehicleInfo.style.yaml"
+    children:
+    -   class: "UIControl"
+        name: "Tier"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfMaxChild"
+                verticalPolicy: "PercentOfMaxChild"
+        bindings:
+        - ["visible", "elite"]
+        children:
+        -   class: "UIControl"
+            name: "Elite"
+            visible: true
+            input: false
+            components:
+                UITextureComponent:
+                    spritePath: "~res:/Gfx/Lobby/icons/tank-tiers/icon_laurel_pack.psd"
+                    drawType: "DRAW_SCALE_PROPORTIONAL_ONE"
+                    perPixelAccuracy: "PER_PIXEL_ACCURACY_FORCED"
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 20.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 24.000000
+            bindings:
+            - ["UITextureComponent.frame", "tankTypeFrame"]
+        -   class: "UIControl"
+            name: "Class"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                UITextureComponent:
+                    perPixelAccuracy: "PER_PIXEL_ACCURACY_FORCED"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 12.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 24.000000
+            bindings:
+            - ["classes", "classStyle"]
+            - ["UITextureComponent.frame", "tankTypeFrame"]
+    -   class: "UIControl"
+        name: "OnlyClass"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            UITextureComponent:
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_FORCED"
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 12.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 24.000000
+        bindings:
+        - ["visible", "not elite"]
+        - ["classes", "classStyle"]
+        - ["UITextureComponent.frame", "tankTypeFrame"]
+    -   class: "UIControl"
+        name: "Level"
+        input: false
+        components:
+            Background:
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_FORCED"
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["Background.sprite", "\"~res:/Gfx/Lobby/icons/tank-tiers/icon_level_\" + str(level) + \"_pack.psd\""]
+        - ["Background.frame", "tankTypeFrame"]

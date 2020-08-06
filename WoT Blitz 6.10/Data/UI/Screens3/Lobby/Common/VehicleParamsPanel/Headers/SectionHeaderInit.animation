@@ -1,0 +1,11 @@
+animation HeaderChangeState
+{
+  if (expanded)
+    {
+      Rotate (path="**/Expander", angle = 0);
+    }
+  else
+    {
+      Rotate (path="**/Expander", angle = 180);
+    }
+}

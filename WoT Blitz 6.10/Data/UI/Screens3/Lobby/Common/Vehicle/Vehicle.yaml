@@ -1,0 +1,209 @@
+Header:
+    version: "85"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Selection.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Resource/Currency.yaml"
+- "~res:/UI/Screens3/Lobby/Common/CheckMark.yaml"
+- "~res:/UI/Screens3/Lobby/ModulesTree/TankXpSmall.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Vehicle/VehicleInfo.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "Vehicle"
+    selected: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 176.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 64.000000
+        UISwitchBarElementComponent: {}
+        UIDataParamsComponent:
+            params:
+            - ["bool", "clickable", "true", "true"]
+            - ["VehicleDataModel", "vehicleDataModel", "null", "{ }"]
+            - ["TankStats", "tankStatsModel", "null", "{ }"]
+            - ["int", "id", "0", "0"]
+            - ["bool", "isSelected", "false", "false"]
+            - ["string", "bgColorStyle", "\"grey-shark-70-bg\"", "\"grey-shark-70-bg\""]
+        UIDataLocalsComponent:
+            locals:
+            - ["eNation", "nation", "vehicleDataModel.nation"]
+            - ["string", "subnation", "vehicleDataModel.subnation"]
+            - ["string", "nationFlag", "when subnation == \"\" -> (when nation == eNation.USSR -> \"ussr\", nation == eNation.GERMANY -> \"germany\", nation == eNation.USA -> \"usa\", nation == eNation.CHINA -> \"china\", nation == eNation.FRANCE -> \"france\", nation == eNation.UK -> \"uk\", nation == eNation.JAPAN -> \"japan\", nation == eNation.OTHER -> \"other\", \"other\"), subnation"]
+            - ["eVehicleDescriptionType", "descrType", "when vehicleDataModel.isPremium == true -> eVehicleDescriptionType.PREMIUM, when vehicleDataModel.isCollectible == true -> eVehicleDescriptionType.COLLECTIBLE, when tankStatsModel.isPremiumized == true -> eVehicleDescriptionType.PREMIUMISED, eVehicleDescriptionType.NORMAL"]
+            - ["string", "tankNameColor", "when vehicleDataModel.isPremium or tankStatsModel.isPremiumized -> \"yellow-lightning-text\", vehicleDataModel.isCollectible -> \"blue-rimmi-text\", \"white-wild-sand-text\""]
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/ButtonSound.style.yaml"
+    bindings:
+    - ["input", "clickable"]
+    - ["classes", "when clickable -> \"tank-node button-choose-sound\", \"\""]
+    - ["UISwitchBarElementComponent.id", "id"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        position: [88.000000, 32.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        classes: "content-area"
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                enabled: true
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/ModulesTree/TankNode.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "Background"
+            input: false
+            components:
+                Background: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["classes", "bgColorStyle"]
+        -   class: "UIControl"
+            name: "NationFlag"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                UITextureComponent: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+            bindings:
+            - ["UITextureComponent.spritePath", "\"~res:/Gfx/Lobby/flags/flag_tank-node_\" + nationFlag"]
+        -   class: "UIControl"
+            name: "Shadow"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "black-50-bg"
+            components:
+                Background:
+                    drawType: "DRAW_STRETCH_BOTH"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_vertical_0-100.psd"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "Hover"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "white-wild-sand-5-bg"
+            components:
+                Background: {}
+                Anchor:
+                    leftAnchorEnabled: true
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/ModulesTree/TankNode.style.yaml"
+        -   class: "UIControl"
+            name: "TankIcon"
+            position: [39.500000, 8.000000]
+            size: [97.000000, 60.000000]
+            input: false
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_PROPORTIONAL"
+                    perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+            bindings:
+            - ["Background.sprite", "vehicleDataModel.bigIconPath"]
+        -   prototype: "Selection/Selection"
+            name: "Selection"
+            components:
+                UIDataParamsComponent:
+                    args:
+                        "isVisible": "isSelected"
+        -   class: "UIControl"
+            name: "BottomWrapper"
+            position: [0.000000, 48.000000]
+            input: false
+            components:
+                Anchor:
+                    bottomAnchorEnabled: true
+                LinearLayout:
+                    padding: "4"
+                    spacing: 8.000000
+                    dynamicSpacing: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 24.000000
+            children:
+            -   class: "UIControl"
+                name: "NameWrapper"
+                input: false
+                components:
+                    LinearLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                children:
+                -   class: "UIControl"
+                    name: "PremializedIcon"
+                    size: [32.000000, 32.000000]
+                    visible: false
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_FILL"
+                            color: [1.000000, 1.000000, 1.000000, 0.100000]
+                        SizePolicy:
+                            horizontalPolicy: "FixedSize"
+                            horizontalValue: 24.000000
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 24.000000
+                -   class: "UIControl"
+                    name: "TankName"
+                    input: false
+                    components:
+                        UITextComponent:
+                            colorInheritType: "COLOR_IGNORE_PARENT"
+                            fitting: "FITTING_POINTS"
+                            align: ["LEFT", "VCENTER"]
+                        Anchor:
+                            vCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "min(parentRest, content)"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["classes", "\"t-caption bold \" + tankNameColor"]
+                    - ["UITextComponent.text", "localize(vehicleDataModel.shortName)"]
+        -   prototype: "VehicleInfo/VehicleInfo"
+            name: "VehicleInfo"
+            position: [4.000000, 10.000000]
+            components:
+                Anchor:
+                    leftAnchorEnabled: true
+                    leftAnchor: 4.000000
+                    topAnchorEnabled: true
+                    topAnchor: 2.000000
+                UIDataParamsComponent:
+                    args:
+                        "class": "vehicleDataModel.tankClass"
+                        "level": "vehicleDataModel.level"
+                        "type": "descrType"
+                        "elite": "tankStatsModel.isElite"
+            children:
+            -   path: "Tier/Elite"
+                size: [20.000000, 24.000000]

@@ -1,0 +1,56 @@
+Header:
+    version: "77"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Headers/SubsectionHeader.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "Subsection"
+    size: [400.000000, 198.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+            padding: "10;"
+            spacing: 12.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["TankParams", "tankParams", "null", "{ }"]
+            - ["TankParamsItemStructure", "item", "null", "{ type = eSectionItemType.SUBSECTION; name = \"shellAvgPiercing\"; baseName = \"damage\"; content = [ { type = eSectionItemType.AMMO_SUBPARAM; name = \"baseShellAvgPiercingPower\"; }; { type = eSectionItemType.AMMO_SUBPARAM; name = \"altShellAvgPiercingPower\"; }; { type = eSectionItemType.AMMO_SUBPARAM; name = \"premShellAvgPiercingPower\"; }; ]; }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParamsStringKeys", "stringKeys", "{ }"]
+            - ["TankParam", "param", "tankParams.params[item.content[0].name]"]
+            - ["string", "itemTypeStr", "str(item.type, eSectionItemType, \"lowcase\")"]
+            - ["string", "ids", "format(stringKeys.paramName, { itemType = itemTypeStr; itemName = item.name; })"]
+            - ["bool", "hasUnits", "param.units <= tankParams.lastDisplayableUnit"]
+            - ["string", "unitsStringKey", "format(stringKeys.unitsMeasure, { units = toLowerCaseNotForLocalizedText(str(param.units, eUnitMeasure)); })"]
+            - ["string", "unitsStr", "localize(unitsStringKey)"]
+            - ["string", "fullName", "localize(ids, { units = unitsStr; })"]
+    children:
+    -   prototype: "SubsectionHeader/SubsectionHeader"
+        name: "SubsectionHeader"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "text": "fullName"
+    -   class: "UIControl"
+        name: "Content"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            LinearLayout:
+                orientation: "TopDown"
+                spacing: 8.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfChildrenSum"
+            UIRepeatComponent:
+                control: "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Items/SectionSubItem.yaml"
+                dataContainer: "item.content"
+                args:
+                    "tankParams": "tankParams"
+                    "item": "_item"
+                    "index": "_index"

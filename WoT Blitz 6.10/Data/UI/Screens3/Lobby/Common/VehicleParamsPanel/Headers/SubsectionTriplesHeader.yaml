@@ -1,0 +1,86 @@
+Header:
+    version: "84"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/RichText.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "SubsectionTriplesHeader"
+    size: [400.000000, 52.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["TankParams", "tankParams", "null", "{ }"]
+            - ["TankParamsItemStructure", "item", "null", "{ type = eSectionItemType.TABLE; name = \"armor\"; baseName = \"damage\"; columns = [ { name = \"turretArmor\"; presentedName = \"hasTurret\"; }; { name = \"hullArmor\"; presentedName = \"\"; }; ]; content = [ { type = eSectionItemType.ROW; name = \"frontArmor\"; content = [ { type = eSectionItemType.PARAM; name = \"turretArmorFront\"; }; { type = eSectionItemType.PARAM; name = \"primaryArmorFront\"; }; ]; }; { type = eSectionItemType.ROW; name = \"sideArmor\"; content = [ { type = eSectionItemType.PARAM; name = \"turretArmorSide\"; }; { type = eSectionItemType.PARAM; name = \"primaryArmorSide\"; }; ]; }; { type = eSectionItemType.ROW; name = \"rearArmor\"; content = [ { type = eSectionItemType.PARAM; name = \"turretArmorRear\"; }; { type = eSectionItemType.PARAM; name = \"primaryArmorRear\"; }; ]; }; ]; }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParamsStringKeys", "stringKeys", "{ }"]
+            - ["TankParam", "param", "tankParams.params[item.content[0].content[0].name]"]
+            - ["string", "itemTypeStr", "str(item.type, eSectionItemType, \"lowcase\")"]
+            - ["string", "nameStringKey", "format(stringKeys.paramName, { itemType = itemTypeStr; itemName = item.name; })"]
+            - ["string", "unitsStringKey", "format(stringKeys.unitsMeasure, { units = toLowerCaseNotForLocalizedText(str(param.units, eUnitMeasure)); })"]
+            - ["string", "unitsStr", "localize(unitsStringKey)"]
+            - ["string", "fullName", "localize(nameStringKey, { units = unitsStr; })"]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Background.style.yaml;~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+    children:
+    -   class: "UIControl"
+        name: "Container"
+        input: false
+        components:
+            LinearLayout:
+                useRtl: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "Title"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfMaxChild"
+            children:
+            -   prototype: "RichText/RichText"
+                name: "RichText"
+                components:
+                    RichContentAliases2:
+                        aliases: "text_units,<span class=\"t-body regular color=white-wild-sand-50-text\" />;"
+                    Anchor:
+                        useRtl: true
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 150.000000
+                    UIDataParamsComponent:
+                        args:
+                            "baseFontSize": "\"t-body\""
+                            "baseFontStyle": "\"regular\""
+                            "baseFontColor": "\"white-wild-sand-text\""
+                            "key": "fullName"
+                            "resource1Model": "null"
+                            "resource2Model": "null"
+                            "resource3Model": "null"
+                            "resource4Model": "null"
+                    StyleSheet:
+                        inheritsStylesFromParent: false
+        -   class: "UIControl"
+            name: "Info"
+            input: false
+            components:
+                Anchor:
+                    bottomAnchorEnabled: true
+                LinearLayout:
+                    useRtl: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfChildrenSum"
+                    verticalPolicy: "PercentOfMaxChild"
+                UIRepeatComponent:
+                    control: "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Params/TableColumnHeader.yaml"
+                    dataContainer: "item.columns"
+                    args:
+                        "tankParams": "tankParams"
+                        "column": "_item"

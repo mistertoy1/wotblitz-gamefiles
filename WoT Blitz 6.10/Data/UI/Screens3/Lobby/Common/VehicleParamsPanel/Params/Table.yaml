@@ -1,0 +1,56 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Headers/SubsectionTriplesHeader.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "Table"
+    size: [316.000000, 148.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+            padding: "10"
+            spacing: 12.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["TankParams", "tankParams", "null", "{ }"]
+            - ["TankParamsItemStructure", "item", "null", "{ type = eSectionItemType.TABLE; name = \"armor\"; baseName = \"damage\"; columns = [ { name = \"turretArmor\"; presentedName = \"hasTurret\"; }; { name = \"hullArmor\"; presentedName = \"\"; }; ]; content = [ { type = eSectionItemType.ROW; name = \"frontArmor\"; content = [ { type = eSectionItemType.PARAM; name = \"turretArmorFront\"; }; { type = eSectionItemType.PARAM; name = \"primaryArmorFront\"; }; ]; }; { type = eSectionItemType.ROW; name = \"sideArmor\"; content = [ { type = eSectionItemType.PARAM; name = \"turretArmorSide\"; }; { type = eSectionItemType.PARAM; name = \"primaryArmorSide\"; }; ]; }; { type = eSectionItemType.ROW; name = \"rearArmor\"; content = [ { type = eSectionItemType.PARAM; name = \"turretArmorRear\"; }; { type = eSectionItemType.PARAM; name = \"primaryArmorRear\"; }; ]; }; ]; }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParamsStringKeys", "stringKeys", "{ }"]
+            - ["TankParam", "param", "tankParams.params[item.content[0].content[0].name]"]
+            - ["string", "nameStringKey", "format(stringKeys.paramName, { name = item.name; })"]
+            - ["string", "unitsStringKey", "format(stringKeys.unitsMeasure, { units = toLowerCaseNotForLocalizedText(str(param.units, eUnitMeasure)); })"]
+            - ["string", "unitsStr", "localize(unitsStringKey)"]
+            - ["string", "fullName", "localize(nameStringKey, { units = unitsStr; })"]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Background.style.yaml"
+    children:
+    -   prototype: "SubsectionTriplesHeader/SubsectionTriplesHeader"
+        name: "SubsectionTriplesHeader"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "tankParams": "tankParams"
+                    "item": "item"
+    -   class: "UIControl"
+        name: "Content"
+        size: [316.000000, 76.000000]
+        input: false
+        components:
+            LinearLayout:
+                orientation: "TopDown"
+                spacing: 8.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfChildrenSum"
+            UIRepeatComponent:
+                control: "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Params/TableRow.yaml"
+                dataContainer: "item.content"
+                args:
+                    "tankParams": "tankParams"
+                    "item": "_item"

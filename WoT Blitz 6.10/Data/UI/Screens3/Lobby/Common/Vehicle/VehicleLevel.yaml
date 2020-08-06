@@ -1,0 +1,35 @@
+Header:
+    version: "96"
+Prototypes:
+-   class: "UIControl"
+    name: "VehicleLevel"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            horizontalMin: 16.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 24.000000
+        UIDataParamsComponent:
+            params:
+            - ["int", "level", "1", "5"]
+            - ["eVehicleDescriptionType", "type", "eVehicleDescriptionType.NORMAL", "eVehicleDescriptionType.PREMIUMISED"]
+        UIDataLocalsComponent:
+            locals:
+            - ["int", "tankTypeFrame", "type + 0"]
+    children:
+    -   class: "UIControl"
+        name: "Level"
+        input: false
+        components:
+            Background: {}
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["Background.sprite", "\"~res:/Gfx/Lobby/icons/tank-tiers/icon_level_\" + str(level) + \"_pack.psd\""]
+        - ["Background.frame", "tankTypeFrame"]

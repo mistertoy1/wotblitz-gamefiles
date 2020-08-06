@@ -1,0 +1,76 @@
+Header:
+    version: "84"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/RichText.yaml"
+- "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Params/NumberValue.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "NumberParam"
+    size: [400.000000, 40.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["TankParams", "tankParams", "null", "{ }"]
+            - ["TankParamsItemStructure", "item", "null", "{ }"]
+            - ["string", "overrideTitleText", "\"\"", "\"\""]
+            - ["string", "overrideValueText", "\"\"", "\"\""]
+            - ["bool", "isSub", "false", "false"]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParamsStringKeys", "stringKeys", "{ }"]
+            - ["TankParam", "param", "tankParams.params[item.name]"]
+            - ["bool", "isImproved", "param.deltaFlag != 0 and param.deltaFlag > 0 == param.biggerIsBetter"]
+            - ["bool", "hasUnits", "param.units <= tankParams.lastDisplayableUnit"]
+            - ["string", "unitsStringKey", "format(stringKeys.unitsMeasure, { units = toLowerCaseNotForLocalizedText(str(param.units, eUnitMeasure)); })"]
+            - ["string", "unitsStr", "localize(unitsStringKey)"]
+            - ["string", "itemTypeStr", "str(item.type, eSectionItemType, \"lowcase\")"]
+            - ["string", "nameStringKey", "format(stringKeys.paramName, { itemType = itemTypeStr; itemName = item.name; })"]
+            - ["string", "fullName", "when overrideTitleText != \"\" -> overrideTitleText, localize(nameStringKey, { units = unitsStr; })"]
+            - ["string", "textColor", "when isSub -> \"white-wild-sand-50-text\", \"white-wild-sand-text\""]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Background.style.yaml"
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        input: false
+        components:
+            LinearLayout:
+                enabled: true
+                spacing: 8.000000
+                useRtl: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfFirstChild"
+        children:
+        -   prototype: "RichText/RichText"
+            name: "RichText"
+            components:
+                RichContentAliases2:
+                    aliases: "text_units,<span class=\"t-body regular color=white-wild-sand-50-text\" />;"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    horizontalFormula: "firstChild"
+                UIDataParamsComponent:
+                    args:
+                        "baseFontSize": "\"t-body\""
+                        "baseFontStyle": "\"regular\""
+                        "baseFontColor": "textColor"
+                        "key": "fullName"
+                        "resource1Model": "null"
+                        "resource2Model": "null"
+                        "resource3Model": "null"
+                        "resource4Model": "null"
+                StyleSheet:
+                    inheritsStylesFromParent: false
+                    styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/VehicleParams.style.yaml"
+        -   prototype: "NumberValue/NumberValue"
+            name: "Param"
+            components:
+                UIDataParamsComponent:
+                    args:
+                        "param": "param"
+                        "overrideValueText": "overrideValueText"

@@ -1,0 +1,18 @@
+Header:
+    version: "85"
+Prototypes:
+-   class: "UIControl"
+    name: "Line"
+    input: false
+    classes: "white-wild-sand-50-bg"
+    components:
+        Background:
+            perPixelAccuracy: "PER_PIXEL_ACCURACY_FORCED"
+        Anchor: {}
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 1.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 1.000000
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml"

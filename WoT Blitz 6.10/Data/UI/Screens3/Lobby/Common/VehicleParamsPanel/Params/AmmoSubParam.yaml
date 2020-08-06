@@ -1,0 +1,39 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Params/NumberParam.yaml"
+Controls:
+-   class: "UIControl"
+    name: "AmmoSubParam"
+    size: [400.000000, 52.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["TankParams", "tankParams", "null", "{ }"]
+            - ["TankParamsItemStructure", "item", "null", "{ name = \"baseShellAvgPiercingPower\"; type = eSectionItemType.AMMO_SUBPARAM; }"]
+            - ["int", "index", "0", "0"]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParamsStringKeys", "stringKeys", "{ }"]
+            - ["TankParam", "param", "tankParams.params[item.name]"]
+            - ["bool", "isImproved", "param.deltaFlag != 0 and param.deltaFlag > 0 == param.biggerIsBetter"]
+            - ["string", "itemTypeStr", "str(item.type, eSectionItemType, \"lowcase\")"]
+            - ["string", "nameKey", "format(stringKeys.paramName, { itemType = itemTypeStr; itemName = param.name; })"]
+            - ["string", "name", "localize(nameKey)"]
+    children:
+    -   prototype: "NumberParam/NumberParam"
+        name: "NumberParam"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "tankParams": "tankParams"
+                    "item": "item"
+                    "overrideTitleText": "name"
+                    "overrideValueText": "\"\""
+                    "isSub": "true"

@@ -1,0 +1,36 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Params/NumberParam.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "SubParam"
+    size: [400.000000, 52.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["TankParams", "tankParams", "null", "{ }"]
+            - ["TankParamsItemStructure", "item", "null", "{ }"]
+            - ["string", "valueText", "\"\"", "\"\""]
+            - ["bool", "isSub", "false", "false"]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParamsStringKeys", "stringKeys", "{ }"]
+            - ["TankParam", "param", "tankParams.params[item.name]"]
+            - ["bool", "isImproved", "param.deltaFlag != 0 and param.deltaFlag > 0 == param.biggerIsBetter"]
+    children:
+    -   prototype: "NumberParam/NumberParam"
+        name: "NumberParam"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "tankParams": "tankParams"
+                    "item": "item"
+                    "valueText": "valueText"
+                    "isSub": "true"

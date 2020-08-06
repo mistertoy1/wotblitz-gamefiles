@@ -1,0 +1,191 @@
+Header:
+    version: "84"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Badge.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "SectionHeader"
+    size: [300.000000, 48.000000]
+    classes: "button-choose-sound params-section-header long-element"
+    components:
+        UIAnimationComponent:
+            animations: "EXPEND_ANIMATION,~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Headers/SectionHeader.animation;_INIT,~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Headers/SectionHeaderInit.animation"
+        Anchor:
+            hCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "Formula"
+            horizontalFormula: "parent + 24"
+            verticalPolicy: "PercentOfMaxChild"
+            verticalMin: 48.000000
+            verticalMax: 56.000000
+        UIInputEventComponent:
+            onTouchUpInside: "ON_CHANGE_EXPEND"
+        UIDataParamsComponent:
+            params:
+            - ["TankParamsSectionStructure", "section", "null", "{ collapsed = true; }"]
+            - ["string", "overrideName", "\"\"", "\"\""]
+            - ["bool", "collapsible", "true", "true"]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParamsStringKeys", "stringKeys", "{ }"]
+            - ["string", "fullNameStringKey", "when overrideName == \"\" -> format(stringKeys.sectionName, { sectionName = section.name; }), \"\""]
+            - ["string", "fullName", "when overrideName == \"\" -> localize(fullNameStringKey), overrideName"]
+            - ["bool", "badgeVisible", "section.collapsed and section.hasChangedItems"]
+            - ["string", "textStyle", "when overrideName == \"\" -> \"t-caps bold white-wild-sand-text\", \"t-caption bold white-wild-sand-text\""]
+            - ["bool", "expanded", "not section.collapsed"]
+        UIDataOnEventComponent0:
+            eventName: "ON_CHANGE_EXPEND"
+            modelFieldExpression: "section.collapsed"
+            dataExpression: "when collapsible -> not section.collapsed, false"
+        UIEventOnDataComponent0:
+            watchedDataExpression: "expanded"
+            eventName: "EXPEND_ANIMATION"
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/ButtonSound.style.yaml;~res:/UI/Screens3/Lobby/Profile/Common/SectionHeader.style.yaml"
+    bindings:
+    - ["input", "collapsible"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        pivot: [0.500000, 0.500000]
+        input: false
+        classes: "content-area"
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+            LinearLayout:
+                orientation: "TopDown"
+                padding: "12"
+                dynamicPadding: true
+            SizePolicy:
+                verticalPolicy: "PercentOfMaxChild"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Headers/SectionHeader.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "Bg"
+            input: false
+            classes: "white-wild-sand-10-bg"
+            components:
+                Background:
+                    drawType: "DRAW_STRETCH_BOTH"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_r1"
+                    leftRightStretchCap: 1.000000
+                    topBottomStretchCap: 1.000000
+                Anchor:
+                    leftAnchorEnabled: true
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "Hover"
+            input: false
+            classes: "hover white-wild-sand-10-bg"
+            components:
+                Background:
+                    drawType: "DRAW_STRETCH_BOTH"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_r1"
+                    leftRightStretchCap: 1.000000
+                    topBottomStretchCap: 1.000000
+                UIOpacityComponent: {}
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Headers/SectionHeader.style.yaml"
+        -   class: "UIControl"
+            name: "ContentWrapper"
+            input: false
+            components:
+                Anchor:
+                    leftAnchorEnabled: true
+                LinearLayout:
+                    padding: "12; 8"
+                    spacing: 16.000000
+                    dynamicSpacing: true
+                    useRtl: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfMaxChild"
+            children:
+            -   class: "UIControl"
+                name: "TitleWrapper"
+                position: [0.000000, 0.000000]
+                input: false
+                components:
+                    Anchor:
+                        vCenterAnchorEnabled: true
+                    LinearLayout:
+                        spacing: 4.000000
+                        useRtl: true
+                    SizePolicy:
+                        horizontalPolicy: "Formula"
+                        horizontalFormula: "min(parentRest, childrenSum)"
+                        verticalPolicy: "PercentOfMaxChild"
+                children:
+                -   class: "UIControl"
+                    name: "Title"
+                    input: false
+                    components:
+                        UITextComponent:
+                            multiline: "MULTILINE_ENABLED"
+                            align: ["LEFT", "VCENTER"]
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "when parent== 0 -> content, min(parent, content)"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                    bindings:
+                    - ["classes", "textStyle"]
+                    - ["UITextComponent.text", "fullName"]
+                -   class: "UIControl"
+                    name: "BadgeHolder"
+                    input: false
+                    components:
+                        Anchor:
+                            vCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfMaxChild"
+                            verticalPolicy: "PercentOfMaxChild"
+                    bindings:
+                    - ["visible", "badgeVisible"]
+                    children:
+                    -   prototype: "Badge/Badge"
+                        name: "Badge"
+                        components:
+                            UIDataParamsComponent:
+                                args:
+                                    "type": "eBadgeType.EMPTY"
+                                    "value": "\" \""
+            -   class: "UIControl"
+                name: "Expander"
+                position: [268.000000, 16.000000]
+                pivot: [0.500000, 0.500000]
+                input: false
+                classes: "white-wild-sand-bg"
+                components:
+                    Background:
+                        drawType: "DRAW_ALIGNED"
+                        sprite: "~res:/Gfx/Lobby/icons/icon_chevron_n"
+                        perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                    Anchor:
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 24.000000
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 24.000000
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+                bindings:
+                - ["visible", "collapsible"]

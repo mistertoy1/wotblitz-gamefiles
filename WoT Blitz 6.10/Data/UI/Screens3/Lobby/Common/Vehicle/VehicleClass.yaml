@@ -1,0 +1,83 @@
+Header:
+    version: "74"
+Prototypes:
+-   class: "UIControl"
+    name: "VehicleClass"
+    input: false
+    components:
+        LinearLayout:
+            spacing: 4.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["eTankClass", "class", "eTankClass.TANK_CLASS_LIGHT", "eTankClass.TANK_CLASS_AT_SPG"]
+            - ["eVehicleDescriptionType", "type", "eVehicleDescriptionType.NORMAL", "eVehicleDescriptionType.PREMIUMISED"]
+            - ["bool", "elite", "false", "true"]
+        UIDataLocalsComponent:
+            locals:
+            - ["int", "tankTypeFrame", "type + 0"]
+            - ["string", "classStyle", "toLowerCaseNotForLocalizedText(str(class, eTankClass))"]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Lobby/Common/Vehicle/VehicleInfo.style.yaml"
+    children:
+    -   class: "UIControl"
+        name: "Tier"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfMaxChild"
+                verticalPolicy: "PercentOfMaxChild"
+        bindings:
+        - ["visible", "elite", "Read"]
+        children:
+        -   class: "UIControl"
+            name: "Elite"
+            visible: true
+            input: false
+            components:
+                UITextureComponent:
+                    spritePath: "~res:/Gfx/Lobby/icons/tank-tiers/icon_laurel_pack.psd"
+                    drawType: "DRAW_SCALE_PROPORTIONAL_ONE"
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 20.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 24.000000
+            bindings:
+            - ["UITextureComponent.frame", "tankTypeFrame", "Read"]
+        -   class: "UIControl"
+            name: "Class"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                UITextureComponent: {}
+                Anchor:
+                    hCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 12.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 24.000000
+            bindings:
+            - ["classes", "classStyle", "Read"]
+            - ["UITextureComponent.frame", "tankTypeFrame", "Read"]
+    -   class: "UIControl"
+        name: "OnlyClass"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            UITextureComponent: {}
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 12.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 24.000000
+        bindings:
+        - ["visible", "not elite", "Read"]
+        - ["classes", "classStyle", "Read"]
+        - ["UITextureComponent.frame", "tankTypeFrame", "Read"]

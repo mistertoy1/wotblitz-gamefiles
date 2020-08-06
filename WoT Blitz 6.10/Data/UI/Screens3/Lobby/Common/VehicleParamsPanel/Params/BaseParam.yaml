@@ -1,0 +1,238 @@
+Header:
+    version: "84"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Params/NumberValue.yaml"
+- "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/TankBaseParamBar.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "BaseParam"
+    size: [400.000000, 32.000000]
+    input: false
+    components:
+        LinearLayout:
+            padding: "-4; 0"
+            spacing: 12.000000
+            useRtl: false
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "shadowHole", "false", "false"]
+            - ["TankParams", "tankParams", "null", "{ }"]
+            - ["TankParamsItemStructure", "item", "null", "{ }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParamsStringKeys", "stringKeys", "{ }"]
+            - ["string", "itemBaseName", "item.baseName"]
+            - ["TankParam", "param", "tankParams.params[item.name]"]
+            - ["TankBaseParam", "baseParam", "tankParams.baseParams[item.baseName]"]
+            - ["string", "fullName", "localize(format(stringKeys.baseParamName, { itemBaseName = itemBaseName; })) + \",\""]
+            - ["bool", "hasUnits", "param.units <= tankParams.lastDisplayableUnit"]
+            - ["string", "unitsStringKey", "format(stringKeys.unitsMeasure, { units = toLowerCaseNotForLocalizedText(str(param.units, eUnitMeasure)); })"]
+            - ["string", "unitsStr", "localize(unitsStringKey)"]
+            - ["bool", "isImproved", "param.deltaFlag == 1 == param.biggerIsBetter"]
+            - ["float", "gunClipCapacity", "tankParams.params[\"gunClipCapacity\"].value"]
+            - ["float", "gunBurstCapacity", "tankParams.params[\"gunBurstCapacity\"].value"]
+            - ["float", "pumpGunMode", "tankParams.params[\"pumpGunMode\"].value"]
+            - ["bool", "showGunTypeIcon", "gunClipCapacity > 1 and (item.baseName == \"firingRate\" or item.baseName == \"damage\")"]
+            - ["bool", "showGunClipCapacity", "gunClipCapacity > 1 and item.baseName == \"damage\""]
+            - ["bool", "showPump", "pumpGunMode == 1 and item.baseName == \"firingRate\""]
+            - ["string", "iconBaseName", "when item.baseName == \"firingRate\" -> \"rate-of-fire\", item.baseName == \"armor\" -> \"protection\", item.baseName"]
+            - ["string", "iconEnd", "when showGunTypeIcon -> \"_drum_s\", showPump -> \"_pump_s\", \"_s\""]
+            - ["string", "baseIcon", "format(\"~res:/Gfx/Lobby/icons/icon_%(name)%(end)\", { name = iconBaseName; end = iconEnd; })"]
+        UIShadowHoleComponent:
+            leftOffset: 12.000000
+            rightOffset: 12.000000
+            topOffset: 12.000000
+            bottomOffset: 12.000000
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Background.style.yaml;~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+    bindings:
+    - ["UIShadowHoleComponent.isEnabled", "shadowHole"]
+    children:
+    -   class: "UIControl"
+        name: "Icon"
+        input: false
+        components:
+            Background:
+                colorInherit: "COLOR_IGNORE_PARENT"
+            Anchor:
+                enabled: true
+                topAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 24.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 24.000000
+        bindings:
+        - ["Background.sprite", "baseIcon"]
+        children:
+        -   class: "UIControl"
+            name: "GunClipCounter"
+            input: false
+            components:
+                Anchor:
+                    rightAnchorEnabled: true
+                    rightAnchor: -4.000000
+                    bottomAnchorEnabled: true
+                    bottomAnchor: -4.000000
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 16.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 16.000000
+            bindings:
+            - ["visible", "showGunClipCapacity"]
+            children:
+            -   class: "UIControl"
+                name: "bg"
+                input: false
+                classes: "gray-cape-cod-bg"
+                components:
+                    Background: {}
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 16.000000
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 16.000000
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   class: "UIControl"
+                name: "Value"
+                input: false
+                classes: "t-caps bold white-wild-sand-text not-localize"
+                components:
+                    UITextComponent: {}
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        verticalPolicy: "PercentOfContent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Font.style.yaml"
+                bindings:
+                - ["UITextComponent.text", "str(gunClipCapacity, 0)"]
+    -   class: "UIControl"
+        name: "Content"
+        position: [60.000000, 0.000000]
+        input: false
+        components:
+            LinearLayout:
+                orientation: "TopDown"
+                spacing: 8.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfChildrenSum"
+        children:
+        -   class: "UIControl"
+            name: "Content"
+            position: [0.000000, 16.000000]
+            input: false
+            components:
+                LinearLayout:
+                    spacing: 8.000000
+                    useRtl: false
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfMaxChild"
+            children:
+            -   class: "UIControl"
+                name: "ParamWrapper"
+                components:
+                    LinearLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfMaxChild"
+                children:
+                -   class: "UIControl"
+                    name: "ParamNameWrapper"
+                    position: [0.000000, 0.000000]
+                    size: [81.000000, 20.000000]
+                    components:
+                        LinearLayout:
+                            spacing: 3.000000
+                            useRtl: true
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "min(parentRest, childrenSum)"
+                            verticalPolicy: "PercentOfMaxChild"
+                    children:
+                    -   class: "UIControl"
+                        name: "Name"
+                        input: false
+                        classes: "t-body regular white-wild-sand-text"
+                        components:
+                            UITextComponent:
+                                fitting: "FITTING_POINTS"
+                                align: ["LEFT", "VCENTER"]
+                            Anchor:
+                                leftAnchorEnabled: true
+                                hCenterAnchorEnabled: true
+                                vCenterAnchorEnabled: true
+                            SizePolicy:
+                                horizontalPolicy: "Formula"
+                                horizontalFormula: "when parent == 0 -> content, min(parentRest, content)"
+                                verticalPolicy: "PercentOfContent"
+                            StyleSheet:
+                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                        bindings:
+                        - ["UITextComponent.text", "fullName"]
+                    -   class: "UIControl"
+                        name: "Units"
+                        position: [55.000000, 0.000000]
+                        input: false
+                        classes: "t-body regular color=white-wild-sand-50-text"
+                        components:
+                            UITextComponent:
+                                align: ["LEFT", "VCENTER"]
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfContent"
+                                verticalPolicy: "PercentOfContent"
+                            StyleSheet:
+                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                        bindings:
+                        - ["UITextComponent.text", "unitsStr"]
+                -   class: "UIControl"
+                    name: "Spacer"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    components:
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+            -   prototype: "NumberValue/NumberValue"
+                name: "NumberValue"
+                components:
+                    Anchor:
+                        topAnchorEnabled: true
+                    UIDataParamsComponent:
+                        args:
+                            "param": "param"
+                children:
+                -   path: "ValueContainer"
+                    components:
+                        LinearLayout:
+                            useRtl: false
+                    children: []
+        -   prototype: "TankBaseParamBar/TankBaseParamBar"
+            name: "Bar"
+            input: false
+            components:
+                Anchor:
+                    leftAnchorEnabled: true
+                    bottomAnchorEnabled: true
+                    bottomAnchor: 12.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                UIDataParamsComponent:
+                    args:
+                        "segmentWidth": "4"
+                        "segmentsCount": "0"
+                        "space": "2"
+                        "displayValue": "baseParam.valuePercent"
+                        "comparedValue": "baseParam.cmpPercent"
+                        "maxValue": "baseParam.stockPercent"
+                        "deltaFlag": "baseParam.deltaFlag"
+                        "rounded": "true"

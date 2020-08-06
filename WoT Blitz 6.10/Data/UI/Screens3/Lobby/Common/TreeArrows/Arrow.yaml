@@ -1,0 +1,18 @@
+Header:
+    version: "85"
+Prototypes:
+-   class: "UIControl"
+    name: "Arrow"
+    input: false
+    classes: "white-wild-sand-50-bg"
+    components:
+        Background:
+            drawType: "DRAW_ALIGNED"
+            sprite: "~res:/Gfx/Lobby/backgrounds/bg_triangle_horizontal"
+            perPixelAccuracy: "PER_PIXEL_ACCURACY_DISABLED"
+        Anchor: {}
+        SizePolicy:
+            horizontalPolicy: "PercentOfContent"
+            verticalPolicy: "PercentOfContent"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml"

@@ -1,0 +1,57 @@
+Header:
+    version: "69"
+Prototypes:
+-   class: "UIControl"
+    name: "VehicleChangedParamsPanel"
+    size: [400.000000, 220.000000]
+    input: false
+    components:
+        Anchor:
+            rightAnchorEnabled: true
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["TankParams", "tankParams", "null", "{ }"]
+            - ["string", "sectionName", "\"changed\"", "\"changed\""]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParamsSectionStructure", "section", "tankParams.sectionsByType[sectionName]"]
+    children:
+    -   class: "UIControl"
+        name: "LineSpacer"
+        size: [400.000000, 1.000000]
+        input: false
+        classes: "white-bg-05"
+        components:
+            Background:
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            Anchor:
+                bottomAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 1.000000
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Background.style.yaml"
+        bindings:
+        - ["visible", "not section.content.Empty()", "Read"]
+    -   class: "UIControl"
+        name: "Content"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            LinearLayout:
+                orientation: "TopDown"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfChildrenSum"
+            UIRepeatComponent:
+                control: "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Items/SectionItem.yaml"
+                dataContainer: "section.content"
+                args:
+                    "tankParams": "tankParams"
+                    "item": "_item"

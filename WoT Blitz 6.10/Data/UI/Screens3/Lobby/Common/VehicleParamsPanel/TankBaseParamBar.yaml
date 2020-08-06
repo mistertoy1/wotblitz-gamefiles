@@ -1,0 +1,172 @@
+Header:
+    version: "77"
+Prototypes:
+-   class: "UIControl"
+    name: "TankBaseParamBar"
+    size: [234.000000, 4.000000]
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "FixedSize"
+            verticalValue: 4.000000
+        UIDataParamsComponent:
+            params:
+            - ["int", "segmentWidth", "4", "4"]
+            - ["int", "segmentsCount", "0", "0"]
+            - ["int", "space", "2", "2"]
+            - ["float", "displayValue", "0.000000", "0.600000"]
+            - ["float", "comparedValue", "0.000000", "0.200000"]
+            - ["float", "maxValue", "0.000000", "0.900000"]
+            - ["int", "deltaFlag", "0", "1"]
+            - ["bool", "rounded", "false", "true"]
+        UIDataLocalsComponent:
+            locals:
+            - ["float", "commonValueRightExtreme", "0.000000"]
+            - ["float", "biggerValueRightExtreme", "0.000000"]
+            - ["float", "commonValue", "when deltaFlag == 1 -> comparedValue, displayValue"]
+            - ["float", "lessValue", "when displayValue < comparedValue -> displayValue, comparedValue"]
+            - ["float", "biggerValue", "when displayValue > comparedValue -> displayValue, comparedValue"]
+            - ["float", "commonBarEndValue", "when deltaFlag != 0 -> lessValue, commonValue"]
+            - ["float", "biggerBarStartValue", "lessValue"]
+            - ["float", "lessBarStartValue", "lessValue"]
+            - ["float", "biggerBarEndValue", "biggerValue"]
+            - ["float", "lessBarEndValue", "biggerValue"]
+            - ["float", "maxBarStartValue", "when deltaFlag != 0 -> biggerValue, commonValue"]
+            - ["float", "maxBarEndValue", "maxValue"]
+            - ["float", "fullBarStartValue", "maxValue"]
+            - ["float", "rightDisplayValueExtreme", "when deltaFlag == 1 -> biggerValueRightExtreme, commonValueRightExtreme"]
+        UIDataOnEventComponent0:
+            eventName: "BIGGER_EXTREME_CHANGED"
+            modelFieldExpression: "biggerValueRightExtreme"
+            dataExpression: "_event"
+        UIDataOnEventComponent1:
+            eventName: "COMMON_EXTREME_CHANGED"
+            modelFieldExpression: "commonValueRightExtreme"
+            dataExpression: "_event"
+    children:
+    -   class: "UISegmentedBar"
+        name: "bar_full"
+        color: [1.000000, 1.000000, 1.000000, 0.098039]
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                topAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["countSegments", "segmentsCount"]
+        - ["segmentWidth", "segmentWidth"]
+        - ["space", "space"]
+        - ["start", "fullBarStartValue"]
+        - ["rounded", "rounded"]
+    -   class: "UISegmentedBar"
+        name: "bar_max"
+        color: [0.960784, 0.960784, 0.960784, 0.247059]
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                topAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["countSegments", "segmentsCount"]
+        - ["segmentWidth", "segmentWidth"]
+        - ["space", "space"]
+        - ["start", "maxBarStartValue"]
+        - ["end", "maxBarEndValue"]
+        - ["rounded", "rounded"]
+    -   class: "UISegmentedBar"
+        name: "bar_common"
+        color: [0.933333, 0.796078, 0.568627, 1.000000]
+        extremeChangedEvent: "COMMON_EXTREME_CHANGED"
+        extremeChangedEventExpression: "_rightExtreme"
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                topAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["countSegments", "segmentsCount"]
+        - ["segmentWidth", "segmentWidth"]
+        - ["space", "space"]
+        - ["end", "commonBarEndValue"]
+        - ["rounded", "rounded"]
+    -   class: "UISegmentedBar"
+        name: "bar_bigger"
+        color: [0.301961, 0.901961, 0.000000, 1.000000]
+        extremeChangedEvent: "BIGGER_EXTREME_CHANGED"
+        extremeChangedEventExpression: "_rightExtreme"
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                topAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["visible", "deltaFlag == 1"]
+        - ["countSegments", "segmentsCount"]
+        - ["segmentWidth", "segmentWidth"]
+        - ["space", "space"]
+        - ["start", "biggerBarStartValue"]
+        - ["end", "biggerBarEndValue"]
+        - ["rounded", "rounded"]
+    -   class: "UISegmentedBar"
+        name: "bar_less"
+        color: [1.000000, 0.000000, 0.000000, 1.000000]
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                topAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["visible", "deltaFlag == -1"]
+        - ["countSegments", "segmentsCount"]
+        - ["segmentWidth", "segmentWidth"]
+        - ["space", "space"]
+        - ["start", "lessBarStartValue"]
+        - ["end", "lessBarEndValue"]
+        - ["rounded", "rounded"]
+    -   class: "UIControl"
+        name: "BarValue"
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            LinearLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "Progress"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfMaxChild"
+            bindings:
+            - ["SizePolicy.horizontalValue", "rightDisplayValueExtreme * 100"]
+            children:
+            -   class: "UIControl"
+                name: "Indicator"
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_FILL"
+                    Anchor:
+                        rightAnchorEnabled: true
+                        rightAnchor: -2.000000
+                        topAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 2.000000
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 10.000000

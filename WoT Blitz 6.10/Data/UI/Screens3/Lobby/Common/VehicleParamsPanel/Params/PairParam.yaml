@@ -1,0 +1,38 @@
+Header:
+    version: "77"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/RichText.yaml"
+- "~res:/UI/Screens3/Lobby/Common/VehicleParamsPanel/Params/SimpleParam.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "PairParam"
+    size: [400.000000, 52.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["TankParams", "tankParams", "null", "{ }"]
+            - ["TankParamsItemStructure", "item", "null", "{ }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["TankParamsItemStructure", "item0", "item.content[0]"]
+            - ["TankParamsItemStructure", "item1", "item.content[1]"]
+            - ["TankParam", "param0", "tankParams.params[item0.name]"]
+            - ["TankParam", "param1", "tankParams.params[item1.name]"]
+            - ["string", "pairValueStr", "format(item.pattern, { first = str1000Separated(param0.value, param0.digits, false); second = str1000Separated(param1.value, param1.digits, false); })"]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Background.style.yaml"
+    children:
+    -   prototype: "SimpleParam/SimpleParam"
+        name: "SimpleParam"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "tankParams": "tankParams"
+                    "item": "item"
+                    "overrideValueText": "pairValueStr"

@@ -1,0 +1,15 @@
+Header:
+    version: "74"
+StyleSheets:
+-   selector: ".tank_class_light"
+    properties:
+        texture-spritePath: "~res:/Gfx/Lobby/icons/tank-tiers/icon_tank-class_light_pack.psd"
+-   selector: ".tank_class_medium"
+    properties:
+        texture-spritePath: "~res:/Gfx/Lobby/icons/tank-tiers/icon_tank-class_medium_pack.psd"
+-   selector: ".tank_class_heavy"
+    properties:
+        texture-spritePath: "~res:/Gfx/Lobby/icons/tank-tiers/icon_tank-class_heavy_pack.psd"
+-   selector: ".tank_class_at_spg"
+    properties:
+        texture-spritePath: "~res:/Gfx/Lobby/icons/tank-tiers/icon_tank-class_at-spg_pack.psd"
