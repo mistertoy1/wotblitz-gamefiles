@@ -1,0 +1,279 @@
+@font-face
+{
+    font-family: 'WarHeliosCondC';
+    src: url('Fonts/WarHeliosCondC.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'CoreSans';
+    src: url('Fonts/CoreSans.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'BadiyaLT-Regular';
+    src: url('Fonts/BadiyaLT-Regular.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'IwaGGoPro-Md';
+    src: url('Fonts/IwaGGoPro-Md.otf') format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'cinecav_x_ui';
+    src: url('Fonts/cinecav_x_ui.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'SirichanaLT-Regular';
+    src: url('Fonts/SirichanaLT-Regular.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'XinGothic-SC-W6';
+    src: url('Fonts/XinGothic-SC-W6.otf') format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'XinGothic-TC-W6';
+    src: url('Fonts/XinGothic-TC-W6.otf') format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+@-ms-viewport
+{
+    width: device-width;
+}
+
+html
+{
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+    color: #a0b9cd;
+}
+
+html
+{
+    font-family: 'WarHeliosCondC';
+}
+
+html
+{
+    -webkit-text-size-adjust: 100%;
+}
+
+html.windows
+{
+    font-family: Arial,Helvetica CY,Helvetica,sans-serif;
+}
+
+html.ko
+{
+    font-family: 'CoreSans' !important;
+}
+
+html.ar
+{
+    font-family: 'BadiyaLT-Regular' !important;
+}
+
+html.ja
+{
+    font-family: 'IwaGGoPro-Md' !important;
+}
+
+html.vi
+{
+    font-family: 'cinecav_x_ui' !important;
+}
+
+html.th
+{
+    font-family: 'SirichanaLT-Regular' !important;
+}
+
+html.zh-Hans
+{
+    font-family: 'XinGothic-SC-W6' !important;
+}
+
+html.zh-Hant
+{
+    font-family: 'XinGothic-TC-W6' !important;
+}
+
+p
+{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.b-icon-nation, .b-prem-icon, .gold-icon, .b-credit-icon-wot, .b-icon-type__heavytank, .b-icon-type__mediumtank, .b-icon-type__lighttank, .b-icon-type__at-spg, .b-icon-type__spg
+{
+
+    background-size: contain;
+    margin-left: 0px;
+    margin-right: 0px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.b-prem-icon
+{
+    background-image: url('Shop/icon-prem.png');
+}
+
+.b-icon-nation__ussr 
+{
+    background-image: url('Shop/icon-ussr.png');
+}
+
+.b-icon-nation__germany
+{
+    background-image: url('Shop/icon-germany.png');
+}
+
+.b-icon-nation__usa
+{
+    background-image: url('Shop/icon-usa.png');
+}
+
+.b-icon-nation__britain
+{
+    background-image: url('Shop/icon-britain.png');
+}
+
+.b-icon-nation__china
+{
+    background-image: url('Shop/icon-china.png');
+}
+
+.b-icon-nation__france
+{
+    background-image: url('Shop/icon-france.png');
+}
+
+.b-icon-nation__japan
+{
+    background-image: url('Shop/icon-japan.png');
+}
+
+.gold-icon {
+    background-image: url('Shop/icon-gold.png');
+}
+
+.b-credit-icon-wot {
+    background-image: url('Shop/icon-credits.png');
+}
+
+.b-icon-type__heavytank {
+    background-image: url('Shop/icon-ht.png');
+}
+
+.b-icon-type__mediumtank {
+    background-image: url('Shop/icon-mt.png');
+}
+
+.b-icon-type__lighttank {
+    background-image: url('Shop/icon-lt.png');
+}
+
+.b-icon-type__at-spg {
+    background-image: url('Shop/icon-at-spg.png');
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), 
+(min-resolution: 192dpi) { 
+
+.b-prem-icon
+{
+    background-image: url('Shop/icon-prem-2x.png');
+}
+
+.b-icon-nation__ussr 
+{
+    background-image: url('Shop/icon-ussr-2x.png');
+}
+
+.b-icon-nation__germany
+{
+    background-image: url('Shop/icon-germany-2x.png');
+}
+
+.b-icon-nation__usa
+{
+    background-image: url('Shop/icon-usa-2x.png');
+}
+
+.b-icon-nation__britain
+{
+    background-image: url('Shop/icon-britain-2x.png');
+}
+
+.b-icon-nation__china
+{
+    background-image: url('Shop/icon-china-2x.png');
+}
+
+.b-icon-nation__france
+{
+    background-image: url('Shop/icon-france-2x.png');
+}
+
+.b-icon-nation__japan
+{
+    background-image: url('Shop/icon-japan-2x.png');
+}
+
+.gold-icon {
+    background-image: url('Shop/icon-gold-2x.png');
+}
+
+.b-credit-icon-wot {
+    background-image: url('Shop/icon-credits-2x.png');
+}
+
+.b-icon-type__heavytank {
+    background-image: url('Shop/icon-ht-2x.png');
+}
+
+.b-icon-type__mediumtank {
+    background-image: url('Shop/icon-mt-2x.png');
+}
+
+.b-icon-type__lighttank {
+    background-image: url('Shop/icon-lt-2x.png');
+}
+
+.b-icon-type__at-spg {
+    background-image: url('Shop/icon-at-spg-2x.png');
+}
+
+}

@@ -1,0 +1,16 @@
+html
+{
+    font-size: 12pt;
+}
+
+.b-icon-nation, .b-prem-icon, .gold-icon, .b-credit-icon-wot
+{
+    width: 27px;
+    height: 27px;
+}
+
+.b-icon-type__heavytank, .b-icon-type__mediumtank, .b-icon-type__lighttank, .b-icon-type__at-spg, .b-icon-type__spg
+{
+    width: 46px;
+    height: 43px;
+}

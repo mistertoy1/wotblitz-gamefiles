@@ -1,0 +1,276 @@
+﻿#This file contains all the possible game sounds
+music:
+    desert_train: "~res:/Music/Desert_Airfield.mp3"
+    karelia: "~res:/Music/Russian_Prokhorovka.mp3"
+    karieri: "~res:/Music/America_Overlord.mp3"
+    erlenberg: "~res:/Music/Europe_Mannerheim.mp3"
+    amigosville: "~res:/Music/America_Lakville.mp3"
+    rudniki: "~res:/Music/Europe_Himmelsdorf.mp3"
+    tutorial: "~res:/Music/Europe_Mannerheim.mp3"
+    medvedkovo: "~res:/Music/Europe_Mannerheim.mp3"
+    fort: "~res:/Music/Europe_Mannerheim.mp3"
+    savanna: "~res:/Music/Desert_Sand_River.mp3"
+    asia: "~res:/Music/Japan.mp3"
+    mountain: "~res:/Music/America_Overlord.mp3"
+    malinovka: "~res:/Music/Russian_Prokhorovka.mp3"
+    pliego: "~res:/Music/Europe_Ruinberg.mp3"
+    ordeal: "~res:/Music/Europe_Ruinberg.mp3"
+    port: "~res:/Music/America_Lakville.mp3"
+    canal: "~res:/Music/Russian_Malinovka.mp3"
+    himmelsdorf: "~res:/Music/Europe_Himmelsdorf.mp3"
+    lake: "~res:/Music/Desert_Airfield.mp3"
+    italy: "~res:/Music/Europe_Ruinberg.mp3"
+    test:  "~res:/Music/America_Lakville.mp3"
+    milbase: "~res:/Music/Japan.mp3"
+    canyon: "~res:/Music/America_Lakville.mp3"
+    rock: "~res:/Music/America_Overlord.mp3"
+    skit: "~res:/Music/Europe_Himmelsdorf.mp3"
+    grossberg: "~res:/Music/Chinese.mp3"
+    lumber: "~res:/Music/Europe_Ruinberg.mp3"
+    faust: "~res:/Music/Europe_Himmelsdorf.mp3"
+    neptune: "~res:/Music/Europe_Ruinberg.mp3"
+    forgecity: "~res:/Music/America_Overlord.mp3"
+    rift: "~res:/Music/Europe_Mannerheim.mp3"
+    moon: "~res:/Music/Europe_Himmelsdorf.mp3"
+    aftershot_victory: "~res:/Music/aftershot/victory.mp3"
+    aftershot_draw: "~res:/Music/aftershot/draw.mp3"
+    aftershot_defeat: "~res:/Music/aftershot/defeat.mp3"
+    aftershot_bought_module: "~res:/Music/aftershot/bought_module.mp3"
+ambient:
+    amigosville: "ambient/wind/wind_and_leaves"
+    desert_train: "ambient/wind/wind_desert"
+    erlenberg: "ambient/wind/wind_vast"
+    fort: "ambient/wind/wind_polygon"
+    karelia: "ambient/wind/wind_and_leaves"
+    karieri: "ambient/wind/wind_desert_mountain"
+    medvedkovo: "ambient/wind/wind_winter_howl"
+    rudniki: "ambient/wind/wind_polygon"
+    tutorial: "ambient/wind/wind_and_leaves"
+    mountain: "ambient/wind/wind_vast"
+    asia: "ambient/wind/wind_crickets"
+    savanna: "ambient/wind/wind_desert"
+    malinovka: "ambient/wind/wind_winter_howl"
+    pliego: "ambient/wind/wind_sea"
+    ordeal: "ambient/wind/wind_polygon_ordeal"
+    port: "ambient/wind/wind_vast"
+    canal: "ambient/wind/wind_and_leaves"
+    lake: "ambient/wind/wind_vast"
+    himmelsdorf: "ambient/wind/wind_polygon"
+    italy: "ambient/wind/wind_and_leaves"
+    test:  "ambient/wind/wind_polygon"
+    milbase: "ambient/milbase/wind_milbase"
+    canyon: "ambient/wind/wind_desert"
+    rock: "ambient/milbase/wind_milbase"
+    skit: "ambient/milbase/wind_milbase"
+    grossberg: "ambient/milbase/wind_crickets"
+    lumber: "ambient/milbase/wind_crickets"
+    faust:  "ambient/wind/wind_polygon"
+    neptune: "ambient/wind/wind_and_leaves"
+    forgecity: "ambient/milbase/wind_crickets"
+    rift: "ambient/wind/wind_sea"
+    moon: "ambient/wind/wind_polygon"
+sounds:
+    GUN_RELOAD: "GUI/notifications_FX/gun_reloaded"
+    ENEMY_SIGHTED: "GUI/notifications_FX/enemy_sighted_for_team"
+    PLAYER_SIGHTED: "GUI/notifications_FX/lamp"
+    BASE_CAPTURE_ALLY: "GUI/notifications_FX/base_capture_ally"
+    BASE_CAPTURE_ENEMY: "GUI/notifications_FX/base_capture_enemy"
+    BASE_CAPTURE_FINISH: "GUI/notifications_FX/base_capture_finish"
+    CAPTURE_POINT_PC: "GUI/notifications_FX/capture_point_PC"
+    CAPTURE_POINT_NPC: "GUI/notifications_FX/capture_point_NPC"
+    CAPTURE_POINT_PC_END: "GUI/notifications_FX/capture_point_PC_end"
+    CAPTURE_POINT_NPC_END: "GUI/notifications_FX/capture_point_NPC_end"
+    VICTORY_PC: "GUI/notifications_FX/victory_PC"
+    VICTORY_NPC: "GUI/notifications_FX/victory_NPC"
+    FIRE_STARTED_FX: "tank_physics/tank_breakdown/fire_started_FX"
+    ZOOM_IN: "GUI/notifications_FX/zoom_in"
+    ZOOM_OUT: "GUI/notifications_FX/zoom_out"
+    AUTO_ON: "GUI/notifications_FX/auto_target_on"
+    AUTO_OFF: "GUI/notifications_FX/auto_target_off"
+    AIMING_ENDED: "GUI/notifications_FX/sight_convergence"
+    PERK_SKILLED_RANGING: "GUI/notifications_FX/perk_shooter"
+    PERK_SKILLED_RANGING_ACTIVATE: "GUI/notifications_FX/perk_shooter max"
+    VOICE_ENEMY_KILLED: "ingame_voice/notifications_VO/enemy_killed_by_player" #готов!
+    VOICE_ALLY_KILLED: "ingame_voice/notifications_VO/ally_killed_by_player"
+    VOICE_VEHICLE_DESTROYED: "ingame_voice/notifications_VO/vehicle_destroyed" #уничтожен
+    TASK_COMPLETE: "GUI/notifications_FX/task_complete"
+    TASK_NEW: "GUI/notifications_FX/task_new"
+    CHAT_NOTIFICATION: "GUI/notifications_FX/minimap_attention"
+    RIBBON_GOT: "GUI/notifications_FX/stripe"
+    VOICE_START_BATTLE: "ingame_voice/notifications_VO/start_battle"
+    ENEMY_HP_DAMAGED_BY_PROJECTILE_BY_PLAYER: "ingame_voice/notifications_VO/armor_pierced_by_player" #попал и пробил
+    ENEMY_HP_DAMAGED_BY_PROJECTILE_AND_CHASSIS_DAMAGED_BY_PLAYER: "ingame_voice/notifications_VO/armor_pierced_by_player" #попал и повредил ходовую
+    ENEMY_HP_DAMAGED_BY_PROJECTILE_AND_GUN_DAMAGED_BY_PLAYER: "ingame_voice/notifications_VO/armor_pierced_by_player" #попал и повредил орудие
+    ENEMY_HP_DAMAGED_BY_EXPLOSION_AT_DIRECT_HIT_BY_PLAYER: "ingame_voice/notifications_VO/armor_pierced_by_player" #попал и повредил
+    ENEMY_RICOCHET_BY_PLAYER: "ingame_voice/notifications_VO/armor_ricochet_by_player" #рикошет
+    ENEMY_NO_HP_DAMAGE_AT_ATTEMPT_BY_PLAYER: "ingame_voice/notifications_VO/armor_not_pierced_by_player" #попал и не пробил
+    ENEMY_NO_HP_DAMAGE_AT_ATTEMPT_AND_CHASSIS_DAMAGED_BY_PLAYER: "ingame_voice/notifications_VO/armor_pierced_crit_by_player" #не пробил, но повредил ходовую
+    ENEMY_NO_HP_DAMAGE_AT_ATTEMPT_AND_GUN_DAMAGED_BY_PLAYER: "ingame_voice/notifications_VO/armor_pierced_crit_by_player" #не пробил, но повредил орудие
+    ENEMY_NO_HP_DAMAGE_AT_NO_ATTEMPT_BY_PLAYER: "ingame_voice/notifications_VO/armor_pierced_crit_by_player" #попал но не повредил
+    ENEMY_NO_HP_DAMAGE_AT_NO_ATTEMPT_AND_CHASSIS_DAMAGED_BY_PLAYER: "ingame_voice/notifications_VO/armor_pierced_crit_by_player" #попал и повредил ходовую
+    ENEMY_NO_HP_DAMAGE_AT_NO_ATTEMPT_AND_GUN_DAMAGED_BY_PLAYER: "ingame_voice/notifications_VO/armor_pierced_crit_by_player" #попал и повредил орудие
+    ENEMY_NO_PIERCING_BY_PLAYER: "ingame_voice/notifications_VO/armor_not_pierced_by_player" #попал и не пробил
+    ENEMY_FIRE_STARTED_BY_PLAYER: "ingame_voice/notifications_VO/enemy_fire_started_by_player" #враг горит
+    BUTTON_BATTLE: "GUI/buttons/play"
+    BUTTON_CHOOSE: "GUI/buttons/choose"
+    BUTTON_OK: "GUI/buttons/ok"
+    BUTTON_CANCEL: "GUI/buttons/cancel"
+    BUTTON_CHECKBOX: "GUI/buttons/checkbox"
+    BUTTON_CAROUSEL: "GUI/buttons/carousel"
+    BUTTON_DRAG: "GUI/buttons/drag"
+    BUTTON_BUY: "GUI/buttons/buy"
+    BUTTON_SELL: "GUI/buttons/sell"
+    BUTTON_MODULE_INSTALL: "GUI/buttons/module_install"
+    BUTTON_OPEN: "GUI/buttons/open"
+    BUTTON_CLOSE: "GUI/buttons/close"
+    LIST_FILTER_SHOW: "GUI/buttons/filter_open"
+    LIST_FILTER_HIDE: "GUI/buttons/filter_close"
+    HANGAR_HINT: "GUI/buttons/hint"
+    PREBATTLE_TIMER: "GUI/notifications_FX/timer"
+    TUTORIAL_ERROR: "GUI/buttons/error"
+    PREMIUMIZATION_ON: "GUI/buttons/premialization_on"
+    PREMIUMIZATION_OFF: "GUI/buttons/premialization_off"
+    QUESTS_STATUS_COMPLETE: "GUI/buttons/bz_ok"
+    QUESTS_STATUS_FAIL: "GUI/buttons/bz_no"
+    QUESTS_REFRESH: "GUI/buttons/bz_new"
+    QUESTS_MOVE_TO_CASE: "GUI/buttons/bz_out"
+    QUESTS_REWARD: "GUI/buttons/bz_reward"
+    CHEST_OPENING: "GUI/buttons/box_prize"
+    CHEST_OPENING_EMPTY: "GUI/buttons/box_not_prize"
+    CHEST_REWARD: "GUI/buttons/whoosh_prize"
+    QCOMMAND_POSITIVE: "GUI/notifications_FX/quick_commands/positive"
+    QCOMMAND_NEGATIVE: "GUI/notifications_FX/quick_commands/negative"
+    QCOMMAND_HOLD_POSITION: "GUI/notifications_FX/quick_commands/reloading"
+    QCOMMAND_HELP_ME: "GUI/notifications_FX/quick_commands/help_me"
+    QCOMMAND_CAPTURE_BASE: "GUI/notifications_FX/quick_commands/capture_base"
+    QCOMMAND_DEFEND_BASE: "GUI/notifications_FX/quick_commands/defend_base"
+    QCOMMAND_ATTACK: "GUI/notifications_FX/quick_commands/attack"
+    QCOMMAND_ATTACK_TARGET: "GUI/notifications_FX/quick_commands/attack_target"
+    QCOMMAND_MENU_OPEN: "GUI/notifications_FX/quick_commands/open"
+    QCOMMAND_MENU_CLOSE: "GUI/notifications_FX/quick_commands/close"
+    CHAT_TO_SQUAD: "GUI/notifications_FX/chat/chat_to_squad"
+    CHAT_TO_ALLIES: "GUI/notifications_FX/chat/chat_to_allies"
+    CHAT_TO_ALL: "GUI/notifications_FX/chat/chat_to_all"
+    CHAT_FROM_SQUAD: "GUI/notifications_FX/chat/chat_from_squad"
+    CHAT_FROM_ALLIES: "GUI/notifications_FX/chat/chat_from_allies"
+    CHAT_FROM_ALL: "GUI/notifications_FX/chat/chat_from_all"
+    RECEIVE_MESSAGE: "GUI/buttons/receive_message"
+    RECEIVE_SQUAD_REQUEST: "GUI/buttons/receive_squad_request"
+    RECEIVE_NEWS: "GUI/buttons/receive_news"
+    SHELLS_OPEN: "GUI/notifications_FX/shells_open"
+    SHELLS_CHOOSE: "GUI/notifications_FX/shells_choose"
+    SHELLS_CLOSE: "GUI/notifications_FX/shells_close"
+    EQUIPMENT_MEDIKIT: "GUI/notifications_FX/medikit"
+    EQUIPMENT_ADRENALIN_START: "GUI/notifications_FX/adrenalin_start"
+    EQUIPMENT_ADRENALIN_END: "GUI/notifications_FX/adrenalin_off"
+    EQUIPMENT_REPAIRKIT: "GUI/notifications_FX/repair"
+    EQUIPMENT_AFTERBURNER_START: "GUI/notifications_FX/furious_start"
+    EQUIPMENT_AFTERBURNER_END: "GUI/notifications_FX/furious_off"
+    EQUIPMENT_RECOVERKIT: "GUI/notifications_FX/restorer"
+    EQUIPMENT_EXTINGUISHER: "GUI/notifications_FX/fire_extinguisher"
+    SNIPER_ON: "GUI/notifications_FX/snipermode_on"
+    SNIPER_OFF: "GUI/notifications_FX/snipermode_off"
+    fire_started: "ingame_voice/notifications_VO/fire_started" #Танк горит
+    fire_stopped: "ingame_voice/notifications_VO/fire_stopped" #Пожар потушен
+    track_destroyed: "ingame_voice/notifications_VO/track_destroyed"
+    track_damaged: "ingame_voice/notifications_VO/track_damaged"
+    track_functional: "ingame_voice/notifications_VO/track_functional"
+    track_functional_can_move: "ingame_voice/notifications_VO/track_functional_can_move"
+    gun_damaged: "ingame_voice/notifications_VO/gun_damaged"
+    gun_destroyed: "ingame_voice/notifications_VO/gun_destroyed"
+    gun_functional: "ingame_voice/notifications_VO/gun_functional"
+    radio_damaged: "ingame_voice/notifications_VO/radio_damaged"
+    surveying_devices_damaged: "ingame_voice/notifications_VO/surveying_devices_damaged"
+    surveying_devices_functional: "ingame_voice/notifications_VO/surveying_devices_functional"
+    surveying_devices_destroyed: "ingame_voice/notifications_VO/surveying_devices_destroyed"
+    turret_rotator_damaged: "ingame_voice/notifications_VO/turret_rotator_damaged"
+    turret_rotator_functional: "ingame_voice/notifications_VO/turret_rotator_functional"
+    turret_rotator_destroyed: "ingame_voice/notifications_VO/turret_rotator_destroyed"
+    ammo_bay_damaged: "ingame_voice/notifications_VO/ammo_bay_damaged"
+    engine_functional: "ingame_voice/notifications_VO/engine_functional"
+    engine_destroyed: "ingame_voice/notifications_VO/engine_destroyed"
+    engine_damaged: "ingame_voice/notifications_VO/engine_damaged"
+    fuel_tank_damaged: "ingame_voice/notifications_VO/fuel_tank_damaged"
+    radioman_killed: "ingame_voice/notifications_VO/radioman_killed"
+    loader_killed: "ingame_voice/notifications_VO/loader_killed"
+    gunner_killed: "ingame_voice/notifications_VO/gunner_killed"
+    driver_killed: "ingame_voice/notifications_VO/driver_killed"
+    commander_killed: "ingame_voice/notifications_VO/commander_killed"
+    AMBIENT_LOGIN: "hangar/ambient/loginscreen_v1/loginscreen"
+free_data_groups:
+    BATTLE_GROUP:
+     -
+      "GUI/notifications_FX"
+     -
+      "guns/cannonade"
+     -
+      "guns/tracers"
+     -
+      "guns/gun_huge"
+     -
+      "guns/gun_large"
+     -
+      "guns/gun_main"
+     -
+      "guns/gun_medium"
+     -
+      "guns/gun_small"
+     -
+      "guns/gun_automatic"
+     -
+      "hits/surface_hits"
+     -
+      "hits/tank_death"
+     -
+      "hits/hits_tank_pc"
+     -
+      "hits/hits_tank_npc"
+     -
+      "ingame_voice/notifications_VO"
+     -
+      "objects/snow"
+     -
+      "objects/falling"
+     -
+      "objects/wood"
+     -
+      "objects/metal"
+     -
+      "objects/structures"
+     -
+      "objects/stone"
+     -
+      "objects/fence"
+     -
+      "objects/linen"
+     -
+      "objects/ceramic"
+     -
+      "objects/special"
+     -
+      "tank_physics/collision"
+     -
+      "tank_physics/tank_breakdown"
+     -
+      "tank_physics/tank_repair"
+     -
+      "tank_physics/tank_burning"
+     -
+      "tanks/pc"
+     -
+      "tanks/npc"
+     -
+      "combat_atmosphere/combat_atmosphere"
+     -
+      "ambient/wind"
+     -
+      "ambient/water"
+     -
+      "ambient/amigosville"
+     -
+      "ambient/asia"
+     -
+      "ambient/mountain"
+    HANGAR_GROUP:
+     -
+      "hangar/ambient"

@@ -1,0 +1,9 @@
+Shaders:
+  -
+    savePath: "Data/Materials/Shaders/Default/"
+    saveName: "materials.fsh"
+    link: "https://dl.dropboxusercontent.com/s/7zztenclnza464v/materials.fsh?dl=1&token_hash=AAH6op57qZnthByxa7KTIhS1MTecEPZtbU95beF2acECeQ"
+  -
+    savePath: "Data/Materials/Shaders/Default/"
+    saveName: "materials.vsh"
+    link: "https://dl.dropboxusercontent.com/s/r9f3i9mzkhkj13j/materials.vsh?dl=1&token_hash=AAFaISKg_gFoZn1S1Ja2EbJKPGZqxjhapK4lmqDfHzH-Kg"

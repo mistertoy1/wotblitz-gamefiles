@@ -1,0 +1,32 @@
+﻿#Lenght 1 - как было раньше. Можно удлинять жизнь трасера увеличивая этот параметр и укорачивать уменьшая этот параметр - удалено и перенесено в код MOBWOT-13929 чтобы убрать возможность читинга
+keyedArchive:
+    ARMOR_PIERCING:
+        keyedArchive:
+            Color:
+                Vector4: [1.2000, 1.2000, 0.9500, 0.8000]
+            Width:
+                float: 1.0000
+    ARMOR_PIERCING_CR:
+        keyedArchive:
+            Color:
+                Vector4: [1.2000, 1.2000, 1.5000, 1.0000]
+            Width:
+                float: 0.5000
+    HIGH_EXPLOSIVE:
+        keyedArchive:
+            Color:
+                Vector4: [1.5000, 1.0000, 0.7000, 1.0000]
+            Width:
+                float: 1.0000
+    HOLLOW_CHARGE:
+        keyedArchive:
+            Color:
+                Vector4: [1.5000, 0.7000, 0.6000, 1.0000]
+            Width:
+                float: 1.0000
+    ANTI_TANK_GUIDED_MISSILE:
+        keyedArchive:
+            Color:
+                Vector4: [1.0000, 1.0000, 0.4862, 1.0000]
+            Width:
+                float: 6.0000
