@@ -1,0 +1,35 @@
+Header:
+    version: "85"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Tooltip.yaml"
+Controls:
+-   class: "UIControl"
+    name: "NormalAmmoSell"
+    size: [32.000000, 32.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            events:
+            - "FINISH_HIDE_POPUP_ANIMATION"
+    children:
+    -   prototype: "Tooltip/Slave"
+        name: "Slave"
+        position: [-84.000000, 65.000000]
+        components:
+            UIDataParamsComponent:
+                args:
+                    "offset": "0"
+                    "isAlignLeft": "false"
+                    "buttonVisible": "false"
+                    "rewardVisible": "false"
+                    "slaveAlign": "ePositionAlign.Bottom"
+                    "resource": "{ }"
+                    "title": "\"\""
+                    "text": "\"hangarTutorial/Funnel/Ammo/SellPrimaryAmmo\""
+                    "colorClass": "\"color=white-wild-sand-text\""
+                    "masterId": "\"TUTORIAL_HIGHLIGHT\""
+                eventActions:
+                - ["FINISH_HIDE_POPUP_ANIMATION", "FINISH_HIDE_POPUP_ANIMATION", ""]

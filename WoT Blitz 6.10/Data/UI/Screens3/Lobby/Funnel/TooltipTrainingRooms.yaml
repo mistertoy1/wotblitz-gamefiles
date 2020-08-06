@@ -1,0 +1,31 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/TooltipLeft.yaml"
+Controls:
+-   class: "UIControl"
+    name: "TrainingRoom"
+    size: [450.000000, 128.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            events:
+            - "FINISH_HIDE_POPUP_ANIMATION"
+    children:
+    -   prototype: "TooltipLeft/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "offset": "0"
+                    "isAlignLeft": "false"
+                    "buttonVisible": "false"
+                    "rewardVisible": "false"
+                    "resource": "{ }"
+                    "title": "\"hangarTutorial/Funnel/TrainingRoom/Header\""
+                    "text": "\"hangarTutorial/Funnel/TrainingRoom\""
+                    "colorClass": "\"color=white-wild-sand-text\""
+                    "masterId": "\"TRAINING_ROOMS\""

@@ -1,0 +1,37 @@
+Header:
+    version: "83"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Tooltip.yaml"
+Controls:
+-   class: "UIControl"
+    name: "BoostersEffect"
+    size: [32.000000, 32.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            events:
+            - "POPUP_ON_CLOSE_ACTION"
+            - "FINISH_HIDE_POPUP_ANIMATION"
+    children:
+    -   prototype: "Tooltip/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "offset": "0"
+                    "isAlignLeft": "true"
+                    "buttonVisible": "false"
+                    "rewardVisible": "false"
+                    "slaveAlign": "ePositionAlign.Default"
+                    "resource": "{ }"
+                    "title": "\"\""
+                    "text": "\"hangarTutorial/Funnel/BoostersEffect\""
+                    "colorClass": "\"color=white-wild-sand-text\""
+                    "masterId": "\"TUTORIAL_HIGHLIGHT\""
+                eventActions:
+                - ["POPUP_ON_CLOSE_ACTION", "POPUP_ON_CLOSE_ACTION", ""]
+                - ["CONTINUE", "", ""]
+                - ["FINISH_HIDE_POPUP_ANIMATION", "FINISH_HIDE_POPUP_ANIMATION", ""]

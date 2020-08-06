@@ -1,0 +1,34 @@
+Header:
+    version: "76"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Tooltip.yaml"
+Controls:
+-   class: "UIControl"
+    name: "TooltipChat"
+    size: [370.000000, 128.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            events:
+            - "FINISH_HIDE_POPUP_ANIMATION"
+    children:
+    -   prototype: "Tooltip/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "isAlignLeft": "false"
+                    "buttonVisible": "false"
+                    "rewardVisible": "false"
+                    "slaveAlign": "ePositionAlign.Left"
+                    "resource": "{ }"
+                    "title": "\"hangarTutorial/Funnel/Chat/Header\""
+                    "text": "\"hangarTutorial/Funnel/Chat\""
+                    "colorClass": "\"color=white-wild-sand-text\""
+                    "masterId": "\"CHAT\""
+                eventActions:
+                - ["CONTINUE", "", ""]
+                - ["FINISH_HIDE_POPUP_ANIMATION", "FINISH_HIDE_POPUP_ANIMATION", ""]

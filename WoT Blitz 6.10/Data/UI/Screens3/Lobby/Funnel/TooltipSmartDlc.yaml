@@ -1,0 +1,33 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/TooltipBig.yaml"
+Controls:
+-   class: "UIControl"
+    name: "TooltipCrewMasteryParams"
+    size: [592.000000, 160.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            events:
+            - "FINISH_HIDE_POPUP_ANIMATION"
+            - "POPUP_ON_CLOSE_ACTION"
+    children:
+    -   prototype: "TooltipBig/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "offset": "0"
+                    "isAlignLeft": "true"
+                    "buttonVisible": "false"
+                    "rewardVisible": "false"
+                    "slaveAlign": "ePositionAlign.Bottom"
+                    "resource": "{ }"
+                    "title": "\"\""
+                    "text": "\"dlc/MainScreen/Hint\""
+                    "colorClass": "\"color=white-wild-sand-text\""
+                    "masterId": "\"TUTORIAL_HIGHLIGHT\""

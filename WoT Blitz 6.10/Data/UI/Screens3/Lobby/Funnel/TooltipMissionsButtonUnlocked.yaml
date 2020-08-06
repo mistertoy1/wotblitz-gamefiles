@@ -1,0 +1,34 @@
+Header:
+    version: "80"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/TooltipLeft.yaml"
+Controls:
+-   class: "UIControl"
+    name: "TooltipMissionsButtonUnlocked"
+    size: [432.000000, 164.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            events:
+            - "FINISH_HIDE_POPUP_ANIMATION"
+    children:
+    -   prototype: "TooltipLeft/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "offset": "0"
+                    "isAlignLeft": "true"
+                    "buttonVisible": "false"
+                    "rewardVisible": "false"
+                    "resource": "{ }"
+                    "title": "\"hangarTutorial/Funnel/CompleteMissions/Header\""
+                    "text": "\"hangarTutorial/Funnel/CompleteMissions\""
+                    "colorClass": "\"color=white-wild-sand-text\""
+                    "masterId": "\"MISSIONS_BUTTON_UNLOCKED\""
+                eventActions:
+                - ["CONTINUE", "", ""]
+                - ["FINISH_HIDE_POPUP_ANIMATION", "FINISH_HIDE_POPUP_ANIMATION", ""]

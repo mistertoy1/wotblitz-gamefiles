@@ -1,0 +1,32 @@
+Header:
+    version: "85"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Dialog/TextDialog.yaml"
+Controls:
+-   class: "UIControl"
+    name: "LowerYourSettingsOfferDialog"
+    size: [1024.000000, 640.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+    children:
+    -   prototype: "TextDialog/TextDialog"
+        name: "InfoTextDialog"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "accentButtonType": "eButtonType.POSITIVE"
+                    "type": "eDialogType.CHOOSE"
+                    "header": "\"\""
+                    "headerImage": "\"\""
+                    "accentButton": "localize(\"#settings:Graphics/UnstableBehaviour/OK\")"
+                    "optionalButton": "localize(\"#settings:Graphics/UnstableBehaviour/Cancel\")"
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/Dialog/TextContent.yaml\", { contentText = localize(\"#settings:Graphics/UnstableBehaviour/Notification\"); }, [ ])"
+                eventActions:
+                - ["START_CLOSING_ANIMATION", "", ""]
+                - ["ACCENT_CLICKED", "SETTINGS_SELECT", ""]
+                - ["OPTIONAL_CLICKED", "CANCEL", ""]

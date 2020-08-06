@@ -1,0 +1,41 @@
+Header:
+    version: "93"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Tooltip.yaml"
+Controls:
+-   class: "UIControl"
+    name: "TooltipXnCertificate"
+    size: [330.000000, 96.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["int", "modifier", "0", "2"]
+            events:
+            - "FINISH_HIDE_POPUP_ANIMATION"
+        UIDataLocalsComponent:
+            locals:
+            - ["control", "customContent", "control(\"~res:/UI/Screens3/Lobby/Common/BonusFactor.yaml\", { factor = modifier; type = eBonusFactor.kCertificateXP; }, [ ])"]
+    children:
+    -   prototype: "Tooltip/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "offset": "0"
+                    "isAlignLeft": "false"
+                    "buttonVisible": "false"
+                    "rewardVisible": "false"
+                    "slaveAlign": "ePositionAlign.Top"
+                    "resource": "{ }"
+                    "title": "\"\""
+                    "text": "localize(\"hangarTutorial/Funnel/XnCertificate/CommonXp\")"
+                    "colorClass": "\"color=white-wild-sand-text\""
+                    "masterId": "\"TANKS_PANEL_HINT\""
+                    "customContent": "customContent"
+                eventActions:
+                - ["CONTINUE", "", ""]
+                - ["FINISH_HIDE_POPUP_ANIMATION", "FINISH_HIDE_POPUP_ANIMATION", ""]

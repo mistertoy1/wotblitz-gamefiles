@@ -1,0 +1,38 @@
+Header:
+    version: "83"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Tooltip.yaml"
+Controls:
+-   class: "UIControl"
+    name: "ShareBattleResults"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["TutorialDataModel", "tutorialData", "{ }", "{ }"]
+            events:
+            - "POPUP_ON_CLOSE_ACTION"
+            - "FINISH_HIDE_POPUP_ANIMATION"
+    children:
+    -   prototype: "Tooltip/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "offset": "0"
+                    "isAlignLeft": "false"
+                    "buttonVisible": "false"
+                    "rewardVisible": "not isNull(tutorialData.currentLessonBonus)"
+                    "slaveAlign": "ePositionAlign.Top"
+                    "resource": "tutorialData.currentLessonBonus"
+                    "title": "\"\""
+                    "text": "\"#hangar_tutorial:ResultScreen/sharing/no_gold/hint\""
+                    "colorClass": "\"color=white-wild-sand-text\""
+                    "masterId": "\"TUTORIAL_HIGHLIGHT\""
+                eventActions:
+                - ["POPUP_ON_CLOSE_ACTION", "POPUP_ON_CLOSE_ACTION", ""]
+                - ["CONTINUE", "", ""]
+                - ["FINISH_HIDE_POPUP_ANIMATION", "FINISH_HIDE_POPUP_ANIMATION", ""]

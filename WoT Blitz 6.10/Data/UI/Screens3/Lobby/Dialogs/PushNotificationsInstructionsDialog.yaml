@@ -1,0 +1,32 @@
+Header:
+    version: "85"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Dialog/TextDialog.yaml"
+Controls:
+-   class: "UIControl"
+    name: "PushNotificationsInstructionsDialog"
+    size: [1024.000000, 640.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+    children:
+    -   prototype: "TextDialog/TextDialog"
+        name: "Dialog"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "accentButtonType": "eButtonType.POSITIVE"
+                    "type": "eDialogType.INFO"
+                    "header": "\"\""
+                    "headerImage": "\"\""
+                    "accentButton": "localize(\"#common:DialogButton/OK\")"
+                    "optionalButton": "localize(\"#common:DialogButton/Cancel\")"
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/Dialog/TextContent.yaml\", { contentText = localize(\"SETTINGS_PUSH_NOTIFICATIONS_INSTRUCTION_SETTINGS\"); }, [ ])"
+                eventActions:
+                - ["START_CLOSING_ANIMATION", "", ""]
+                - ["ACCENT_CLICKED", "ACCENT_CLICKED", ""]
+                - ["OPTIONAL_CLICKED", "ACCENT_CLICKED", ""]

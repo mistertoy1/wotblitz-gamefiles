@@ -1,0 +1,37 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Tooltip.yaml"
+Controls:
+-   class: "UIControl"
+    name: "TooltipXPBonus"
+    size: [330.000000, 96.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["int", "modifier", "0", "2"]
+            events:
+            - "FINISH_HIDE_POPUP_ANIMATION"
+    children:
+    -   prototype: "Tooltip/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "offset": "0"
+                    "isAlignLeft": "false"
+                    "buttonVisible": "false"
+                    "rewardVisible": "false"
+                    "slaveAlign": "ePositionAlign.Top"
+                    "resource": "{ }"
+                    "title": "\"\""
+                    "text": "localize(\"hangarTutorial/Funnel/XPBonus\", { x2 = \"x\" + str(modifier); })"
+                    "colorClass": "\"color=white-wild-sand-text\""
+                    "masterId": "\"BONUS_HINT\""
+                eventActions:
+                - ["CONTINUE", "", ""]
+                - ["FINISH_HIDE_POPUP_ANIMATION", "FINISH_HIDE_POPUP_ANIMATION", ""]

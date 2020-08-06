@@ -1,0 +1,36 @@
+Header:
+    version: "85"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Tooltip.yaml"
+Controls:
+-   class: "UIControl"
+    name: "GoldAmmoInfo"
+    size: [400.000000, 144.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            events:
+            - "POPUP_ON_CLOSE_ACTION"
+            - "FINISH_HIDE_POPUP_ANIMATION"
+    children:
+    -   prototype: "Tooltip/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "offset": "0"
+                    "isAlignLeft": "false"
+                    "buttonVisible": "true"
+                    "rewardVisible": "false"
+                    "slaveAlign": "ePositionAlign.Left"
+                    "resource": "{ }"
+                    "title": "\"\""
+                    "text": "\"hangarTutorial/Funnel/Ammo/SecondaryAmmoInfo\""
+                    "colorClass": "\"color=white-wild-sand-text\""
+                    "masterId": "\"TUTORIAL_HIGHLIGHT\""
+                eventActions:
+                - ["CONTINUE", "POPUP_ON_CLOSE_ACTION", ""]
+                - ["FINISH_HIDE_POPUP_ANIMATION", "FINISH_HIDE_POPUP_ANIMATION", ""]

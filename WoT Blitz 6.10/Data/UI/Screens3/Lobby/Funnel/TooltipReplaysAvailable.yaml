@@ -1,0 +1,34 @@
+Header:
+    version: "75"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Tooltip.yaml"
+Controls:
+-   class: "UIControl"
+    name: "TooltipReplaysAvailable"
+    size: [475.000000, 128.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            events:
+            - "FINISH_HIDE_POPUP_ANIMATION"
+    children:
+    -   prototype: "Tooltip/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "isAlignLeft": "true"
+                    "buttonVisible": "false"
+                    "rewardVisible": "false"
+                    "slaveAlign": "ePositionAlign.Right"
+                    "resource": "{ }"
+                    "title": "\"hangarTutorial/Funnel/ReplaysAvailable/Header\""
+                    "text": "\"hangarTutorial/Funnel/ReplaysAvailable\""
+                    "colorClass": "\"color=white-wild-sand-text\""
+                    "masterId": "\"PROFILE_BUTTON\""
+                eventActions:
+                - ["CONTINUE", "", ""]
+                - ["FINISH_HIDE_POPUP_ANIMATION", "FINISH_HIDE_POPUP_ANIMATION", ""]
