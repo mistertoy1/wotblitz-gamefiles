@@ -1,0 +1,33 @@
+keyedArchive:
+    Linear Velocity(m/sec):
+        keyedArchive:
+            min:
+                float: 3.0
+            max:
+                float: 50.0
+            value:
+                float: 3.0
+    Angular Velocity(deg/sec):
+        keyedArchive:
+            min:
+                float: 1.0
+            max:
+                float: 10.00
+            value:
+                float: 5.00
+    Keyboard Rotation Velocity:
+        keyedArchive:
+            min:
+                float: 10.0
+            max:
+                float: 200.00
+            value:
+                float: 50.00
+    Smooth Velocity:
+        keyedArchive:
+            min:
+                float: 1.0
+            max:
+                float: 5.00
+            value:
+                float: 5.00

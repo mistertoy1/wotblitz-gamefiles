@@ -1,0 +1,9 @@
+defaultPreset: Compatible
+quantile: 0.7
+rules:
+  - preset: AutoLow
+    minScore: 14
+  - preset: AutoMedium
+    minScore: 40
+  - preset: AutoHigh
+    minScore: 49

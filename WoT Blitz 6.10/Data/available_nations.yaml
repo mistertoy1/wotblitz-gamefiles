@@ -1,0 +1,10 @@
+available_nations:
+    - "usa"
+    - "germany"
+    - "ussr"
+    - "uk"
+    - "japan"
+    - "china"
+    - "france"
+    - "european"
+    - "other"

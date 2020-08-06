@@ -1,0 +1,24 @@
+High:
+    maxDistanceThirdPerson: 100
+    maxDistanceSniper: 250
+    minEnemies: 3
+    minAllies: 3
+    maxPieces: 40
+Medium:
+    maxDistanceThirdPerson: 75
+    maxDistanceSniper: 125
+    minEnemies: 2
+    minAllies: 2
+    maxPieces: 30
+Low:
+    maxDistanceThirdPerson: 50
+    maxDistanceSniper: 75
+    minEnemies: 2
+    minAllies: 1
+    maxPieces: 25
+Compatible:
+    maxDistanceThirdPerson: 50
+    maxDistanceSniper: 75
+    minEnemies: 2
+    minAllies: 1
+    maxPieces: 25

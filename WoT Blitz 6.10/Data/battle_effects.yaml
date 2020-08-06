@@ -1,0 +1,124 @@
+healingKit:
+    common: true    
+    effects:
+    -   tankPart: "turret"
+        tankBBPoint: "center"
+        path: "~res:/3d/FX/abilities/healing_sparks.sc2"
+damageBoost:
+    abilities:
+    -   damageBoost
+    -   damageBoostII
+    effects:
+    -   tankPart: "hull"
+        tankBBPoint: "center"
+        path: "~res:/3d/FX/halloween2019/DamageIncrease.sc2"
+engineBoost:
+    abilities:
+    -   engineBoost
+    -   engineBoostII
+    effects:
+    -   tankPart: "leftTrack"
+        tankBBPoint: "x0_y0_center"
+        path: "~res:/3d/FX/halloween2019/Dash.sc2"
+    -   tankPart: "rightTrack"
+        tankBBPoint: "x0_y0_center"
+        path: "~res:/3d/FX/halloween2019/Dash.sc2"
+curse:
+    abilities:
+    -   curse
+    effects:
+    -   tankPart: "hull"
+        tankBBPoint: "center"
+        path: "~res:/3d/FX/halloween2019/Spell_Bat_one.sc2"
+moonwalkStart:
+    abilities:
+    -   respawnMoonwalk
+    -   moonwalkHellgames
+    -   moonwalk
+    effects:
+    -   tankPart: "hull"
+        tankBBPoint: "center"
+        path: "~res:/3d/FX/halloween_skills/moonwalk.sc2"
+moonwalkEnd:
+    abilities:
+    -   respawnMoonwalk
+    -   moonwalkHellgames
+    -   moonwalk
+    effects:
+    -   tankPart: "hull"
+        tankBBPoint: "center"
+        path: "~res:/3d/FX/halloween_skills/moonwalk_out.sc2"
+reloadBoostShort:
+    abilities:
+    -   reloadBoost
+    -   reloadBoostII
+    effects:
+    -   tankPart: "gun"
+        tankBBPoint: "x1_y1_z1_center"
+        path: "~res:/3d/FX/halloween2019/Reload_Halloween_short.sc2"
+reloadBoostMedium:
+    abilities:
+    -   reloadBoost
+    -   reloadBoostII
+    effects:
+    -   tankPart: "gun"
+        tankBBPoint: "x1_y1_z1_center"
+        path: "~res:/3d/FX/halloween2019/Reload_Halloween.sc2"
+reloadBoostLong:
+    abilities:
+    -   reloadBoost
+    -   reloadBoostII
+    effects:
+    -   tankPart: "gun"
+        tankBBPoint: "x1_y1_z1_center"
+        path: "~res:/3d/FX/halloween2019/Reload_Halloween_long.sc2"
+tornado:
+    abilities:
+    -   tornadoHellgames
+    effects:
+    -   tankPart: "hull"
+        tankBBPoint: "center"
+        path: "~res:/3d/FX/halloween2019/Tornado.sc2"
+returnInTime:
+    abilities:
+    -   returnInTime
+    effects:
+    -   tankPart: "hull"
+        tankBBPoint: "center"
+        path: "~res:/3d/FX/halloween2019/Time_RollBack.sc2"
+huntersMark:
+    abilities:
+    -   hunters_mark
+    -   huntersMarkHellgames
+    effects:
+    -   tankPart: "hull"
+        tankBBPoint: "center"
+        path: "~res:/3d/FX/halloween_skills/DarkSkill.sc2"
+lifestealHeal:
+    abilities:
+    -   lifesteal_heal
+    effects:
+    -   tankPart: "hull"
+        tankBBPoint: "center"
+        path: "~res:/3d/FX/halloween_skills/heal.sc2"
+lifestealDamage:
+    abilities:
+    -   lifesteal_heal
+    effects:
+    -   tankPart: "hull"
+        tankBBPoint: "center"
+        path: "~res:/3d/FX/halloween_skills/vampirism.sc2"
+shield:
+    abilities:
+    -   shield
+    effects:
+    -   tankPart: "hull"
+        tankBBPoint: "center"
+        path: "~res:/3d/FX/halloween_skills/shield.sc2"
+berserk:
+    abilities:
+    -   sacrifice
+    effects:
+    -   tankPart: "hull"
+        tankBBPoint: "center"
+        path: "~res:/3d/FX/halloween_skills/berserk.sc2"

@@ -1,0 +1,269 @@
+keyedArchive:
+    altShellAvgDamage: 
+        keyedArchive: {}
+    altShellAvgPiercingPower: 
+        keyedArchive: {}
+    avgSpeed:
+        keyedArchive:
+            units:  
+                string: 'KILOMETER_PER_HOUR'
+    baseShellAvgDamage: 
+        keyedArchive: {}
+    baseShellAvgPiercingPower: 
+        keyedArchive: {}
+    chassiMaxLoad:
+        keyedArchive:
+            units:  
+                string: 'TON'
+    chassiRotationSpeed:
+        keyedArchive:
+            digits:
+                int32: 2
+            units:  
+                string: 'DEGREE_PER_SECOND'
+    circularVisionRadius:
+        keyedArchive:
+            digits:
+                int32: 1
+    engineFireStartingChance:
+        keyedArchive:
+            units:
+                string: 'PERCENT'
+            biggerIsBetter:
+                bool: false
+    enginePower:
+        keyedArchive:
+            digits: 
+                int32: 1
+            units:
+                string: 'HORSE_POWER'
+    gunAimingTime:
+        keyedArchive:
+            digits:
+                int32: 1
+            biggerIsBetter:  
+                bool: false
+    gunBurstCapacity:
+        keyedArchive: {}
+    gunBurstShellCount: 
+        keyedArchive: {}
+    gunClipBurstCount: 
+        keyedArchive: {}
+    gunClipBurstReloadTime:
+        keyedArchive:
+            digits: 
+                int32: 2
+            biggerIsBetter:
+                bool: false    
+    gunClipCapacity: 
+        keyedArchive: {}
+    gunClipReloadTime:
+        keyedArchive:
+            digits: 
+                int32: 2
+            biggerIsBetter:
+                bool: false
+    gunClipShellCount: 
+        keyedArchive: {}
+    gunClipShellReloadTime:
+        keyedArchive:
+            digits: 
+                int32: 2
+            biggerIsBetter:
+                bool: false 
+    timeBetweenPumpShots:
+        keyedArchive:
+            digits: 
+                int32: 2
+            biggerIsBetter:
+                bool: false
+    gunCommonDamagePerMin: 
+        keyedArchive: {}
+    gunCommonReloadTime:
+        keyedArchive:
+            digits: 
+                int32: 2
+            biggerIsBetter:
+                bool: false
+    gunDamageForComparing:
+        keyedArchive: {}
+    gunPitchLimits:
+        keyedArchive:
+            units:  
+                string: 'DEGREE'
+    gunPitchMaxLimit:
+        keyedArchive:
+            units:  
+                string: 'DEGREE'
+    gunPitchMinLimit:
+        keyedArchive:
+            biggerIsBetter:  
+                bool: false
+            units:  
+                string: 'DEGREE'
+    gunPitchUpLimit:
+        keyedArchive:
+            units:  
+                string: 'DEGREE'
+    gunPitchDownLimit:
+        keyedArchive:
+            units:  
+                string: 'DEGREE'
+    gunShellReloadTime:
+        keyedArchive:
+            digits: 
+                int32: 2
+            biggerIsBetter:
+                bool: false
+    gunShotDispersionRadius:
+        keyedArchive:
+            digits: 
+                int32: 3
+            biggerIsBetter:  
+                bool: false
+    gunShotsPerMinute:
+        keyedArchive:
+            digits: 
+                int32: 1
+    hasTurret:
+        keyedArchive: {} 
+    pumpGunMode:
+        keyedArchive: {}        
+    reloadingShellTime0:
+        keyedArchive:
+            digits: 
+                int32: 2
+            biggerIsBetter:  
+                bool: false
+    reloadingShellTime1:
+        keyedArchive:
+            digits: 
+                int32: 2
+            biggerIsBetter:  
+                bool: false
+    reloadingShellTime2:
+        keyedArchive:
+            digits: 
+                int32: 2
+            biggerIsBetter:  
+                bool: false
+    reloadingShellTime3:
+        keyedArchive:
+            digits: 
+                int32: 2
+            biggerIsBetter:  
+                bool: false
+    reloadingShellTime4:
+        keyedArchive:
+            digits: 
+                int32: 2
+            biggerIsBetter:  
+                bool: false
+    reloadingShellTime5:
+        keyedArchive:
+            digits: 
+                int32: 2
+            biggerIsBetter:  
+                bool: false
+    healthBurnPerSec:
+        keyedArchive:
+            digits: 
+                int32: 1
+            biggerIsBetter: 
+                bool: false
+    hullAverageThickness:
+        keyedArchive:
+            digits:
+                int32: 1
+    maxBackSpeed:
+        keyedArchive:
+            units:  
+                string: 'KILOMETER_PER_HOUR'
+    maxFrontSpeed:
+        keyedArchive:
+            units:  
+                string: 'KILOMETER_PER_HOUR'
+    maxHealth: 
+        keyedArchive: {}
+    movingInvisibility:
+        keyedArchive:
+            units:  
+                string: 'PERCENT'
+    premShellAvgDamage: 
+        keyedArchive: {}
+    premShellAvgPiercingPower: 
+        keyedArchive: {}
+    primaryArmorFront: 
+        keyedArchive: {}
+    primaryArmorSide: 
+        keyedArchive: {}
+    primaryArmorRear: 
+        keyedArchive: {}
+    shotInvisibility:
+        keyedArchive:
+            units:  
+                string: 'PERCENT'
+    stillInvisibility:
+        keyedArchive:
+            units:  
+                string: 'PERCENT'
+    terrainPermeabilityFirm:
+        keyedArchive:
+            units:  
+                string: 'PERCENT'
+    terrainPermeabilityMedium:
+        keyedArchive:
+            units:  
+                string: 'PERCENT'
+    terrainPermeabilitySoft:
+        keyedArchive:
+            units:  
+                string: 'PERCENT'
+    thrustToWeightRatio:
+        keyedArchive:
+            digits:
+                int32: 1
+            units:
+                string: 'HORSE_POWER_PER_TON'
+    turretArmorFront: 
+        keyedArchive: {}
+    turretArmorSide: 
+        keyedArchive: {}
+    turretArmorRear: 
+        keyedArchive: {}
+    turretRotationSpeed:
+        keyedArchive:
+            digits:
+                int32: 2
+            units:  
+                string: 'DEGREE_PER_SECOND'
+    turretYawLimits:
+        keyedArchive:
+            units:  
+                string: 'DEGREE'
+    turretYawMaxLimit:
+        keyedArchive:
+            units:  
+                string: 'DEGREE'
+    turretYawMinLimit:
+        keyedArchive:
+            biggerIsBetter:  
+                bool: false
+            units:  
+                string: 'DEGREE'
+    turretYawLeftLimit:
+        keyedArchive:
+            units:  
+                string: 'DEGREE'
+    turretYawRightLimit:
+        keyedArchive:
+            units:  
+                string: 'DEGREE'
+    weight:
+        keyedArchive:
+            digits: 
+                int32: 2
+            biggerIsBetter:  
+                bool: false
+            units:  
+                string: 'TON'

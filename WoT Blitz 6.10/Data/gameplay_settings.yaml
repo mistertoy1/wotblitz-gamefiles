@@ -1,0 +1,20 @@
+random:
+    name: "#arenas:type/random/name"
+    description: "#arenas:type/random/description"
+    id: 65535
+domination:
+    name: "#arenas:type/domination/name"
+    description: "#arenas:type/domination/description"
+    id: 0 #refers to index in bit mask
+supremacy:
+    name: "#arenas:type/supremacy/name"
+    description: "#arenas:type/supremacy/description"
+    id: 1 #refers to index in bit mask
+    specific:
+        keyedArchive:
+            points_to_win:
+                int32: 1000
+            points_tanks_top:
+                int32: 40
+            points_tanks_low:
+                int32: 30

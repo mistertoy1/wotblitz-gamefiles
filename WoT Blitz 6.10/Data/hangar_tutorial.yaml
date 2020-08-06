@@ -1,0 +1,33 @@
+vehicle_unlocks:
+    ussr:
+        turret: "T-26_conic"
+        gun: "_45mm_20K"
+        vehicle: "BT-2"
+    germany:
+        turret: "PzII_Luchsturm"
+        gun: "_20mm_Flak_38_L112"
+        vehicle:  "Pz35t"
+    usa:
+        turret: "M2D27812"
+        gun: "_37mm_M-5"
+        vehicle: "M3_Stuart"
+    uk:
+        turret: "Turret_2_GB69_Cruiser_Mk_II"
+        gun: "_40mm_Pom_Pom"
+        vehicle: "GB58_Cruiser_Mk_III"
+    japan:
+        turret: "Turret_2_Ha_Go"
+        gun: "_37mm_Type_98"
+        vehicle: "Chi_Ni"
+    france:
+        turret: "Turret_2_APX_R2"
+        gun: "_37mm_SA38"
+        vehicle: "AMX38"
+    china:
+        turret: "Turret_2_Ch07_Vickers_MkE_Type_BT26"
+        gun: "_45mm_20K"
+        vehicle: "Ch_LT_vz38"
+    european:
+        turret: "Turret_2_F01_Vickers_mkF"
+        gun: "_45mm_20K_FN"
+        vehicle: "Pl06_10TP"

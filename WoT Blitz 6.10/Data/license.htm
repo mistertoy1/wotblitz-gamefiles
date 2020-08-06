@@ -1,0 +1,397 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.0.0.3 (MacOSX)">
+	<META NAME="AUTHOR" CONTENT="Darya Firsava">
+	<META NAME="CREATED" CONTENT="20140506;15540000">
+	<META NAME="CHANGEDBY" CONTENT="Darya Firsava">
+	<META NAME="CHANGED" CONTENT="20140506;15540000">
+	<META NAME="AppVersion" CONTENT="14.0000">
+	<META NAME="DocSecurity" CONTENT="0">
+	<META NAME="HyperlinksChanged" CONTENT="false">
+	<META NAME="LinksUpToDate" CONTENT="false">
+	<META NAME="ScaleCrop" CONTENT="false">
+	<META NAME="ShareDoc" CONTENT="false">
+	<STYLE TYPE="text/css">
+	html
+	{
+		-webkit-text-size-adjust: 100%;
+	}
+	<!--
+		@page { size: 21cm 29.7cm; margin-left: 3cm; margin-right: 1.5cm; margin-top: 2cm; margin-bottom: 2cm }
+		P { margin-bottom: 0.21cm; direction: ltr; color: #000000; line-height: 100%; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif; font-size: 12pt }
+		P.cjk { font-size: 12pt; so-language: ru-RU }
+		P.ctl { font-family: "Times New Roman"; font-size: 12pt }
+		A:link { color: #0000ff; so-language: zxx; text-decoration: underline }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ru-RU" TEXT="#000000" LINK="#0000ff" VLINK="#800000" DIR="LTR" bgcolor="#ffffff">
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Portions
+of this Software include FMOD Ex software (© 1994-2010 Firelight
+Technologies Pty Ltd. All rights reserved.) </SPAN></FONT>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Portions
+of this Software utilize SpeedTree ® technology (© 2011 Interactive
+Data Vizualization, Inc. All rights reserved)</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">This
+Software product includes Autodesk ® Beast ™ software, © 2011
+Autodesk, Inc. All rights reserved. </SPAN></FONT>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; background: #ffffff"><IMG SRC="license-image001.png" NAME="Picture 1" ALIGN=BOTTOM WIDTH=227 HEIGHT=56 BORDER=0></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; background: #ffffff"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><B>Portions
+of this software are copyright:</B></SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-left: 0.5cm; margin-bottom: 0cm; background: #ffffff">
+<FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">©
+2011, The FreeType Project (</SPAN></FONT></FONT></FONT></FONT><A HREF="http://www.freetype.org"><FONT COLOR="#00000a"><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">www.freetype.org</SPAN></FONT></FONT></FONT></A><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">).
+All rights reserved. </SPAN></FONT></FONT></FONT></FONT></FONT></FONT>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-left: 0.5cm; margin-bottom: 0cm">
+<FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">©</SPAN></FONT></FONT></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">
+1996 - 2014, Daniel Stenberg, &lt;daniel@haxx.se&gt;.</SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-left: 0.5cm; margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">©</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">
+2004, 2006-2014 Glenn Randers-Pehrson. Contributing author: Cosmin
+Truta.</SPAN></FONT></FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-left: 0.5cm; margin-bottom: 0cm">
+<FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">©</SPAN></FONT></FONT></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">
+1991-1998, Thomas G. Lane.</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-left: 0.5cm; margin-bottom: 0cm">
+<FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">©
+</SPAN></FONT></FONT></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><SPAN STYLE="background: #ffffff">1999-2013
+ImageMagick Studio LLC, a non-profit organization dedicated to making
+software imaging solutions freely available.</SPAN></SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-left: 0.5cm; margin-bottom: 0cm">
+<FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">©</SPAN></FONT></FONT></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">
+1995-2013 Jean-loup Gailly and Mark Adler.</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><B>Portions
+of this software include Bullet Collision Detection and Physics
+Library. Copyright </B></SPAN></FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><B>©</B></SPAN></FONT></FONT></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><B>
+2012 Advanced Micro Devices, Inc.  http://bulletphysics.org</B></SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><B>Portions
+of this software include the following copyrighted material, the use
+of which is hereby acknowledged: </B></SPAN></FONT></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">
+<B>This software includes font software provided by Monotype®</B></SPAN></FONT></P>
+<!-- LINE -->
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt">_____________</FONT></FONT></FONT></FONT></P>
+<!-- /LINE -->
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">
+<B>Warhammer 40,000: Macragge's Thunder © Copyright Games Workshop Limited 2017.</B></SPAN></FONT></P>
+<P ALIGN=JUSTIFY>Warhammer 40,000, the Warhammer 40,000 logo, Macragge's Thunder, GW, Games Workshop, Space Marine, 40K, Warhammer, 40,000, the ‘Aquila’ Double-headed Eagle logo, and all associated logos, illustrations, images, names, creatures, races, vehicles, locations, weapons, characters, and the distinctive likeness thereof, are either ® or TM, and/or © Games Workshop Limited, variably registered around the world, and used under licence. All rights reserved to their respective owners.</P>
+<!-- LINE -->
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt">_____________</FONT></FONT></FONT></FONT></P>
+<!-- /LINE -->
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><B>OpenSSL
+License</B></SPAN></FONT></P>
+
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">C</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">opyright
+</SPAN></FONT></FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">©</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">
+1998-2011 The OpenSSL Project.  All rights reserved.</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"> 
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Redistribution
+and use in source and binary forms, with or without modification, are
+permitted provided that the following conditions are met:</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"> 
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">1.
+Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"> 
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">2.
+Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">3.
+All advertising materials mentioning features or use of this software
+must display the following acknowledgment:</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">&quot;This
+product includes software developed by the OpenSSL Project for use in
+the OpenSSL Toolkit. (http://www.openssl.org/)&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"> 
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">4.
+The names &quot;OpenSSL Toolkit&quot; and &quot;OpenSSL Project&quot;
+must not be used to endorse or promote products derived from this
+software without prior written permission. For written permission,
+please contact openssl-core@openssl.org.</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"> 
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">5.
+Products derived from this software may not be called &quot;OpenSSL&quot;
+nor may &quot;OpenSSL&quot; appear in their names without prior
+written permission of the OpenSSL Project.</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"> 
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">6.
+Redistributions of any form whatsoever must retain the following
+acknowledgment:</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">&quot;This
+product includes software developed by the OpenSSL Project for use in
+the OpenSSL Toolkit (http://www.openssl.org/)&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">THIS
+SOFTWARE IS PROVIDED BY THE OpenSSL PROJECT ''AS IS'' AND ANY
+EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE OpenSSL PROJECT OR ITS
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">This
+product includes cryptographic software written by Eric Young
+(eay@cryptsoft.com). This product includes software written by Tim
+Hudson (tjh@cryptsoft.com).</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt">_____________</FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><B>Original
+SSLeay License</B></SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Copyright
+</SPAN></FONT></FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">©</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">
+1995-1998 Eric Young (</SPAN></FONT></FONT><A HREF="mailto:eay@cryptsoft.com"><FONT COLOR="#00000a"><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">eay@cryptsoft.com</SPAN></FONT></FONT></FONT></A><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">)
+All rights reserved.</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Redistribution
+and use in source and binary forms, with or without modification, are
+permitted provided that the following conditions are met:</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">1.
+Redistributions of source code must retain the copyright notice, this
+list of conditions and the following disclaimer.</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">2.
+Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">3.
+All advertising materials mentioning features or use of this software
+must display the following acknowledgement:</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">&quot;This
+product includes cryptographic software written by Eric Young
+(eay@cryptsoft.com)&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">The
+word 'cryptographic' can be left out if the rouines from the library
+being used are not cryptographic related :-).</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">4.
+If you include any Windows specific code (or a derivative thereof)
+from the apps directory (application code) you must include an
+acknowledgement:</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">&quot;This
+product includes software written by Tim Hudson (<A HREF="mailto:tjh@cryptsoft.com">tjh@cryptsoft.com</A>)&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">THIS
+SOFTWARE IS PROVIDED BY ERIC YOUNG ''AS IS'' AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">_____________</SPAN></FONT></FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><B>Libxml2.
+The MIT License</B></SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Except where
+otherwise noted in the source code (e.g. the files hash.c, list.c and
+the trio files, which are covered by a similar licence but with
+different Copyright notices) all the files are:</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Copyright </SPAN></FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">©</SPAN></FONT></FONT></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">
+1998-2003 Daniel Veillard.  All Rights Reserved.</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Permission is
+hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the &quot;Software&quot;),
+to deal in the Software without restriction, including without
+limitation the rights to use, copy, modify, merge, publish,
+distribute, </SPAN></FONT>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">The above
+copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">THE SOFTWARE
+IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE DANIEL VEILLARD BE LIABLE FOR
+ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Except as
+contained in this notice, the name of Daniel Veillard shall not be
+used in advertising or otherwise to promote the sale, use or other
+dealings in this Software without prior written authorization from
+him.</SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">_____________</SPAN></FONT></FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><B>Libyaml</B></SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Copyright </SPAN></FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">©</SPAN></FONT></FONT></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">
+2006 Kirill Simonov</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Permission is
+hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the &quot;Software&quot;),
+to deal in the Software without restriction, including without
+limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">of the
+Software, and to permit persons to whom the Software is furnished to
+do so, subject to the following conditions:</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">The above
+copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">THE SOFTWARE
+IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">SOFTWARE.</SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt">_____________</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><B><SPAN STYLE="background: #ffffff">GLEW
+</SPAN></B></SPAN></FONT>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Copyright
+</SPAN></FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">©</SPAN></FONT></FONT></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">
+2007 The Khronos Group Inc.</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Permission
+is hereby granted, free of charge, to any person obtaining a copy of
+this software and/or associated documentation files (the
+&quot;Materials&quot;), to deal in the Materials without restriction,
+including without limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of the Materials,
+and topermit persons to whom the Materials are furnished to do so,
+subject to the following conditions:</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">The
+above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Materials.</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">THE
+MATERIALS ARE PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY
+KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE MATERIALS OR THE USE OR OTHER DEALINGS IN THE
+MATERIALS.</SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt">_____________</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><B><SPAN STYLE="background: #ffffff">LUA
+</SPAN></B></SPAN></FONT>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><SPAN STYLE="background: #ffffff">Copyright
+© 1994–2014 Lua.org, PUC-Rio.</SPAN></SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-top: 0.05cm; margin-bottom: 0.05cm; background: #ffffff">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Permission is
+hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the &quot;Software&quot;),
+to deal in the Software without restriction, including without
+limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-top: 0.05cm; margin-bottom: 0.05cm; background: #ffffff">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">The above
+copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-top: 0.05cm; margin-bottom: 0.05cm; background: #ffffff">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">THE SOFTWARE
+IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">_____________</SPAN></FONT></FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-top: 0.05cm; margin-bottom: 0.05cm; background: #ffffff">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><B>Boost
+Software License - Version 1.0 - August 17th, 2003</B></SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-top: 0.05cm; margin-bottom: 0.05cm; background: #ffffff">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Permission is
+hereby granted, free of charge, to any person or organization
+obtaining a copy of the software and accompanying documentation
+covered by this license (the &quot;Software&quot;) to use, reproduce,
+display, distribute, execute, and transmit the Software, and to
+prepare derivative works of the Software, and to permit third-parties
+to whom the Software is furnished to do so, all subject to the
+following:</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-top: 0.05cm; margin-bottom: 0.05cm; background: #ffffff">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">The copyright
+notices in the Software and this entire statement, including the
+above license grant, this restriction and the following disclaimer,
+must be included in all copies of the Software, in whole or in part,
+and all derivative works of the Software, unless such copies or
+derivative works are solely in the form of machine-executable object
+code generated by a source language processor.</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-top: 0.05cm; margin-bottom: 0.05cm; background: #ffffff">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">THE SOFTWARE
+IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND
+NON-INFRINGEMENT. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR ANYONE
+DISTRIBUTING THE SOFTWARE BE LIABLE FOR ANY DAMAGES OR OTHER
+LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
+OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-top: 0.05cm; margin-bottom: 0.05cm; background: #ffffff">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">__________</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; background: #ffffff; line-height: 0.48cm">
+<SPAN STYLE="text-transform: uppercase"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><B>The
+PicklingTools Library: Tools for connecting C++ and Python</B></SPAN></FONT></SPAN></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; background: #ffffff; line-height: 0.48cm">
+<SPAN STYLE="text-transform: uppercase"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><B>LICENSE
+- BSD (NEW) STYLE LICENSE</B></SPAN></FONT></SPAN></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; background: #ffffff; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Copyright </SPAN></FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">©</SPAN></FONT></FONT></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">
+2001-2009 Rincon Research Corporation, Richard T. Saunders. All
+rights reserved.</SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; background: #ffffff; line-height: 0.48cm">
+<FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US">Redistribution
+and use in source and binary forms, with or without modification, are
+permitted provided that the following conditions are met: 1.
+Redistributions of source code must retain the above copyright   
+notice, this list of conditions and the following disclaimer. 2.
+Redistributions in binary form must reproduce the above copyright   
+notice, this list of conditions and the following disclaimer in the  
+ documentation and/or other materials provided with the distribution.
+3. The name of the author may not be used to endorse or promote
+products    derived from this software without specific prior written
+permission.<BR><BR>THIS SOFTWARE IS PROVIDED BY THE AUTHOR ''AS IS''
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</SPAN></FONT></P>
+</BODY>
+</HTML>

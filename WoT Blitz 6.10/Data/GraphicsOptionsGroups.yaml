@@ -1,0 +1,130 @@
+0:
+  options:
+    WaterQuality: Low
+    ObjectsQuality: Low
+    VehiclesQuality: Low
+    EffectsQuality: Compatible
+    LevelOfDetail: Compatible
+    FogQuality: Compatible
+    GrassQuality: Compatible
+    ShadowQuality: Off
+    AnisotropicFiltering: Off
+    Antialiasing: Off
+    SoftParticles: false
+1:
+  options:
+    WaterQuality: Low
+    ObjectsQuality: Low
+    VehiclesQuality: Low
+    EffectsQuality: Low
+    LevelOfDetail: Low
+    FogQuality: Low
+    GrassQuality: Compatible
+    ShadowQuality: Off
+    AnisotropicFiltering: Off
+    Antialiasing: Off
+    SoftParticles: false
+2:
+  options:
+    WaterQuality: Low
+    ObjectsQuality: Medium
+    VehiclesQuality: Medium
+    EffectsQuality: Medium
+    LevelOfDetail: Medium
+    FogQuality: Medium
+    GrassQuality: Compatible
+    ShadowQuality: Off
+    AnisotropicFiltering: Off
+    Antialiasing: Off
+    SoftParticles: false
+3:
+  options:
+    WaterQuality: Medium
+    ObjectsQuality: Medium
+    VehiclesQuality: Medium
+    EffectsQuality: Medium
+    LevelOfDetail: Medium
+    FogQuality: Medium
+    GrassQuality: Low
+    ShadowQuality: Off
+    AnisotropicFiltering: 2X
+    Antialiasing: Off
+    SoftParticles: false
+4:
+  options:
+    WaterQuality: Medium
+    ObjectsQuality: Medium
+    VehiclesQuality: Medium
+    EffectsQuality: Medium
+    LevelOfDetail: Medium
+    FogQuality: Medium
+    GrassQuality: Medium
+    ShadowQuality: Off
+    AnisotropicFiltering: 4X
+    Antialiasing: Off
+    SoftParticles: false
+5:
+  options:
+    WaterQuality: Medium
+    ObjectsQuality: High
+    VehiclesQuality: High
+    EffectsQuality: High
+    LevelOfDetail: High
+    FogQuality: High
+    GrassQuality: Medium
+    ShadowQuality: Off
+    AnisotropicFiltering: 4X
+    Antialiasing: Off
+    SoftParticles: false
+6:
+  options:
+    WaterQuality: High
+    ObjectsQuality: High
+    VehiclesQuality: High
+    EffectsQuality: High
+    LevelOfDetail: High
+    FogQuality: High
+    GrassQuality: High
+    ShadowQuality: Off
+    AnisotropicFiltering: 8X
+    Antialiasing: Off
+    SoftParticles: false
+7:
+  options:
+    WaterQuality: High
+    ObjectsQuality: High
+    VehiclesQuality: High
+    EffectsQuality: High
+    LevelOfDetail: High
+    FogQuality: High
+    GrassQuality: High
+    ShadowQuality: On(StencilOnly)
+    AnisotropicFiltering: 16X
+    Antialiasing: Off
+    SoftParticles: true
+8:
+  options:
+    WaterQuality: High
+    ObjectsQuality: High
+    VehiclesQuality: High
+    EffectsQuality: High
+    LevelOfDetail: High
+    FogQuality: High
+    GrassQuality: High
+    ShadowQuality: Low
+    AnisotropicFiltering: 16X
+    Antialiasing: 2X
+    SoftParticles: true
+9:
+  options:
+    WaterQuality: High
+    ObjectsQuality: High
+    VehiclesQuality: High
+    EffectsQuality: High
+    LevelOfDetail: High
+    FogQuality: High
+    GrassQuality: High
+    ShadowQuality: Medium
+    AnisotropicFiltering: 16X
+    Antialiasing: 4X
+    SoftParticles: true

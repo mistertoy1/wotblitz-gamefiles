@@ -1,0 +1,33 @@
+ReplayFile: "~res:/replays/autodetect.wotbreplay/"
+FpsLimits:
+    30: 28.5f
+    60: 58.0f
+    120: 115.0f
+TimeSlices:
+    0:
+      StartPoint: 36.0f
+      Duration: 2.0f
+    1:
+      StartPoint: 41.5f
+      Duration: 5.5f
+    2:
+      StartPoint: 62.0f
+      Duration: 4.0f
+    3:
+      StartPoint: 79.0f
+      Duration: 3.0f
+    4:
+      StartPoint: 89.0f
+      Duration: 2.0f
+    5:
+      StartPoint: 101.0f
+      Duration: 6.0f
+    6:
+      StartPoint: 138.0f
+      Duration: 3.0f
+    7:
+      StartPoint: 152.0f
+      Duration: 5.0f
+    8:
+      StartPoint: 174.5f
+      Duration: 2.5f

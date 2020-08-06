@@ -1,0 +1,67 @@
+keyedArchive:
+    averageThicknessWeight:
+        float: 0.600000
+    chassisRotationSpeedWeight:
+        float: 0.350000
+    enginePowerPerTonWeight:
+        float: 0.500000
+    maxHealthWeight:
+        float: 0.400000
+    maxSpeedWeight:
+        float: 0.150000
+    piercingPowerWeight:
+        float: 0.600000
+    shotAccuracyWeight:
+        float: 0.400000
+    averageThicknessMax:
+        float: 295.992188 # Oth23_Werewolf
+    averageThicknessMin:
+        float: 5.756888 # GB39_Universal_CarrierQF2
+    chassisRotationSpeedMax:
+        float: 1.047198 # Ke_Ho
+    chassisRotationSpeedMin:
+        float: 0.209440 # G110_Mauschen
+    enginePowerPerTonMax:
+        float: 28046.169189 # A116_XM551
+    enginePowerPerTonMin:
+        float: 3687.346892 # T95
+    maxHealthMax:
+        float: 3000.000000 # Maus
+    maxHealthMin:
+        float: 230.000000 # Ch07_Vickers_MkE_Type_BT26
+    maxSpeedMax:
+        float: 22.222400 # G103_RU_251
+    maxSpeedMin:
+        float: 3.333360 # GB44_Archer_Custom
+    piercingPowerMax:
+        float: 310.000000 # J20_Ho_Ri_type3
+    piercingPowerMin:
+        float: 20.000000 # T82
+    shotDamageMax:
+        float: 930.000000 # GB48_FV215b_183
+    shotDamageMin:
+        float: 8.000000 # PzII
+    shotDispersionAngleMax:
+        float: 0.006000 # KV2
+    shotDispersionAngleMin:
+        float: 0.003000 # E-50
+    shotsPerMinuteMax:
+        float: 73.469388 # PzII_J
+    shotsPerMinuteMin:
+        float: 2.500000 # KV2
+    firePowerMax:
+        float: 3600.000000 # SU122_54
+    firePowerMin:
+        float: 300.000000 # F01_Vickers_MkF
+    mobilityMax:
+        float: 92.316176 # A116_XM551
+    mobilityMin:
+        float: 0.882353 # T95
+    protectabilityMax:
+        float: 83.981031 # Maus
+    protectabilityMin:
+        float: 1.299639 # GB39_Universal_CarrierQF2
+    shotEfficiencyMax:
+        float: 94.666667 # J20_Ho_Ri_type3
+    shotEfficiencyMin:
+        float: 6.068966 # KV2

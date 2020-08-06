@@ -1,0 +1,300 @@
+--- 
+Compatible:
+  options:
+    WaterQuality: Low
+    ObjectsQuality: Low
+    VehiclesQuality: Low
+    EffectsQuality: Compatible
+    LevelOfDetail: Compatible
+    FogQuality: Compatible
+    GrassQuality: Compatible
+    GrassInSniperMode: false
+    ShadowQuality: Off
+    HDTextures: false
+    HDSounds: false
+    HalfResolution: true
+    FPSLimit: 30
+    Camouflage: ForAll
+    MetalAPI: true
+    AnisotropicFiltering: Off
+    Antialiasing: Off
+Low:
+  options:
+    WaterQuality: Low
+    ObjectsQuality: Low
+    VehiclesQuality: Low
+    EffectsQuality: Low
+    LevelOfDetail: Low
+    FogQuality: Low
+    GrassQuality: Low
+    GrassInSniperMode: false
+    ShadowQuality: Off
+    HDTextures: false
+    HDSounds: false
+    HalfResolution: false
+    FPSLimit: 60
+    Camouflage: ForAll
+    MetalAPI: true
+    AnisotropicFiltering: Off
+    Antialiasing: Off
+Medium:
+  options:
+    WaterQuality: Medium
+    ObjectsQuality: Medium
+    VehiclesQuality: Medium
+    EffectsQuality: Medium
+    LevelOfDetail: Medium
+    FogQuality: Medium
+    GrassQuality: Medium
+    GrassInSniperMode: false
+    ShadowQuality: On(StencilOnly)
+    HDTextures: true
+    HDSounds: true
+    HalfResolution: false
+    FPSLimit: 60
+    Camouflage: ForAll
+    MetalAPI: true
+    AnisotropicFiltering: Off
+    Antialiasing: Off
+High:
+  options:
+    WaterQuality: High
+    ObjectsQuality: High
+    VehiclesQuality: High
+    EffectsQuality: High
+    LevelOfDetail: High
+    FogQuality: High
+    GrassQuality: High
+    GrassInSniperMode: true
+    ShadowQuality: On(StencilOnly)
+    HDTextures: true
+    HDSounds: true
+    HalfResolution: false
+    FPSLimit: 60
+    Camouflage: ForAll
+    MetalAPI: true
+    AnisotropicFiltering: Off
+    Antialiasing: Off
+    FetchDepth: true
+default:
+  base: High
+iOS: 
+  base: Medium
+Android:
+  options:
+    HDTextures: true
+    GrassQuality: Compatible
+    FetchDepth: true
+  optionsMax:
+    WaterQuality: High
+    ObjectsQuality: High
+    VehiclesQuality: High
+    EffectsQuality: High
+    LevelOfDetail: High
+    FogQuality: High
+    GrassQuality: High
+    GrassInSniperMode: true
+    ShadowQuality: Medium
+    HDTextures: true
+    HDSounds: true
+    HalfResolution: false
+    FPSLimit: 120
+    Camouflage: ForAll
+    AnisotropicFiltering: 16X
+    Antialiasing: 4X
+  base: Low
+Windows.Mobile:
+  base: Compatible
+Windows.Desktop:
+  base: High
+WindowsDesktopHiRes:
+  base: Windows.Desktop
+  options:
+    HalfResolution: true
+  selectors:
+    - ["Windows.Desktop", "HiRes"]
+Tutorial: 
+  base: Medium
+  options:
+    GrassQuality: Low
+AutoLow: 
+  base: Low
+  options:
+    HDTextures: true
+    GrassQuality: Compatible
+    FetchDepth: false
+AutoMedium: 
+  base: Medium
+  options:
+    GrassQuality: Low
+AutoHigh: 
+  base: High
+  options:
+    GrassQuality: Low
+OldIOS: 
+  base: Low
+  options:
+    ShadowQuality: On(StencilOnly)
+    FogQuality: Medium
+    GrassQuality: Compatible
+  devices: 
+    - "iPhone 3GS"
+    - "iPhone 4 GSM"
+    - "iPhone 4 CDMA"
+    - "iPhone 4S"
+BaseIOS: 
+  base: Low
+  options:
+    EffectsQuality: Low
+    ShadowQuality: On(StencilOnly)
+    FogQuality: Medium
+    GrassQuality: Compatible
+  devices: 
+    - "iPad 2 WiFi"
+    - "iPad 2 3G GSM"
+    - "iPad 2 3G CDMA"
+    - "iPad Mini WiFi"
+    - "iPad Mini GSM LTE"
+    - "iPad Mini GSM CDMA LTE"
+IPad3: 
+  base: Low 
+  options:
+    HDTextures: true
+    ShadowQuality: On(StencilOnly)
+    FogQuality: High
+    GrassQuality: Compatible
+  devices: 
+    - "iPad 3 WiFi"
+    - "iPad 3 CDMA LTE"
+    - "iPad 3 GSM LTE"
+IPad4: 
+  base: Medium
+  options:
+    GrassQuality: Compatible
+    FogQuality: High
+  devices: 
+    - "iPad 4 WiFi"
+    - "iPad 4 CDMA LTE"
+    - "iPad 4 GSM LTE"
+IPhone5: 
+  base: High
+  options:
+    GrassQuality: Compatible
+    ObjectsQuality: Medium
+    EffectsQuality: Medium
+    FetchDepth: false
+  devices: 
+    - "iPhone 5 GSM LTE"
+    - "iPhone 5 CDMA LTE"
+    - "iPhone 5C GSM"
+    - "iPhone 5C GSM+CDMA"
+NewMiddleIos:  # A7 cpu
+  base: High
+  options:
+    EffectsQuality: Medium
+    GrassQuality: Low
+    FetchDepth: false
+  devices: 
+    - "iPhone 5S GSM"
+    - "iPhone 5S GSM+CDMA"
+    - "iPad 5 WiFi"
+    - "iPad 5 GSM CDMA LTE"
+    - "iPad 5 (China)"
+    - "iPad Mini 2 WiFi"
+    - "iPad Mini 2 GSM CDMA LTE"
+    - "iPad Mini 2 (China)"
+    - "iPad Mini 3 WiFi"
+    - "iPad Mini 3 Cellular"
+    - "iPad Mini 3 (China)"
+NewIos:  # A8 cpu
+  base: High
+  options:
+    EffectsQuality: Medium
+    GrassQuality: Low
+    FetchDepth: true
+  optionsMax:
+    EffectsQuality: High
+  devices: 
+    - "iPad Mini 4 WiFi"
+    - "iPad Mini 4 Cellular"
+    - "iPhone 6"
+    - "iPhone 6 Plus"
+A8XIos:  # A8X cpu
+  base: High
+  options:
+    GrassQuality: Low
+    ShadowQuality: Medium
+    FetchDepth: true
+  selectors: 
+    - "ios-a8x-cpu"
+A9Ios:  # A9 cpu
+  base: A8XIos
+  optionsMax:
+    AnisotropicFiltering: 16X
+    Antialiasing: 4X
+    FPSLimit: 120
+  selectors: 
+    - "ios-a9-cpu"
+A9XIos:  # A9X cpu
+  base: A9Ios
+  selectors: 
+    - "ios-a9x-cpu"
+A10Ios:  # A10 cpu
+  base: A9XIos
+  options:
+    GrassQuality: Medium
+  selectors: 
+    - "ios-a10-cpu"
+A10XIos:  # A10X cpu
+  base: A10Ios
+  selectors: 
+    - "ios-a10x-cpu"
+A11Ios:  # A11 cpu
+  base: A10XIos
+  selectors: 
+    - "ios-a11-cpu"
+A12Ios:  # A12 cpu
+  base: A11Ios
+  selectors: 
+    - "ios-a12-cpu"
+A12XIos:  # A12X cpu or higher
+  base: A12Ios
+  selectors: 
+    - "ios-a12x-cpu"
+MacbookHalfResolution:
+  base: High
+  options:
+    HalfResolution: true
+    FetchDepth: false
+  devices: 
+    - "MacBook8,1"
+MacbookAirLow:
+  base: Low
+  devices:
+    - "MacBookAir1,1"
+    - "MacBookAir2,1"
+    - "MacBookAir3,1"
+    - "MacBookAir3,2"
+    - "MacBookAir4,1"
+    - "MacBookAir4,2"
+Android4:
+  base: Android
+  optionsMax:
+    FogQuality: Medium
+  selectors:
+    - ["Android", "4"]
+WindowsLowTier:
+  base: Medium
+  selectors: 
+    - "windows-low-tier"
+  options:
+    GrassQuality: Low
+    FetchDepth: false
+WindowsHighTier:
+  base: High
+  selectors: 
+    - "windows-high-tier"
+  options:
+    ShadowQuality: Medium
+    AnisotropicFiltering: 4X
+    FetchDepth: true

@@ -1,0 +1,147 @@
+common:
+    loginOnStartup: true
+    callbackWaitTimeoutMs: 700
+    enableExternalAutologin: true
+    enablePreloginAuthTimeout: true
+    enablePhoneBinding: false
+    showCommunityLinks: false
+    serverTitle: 战火服
+    uploadUserInfoStageValue: false
+    uploadUserInfoStages: [ENTER_SERVER, CREATE_ACCOUNT, BACKGROUND, LEAVE_SERVER]
+    treatDisconnectAsLeaveServerStage: true
+    isPurchaseWithoutRealNameVerificationAllowed: true
+    showSupportButton: false
+    userInfo:
+        UID: SPA_ID
+        NAME: ACCOUNT_NAME
+        HOSTID: NETEASE_HOST_ID
+        HOSTNAME: REGION_NAME
+        GRADE: CONST_ONE
+    defaultUserInfo:
+        GANG_ID: CONST_NO
+        GANG_NAME: CONST_NO
+        GANG_ROLE_ID: CONST_NO
+        GANG_ROLE_NAME: CONST_NO
+        ORG: CONST_NO
+netease:
+    enablePhoneBinding: true
+    transferAccount: true
+    uploadUserInfo: true
+    isPurchaseWithoutRealNameVerificationAllowed: false
+    showSupportButton: true
+    uploadUserInfoStages: [ENTER_SERVER, CREATE_ACCOUNT, BACKGROUND, LEAVE_SERVER]
+    userInfo:
+        GANG_ID: CLAN_ID
+        ORG: CLAN_NAME
+        CAPABILITY: CONST_ZERO
+        REGION_ID: NETEASE_HOST_ID
+        REGION_NAME: REGION_NAME
+360_assistant:
+    serverTitle: 360专服
+    uploadUserInfo: true
+    uploadUserInfoStageValue: true
+    uploadUserInfoStages: [ENTER_SERVER, CREATE_ACCOUNT, BACKGROUND, LEAVE_SERVER]
+    userInfo:
+        GANG_ID: CLAN_ID
+        GANG_NAME: CLAN_NAME
+        GANG_ROLE_ID: CLAN_MEMBER_POSITION_ID
+        GANG_ROLE_NAME: CLAN_MEMBER_POSITION_NAME
+        BALANCE: BALANCE
+        VIP: CONST_ZERO
+        CAPABILITY: CONST_ZERO
+        MENPAI_ID: CONST_ZERO
+uc_platform:
+    serverTitle: 九游专服
+    showCommunityLinks: false
+    uploadUserInfo: true
+    uploadUserInfoStages: [ENTER_SERVER, CREATE_ACCOUNT, LEAVE_SERVER, PURCHASE]
+    userInfo:
+        ROLE_CTIME: ACCOUNT_CREATION_TIME
+nearme_vivo:
+    serverTitle: vivo专服
+    uploadUserInfo: true
+    uploadUserInfoStages: [CREATE_ACCOUNT]
+xiaomi_app:
+    serverTitle: 小米专服
+    showCommunityLinks: false
+    uploadUserInfo: true
+    uploadUserInfoStages: [ENTER_SERVER, CREATE_ACCOUNT, PURCHASE]
+    userInfo:
+        ORG: CLAN_NAME
+        BALANCE: GOLD
+        VIP: CONST_ONE
+huawei:
+    serverTitle: 华为荣耀专服
+    uploadUserInfo: true
+    uploadUserInfoStageValue: true
+    uploadUserInfoStages: [ENTER_SERVER]
+    userInfo:
+        ORG: CLAN_NAME
+oppo:
+    serverTitle: 战火服
+    uploadUserInfo: true
+    uploadUserInfoStages: [CREATE_ACCOUNT]
+bilibili_sdk:
+    uploadUserInfo: true
+    uploadUserInfoStageValue: true
+    uploadUserInfoStages: [ENTER_SERVER, CREATE_ACCOUNT]
+yykj:
+    showCommunityLinks: false
+    uploadUserInfo: true
+    uploadUserInfoStageValue: true
+    uploadUserInfoStages: [ENTER_SERVER, CREATE_ACCOUNT, LEAVE_SERVER]
+    treatDisconnectAsLeaveServerStage: false
+    userInfo:
+        REGION_NAME: REGION_NAME
+        ROLE_CTIME: ACCOUNT_CREATION_TIME
+        ROLE_LEVELMTIME: CURRENT_TIME
+yyxx:
+    showCommunityLinks: false
+    uploadUserInfo: true
+    uploadUserInfoStageValue: true
+    uploadUserInfoStages: [ENTER_SERVER, CREATE_ACCOUNT, LEAVE_SERVER]
+    treatDisconnectAsLeaveServerStage: false
+    userInfo:
+        REGION_NAME: REGION_NAME
+        ROLE_CTIME: ACCOUNT_CREATION_TIME
+        ROLE_LEVELMTIME: CURRENT_TIME
+iaround:
+    showCommunityLinks: false
+    uploadUserInfo: true
+    uploadUserInfoStageValue: true
+    uploadUserInfoStages: [ENTER_SERVER, CREATE_ACCOUNT]
+    userInfo:
+        REGION_NAME: REGION_NAME
+        DATATYPE: STAGE_AS_NUMBER
+dangle:
+    showCommunityLinks: false
+    uploadUserInfo: true
+    uploadUserInfoStageValue: true
+    uploadUserInfoStages: [ENTER_SERVER, PURCHASE]
+    userInfo:
+        SERVER_ID: NETEASE_HOST_ID
+        ROLE_CTIME: ACCOUNT_CREATION_TIME
+        ROLE_LEVELMTIME: CURRENT_TIME
+baidu:
+    serverTitle: 百度专服
+    showCommunityLinks: false
+    loginOnStartup: false
+    callbackWaitTimeoutMs: 700
+flyme:
+    serverTitle: 魅族专服
+    showCommunityLinks: false
+app_store:
+    enablePreloginAuthTimeout: false
+    enablePhoneBinding: true
+    transferAccount: true
+    uploadUserInfo: true
+    isPurchaseWithoutRealNameVerificationAllowed: false
+    showSupportButton: true
+    uploadUserInfoStages: [ENTER_SERVER, CREATE_ACCOUNT, BACKGROUND]
+    userInfo:
+        REGION_NAME: REGION_NAME
+        REGION_ID: NETEASE_HOST_ID
+        GANG_ID: CLAN_ID
+        VIP: CONST_ONE
+        MENPAI_ID: CONST_ONE
+        ROLE_TYPE_ID: CONST_ONE

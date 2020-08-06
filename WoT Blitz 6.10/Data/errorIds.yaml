@@ -1,0 +1,378 @@
+1:
+    key: JOIN_FAILURE_TIME_OUT
+    description:
+2:
+    key: JOIN_FAILURE_NOT_FOUND
+    description:
+3:
+    key: JOIN_FAILURE_ACCOUNT_LOCK
+    description:
+4:
+    key: JOIN_FAILURE_WRONG_VEHICLE
+    description:
+5:
+    key: JOIN_FAILURE_TEAM_IS_FULL
+    description:
+6:
+    key: JOIN_FAILURE_WRONG_ARGS
+    description:
+7:
+    key: JOIN_FAILURE_CAPTCHA
+    description:
+8:
+    key: JOIN_FAILURE_WRONG_ARENA_STATE
+    description:
+9:
+    key: JOIN_FAILURE_CANNOT_CREATE
+    description:
+10:
+    key: JOIN_FAILURE_PRIVACY
+    description:
+11:
+    key: JOIN_FAILURE_WRONG_ACCOUNT_TYPE
+    description:
+12:
+    key: JOIN_FAILURE_COOLDOWN
+    description:
+13:
+    key: JOIN_FAILURE_BANNED
+    description:
+14:
+    key: JOIN_FAILURE_UNKNOWN
+    description:
+15:
+    key: "lobbyChatConnectError"
+    description:
+16:
+    key: lobbyChatDisconnected
+    description:
+17:
+    key: "#wgn:APIErrors/Undefined"
+    description:
+18:
+    key: "#wgn:APIErrors/already_processed"
+    description:
+19:
+    key: "#wgn:APIErrors/banned_ip"
+    description:
+20:
+    key: "#wgn:APIErrors/bonus_check_error"
+    description:
+21:
+    key: "#wgn:APIErrors/bonus_check_is_not_accessible"
+    description:
+22:
+    key: "#wgn:APIErrors/fatal_error"
+    description:
+23:
+    key: "#wgn:APIErrors/gamecenter_can_not_retrieve_certificate"
+    description:
+24:
+    key: "#wgn:APIErrors/gamecenter_invalid_certificate"
+    description:
+25:
+    key: "#wgn:APIErrors/gamecenter_invalid_signature"
+    description:
+26:
+    key: "#wgn:APIErrors/google_invalid_access_token"
+    description:
+27:
+    key: "#wgn:APIErrors/invalid_external_key"
+    description:
+28:
+    key: "#wgn:APIErrors/invalid_external_parameters"
+    description:
+29:
+    key: "#wgn:APIErrors/invalid_form"
+    description:
+30:
+    key: "#wgn:APIErrors/invalid_nickname"
+    description:
+31:
+    key: "#wgn:APIErrors/invalid_params"
+    description:
+32:
+    key: "#wgn:APIErrors/no_external_key"
+    description:
+33:
+    key: "#wgn:APIErrors/registration_timeout"
+    description:
+34:
+    key: "#wgn:APIErrors/spa_bad_response"
+    description:
+35:
+    key: "#wgn:APIErrors/spa_conflicted_login"
+    description:
+36:
+    key: "#wgn:APIErrors/spa_login_already_taken"
+    description:
+37:
+    key: "#wgn:APIErrors/spa_conflicted_nickname"
+    description:
+38:
+    key: "#wgn:APIErrors/spa_conflicted_uid"
+    description:
+39:
+    key: "#wgn:APIErrors/spa_generic_conflict"
+    description:
+40:
+    key: "#wgn:APIErrors/spa_generic_error"
+    description:
+41:
+    key: "#wgn:APIErrors/spa_internal_communication_error"
+    description:
+42:
+    key: "#wgn:APIErrors/spa_not_activated"
+    description:
+43:
+    key: "#wgn:APIErrors/spa_timeout"
+    description:
+44:
+    key: "#wgn:APIErrors/spa_uid_not_registered"
+    description:
+45:
+    key: "#wgn:APIErrors/spa_weak_password"
+    description:
+46:
+    key: "#wgn:APIErrors/timeout"
+    description:
+47:
+    key: "#wgn:APIErrors/incorrect_confirmation_code"
+    description:
+48:
+    key: "#wgn:APIErrors/incorrect_confirmation_code_request_deactivated"
+    description:
+49:
+    key: "#wgn:APIErrors/no_active_request"
+    description:
+50:
+    key: "#wgn:APIErrors/request_limit_exceeded"
+    description:
+51:
+    key: "#wgn:APIErrors/already_bound"
+    description:
+52:
+    key: "#wgn:APIErrors/bind_denied"
+    description:
+53:
+    key: "#wgn:APIErrors/unbind_denied"
+    description:
+54:
+    key: "#wgn:APIErrors/GenericError"
+    description:
+56:
+    key: HTTP_Status_200
+    description:
+57:
+    key: HTTP_Status_400
+    description:
+58:
+    key: HTTP_Status_403
+    description:
+59:
+    key: HTTP_Status_404
+    description:
+60:
+    key: HTTP_Status_408
+    description:
+61:
+    key: HTTP_Status_409
+    description:
+62:    
+    key: "LogOnStatus_LOGIN_REJECTED_LOGIN_QUEUE"
+    description:
+63:
+    key: "LogOnStatus_LOGIN_CUSTOM_DEFINED_ERROR"
+    description:
+64:
+    key: "LogOnStatus_CONNECTION_FAILED"
+    description:
+65:
+    key: "LogOnStatus_DNS_LOOKUP_FAILED"
+    description:
+66:
+    key: "LogOnStatus_LOGIN_REJECTED_DB_GENERAL_FAILURE"
+    description:
+67:
+    key: "LogOnStatus_LOGIN_REJECTED_DB_NOT_READY"
+    description:
+68:
+    key: "LogOnStatus_LOGIN_REJECTED_NO_BASEAPPS"
+    description:
+69:
+    key: "LogOnStatus_LOGIN_REJECTED_BASEAPP_TIMEOUT"
+    description:
+70:
+    key: "LogOnStatus_LOGIN_REJECTED_BASEAPPMGR_TIMEOUT"
+    description:
+71:
+    key: "LogOnStatus_LOGIN_REJECTED_NO_LOGINAPP"
+    description:
+72:
+    key: "LogOnStatus_LOGIN_REJECTED_NO_LOGINAPP_RESPONSE"
+    description:
+73:
+    key: "LogOnStatus_LOGIN_REJECTED_NO_BASEAPP_RESPONSE"
+    description:
+74:
+    key: "logOnStatus_invalid_login"
+    description:
+75:
+    key: "logOnStatus_invalid_password"
+    description:
+76:
+    key: "logOnStatus_invalid_nickname"
+    description:
+77:
+    key: "LogOnStatus_NOT_SET"
+    description:
+78:
+    key: "LogOnStatus_LOGGED_ON"
+    description:
+79:
+    key: "LogOnStatus_CANCELLED"
+    description:
+80:
+    key: "LogOnStatus_ALREADY_ONLINE_LOCALLY"
+    description:
+81:
+    key: "LogOnStatus_PUBLIC_KEY_LOOKUP_FAILED"
+    description:
+82:
+    key: "LogOnStatus_LOGIN_REJECTED_REGISTRATION_NOT_ALLOWED"
+    description:
+83:
+    key: "LogOnStatus_LOGIN_REJECTED_REGISTRATION_NOT_CONFIRMED"
+    description:
+84:
+    key: "LogOnStatus_LOGIN_REJECTED_NOT_REGISTERED"
+    description:
+85:
+    key: "LogOnStatus_LOGIN_REJECTED_ACTIVATING"
+    description:
+86:
+    key: "LogOnStatus_LOGIN_REJECTED_UNABLE_TO_PARSE_JSON"
+    description:
+87:
+    key: "LogOnStatus_LOGIN_REJECTED_USERS_LIMIT"
+    description:
+88:
+    key: "LogOnStatus_LOGIN_REJECTED_BAN"
+    description:
+89:
+    key: "LogOnStatus_LOGIN_MALFORMED_REQUEST"
+    description:
+90:
+    key: "LogOnStatus_LOGIN_BAD_PROTOCOL_VERSION"
+    description:
+91:
+    key: "LogOnStatus_LOGIN_REJECTED_NO_SUCH_USER"
+    description:
+92:
+    key: "LogOnStatus_LOGIN_REJECTED_INVALID_PASSWORD"
+    description:
+93:
+    key: "LogOnStatus_LOGIN_REJECTED_ALREADY_LOGGED_IN"
+    description:
+94:
+    key: "LogOnStatus_LOGIN_REJECTED_BAD_DIGEST_OLD_CLIENT"
+    description:
+95:
+    key: "LogOnStatus_LOGIN_REJECTED_BAD_DIGEST_NEW_CLIENT"
+    description:
+96:
+    key: "LogOnStatus_LOGIN_REJECTED_ILLEGAL_CHARACTERS"
+    description:
+97:
+    key: "LogOnStatus_LOGIN_REJECTED_SERVER_NOT_READY"
+    description:
+98:
+    key: "LogOnStatus_LOGIN_REJECTED_UPDATER_NOT_READY"
+    description:
+99:
+    key: "LogOnStatus_LOGIN_REJECTED_BASEAPP_OVERLOAD"
+    description:
+100:
+    key: "LogOnStatus_LOGIN_REJECTED_CELLAPP_OVERLOAD"
+    description:
+101:
+    key: "LogOnStatus_LOGIN_REJECTED_DBMGR_OVERLOAD"
+    description:
+102:
+    key: "LogOnStatus_LOGIN_REJECTED_LOGINS_NOT_ALLOWED"
+    description:
+103:
+    key: "LogOnStatus_LOGIN_REJECTED_RATE_LIMITED"
+    description:
+104:
+    key: "LogOnStatus_LOGIN_REJECTED_AUTH_SERVICE_NO_SUCH_ACCOUNT"
+    description:
+105:
+    key: "LogOnStatus_LOGIN_REJECTED_AUTH_SERVICE_LOGIN_DISALLOWED"
+    description:
+106:
+    key: "LogOnStatus_LOGIN_REJECTED_AUTH_SERVICE_UNREACHABLE"
+    description:
+107:
+    key: "LogOnStatus_LOGIN_REJECTED_AUTH_SERVICE_INVALID_RESPONSE"
+    description:
+108:
+    key: "LogOnStatus_LOGIN_REJECTED_AUTH_SERVICE_GENERAL_FAILURE"
+    description:
+109:
+    key: "Facebook_login_denied_title"
+    description:
+110:
+    key: "#entry:social/NativeSystemLoginError/LIVE"
+    description:
+111:
+    key: "#entry:social/NativeSystemLoginError/GC"
+    description:
+112:
+    key: "#entry:social/NativeSystemLoginError/GOOGLE"
+    description:
+113:
+    key: "#entry:social/NativeSystemLoginError/STEAM"
+    description:
+114:
+    key: "#externalRegistration:error/GC"
+    description:
+115:
+    key: "#externalRegistration:error/GOOGLE"
+    description:
+116:
+    key: "#externalRegistration:demoError/text"
+    description:
+117:
+    key: "#externalRegistration:error/LIVE"
+    description:
+118:
+    key: "#externalRegistration:error/STEAM"
+    description:
+119:
+    key: "LOAD_ROOT_PATH_NOT_FOUND"
+    description:
+120:
+    key: "LOAD_ROOT_CORRUPTED"
+    description:
+121:
+    key: "LOAD_META_NOT_FOUND"
+    description:
+122:
+    key: "LOAD_META_NOT_LOADED"
+    description:
+123:
+    key: "LOAD_META_NOT_PARSED"
+    description:
+124:
+    key: "DATA_CANT_BE_OPENED"
+    description:
+125:
+    key: "DATA_CORRUPTED"
+    description:
+126:
+    key: "DATA_INCORRECT_DIGEST"
+    description:
+127:
+    key: "UNKNOWN"
+    description:

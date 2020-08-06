@@ -1,0 +1,47 @@
+keyboard:
+  - action: ActionLeft
+    state: just_pressed
+    element: "Left"
+  - action: ActionRight
+    state: just_pressed
+    element: "Right"
+  - action: ActionUp
+    state: just_pressed
+    element: "Up"
+  - action: ActionDown
+    state: just_pressed
+    element: "Down"
+  - action: Perform
+    state: just_pressed
+    element: "Enter"
+  - action: Escape
+    state: just_pressed
+    element: "Escape"
+gamepad:
+  - action: LeftTrigger
+    analog: true
+    element: "Gamepad left trigger"
+  - action: LeftThumbstickAxis
+    analog: true
+    element: "Gamepad left thumbstick axis"
+  - action: RightTrigger
+    analog: true
+    element: "Gamepad right trigger"
+  - action: RightThumbstickAxis
+    analog: true
+    element: "Gamepad right thumbstick axis" 
+  - action: Perform
+    state: just_pressed
+    element: "Gamepad B"
+  - action: ActionLeft
+    state: just_pressed
+    element: "Gamepad dpad left"
+  - action: ActionRight
+    state: just_pressed
+    element: "Gamepad dpad right"
+  - action: ActionUp
+    state: just_pressed
+    element: "Gamepad dpad up"
+  - action: ActionDown
+    state: just_pressed
+    element: "Gamepad dpad down"
