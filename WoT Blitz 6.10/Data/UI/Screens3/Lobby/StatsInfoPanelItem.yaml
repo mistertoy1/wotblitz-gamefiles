@@ -1,0 +1,92 @@
+Header:
+    version: "99"
+Prototypes:
+-   class: "UIControl"
+    name: "StatsPanelItem"
+    size: [69.000000, 48.000000]
+    exclusiveInput: true
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfParent"
+        UIInputEventComponent:
+            onTouchUpInside: "ON_STATS_ITEM_PRESSED"
+        Focus: {}
+        UIShortcutEventComponent:
+            perform: "ON_STATS_ITEM_PRESSED"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "isLocked", "false", "true"]
+            - ["bool", "isVisible", "true", "true"]
+            - ["int64", "serverTime", "0L", "0L"]
+            - ["bool", "isCurrencyPlusVisible", "false", "true"]
+            - ["ResourceModel", "resource", "null", "{ }"]
+            - ["ResourceDetailed", "detailedResource", "null", "{ type = ResourceType.gold; }"]
+            events:
+            - "ON_STATS_ITEM_PRESSED"
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Lobby/StatsInfoPanelItem.style.yaml;~res:/UI/Screens3/ButtonSound.style.yaml"
+    bindings:
+    - ["visible", "isVisible"]
+    - ["input", "not isNull(resource)"]
+    - ["classes", "\"header-currency button-open-sound \" + (when isLocked -> \"locked\", \"\")"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        input: false
+        classes: "content-area"
+        components:
+            UIOpacityComponent: {}
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "lastChild + 16"
+                verticalPolicy: "PercentOfParent"
+            UIChildComponent0:
+                childType: "kControl"
+                condition: "not isNull(resource)"
+                control: "Currency"
+            UIChildComponent1:
+                childType: "kControl"
+                condition: "not isNull(detailedResource)"
+                control: "CurrencyAdapter"
+Slots:
+-   class: "UIControl"
+    name: "Currency"
+    pivot: [0.500000, 0.500000]
+    input: false
+    classes: "content"
+    components:
+        UIOpacityComponent: {}
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfFirstChild"
+        UIChildComponent0:
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/Currency.yaml"
+            args:
+                "isPlusTopPaneVisible": "isCurrencyPlusVisible"
+                "serverTime": "serverTime"
+                "resource": "resource"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Lobby/StatsInfoPanelItem.style.yaml"
+-   class: "UIControl"
+    name: "CurrencyAdapter"
+    pivot: [0.500000, 0.500000]
+    input: false
+    components:
+        UIOpacityComponent: {}
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfFirstChild"
+        UIChildComponent0:
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/CurrencyAdapter.yaml"
+            args:
+                "isPlusTopPaneVisible": "isCurrencyPlusVisible"
+                "serverTime": "serverTime"
+                "resource": "detailedResource"

@@ -1,0 +1,48 @@
+Header:
+    version: "83"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Dialog/TextDialog.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "AdvertisingDialog"
+    size: [720.000000, 600.000000]
+    input: false
+    classes: ""
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        ModalInput: {}
+        UIShortcutEventComponent:
+            shortcuts: "PROXY_CANCEL,Back;PROXY_CANCEL,Escape;PROXY_WATCH_AD,Enter"
+        UIDataParamsComponent:
+            params:
+            - ["SessionDataModel", "session", "null", "{ }"]
+            - ["BattleAdvertisingBonus", "battleBonus", "null", "{ }"]
+            events:
+            - "WATCH_AD"
+            - "CANCEL"
+        UIDataLocalsComponent:
+            locals:
+            - ["vector<ResourceDetailed>", "rewards", "when not isNull(battleBonus) -> battleBonus.rewards, session.shopData.advertising.hangarReward"]
+    children:
+    -   prototype: "TextDialog/TextDialog"
+        name: "TextDialog"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "accentButtonType": "eButtonType.POSITIVE"
+                    "type": "eDialogType.CHOOSE"
+                    "header": "\"\""
+                    "headerImage": "\"~res:/Gfx/UI/Hangar/ads/ads_icon_new_big.psd\""
+                    "accentButton": "localize(\"videoAds:WatchButton\")"
+                    "optionalButton": "\"#common:DialogButton/Cancel\""
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/AdvertisingDialogContent.yaml\", { rewards = rewards; cooldown = session.shopData.advertising.cooldown; }, [ ])"
+                eventActions:
+                - ["ACCENT_CLICKED", "WATCH_AD", ""]
+                - ["OPTIONAL_CLICKED", "CANCEL", ""]
+        children:
+        -   path: "DialogContent/Metaphor"
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_PROPORTIONAL"

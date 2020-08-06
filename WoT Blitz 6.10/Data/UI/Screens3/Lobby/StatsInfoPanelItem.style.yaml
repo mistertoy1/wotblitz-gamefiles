@@ -1,0 +1,41 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Touch.style.yaml"
+StyleSheets:
+-   selectors:
+    - ".header-currency * .content"
+    - ".header-currency.locked:hover * .content"
+    properties:
+        anchor-vCenterAnchor:
+            value: 0.000000
+            transitionTime: 0.150000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selectors:
+    - ".header-currency:pressed_inside:hover * .content"
+    properties:
+        anchor-vCenterAnchor:
+            value: 0.000000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selectors:
+    - ".header-currency:hover * .content"
+    properties:
+        anchor-vCenterAnchor:
+            value: -4.000000
+            transitionTime: 0.150000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selectors:
+    - ".header-currency.locked:pressed_inside * .content"
+    properties:
+        opacity-opacity:
+            value: 1.000000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selectors:
+    - ".header-currency:pressed_inside * .content"
+    properties:
+        opacity-opacity:
+            value: 0.700000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"

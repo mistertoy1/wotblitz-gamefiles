@@ -1,0 +1,105 @@
+Header:
+    version: "95"
+Prototypes:
+-   class: "UIControl"
+    name: "StatsPanel"
+    size: [473.000000, 48.000000]
+    input: false
+    components:
+        LinearLayout:
+            spacing: 8.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["StatsDataModel", "statsData", "null", "{ }"]
+            - ["int64", "serverTime", "0L", "0L"]
+            - ["bool", "isTutorialActive", "false", "false"]
+            - ["bool", "firstLessonCompleted", "true", "true"]
+            - ["bool", "isVisible", "true", "true"]
+            - ["bool", "showPremium", "true", "true"]
+            - ["bool", "showGold", "true", "true"]
+            - ["bool", "showCredits", "true", "true"]
+            - ["bool", "showFreeXp", "true", "true"]
+            events:
+            - "SHOP_BUTTON(eRequiredResource requiredResource)"
+            - "PREMIUM_INFO_EVENT"
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "isPremVisible", "not isTutorialActive and showPremium"]
+            - ["bool", "isGoldVisible", "(not isTutorialActive or firstLessonCompleted) and showGold"]
+            - ["bool", "isCreditsVisible", "showCredits"]
+            - ["bool", "isFreeXpVisible", "not isTutorialActive and showFreeXp"]
+    bindings:
+    - ["visible", "not isNull(statsData) and isVisible"]
+    children:
+    -   class: "UIControl"
+        name: "Prem"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfParent"
+            UIChildComponent0:
+                condition: "isPremVisible"
+                prototypePath: "~res:/UI/Screens3/Lobby/StatsInfoPanelItem.yaml"
+                args:
+                    "resource": "statsData.premium"
+                    "serverTime": "serverTime"
+                    "isCurrencyPlusVisible": "not statsData.isPremiumAccount"
+                eventActions:
+                - ["ON_STATS_ITEM_PRESSED", "PREMIUM_INFO_EVENT", ""]
+        bindings:
+        - ["visible", "isPremVisible"]
+    -   class: "UIControl"
+        name: "Gold"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfParent"
+            UIChildComponent0:
+                condition: "isGoldVisible"
+                prototypePath: "~res:/UI/Screens3/Lobby/StatsInfoPanelItem.yaml"
+                args:
+                    "resource": "statsData.gold"
+                    "isCurrencyPlusVisible": "true"
+                eventActions:
+                - ["ON_STATS_ITEM_PRESSED", "SHOP_BUTTON", "eRequiredResource.kGold"]
+        bindings:
+        - ["visible", "isGoldVisible"]
+    -   class: "UIControl"
+        name: "Credits"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfParent"
+            UIChildComponent0:
+                condition: "isCreditsVisible"
+                prototypePath: "~res:/UI/Screens3/Lobby/StatsInfoPanelItem.yaml"
+                args:
+                    "resource": "statsData.credits"
+                    "isCurrencyPlusVisible": "true"
+                eventActions:
+                - ["ON_STATS_ITEM_PRESSED", "SHOP_BUTTON", "eRequiredResource.kCredits"]
+        bindings:
+        - ["visible", "isCreditsVisible"]
+    -   class: "UIControl"
+        name: "FreeXP"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfParent"
+            UIChildComponent0:
+                condition: "isFreeXpVisible"
+                prototypePath: "~res:/UI/Screens3/Lobby/StatsInfoPanelItem.yaml"
+                args:
+                    "resource": "statsData.freeXp"
+                    "isCurrencyPlusVisible": "true"
+                eventActions:
+                - ["ON_STATS_ITEM_PRESSED", "SHOP_BUTTON", "eRequiredResource.kFreeExperience"]
+        bindings:
+        - ["visible", "isFreeXpVisible"]

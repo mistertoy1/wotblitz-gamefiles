@@ -1,0 +1,88 @@
+Header:
+    version: "83"
+Prototypes:
+-   class: "UIControl"
+    name: "AdvertisingDialogContent"
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        LinearLayout:
+            orientation: "TopDown"
+            spacing: 8.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["vector<ResourceDetailed>", "rewards", "null", "[ { type = ResourceType.xp; }; { type = ResourceType.credits; }; ]"]
+            - ["int64", "cooldown", "0L", "300L"]
+    children:
+    -   class: "UIControl"
+        name: "Label"
+        input: false
+        classes: "t-body regular white-wild-sand-70-text"
+        components:
+            UITextComponent:
+                text: "videoAds:RewardForWatching"
+                colorInheritType: "COLOR_IGNORE_PARENT"
+                align: ["LEFT", "VCENTER"]
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+    -   class: "UIControl"
+        name: "Spacer"
+        input: false
+        components:
+            SizePolicy:
+                verticalPolicy: "FixedSize"
+                verticalValue: 8.000000
+    -   class: "UIControl"
+        name: "Rewards"
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+            LinearLayout:
+                padding: "8"
+                spacing: 8.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+            UIRepeatComponent:
+                control: "~res:/UI/Screens3/Lobby/Common/Resource/RewardMedium.yaml"
+                dataContainer: "rewards"
+                args:
+                    "resource": "_item"
+                    "interactive": "false"
+    -   class: "UIControl"
+        name: "Spacer"
+        input: false
+        components:
+            SizePolicy:
+                verticalPolicy: "FixedSize"
+                verticalValue: 8.000000
+    -   class: "UIControl"
+        name: "Cooldown"
+        position: [0.000000, 200.000000]
+        input: false
+        classes: "t-body regular white-wild-sand-70-text"
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+                align: ["LEFT", "VCENTER"]
+            Anchor:
+                hCenterAnchorEnabled: true
+                useRtl: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "localize(\"videoAds:Cooldown\", { cooldown = timeDiffShort(cooldown); })"]

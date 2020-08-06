@@ -1,0 +1,25 @@
+Header:
+    version: "77"
+Prototypes:
+-   class: "UIControl"
+    name: "PopupLayer"
+    visible: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+        ModalInput: {}
+        UIInputEventComponent:
+            onTouchUpInside: "POPUP_ON_CLOSE_ACTION"
+        UIShortcutEventComponent:
+            shortcuts: "POPUP_ON_CLOSE_ACTION,Escape;POPUP_ON_CLOSE_ACTION,Back"
+        UIDataParamsComponent:
+            params:
+            - ["TutorialDataModel", "tutorialData", "{ }", "{ }"]
+            events:
+            - "POPUP_ON_CLOSE_ACTION"
+        UILayerComponent: {}
+    bindings:
+    - ["UILayerComponent.layer", "when tutorialData.currentHint == eTutorialHint.kSpendFreeXP and tutorialData.currentHighlightControl == eTutorialHighlights.kResearchDialogFreeXP -> 1, 0"]
