@@ -1,0 +1,9 @@
+Header:
+    version: "64"
+StyleSheets:
+-   selector: ".back-button-input"
+    properties:
+        sizePolicy-verticalValue: 64.000000
+-   selector: ".back-button-input.Desktop"
+    properties:
+        sizePolicy-verticalValue: 48.000000

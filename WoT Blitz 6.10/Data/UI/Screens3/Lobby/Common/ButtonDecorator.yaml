@@ -1,0 +1,80 @@
+Header:
+    version: "99"
+Prototypes:
+-   class: "UIControl"
+    name: "ButtonDecorator"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfFirstChild"
+        UIDataParamsComponent:
+            params:
+            - ["control", "content", "null", "null"]
+            - ["eButtonSound", "sound", "eButtonSound.UNKNOWN", "eButtonSound.OK"]
+            - ["eButtonType", "type", "eButtonType.OPTIONAL_LIGHT", "eButtonType.OPTIONAL_LIGHT"]
+            - ["bool", "enabled", "true", "true"]
+            events:
+            - "ON_CLICK_BUTTON"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "soundStyle", "when sound == eButtonSound.OPEN -> \"button-open-sound\", sound == eButtonSound.OK -> \"button-ok-sound\", sound == eButtonSound.CANCEL -> \"button-cancel-sound\", sound == eButtonSound.SELL -> \"button-sell-sound\", sound == eButtonSound.BUY -> \"button-buy-sound\", sound == eButtonSound.CLOSE -> \"button-close-sound\", \"\""]
+    children:
+    -   class: "UIControl"
+        name: "TapArea"
+        exclusiveInput: true
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfFirstChild"
+            UIInputEventComponent:
+                onTouchUpInside: "ON_CLICK_BUTTON"
+            Sound: {}
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/Common/Button.style.yaml;~res:/UI/Screens3/ButtonSound.style.yaml"
+        bindings:
+        - ["enabled", "enabled"]
+        - ["classes", "\"button button-tap-area  \" + soundStyle"]
+        children:
+        -   class: "UIControl"
+            name: "ContentHolder"
+            pivot: [0.500000, 0.500000]
+            input: false
+            classes: "content-area"
+            components:
+                Anchor:
+                    leftAnchorEnabled: true
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfFirstChild"
+                    verticalPolicy: "PercentOfFirstChild"
+                UIChildComponent0:
+                    childType: "kControl"
+                    condition: "not isNull(content)"
+                    control: "content"
+        -   class: "UIControl"
+            name: "Fade"
+            input: false
+            components:
+                Background:
+                    drawType: "DRAW_STRETCH_BOTH"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_r1"
+                    leftRightStretchCap: 1.000000
+                    topBottomStretchCap: 1.000000
+                UIOpacityComponent: {}
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Button.style.yaml"
+            bindings:
+            - ["classes", "\"button-fade \" + (when type == eButtonType.OPTIONAL_DARK -> \"black-10-bg\", \"white-wild-sand-10-bg\")"]

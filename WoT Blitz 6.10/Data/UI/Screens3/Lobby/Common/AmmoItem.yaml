@@ -1,0 +1,67 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/RichText.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "AmmoItem"
+    size: [132.000000, 0.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["string", "quantity", "\"\"", "\"123\""]
+            - ["string", "internalKey", "\"\"", "\"Калибр, <text_units>мм</text_units>\""]
+    children:
+    -   class: "UIControl"
+        name: "Value"
+        input: false
+        classes: "t-body bold color=white-wild-sand-text"
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+                align: ["RIGHT", "VCENTER"]
+            Anchor:
+                leftAnchorEnabled: true
+                hCenterAnchorEnabled: true
+                hCenterAnchor: -100.000000
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "quantity"]
+    -   prototype: "RichText/RichText"
+        name: "RichText"
+        components:
+            RichContentAliases2:
+                aliases: "text_units,<span class=\"t-body regular color=white-wild-sand-50-text\" />;"
+            Anchor:
+                leftAnchorEnabled: false
+                hCenterAnchorEnabled: true
+                hCenterAnchor: -80.000000
+                rightAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "Ignore"
+            UIDataParamsComponent:
+                args:
+                    "baseFontSize": "\"t-body\""
+                    "baseFontStyle": "\"regular\""
+                    "baseFontColor": "\"white-wild-sand-text\""
+                    "key": "internalKey"
+                    "linkKey": "\"\""
+                    "resource1Model": "null"
+                    "resource2Model": "null"
+                    "resource3Model": "null"
+                    "resource4Model": "null"
+                    "customKeyProperty": "\"\""

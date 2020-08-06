@@ -1,0 +1,37 @@
+Header:
+    version: "65"
+Prototypes:
+-   class: "UIControl"
+    name: "FlagButton"
+    size: [74.000000, 62.000000]
+    components:
+        Background:
+            drawType: "DRAW_STRETCH_BOTH"
+            leftRightStretchCap: 5.000000
+            topBottomStretchCap: 5.000000
+        Anchor:
+            vCenterAnchorEnabled: true
+        UIInputEventComponent:
+            onTouchUpInside: "ON_FLAG_TOUCH"
+            onTouchUpInsideData: "nation"
+        UIDataParamsComponent:
+            params:
+            - ["eNation", "nation", "eNation.USA", "eNation.USSR"]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "nationStyle", "toLowerCaseNotForLocalizedText(str(nation, eNation))"]
+        Sound:
+            touchDown: "GUI/buttons/choose"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Lobby/Common/FlagButton.style.yaml"
+    bindings:
+    - ["classes", "\"flag-button \" +nationStyle", "Read"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        input: false
+        components:
+            Background: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"

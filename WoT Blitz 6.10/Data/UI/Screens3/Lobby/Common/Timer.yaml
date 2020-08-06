@@ -1,0 +1,82 @@
+Header:
+    version: "92"
+Prototypes:
+-   class: "UIControl"
+    name: "Timer"
+    input: false
+    components:
+        LinearLayout:
+            padding: "0;4"
+            useRtl: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "FixedSize"
+            verticalValue: 24.000000
+        UIDataParamsComponent:
+            params:
+            - ["string", "colorStyle", "\"white-wild-sand\"", "\"white-wild-sand\""]
+            - ["bool", "visible", "true", "true"]
+            - ["int64", "serverTime", "1548670002L", "1548670002L"]
+            - ["int64", "time", "15131323123L", "15131323123L"]
+            - ["bool", "bgVisible", "false", "false"]
+            - ["bool", "iconVisible", "true", "true"]
+            - ["int64", "alertTime", "0L", "0L"]
+            - ["string", "fontStyle", "\"t-caption bold\"", "\"t-subtitle bold\""]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "bgColorFormatted", "colorStyle + \"-bg\""]
+            - ["string", "textColorFormatted", "colorStyle + \"-text\""]
+            - ["bool", "isExpiring", "alertTime > 0L and (time - serverTime) < alertTime"]
+            - ["string", "bgColorClass", "when isExpiring -> \"red-red-bg\", bgColorFormatted"]
+            - ["string", "textColorClass", "when isExpiring -> \"red-red-text\", textColorFormatted"]
+    bindings:
+    - ["visible", "visible"]
+    children:
+    -   class: "UIControl"
+        name: "Bg"
+        input: false
+        classes: "white-wild-sand-15-bg"
+        components:
+            Background: {}
+            IgnoreLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "bgVisible"]
+    -   class: "UIControl"
+        name: "Icon"
+        input: false
+        components:
+            Background:
+                drawType: "DRAW_SCALE_PROPORTIONAL"
+                sprite: "~res:/Gfx/Lobby/icons/icon_timer"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            Anchor: {}
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 24.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 24.000000
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "iconVisible"]
+        - ["classes", "bgColorClass"]
+    -   class: "UIControl"
+        name: "Value"
+        input: false
+        components:
+            UITextComponent: {}
+            Anchor:
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["classes", "fontStyle + \" \" + textColorClass"]
+        - ["UITextComponent.text", "timeDiff(time - serverTime)"]

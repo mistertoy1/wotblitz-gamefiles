@@ -1,0 +1,23 @@
+Header:
+    version: "74"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Touch.style.yaml"
+StyleSheets:
+-   selector: ".notification * .hover, .notification:pressed_inside * .hover"
+    properties:
+        visible: false
+-   selector: ".notification:hover * .hover"
+    properties:
+        visible: true
+-   selector: ".notification:pressed_inside * .content-area"
+    properties:
+        opacity-opacity:
+            value: 0.500000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selector: ".notification * .content-area"
+    properties:
+        opacity-opacity:
+            value: 1.000000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"

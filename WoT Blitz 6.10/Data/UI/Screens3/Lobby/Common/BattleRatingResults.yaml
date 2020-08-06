@@ -1,0 +1,126 @@
+Header:
+    version: "77"
+Prototypes:
+-   class: "UIControl"
+    name: "BattleRating"
+    position: [0.000000, 0.000000]
+    size: [80.000000, 48.000000]
+    input: false
+    components:
+        Anchor:
+            vCenterAnchorEnabled: true
+        LinearLayout:
+            orientation: "LeftToRight"
+            spacing: 6.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "isRatingMode", "false", "true"]
+            - ["RatingBattleModel", "battleRating", "{ }", "{ }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "deltaStyle", "when battleRating.difference < 0 -> \" down red-red-bg\", \" top green-green-bg\""]
+            - ["string", "battleRatingValue", "when battleRating.state == eBattleRatingState.HAS_RATING -> str1000Separated(battleRating.currentRating), \"\""]
+            - ["int", "calibrationBattleLeft", "when battleRating.state == eBattleRatingState.NO_RATING -> battleRating.calibrationBattlesCount, battleRating.calibrationBattlesLeft"]
+            - ["bool", "isCalibrationState", "battleRating.state != eBattleRatingState.HAS_RATING"]
+            - ["string", "calibrationText", "\"(\" + str(battleRating.calibrationBattlesCount - calibrationBattleLeft) + \"/\" + str(battleRating.calibrationBattlesCount) + \")\""]
+            - ["string", "text", "when isCalibrationState and isRatingMode -> calibrationText, battleRatingValue"]
+            - ["string", "leagueStyle", "when battleRating.leagueType != eLeague.NO_LEAGUE -> toLowerCaseNotForLocalizedText(str(battleRating.leagueType, eLeague)), \"\""]
+            - ["string", "leagueWrapperStyle", "when isCalibrationState -> \"calibration\", leagueStyle"]
+            - ["string", "diffStyleText", "when battleRating.difference < 0 -> \"t-caption bold red-red-text\", \"t-caption bold green-green-text\""]
+    children:
+    -   class: "UIControl"
+        name: "Text"
+        position: [4.000000, 0.000000]
+        input: false
+        classes: "t-caption bold white-wild-sand-text "
+        components:
+            UITextComponent: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "text"]
+    -   class: "UIControl"
+        name: "LeagueWrapper"
+        size: [32.000000, 32.000000]
+        enabled: false
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfLastChild"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/Common/BattleRating.style.yaml"
+        bindings:
+        - ["visible", "battleRating.state == eBattleRatingState.HAS_RATING or isCalibrationState"]
+        - ["classes", "leagueWrapperStyle"]
+        children:
+        -   class: "UIControl"
+            name: "Icon"
+            size: [20.000000, 20.000000]
+            input: false
+            classes: "icon"
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_PROPORTIONAL"
+                    perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 20.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 20.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Lobby/Common/BattleRating.style.yaml"
+    -   class: "UIControl"
+        name: "Diff"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            LinearLayout:
+                spacing: 3.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/Common/BattleRating.style.yaml"
+        bindings:
+        - ["visible", "battleRating.difference != 0 and not isCalibrationState"]
+        children:
+        -   class: "UIControl"
+            name: "DeltaIcon"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                Background:
+                    drawType: "DRAW_ALIGNED"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_triangle.psd"
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/BattleRating.style.yaml"
+            bindings:
+            - ["classes", "\"delta\" + deltaStyle"]
+        -   class: "UIControl"
+            name: "RatingDiff"
+            input: false
+            components:
+                UITextComponent: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+            bindings:
+            - ["classes", "diffStyleText"]
+            - ["UITextComponent.text", "str1000Separated(abs(battleRating.difference))"]

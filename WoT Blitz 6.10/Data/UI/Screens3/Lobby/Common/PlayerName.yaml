@@ -1,0 +1,55 @@
+Header:
+    version: "92"
+Prototypes:
+-   class: "UIControl"
+    name: "PlayerName"
+    input: false
+    components:
+        LinearLayout:
+            orientation: "LeftToRight"
+            spacing: 4.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["ePlayerSize", "playerNameSize", "ePlayerSize.kBig", "ePlayerSize.kBig"]
+            - ["string", "clanTag", "\"\"", "\"WG\""]
+            - ["string", "playerName", "\"\"", "\"Konstantinopolsky\""]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "playerSizeStyle", "when playerNameSize == ePlayerSize.kBig -> \"t-subtitle\", \"t-body\""]
+    children:
+    -   class: "UIControl"
+        name: "UserName"
+        input: false
+        components:
+            UITextComponent:
+                perPixelAccuracyType: "PER_PIXEL_ACCURACY_FORCED"
+                fitting: "FITTING_POINTS"
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["classes", "\"regular white-wild-sand-text align-left \" + playerSizeStyle"]
+        - ["UITextComponent.text", "playerName"]
+    -   class: "UIControl"
+        name: "ClanTag"
+        input: false
+        components:
+            UITextComponent:
+                perPixelAccuracyType: "PER_PIXEL_ACCURACY_FORCED"
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            UIDataLocalsComponent:
+                locals:
+                - ["string", "clanText", "when empty(clanTag) -> \"\", \"[\" + clanTag + \"]\""]
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["visible", "not empty(clanText)"]
+        - ["classes", "\"bold orange-orange-peel-text \" + playerSizeStyle"]
+        - ["UITextComponent.text", "clanText"]

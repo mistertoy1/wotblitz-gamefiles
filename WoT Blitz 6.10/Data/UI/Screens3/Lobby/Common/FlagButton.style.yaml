@@ -1,0 +1,36 @@
+Header:
+    version: "28"
+StyleSheets:
+-   selector: ".flag-button.flag-button #Content"
+    properties:
+        bg-sprite: "~res:/Gfx/UI/LobbyCommon/flagsbutton"
+-   selector: ".germany #Content"
+    properties:
+        bg-frame: 1
+-   selector: ".japan #Content"
+    properties:
+        bg-frame: 4
+-   selector: ".ussr #Content"
+    properties:
+        bg-frame: 2
+-   selector: ".china #Content"
+    properties:
+        bg-frame: 5
+-   selector: ".uk #Content"
+    properties:
+        bg-frame: 3
+-   selector: ".usa #Content"
+    properties:
+        bg-frame: 0
+-   selector: ".france #Content"
+    properties:
+        bg-frame: 6
+-   selector: ".flag-button:selected #Selection"
+    properties:
+        visible: true
+-   selector: ".other #Content"
+    properties:
+        bg-frame: 7
+-   selector: ".flag-button #Selection"
+    properties:
+        visible: false

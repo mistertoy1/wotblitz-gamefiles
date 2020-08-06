@@ -1,0 +1,11 @@
+Header:
+    version: "84"
+StyleSheets:
+-   selectors:
+    - ".basic-factor * .content-area"
+    properties:
+        linearLayout-spacing: -1.000000
+-   selectors:
+    - ".multiple-factor * .content-area"
+    properties:
+        linearLayout-spacing: 2.000000

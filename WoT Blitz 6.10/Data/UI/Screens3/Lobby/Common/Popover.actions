@@ -1,0 +1,32 @@
+action SHOW_POPOVER(float delay)
+{
+	parallel
+	{
+		ChangeProperty("**/Content", "UIOpacityComponent", "opacity", 0, 0);
+		ChangeProperty("**/Content", "Anchor", "vCenterAnchor", 80, 0);
+	}
+
+	Wait(delay);
+	parallel
+	{
+		ChangeProperty("**/Content", "UIOpacityComponent", "opacity", 1, 0.3, SINE_OUT);
+		ChangeProperty("**/Content", "Anchor", "vCenterAnchor", 0, 0.3, SINE_OUT);
+	}
+}
+
+action HIDE_POPOVER(float delay)
+{
+	Event("SHOW_POPOVER", arg1=delay);
+	parallel
+	{
+		ChangeProperty("**/Content", "UIOpacityComponent", "opacity", 1, 0);
+		ChangeProperty("**/Content", "Anchor", "vCenterAnchor", 0, 0);
+	}
+
+	Wait(3);
+	parallel
+	{
+		ChangeProperty("**/Content", "UIOpacityComponent", "opacity", 0, 0.3, SINE_OUT);
+		ChangeProperty("**/Content", "Anchor", "vCenterAnchor", 80, 0.3, SINE_OUT);
+	}
+}

@@ -1,0 +1,44 @@
+action PLAY_SOUND
+{
+  if (not locked)
+  {
+    if (soundType == eButtonSound.OPEN)
+    {
+      PlaySound("GUI/buttons/open");
+    }
+    if (soundType == eButtonSound.OK)
+    {
+      PlaySound("GUI/buttons/ok");
+    }
+    if (soundType == eButtonSound.CANCEL)
+    {
+      PlaySound("GUI/buttons/cancel");
+    }
+    if (soundType == eButtonSound.SELL)
+    {
+      PlaySound("GUI/buttons/sell");
+    }
+    if (soundType == eButtonSound.BUY)
+    {
+      PlaySound("GUI/buttons/buy");
+    }
+    if (soundType == eButtonSound.CHOOSE)
+    {
+      PlaySound("GUI/buttons/open");
+    }
+    if (soundType == eButtonSound.CLOSE)
+    {
+      PlaySound("GUI/buttons/close");
+    }
+    if (soundType == eButtonSound.CHECKBOX)
+    {
+      PlaySound("GUI/buttons/ok");
+    }
+  }
+}
+
+action BUTTON_CLICKED
+{
+  Event("PLAY_SOUND");
+  Event("ON_CLICK_BUTTON");
+}

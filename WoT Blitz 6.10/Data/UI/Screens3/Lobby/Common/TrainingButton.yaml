@@ -1,0 +1,426 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Resource/Currencies.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Selection.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "TrainingButton"
+    size: [220.000000, 164.000000]
+    input: true
+    classes: "training-type-button button-choose-sound"
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UISwitchBarElementComponent: {}
+        UIDataParamsComponent:
+            params:
+            - ["control", "content", "null", "null"]
+            - ["eCrewTrainingType", "trainingType", "eCrewTrainingType.kBasic", "eCrewTrainingType.kBest"]
+            - ["Price", "price", "null", "{ }"]
+            - ["bool", "isFreeTrain", "false", "false"]
+            - ["bool", "isVisible", "true", "true"]
+            - ["bool", "freeTextAllowed", "true", "true"]
+            - ["bool", "isSelected", "false", "true"]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "spriteFrame", "when trainingType == eCrewTrainingType.kBasic -> \"~res:/Gfx/Lobby/icons/icon_crew_upgrade_bronze\", trainingType == eCrewTrainingType.kMedium -> \"~res:/Gfx/Lobby/icons/icon_crew_upgrade_silver\", trainingType == eCrewTrainingType.kBest -> \"~res:/Gfx/Lobby/icons/icon_crew_upgrade_gold\", \"\""]
+            - ["bool", "currencyVisibility", "trainingType != eCrewTrainingType.kBasic"]
+            - ["bool", "bgVisibility", "trainingType != eCrewTrainingType.kBasic"]
+            - ["bool", "freeTextVisible", "(price.resources.Empty() or price.resources[0].quantity == 0) and freeTextAllowed"]
+            - ["bool", "priceVisible", "not freeTextVisible and not isFreeTrain"]
+            - ["string", "bgColorStyle", "when trainingType == eCrewTrainingType.kBest -> \"yellow-lightning-bg\", \"white-wild-sand-25-bg\""]
+            - ["eButtonType", "buttonType", "when trainingType == eCrewTrainingType.kBest -> eButtonType.ALTERNATIVE, eButtonType.OPTIONAL_LIGHT"]
+            - ["float", "buttonOpacity", "when trainingType == eCrewTrainingType.kBest -> 0.700000, 1.000000"]
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Common/Hover.style.yaml;~res:/UI/Screens3/ButtonSound.style.yaml"
+    bindings:
+    - ["visible", "isVisible"]
+    - ["enabled", "not isSelected"]
+    - ["UISwitchBarElementComponent.id", "trainingType"]
+    children:
+    -   class: "UIControl"
+        name: "TrainingContent"
+        position: [110.000000, 82.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        classes: "content-area"
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                topAnchorEnabled: true
+            LinearLayout:
+                enabled: true
+                orientation: "TopDown"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Common/Touch.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "ContentWrapper"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+            children:
+            -   class: "UIControl"
+                name: "ButtonWithSelection"
+                position: [0.000000, 0.000000]
+                visible: true
+                input: false
+                components:
+                    Background: {}
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        topAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml;"
+                children:
+                -   class: "UIControl"
+                    name: "ButtonWrapper"
+                    size: [208.000000, 62.000000]
+                    input: false
+                    classes: "white-wild-sand-15-bg"
+                    components:
+                        Background: {}
+                        UIOpacityComponent: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml;"
+                    bindings:
+                    - ["UIOpacityComponent.opacity", "buttonOpacity"]
+                -   prototype: "Selection/Selection"
+                    name: "Selection"
+                    components:
+                        UIDataParamsComponent:
+                            args:
+                                "isVisible": "isSelected"
+                -   class: "UIControl"
+                    name: "Content"
+                    size: [220.000000, 164.000000]
+                    input: false
+                    components:
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                        UIChildComponent0:
+                            childType: "kControl"
+                            condition: "not isNull(content)"
+                            control: "content"
+            -   class: "UIControl"
+                name: "Hover"
+                visible: true
+                input: false
+                classes: "hover white-wild-sand-15-bg"
+                components:
+                    Background: {}
+                    UIOpacityComponent: {}
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        topAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Common/Hover.style.yaml"
+            -   class: "UIControl"
+                name: "silverEffects"
+                input: false
+                components:
+                    ClipContent: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                bindings:
+                - ["visible", "trainingType == eCrewTrainingType.kMedium"]
+                children:
+                -   class: "UIParticles"
+                    name: "sparks"
+                    position: [56.000000, 141.000000]
+                    size: [32.000000, 32.000000]
+                    pivot: [0.250000, 0.250000]
+                    input: false
+                    effectPath: "~res:/3d/FX/UI/crew_silver_sparks.sc2"
+                    autoStart: true
+                -   class: "UIParticles"
+                    name: "line"
+                    position: [0.000000, 125.000000]
+                    size: [32.000000, 32.000000]
+                    pivot: [0.250000, 0.250000]
+                    input: false
+                    effectPath: "~res:/3d/FX/UI/crew_silver_line.sc2"
+                    autoStart: true
+            -   class: "UIControl"
+                name: "goldEffects"
+                input: false
+                components:
+                    ClipContent: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                bindings:
+                - ["visible", "trainingType == eCrewTrainingType.kBest"]
+                children:
+                -   class: "UIParticles"
+                    name: "sparks"
+                    position: [56.000000, 141.000000]
+                    size: [32.000000, 32.000000]
+                    pivot: [0.250000, 0.250000]
+                    input: false
+                    effectPath: "~res:/3d/FX/UI/crew_gold_sparks.sc2"
+                    autoStart: true
+                -   class: "UIParticles"
+                    name: "line"
+                    position: [0.000000, 125.000000]
+                    size: [32.000000, 32.000000]
+                    pivot: [0.250000, 0.250000]
+                    input: false
+                    effectPath: "~res:/3d/FX/UI/crew_gold_line.sc2"
+                    autoStart: true
+            -   class: "UIControl"
+                name: "highlight"
+                visible: false
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_STRETCH_BOTH"
+                        sprite: "~res:/Gfx/UI/HangarTutorial/HighlightTile"
+                        leftRightStretchCap: 15.000000
+                        topBottomStretchCap: 15.000000
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                        vCenterAnchor: -2.000000
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+            -   class: "UIControl"
+                name: "TopBright"
+                input: false
+                components:
+                    UIOpacityComponent:
+                        opacity: 0.300000
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        topAnchorEnabled: true
+                        topAnchor: -56.000000
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 96.000000
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 56.000000
+                bindings:
+                - ["visible", "bgVisibility"]
+                children:
+                -   class: "UIControl"
+                    name: "Element_1"
+                    position: [0.000000, 27.000000]
+                    size: [96.000000, 30.000000]
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_TO_RECT"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_vertical_0-100"
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            topAnchorEnabled: true
+                            topAnchor: 27.000000
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["classes", "bgColorStyle"]
+                -   class: "UIControl"
+                    name: "Element_2"
+                    position: [17.000000, 13.000000]
+                    size: [61.000000, 44.000000]
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_TO_RECT"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_vertical_0-100"
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            topAnchorEnabled: true
+                            topAnchor: 13.000000
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["classes", "bgColorStyle"]
+                -   class: "UIControl"
+                    name: "Element_3"
+                    position: [35.000000, 0.000000]
+                    size: [26.000000, 57.000000]
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_TO_RECT"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_vertical_0-100"
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            topAnchorEnabled: false
+                            topAnchor: 0.000000
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["classes", "bgColorStyle"]
+            -   class: "UIControl"
+                name: "BottomBright"
+                input: false
+                components:
+                    UIOpacityComponent:
+                        opacity: 0.300000
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        bottomAnchorEnabled: true
+                        bottomAnchor: -32.000000
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 96.000000
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 32.000000
+                bindings:
+                - ["visible", "bgVisibility"]
+                children:
+                -   class: "UIControl"
+                    name: "Element_1"
+                    position: [0.000000, 0.000000]
+                    size: [96.000000, 12.000000]
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_TO_RECT"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_vertical_0-100"
+                            spriteModification: ["FLIP_VERTICAL"]
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["classes", "bgColorStyle"]
+                -   class: "UIControl"
+                    name: "Element_2"
+                    position: [17.000000, 0.000000]
+                    size: [61.000000, 67.000000]
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_TO_RECT"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_vertical_0-100"
+                            spriteModification: ["FLIP_VERTICAL"]
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["classes", "bgColorStyle"]
+                -   class: "UIControl"
+                    name: "Element_3"
+                    position: [35.000000, 0.000000]
+                    size: [26.000000, 102.000000]
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_TO_RECT"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_vertical_0-100"
+                            spriteModification: ["FLIP_VERTICAL"]
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            topAnchorEnabled: false
+                            topAnchor: 0.000000
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["classes", "bgColorStyle"]
+            -   class: "UIControl"
+                name: "Icon"
+                position: [69.000000, 30.000000]
+                size: [82.000000, 54.000000]
+                input: false
+                components:
+                    Background: {}
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        topAnchorEnabled: true
+                        topAnchor: -40.000000
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        verticalPolicy: "PercentOfContent"
+                bindings:
+                - ["Background.sprite", "spriteFrame"]
+    -   class: "UIControl"
+        name: "CostWrapper"
+        position: [0.000000, 188.000000]
+        components:
+            Anchor:
+                bottomAnchorEnabled: true
+                bottomAnchor: -40.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "FirstTrain"
+            size: [234.000000, 35.000000]
+            input: false
+            classes: "t-subtitle regular white-wild-sand-text"
+            components:
+                UITextComponent:
+                    text: "#crew:mastery/firstTrainFree"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    inheritsStylesFromParent: true
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+            bindings:
+            - ["visible", "isFreeTrain"]
+        -   class: "UIControl"
+            name: "FreeText"
+            input: false
+            classes: "t-caption regular white-wild-sand-text"
+            components:
+                UITextComponent:
+                    text: "AVATAR_BASE_TRAINING_PRICE"
+                    useRtlAlign: "USE_BY_SYSTEM"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+            bindings:
+            - ["visible", "freeTextVisible"]
+        -   class: "UIControl"
+            name: "ResourceWrapper"
+            position: [22.000000, 0.000000]
+            input: false
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfChildrenSum"
+                    verticalPolicy: "PercentOfChildrenSum"
+            bindings:
+            - ["visible", "priceVisible"]
+            children:
+            -   prototype: "Currencies/Resources"
+                name: "Resources"
+                components:
+                    Anchor:
+                        vCenterAnchorEnabled: true
+                    UIDataParamsComponent:
+                        args:
+                            "price": "price"

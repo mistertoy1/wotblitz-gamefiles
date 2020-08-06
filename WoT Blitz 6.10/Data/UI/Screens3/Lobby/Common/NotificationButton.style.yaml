@@ -1,0 +1,14 @@
+Header:
+    version: "93"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Touch.style.yaml"
+- "~res:/UI/Screens3/Common/Hover.style.yaml"
+StyleSheets:
+-   selectors:
+    - ".notification-button * .button-rounded"
+    properties:
+        visible: true
+-   selectors:
+    - ".notification-button.not-rounded * .button-rounded"
+    properties:
+        visible: false

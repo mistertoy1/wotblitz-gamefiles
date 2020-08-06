@@ -1,0 +1,11 @@
+Header:
+    version: "80"
+StyleSheets:
+-   selectors:
+    - ".toggle-tap-area"
+    properties:
+        visible: true
+-   selectors:
+    - ".toggle-tap-area.Desktop"
+    properties:
+        visible: false

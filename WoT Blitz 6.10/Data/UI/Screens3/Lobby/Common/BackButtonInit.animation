@@ -1,0 +1,3 @@
+animation BackButtonInit {
+	Event("kBackButtonInit");	
+};

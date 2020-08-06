@@ -1,0 +1,52 @@
+Header:
+    version: "92"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/OverlayBlur.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "Screenshot"
+    size: [800.000000, 600.000000]
+    input: false
+    components:
+        UIOpacityComponent:
+            opacity: 0.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["float", "blur", "1.000000", "1.000000"]
+            - ["int", "fade", "50", "50"]
+            - ["string", "sprite", "\"\"", "\"\""]
+    children:
+    -   class: "UIControl"
+        name: "Image"
+        size: [800.000000, 0.000000]
+        visible: true
+        input: false
+        components:
+            Background:
+                drawType: "DRAW_SCALE_TO_RECT"
+            UIOpacityComponent:
+                ignoreParentOpacity: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["Background.sprite", "sprite"]
+    -   class: "UIControl"
+        name: "FadedBlur"
+        visible: true
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet: {}
+        children:
+        -   prototype: "OverlayBlur/BlurAndFade"
+            name: "BlurAndFade"
+            children:
+            -   path: "Fade"
+                bindings:
+                - ["classes", "\"black-\" + str(fade) + \"-bg\""]

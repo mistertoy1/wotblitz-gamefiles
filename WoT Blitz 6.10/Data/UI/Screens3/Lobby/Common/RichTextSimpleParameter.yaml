@@ -1,0 +1,36 @@
+Header:
+    version: "93"
+Prototypes:
+-   class: "UIControl"
+    name: "RichTextSimpleParameter"
+    input: false
+    components:
+        RichContent: {}
+        RichContentAliases0:
+            aliases: "t-body_highlighted,<span class=\"t-body bold white-wild-sand-text\" />;t-caption_highlighted,<span class=\"t-caption bold white-wild-sand-text\" />;t-subtitle_highlighted,<span class=\"t-subtitle bold white-wild-sand-text\" />"
+        Anchor:
+            leftAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfChildrenSum"
+        FlowLayout:
+            hSpacing: 5.000000
+            useRtl: true
+        UIDataParamsComponent:
+            params:
+            - ["string", "baseFontSize", "\"t-caption\"", "\"t-caption\""]
+            - ["string", "baseFontStyle", "\"regular\"", "\"regular\""]
+            - ["string", "baseFontColor", "\"white-wild-sand-50-text\"", "\"white-wild-sand-50-text\""]
+            - ["string", "key", "\"\"", "\"name: %(variableName)\""]
+            - ["string", "value", "\"\"", "\"56\""]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "baseTextStyle", "baseFontSize + \" \" + baseFontStyle + \" \" + baseFontColor"]
+            - ["string", "highlightStartRichAlias", "\"<\" + baseFontSize + \"_highlighted>\""]
+            - ["string", "highlightEndRichAlias", "\"</\" + baseFontSize + \"_highlighted>\""]
+            - ["string", "finalString", "format(localize(key), { variableName = format(highlightStartRichAlias + \"%(variableName)\" + highlightEndRichAlias, { variableName = localize(value); }); highlight_start = highlightStartRichAlias; highlight_end = highlightEndRichAlias; })"]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Font.style.yaml"
+    bindings:
+    - ["RichContent.text", "finalString"]
+    - ["RichContent.baseClasses", "baseTextStyle"]

@@ -1,0 +1,199 @@
+Header:
+    version: "80"
+Prototypes:
+-   class: "UISwitch"
+    name: "Toggle"
+    input: true
+    exclusiveInput: true
+    classes: "toggle-button toggle-vertical-size"
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 48.000000
+            verticalPolicy: "FixedSize"
+        UIInputEventComponent:
+            onValueChanged: "ON_VALUE_CHANGED"
+            onValueChangedData: "_isTurnedOn"
+            onEditingFinished: "ON_EDITING_FINISHED"
+            onEditingFinishedData: "_isTurnedOn"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "isDarkMode", "false", "true"]
+            - ["bool", "isOn", "false", "true"]
+            events:
+            - "ON_VALUE_CHANGED(bool isTurnedOn)"
+            - "ON_EDITING_FINISHED(bool isTurnedOn)"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "bgColorStyle", "when isOn -> \"green-la-palma-bg\", isDarkMode -> \"black-25-bg\", \"white-wild-sand-15-bg\""]
+            - ["string", "hoverColorStyle", "when isOn or not isDarkMode -> \"white-wild-sand-10-bg\", \"black-15-bg\""]
+        Sound:
+            valueChanged: "GUI/buttons/checkbox"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Lobby/Common/Toggle.style.yaml"
+    bindings:
+    - ["isTurnedOn", "isOn"]
+    children:
+    -   class: "UIControl"
+        name: "Bg"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                vCenterAnchorEnabled: true
+            LinearLayout: {}
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 48.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 28.000000
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Toggle.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "Left"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_PROPORTIONAL"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_half-oval_40"
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 14.000000
+                    verticalPolicy: "PercentOfParent"
+            bindings:
+            - ["classes", "bgColorStyle"]
+        -   class: "UIControl"
+            name: "Center"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                Background: {}
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 20.000000
+                    verticalPolicy: "PercentOfParent"
+            bindings:
+            - ["classes", "bgColorStyle"]
+        -   class: "UIControl"
+            name: "Right"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_PROPORTIONAL"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_half-oval_40"
+                    spriteModification: ["FLIP_HORIZONTAL"]
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 14.000000
+                    verticalPolicy: "PercentOfParent"
+            bindings:
+            - ["classes", "bgColorStyle"]
+    -   class: "UIControl"
+        name: "Hover"
+        size: [32.000000, 32.000000]
+        input: false
+        classes: "hover"
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                vCenterAnchorEnabled: true
+            LinearLayout: {}
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 48.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 28.000000
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Toggle.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "Left"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_PROPORTIONAL"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_half-oval_40"
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 14.000000
+                    verticalPolicy: "PercentOfParent"
+            bindings:
+            - ["classes", "hoverColorStyle"]
+        -   class: "UIControl"
+            name: "Center"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                Background: {}
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 20.000000
+                    verticalPolicy: "PercentOfParent"
+            bindings:
+            - ["classes", "hoverColorStyle"]
+        -   class: "UIControl"
+            name: "Right"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_PROPORTIONAL"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_half-oval_40"
+                    spriteModification: ["FLIP_HORIZONTAL"]
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 14.000000
+                    verticalPolicy: "PercentOfParent"
+            bindings:
+            - ["classes", "hoverColorStyle"]
+    -   class: "UIControl"
+        name: "buttonRight"
+        position: [46.000000, 0.000000]
+        size: [22.000000, 32.000000]
+        pivot: [1.000000, 0.000000]
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                rightAnchorEnabled: true
+                rightAnchor: 2.000000
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+    -   class: "UIControl"
+        name: "buttonLeft"
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                leftAnchor: 2.000000
+                hCenterAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+    -   class: "UIControl"
+        name: "buttonToggle"
+        position: [2.000000, 2.000000]
+        size: [24.000000, 64.000000]
+        input: false
+        exclusiveInput: false
+        classes: "toggle-vertical-size"
+        components:
+            Background:
+                drawType: "DRAW_SCALE_PROPORTIONAL"
+                sprite: "~res:/Gfx/Lobby/backgrounds/bg_r16"
+            Anchor:
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 24.000000
+                verticalPolicy: "FixedSize"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/Common/Toggle.style.yaml"

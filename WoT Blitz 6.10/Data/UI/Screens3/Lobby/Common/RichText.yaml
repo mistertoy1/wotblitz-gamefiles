@@ -1,0 +1,50 @@
+Header:
+    version: "84"
+Prototypes:
+-   class: "UIControl"
+    name: "RichText"
+    size: [278.000000, 72.000000]
+    input: false
+    components:
+        RichContent: {}
+        RichContentAliases0:
+            aliases: "t-body_highlighted,<span class=\"t-body bold white-wild-sand-text\" />;t-caption_highlighted,<span class=\"t-caption bold white-wild-sand-text\" />;t-subtitle_highlighted,<span class=\"t-subtitle bold white-wild-sand-text\" />;resource1,<control control=\"~res:/UI/Screens3/Lobby/Common/Resource/CurrencyRichText.yaml\" args1=\"resource=resource1Model\" args2=\"stringFontStyle = baseFontSize\" args3=\"canAfford = true\"/>;resource2,<control control=\"~res:/UI/Screens3/Lobby/Common/Resource/CurrencyRichText.yaml\" args1=\"resource=resource2Model\" args2=\"stringFontStyle = baseFontSize\" args3=\"canAfford = true\"/>;resource3,<control control=\"~res:/UI/Screens3/Lobby/Common/Resource/CurrencyRichText.yaml\" args1=\"resource=resource3Model\" args2=\"stringFontStyle = baseFontSize\" args3=\"canAfford = true\"/>;resource4,<control control=\"~res:/UI/Screens3/Lobby/Common/Resource/CurrencyRichText.yaml\" args1=\"resource=resource4Model\" args2=\"stringFontStyle = baseFontSize\" args3=\"canAfford = true\"/>"
+        RichContentAliases1:
+            aliases: "external_link,<control control=\"~res:/UI/Screens3/Lobby/Common/RichTextLink.yaml\" args1=\"isExternalLink=true\" args2=\"key=linkKey\" args3=\"baseFontSize=baseFontSize\"/>;internal_link,<control control=\"~res:/UI/Screens3/Lobby/Common/RichTextLink.yaml\" args1=\"isExternalLink=false\" args2=\"key=linkKey\" args3=\"baseFontSize=baseFontSize\"/>"
+        Anchor:
+            leftAnchorEnabled: true
+        SizePolicy:
+            verticalPolicy: "PercentOfChildrenSum"
+        FlowLayout:
+            hSpacing: 5.000000
+            useRtl: true
+        UIDataParamsComponent:
+            params:
+            - ["string", "baseFontSize", "\"t-body\"", "\"t-subtitle\""]
+            - ["string", "baseFontStyle", "\"regular\"", "\"regular\""]
+            - ["string", "baseFontColor", "\"white-wild-sand-50-text\"", "\"white-wild-sand-50-text\""]
+            - ["string", "key", "\"\"", "\"Купите %(resource1) и %(external_link) со скидкой %(highlight_start)70%%(highlight_end) и получите назад %(resource2) и %(resource3)\""]
+            - ["string", "linkKey", "\"\"", "\"VK 72.01\""]
+            - ["ResourceModel", "resource1Model", "null", "{ quantity = 1500; type = ResourceType.premium; }"]
+            - ["ResourceModel", "resource2Model", "null", "{ quantity = 560000; type = ResourceType.free_xp; }"]
+            - ["ResourceModel", "resource3Model", "null", "{ quantity = 300; type = ResourceType.credits; }"]
+            - ["ResourceModel", "resource4Model", "null", "{ }"]
+            - ["string", "customKeyProperty", "\"\"", "\"\""]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "resource1RichAlias", "when isNull(resource1Model) or resource1Model.quantity == 0 -> \"\", \"<resource1/>\""]
+            - ["string", "resource2RichAlias", "when isNull(resource2Model) or resource2Model.quantity == 0 -> \"\", \"<resource2/>\""]
+            - ["string", "resource3RichAlias", "when isNull(resource3Model) or resource3Model.quantity == 0 -> \"\", \"<resource3/>\""]
+            - ["string", "resource4RichAlias", "when isNull(resource4Model) or resource4Model.quantity == 0 -> \"\", \"<resource4/>\""]
+            - ["string", "highlightStartRichAlias", "\"<\" + baseFontSize + \"_highlighted>\""]
+            - ["string", "highlightEndRichAlias", "\"</\" + baseFontSize + \"_highlighted>\""]
+            - ["string", "externalLinkAlias", "\"<external_link/>\""]
+            - ["string", "internalLinkAlias", "\"<internal_link/>\""]
+            - ["string", "customKeyPropertyAlias", "\"<\" + customKeyProperty + \"/>\""]
+            - ["string", "baseTextStyle", "baseFontSize + \" \" + baseFontStyle + \" \" + baseFontColor"]
+            - ["string", "finalString", "localize(key, { resource1 = resource1RichAlias; resource2 = resource2RichAlias; resource3 = resource3RichAlias; resource4 = resource4RichAlias; highlight_start = highlightStartRichAlias; highlight_end = highlightEndRichAlias; external_link = externalLinkAlias; internal_link = internalLinkAlias; customKeyProperty = customKeyPropertyAlias; })"]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Font.style.yaml"
+    bindings:
+    - ["RichContent.text", "finalString"]
+    - ["RichContent.baseClasses", "baseTextStyle"]

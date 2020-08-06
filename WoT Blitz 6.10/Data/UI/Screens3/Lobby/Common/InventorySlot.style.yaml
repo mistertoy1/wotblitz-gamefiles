@@ -1,0 +1,16 @@
+Header:
+    version: "81"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Touch.style.yaml"
+- "~res:/UI/Screens3/Common/Hover.style.yaml"
+StyleSheets:
+-   selectors:
+    - ".slot * #Fill"
+    - ".slot * #EquipmentImage"
+    properties:
+        opacity-opacity: 1.000000
+-   selectors:
+    - ".slot.disabled * #Fill"
+    - ".slot.disabled * #EquipmentImage"
+    properties:
+        opacity-opacity: 0.250000

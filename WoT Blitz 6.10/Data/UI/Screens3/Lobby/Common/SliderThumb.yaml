@@ -1,0 +1,35 @@
+Header:
+    version: "85"
+Prototypes:
+-   class: "UIControl"
+    name: "thumbSpriteControl"
+    pivot: [0.500000, 0.500000]
+    input: false
+    components:
+        Background:
+            drawType: "DRAW_SCALE_PROPORTIONAL"
+            sprite: "~res:/Gfx/Lobby/backgrounds/bg_oval_40"
+            perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+        UIOpacityComponent: {}
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 32.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 32.000000
+    children:
+    -   class: "UIControl"
+        name: "TitleBold"
+        input: false
+        classes: "t-subtitle bold color=white-wild-sand-text not-localize"
+        components:
+            UITextComponent:
+                align: ["LEFT", "VCENTER"]
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+                vCenterAnchor: -52.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"

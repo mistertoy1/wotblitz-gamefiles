@@ -1,0 +1,63 @@
+Header:
+    version: "99"
+Prototypes:
+-   class: "UIControl"
+    name: "ProgressBar"
+    size: [72.000000, 4.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "changeColor", "false", "false"]
+            - ["string", "fullProgressColor", "\"red-tamarillo-bg\"", "\"red-tamarillo-bg\""]
+            - ["string", "progressColor", "\"yellow-chalky-bg\"", "\"yellow-chalky-bg\""]
+            - ["int", "minimum", "0", "0"]
+            - ["int", "maximum", "100", "100"]
+            - ["int", "value", "50", "50"]
+            - ["bool", "showGradient", "false", "true"]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "currentColor", "when changeColor and value == maximum -> fullProgressColor, progressColor"]
+            - ["float", "progress", "float(value - minimum) / float(maximum - minimum) * 100.000000"]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml"
+    children:
+    -   class: "UIControl"
+        name: "Bg"
+        input: false
+        classes: "white-wild-sand-15-bg"
+        components:
+            Background: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+    -   class: "UIControl"
+        name: "Value"
+        input: false
+        components:
+            Background: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["classes", "currentColor"]
+        - ["SizePolicy.horizontalValue", "progress"]
+    -   class: "UIControl"
+        name: "Gradient"
+        input: false
+        classes: "white-wild-sand-50-bg"
+        components:
+            Background:
+                drawType: "DRAW_SCALE_TO_RECT"
+                sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_horizontal_0-100"
+            UIClipPolygon: {}
+            ProgressClip: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["visible", "showGradient"]
+        - ["ProgressClip.progress", "(1.010000 * progress - 1.000000) / 100.000000"]

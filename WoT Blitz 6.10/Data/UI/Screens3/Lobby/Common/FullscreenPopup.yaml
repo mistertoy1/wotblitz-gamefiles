@@ -1,0 +1,67 @@
+Header:
+    version: "92"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/IconButton.yaml"
+- "~res:/UI/Screens3/Common/OverlayBlur.yaml"
+- "~res:/UI/Screens3/Lobby/Inventory/Common/DynamicHorizontalPadding.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "FullscreenPopup"
+    size: [1024.000000, 768.000000]
+    input: true
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIInputEventComponent:
+            onTouchUpInside: "CLOSE_DIALOG"
+        UIShortcutEventComponent:
+            shortcuts: "CLOSE_DIALOG, Escape; CLOSE_DIALOG, Back"
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/Common/Dialog/FullScreenDialogClose.actions"
+        Sound: {}
+    children:
+    -   prototype: "OverlayBlur/BlurAndFade"
+        name: "BlurAndFade"
+    -   class: "UIControl"
+        name: "Content"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                leftAnchor: 64.000000
+                rightAnchorEnabled: true
+                rightAnchor: 64.000000
+                topAnchorEnabled: true
+                topAnchor: 64.000000
+                bottomAnchorEnabled: true
+                bottomAnchor: 64.000000
+    -   class: "UIControl"
+        name: "CloseButtonSafeArea"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                topAnchorEnabled: true
+                topAnchor: 16.000000
+            LinearLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfChildrenSum"
+        children:
+        -   prototype: "DynamicHorizontalPadding/DynamicHorizontalPadding"
+            name: "DynamicHorizontalPadding"
+        -   prototype: "IconButton/IconButton"
+            name: "CloseButton"
+            components:
+                UIDataParamsComponent:
+                    args:
+                        "visible": "true"
+                        "image": "\"~res:/Gfx/UI/LobbyCommon/InputButton.psd\""
+                        "type": "eButtonType.OPTIONAL_LIGHT"
+                        "sound": "eButtonSound.UNKNOWN"
+                        "enabled": "true"
+                    eventActions:
+                    - ["ON_CLICK_BUTTON", "CLOSE_NOTIFICATION", ""]

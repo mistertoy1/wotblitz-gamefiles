@@ -1,0 +1,17 @@
+animation SubPaneStart
+{
+	    parallel
+		{  	    
+		    Move ("**/Content", -panelWidth, 0, 0);
+		    ChangeProperty (".","UIOpacityComponent","opacity", 0);
+	    }
+	    Event ("PANEL_VISIBLE");
+
+
+	    parallel
+	    {
+		    Move ("**/Content", 0, 0, 0.4, SINE_OUT);
+		    ChangeProperty (".","UIOpacityComponent","opacity", 1, 0.3, SINE_OUT);
+	    }
+	}
+}

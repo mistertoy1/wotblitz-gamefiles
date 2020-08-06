@@ -1,0 +1,185 @@
+Header:
+    version: "82"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Selection.yaml"
+- "~res:/UI/Screens3/Lobby/Common/BadgeHolder.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "Slot"
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 64.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 64.000000
+        UIAttachLayoutMasterComponent: {}
+        UIInputEventComponent:
+            onTouchUpInside: "ON_SLOT_CLICKED"
+            onTouchUpInsideData: "slotId"
+        UISwitchBarElementComponent: {}
+        UIDataParamsComponent:
+            params:
+            - ["int", "badges", "0", "0"]
+            - ["string", "additionalStyles", "\"\"", "\"\""]
+            - ["int", "slotId", "0", "0"]
+            - ["bool", "disabled", "false", "true"]
+            - ["string", "texture", "\"\"", "\"\""]
+            - ["bool", "selected", "false", "false"]
+            events:
+            - "ON_SLOT_CLICKED"
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Lobby/Common/InventorySlot.style.yaml;~res:/UI/Screens3/ButtonSound.style.yaml"
+    bindings:
+    - ["selected", "selected"]
+    - ["input", "not selected"]
+    - ["classes", "\"slot pressed-opacity button-choose-sound \" + (when disabled -> \"disabled \", \"\") + additionalStyles"]
+    - ["UIAttachLayoutMasterComponent.attachId", "when disabled -> \"LOCKED_SLOT\" + str(slotId), \"\""]
+    - ["UISwitchBarElementComponent.id", "slotId"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        position: [32.000000, 32.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        classes: "content-area"
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/Common/InventorySlot.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "Background"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "black-25-bg"
+            components:
+                Background: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/InventorySlot.style.yaml"
+        -   class: "UIControl"
+            name: "Hover"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "hover black-25-bg"
+            components:
+                Background: {}
+                UIOpacityComponent: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/InventorySlot.style.yaml"
+        -   prototype: "Selection/Selection"
+            name: "Selection"
+            components:
+                UIDataParamsComponent:
+                    args:
+                        "isVisible": "selected"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/InventorySlot.style.yaml"
+        -   class: "UIControl"
+            name: "Texture"
+            input: false
+            components:
+                UIOpacityComponent: {}
+                ClipContent: {}
+                UITextureComponent: {}
+                Anchor:
+                    leftAnchorEnabled: true
+                    leftAnchor: 4.000000
+                    rightAnchorEnabled: true
+                    rightAnchor: 4.000000
+                    topAnchorEnabled: true
+                    topAnchor: 4.000000
+                    bottomAnchorEnabled: true
+                    bottomAnchor: 4.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Lobby/Common/InventorySlot.style.yaml"
+            bindings:
+            - ["UITextureComponent.spritePath", "texture"]
+        -   class: "UIControl"
+            name: "Img"
+            input: false
+            classes: "equipment-img"
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_TO_RECT"
+                UIOpacityComponent: {}
+                ClipContent: {}
+                Anchor:
+                    leftAnchorEnabled: true
+                    leftAnchor: 4.000000
+                    rightAnchorEnabled: true
+                    rightAnchor: 4.000000
+                    topAnchorEnabled: true
+                    topAnchor: 4.000000
+                    bottomAnchorEnabled: true
+                    bottomAnchor: 4.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Lobby/Inventory/Equipment/EquipmentItemImage.style.yaml;~res:/UI/Screens3/Lobby/Common/InventorySlot.style.yaml"
+        -   class: "UIControl"
+            name: "DisabledIcon"
+            position: [20.000000, 20.000000]
+            size: [32.000000, 32.000000]
+            pivot: [0.500000, 0.500000]
+            angle: 45.000000
+            input: false
+            classes: "white-wild-sand-25-bg"
+            components:
+                Background:
+                    drawType: "DRAW_ALIGNED"
+                    sprite: "~res:/Gfx/Lobby/icons/icon_plus_m"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 24.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 24.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "disabled"]
+        -   class: "UIControl"
+            name: "AddIcon"
+            input: false
+            classes: "orange-orange-peel-bg"
+            components:
+                Background:
+                    drawType: "DRAW_ALIGNED"
+                    sprite: "~res:/Gfx/Lobby/icons/icon_plus_m"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 24.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 24.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "empty(texture) and not disabled and empty(additionalStyles)"]
+        -   prototype: "BadgeHolder/BadgeHolder"
+            name: "BadgeHolder"
+            components:
+                Anchor:
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                UIDataParamsComponent:
+                    args:
+                        "type": "eBadgeType.DIGIT"
+                        "value": "when badges > 0 -> str(badges), \"\""
+            bindings:
+            - ["Anchor.rightAnchor", "when value == \" \" -> 4, -8"]
+            - ["Anchor.topAnchor", "when value == \" \" -> 4, -8"]

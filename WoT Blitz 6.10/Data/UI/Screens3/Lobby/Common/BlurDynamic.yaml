@@ -1,0 +1,33 @@
+Header:
+    version: "92"
+Prototypes:
+-   class: "UIControl"
+    name: "BlurDynamic"
+    input: false
+    components:
+        Background:
+            usePostProcessedSprite: true
+        UIPostProcessTextureComponent0:
+            materialPath: "~res:/Materials/2d.Textured.material"
+            useVirtualCoordinateSystem: true
+            minFilter: "Linear"
+            magFilter: "Linear"
+        UIPostProcessTextureComponent1:
+            materialPath: "~res:/Materials.custom/2d.Textured.Blur.material"
+            needClearAlphaAfterRender: true
+            scale: 0.500000
+            useVirtualCoordinateSystem: true
+            minFilter: "Linear"
+            magFilter: "Linear"
+        UIPostProcessTextureComponent2:
+            materialPath: "~res:/Materials.custom/2d.Textured.HBlur.material"
+            scale: 0.500000
+            useVirtualCoordinateSystem: true
+            minFilter: "Linear"
+            magFilter: "Linear"
+        UIPostProcessTextureComponent3:
+            materialPath: "~res:/Materials.custom/2d.Textured.UpscaleClamp.material"
+            scale: 0.500000
+            useVirtualCoordinateSystem: true
+            minFilter: "Linear"
+            magFilter: "Linear"

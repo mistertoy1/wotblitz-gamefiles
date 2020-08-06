@@ -1,0 +1,41 @@
+Header:
+    version: "100"
+Prototypes:
+-   class: "UIControl"
+    name: "ProgressBarAnimated"
+    size: [300.000000, 20.000000]
+    input: false
+    components:
+        UIAnimationComponent:
+            animations: "_INIT,~res:/UI/Screens3/Lobby/Common/ProgressBarAnimated.animation"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["float", "animationTime", "10.000000", "10.000000"]
+            - ["int", "previousValue", "0", "0"]
+            - ["bool", "changeColor", "false", "false"]
+            - ["int", "maximum", "100", "100"]
+            - ["int", "minimum", "0", "0"]
+            - ["int", "value", "10", "20"]
+        UIDataLocalsComponent:
+            locals:
+            - ["int", "currentValue", "previousValue"]
+        UIChildComponent0:
+            prototypePath: "~res:/UI/Screens3/Lobby/Common/ProgressBar.yaml"
+            args:
+                "value": "currentValue"
+                "changeColor": "changeColor"
+                "minimum": "minimum"
+                "maximum": "maximum"
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/Common/ProgressBarAnimated.actions"
+        UIEventOnDataComponent0:
+            watchedDataExpression: "value"
+            eventName: "Animate"
+            eventData: "true"
+        UIEventOnDataComponent1:
+            watchedDataExpression: "previousValue"
+            eventName: "Animate"
+            eventData: "true"

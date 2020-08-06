@@ -1,0 +1,21 @@
+Header:
+    version: "80"
+Prototypes:
+-   class: "UIControl"
+    name: "BadgeHolder"
+    input: false
+    components:
+        Anchor:
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfFirstChild"
+        UIDataParamsComponent:
+            params:
+            - ["eBadgeType", "type", "eBadgeType.EMPTY", "eBadgeType.CAMOUFLAGE"]
+            - ["string", "value", "\"\"", "\"\""]
+        UIChildComponent:
+            control: "when type == eBadgeType.LIVE -> \"~res:/UI/Screens3/Lobby/Common/BadgeLive.yaml\", value == \"\" and type != eBadgeType.CAMOUFLAGE -> \"\", \"~res:/UI/Screens3/Lobby/Common/Badge.yaml\""
+            args:
+                "type": "type"
+                "value": "value"

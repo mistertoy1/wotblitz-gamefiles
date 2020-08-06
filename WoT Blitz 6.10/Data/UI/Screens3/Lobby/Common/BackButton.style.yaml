@@ -1,0 +1,46 @@
+Header:
+    version: "82"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Touch.style.yaml"
+- "~res:/UI/Screens3/Common/Hover.style.yaml"
+StyleSheets:
+-   selectors:
+    - ".back-button * .tap-area"
+    properties:
+        anchor-bottomAnchor: -16.000000
+        anchor-topAnchor: -16.000000
+-   selectors:
+    - ".back-button.Desktop * .tap-area"
+    properties:
+        anchor-bottomAnchor: 0.000000
+        anchor-topAnchor: 0.000000
+-   selectors:
+    - ".back-button.Desktop * .hover"
+    - ".back-button.Desktop * .pressed-style"
+    properties:
+        anchor-bottomAnchor: 0.000000
+        anchor-topAnchor: 0.000000
+-   selectors:
+    - ".back-button .tap-area * .content"
+    properties:
+        opacity-opacity: 1.000000
+-   selectors:
+    - ".back-button * .hover"
+    - ".back-button * .pressed-style"
+    properties:
+        anchor-bottomAnchor: 16.000000
+        anchor-topAnchor: 16.000000
+-   selectors:
+    - ".back-button .tap-area:pressed_inside * .pressed-style"
+    properties:
+        opacity-opacity:
+            value: 1.000000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selectors:
+    - ".back-button .tap-area * .pressed-style"
+    properties:
+        opacity-opacity:
+            value: 0.000000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"

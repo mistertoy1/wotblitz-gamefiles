@@ -1,0 +1,107 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/TrainingButton.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "TrainingType"
+    input: true
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 220.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 164.000000
+        UIAttachLayoutMasterComponent: {}
+        UIDataParamsComponent:
+            params:
+            - ["bool", "isSelected", "false", "true"]
+            - ["string", "attachId", "\"\"", "\"\""]
+            - ["CrewTrainingInfo", "trainingInfo", "null", "{ }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "typeText", "when trainingInfo.type == eCrewTrainingType.kBasic -> \"AVATAR_BASE_TRAINING_TEXT\", trainingInfo.type == eCrewTrainingType.kMedium -> \"AVATAR_REGIMENT_SCHOOL_TEXT\", trainingInfo.type == eCrewTrainingType.kBest -> \"AVATAR_TANK_ACADEMY_TEXT\", \"AVATAR_BASE_TRAINING_TEXT\""]
+    bindings:
+    - ["UIAttachLayoutMasterComponent.attachId", "attachId"]
+    children:
+    -   prototype: "TrainingButton/TrainingButton"
+        name: "TrainingButton"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "content": "Content"
+                    "trainingType": "trainingInfo.type"
+                    "price": "trainingInfo.price"
+                    "isFreeTrain": "trainingInfo.isFreeFirstTrain"
+                    "isVisible": "trainingInfo.visible"
+                    "isSelected": "isSelected"
+Slots:
+-   class: "UIControl"
+    name: "Content"
+    size: [220.000000, 164.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+    children:
+    -   class: "UIControl"
+        name: "UpgradeToLabel"
+        position: [12.000000, 83.000000]
+        size: [210.000000, 50.000000]
+        input: false
+        classes: "t-caps bold white-wild-sand-text"
+        components:
+            UITextComponent:
+                text: "AVATAR_SCREEN_UPDARADE_UP_TO"
+            Anchor:
+                hCenterAnchorEnabled: true
+                topAnchorEnabled: true
+                topAnchor: 48.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+    -   class: "UIControl"
+        name: "LevelText"
+        size: [107.000000, 40.000000]
+        input: false
+        classes: "t-title bold  white-wild-sand-text"
+        components:
+            Background:
+                drawType: "DRAW_ALIGNED"
+            UITextComponent: {}
+            Anchor:
+                hCenterAnchorEnabled: true
+                topAnchorEnabled: true
+                topAnchor: 68.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "str(trainingInfo.masteryLevel) + \"%\""]
+    -   class: "UIControl"
+        name: "TypeText"
+        position: [0.000000, 124.000000]
+        size: [234.000000, 30.000000]
+        input: false
+        classes: "t-caption regular white-wild-sand-text"
+        components:
+            UITextComponent:
+                useRtlAlign: "USE_BY_SYSTEM"
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                bottomAnchorEnabled: true
+                bottomAnchor: 8.000000
+                useRtl: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "localize(typeText)"]

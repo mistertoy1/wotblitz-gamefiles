@@ -1,0 +1,11 @@
+action Animate(bool stop)
+{
+	if (stop)
+	{
+		ChangeData(currentValue, previousValue);
+	}
+	if (not (previousValue == value))
+	{
+		ChangeData(currentValue, value, animationTime, EASE_IN_EASE_OUT);
+	}
+}

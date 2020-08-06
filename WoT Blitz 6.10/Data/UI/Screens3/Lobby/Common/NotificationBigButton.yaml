@@ -1,0 +1,81 @@
+Header:
+    version: "77"
+Prototypes:
+-   class: "UIControl"
+    name: "NotificationButton"
+    size: [128.000000, 62.000000]
+    input: true
+    exclusiveInput: true
+    classes: "notification-button button-open-sound"
+    components:
+        Anchor:
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 128.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 62.000000
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/ButtonSound.style.yaml"
+    children:
+    -   class: "UIControl"
+        name: "Bg"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            LinearLayout: {}
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 127.000000
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   class: "UIControl"
+            name: "Bg"
+            size: [120.000000, 62.000000]
+            input: false
+            classes: "orange-orange-peel-bg"
+            components:
+                Background:
+                    leftRightStretchCap: 8.000000
+                    topBottomStretchCap: 8.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "CircleQuarter"
+            size: [8.000000, 64.000000]
+            input: false
+            classes: "orange-orange-peel-bg"
+            components:
+                Background:
+                    drawType: "DRAW_STRETCH_BOTH"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_half_r8"
+                    topBottomStretchCap: 8.000000
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 8.000000
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/NotificationButton.style.yaml"
+    -   class: "UIControl"
+        name: "BUTTON"
+        position: [33.000000, 22.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        classes: "t-button bold color=white-wild-sand-text content"
+        components:
+            UIOpacityComponent: {}
+            UITextComponent:
+                text: "BUTTON"
+                colorInheritType: "COLOR_IGNORE_PARENT"
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/NotificationButton.style.yaml"

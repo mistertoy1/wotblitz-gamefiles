@@ -1,0 +1,15 @@
+animation OpacityAnimation
+{
+	repeat(99999)
+	{
+		parallel 
+		{
+			ChangeProperty("**/RedBadge", "UIOpacityComponent", "opacity", 0, 1, SINE_OUT);
+		}
+		parallel 
+		{
+			ChangeProperty("**/RedBadge", "UIOpacityComponent", "opacity", 1, 1, SINE_OUT);
+		}
+		
+	}
+}

@@ -1,0 +1,102 @@
+Header:
+    version: "79"
+Prototypes:
+-   class: "UIControl"
+    name: "IconButtonWithLongTap"
+    input: false
+    components:
+        UIAnimationComponent:
+            animations: "ON_CLICK_BUTTON,~res:/UI/Screens3/Lobby/Common/EventSound.animation"
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 48.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 48.000000
+        UIDataParamsComponent:
+            params:
+            - ["bool", "isBgVisible", "false", "false"]
+            - ["bool", "visible", "true", "true"]
+            - ["float", "repeatDelay", "0.200000", "0.200000"]
+            - ["string", "image", "\"\"", "\"~res:/Gfx/UI/Training/icon_refresh.psd\""]
+            - ["eButtonType", "type", "eButtonType.OPTIONAL_LIGHT", "eButtonType.OPTIONAL_LIGHT"]
+            - ["eButtonSound", "sound", "eButtonSound.UNKNOWN", "eButtonSound.DRAG"]
+            - ["bool", "enabled", "true", "true"]
+            events:
+            - "ON_CLICK_BUTTON"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "hoverStyle", "(when isBgVisible -> \"button-fade \", \"button-fade-non-hide \") + (when type == eButtonType.OPTIONAL_DARK or type == eButtonType.SCENE -> \"black-10-bg\", \"white-wild-sand-10-bg\")"]
+            - ["string", "soundPath", "when sound == eButtonSound.DRAG -> \"GUI/buttons/drag\", \"\""]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Button.style.yaml"
+    bindings:
+    - ["visible", "visible"]
+    children:
+    -   class: "UIControl"
+        name: "TapArea"
+        input: true
+        exclusiveInput: true
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            UILongTapComponent:
+                longTapEvent: "ON_CLICK_BUTTON"
+                shortTapEvent: "ON_CLICK_BUTTON"
+            Sound: {}
+        bindings:
+        - ["enabled", "enabled"]
+        - ["classes", "\"button button-tap-area \" + str(type, eButtonType)"]
+        - ["UILongTapComponent.repeatDelay", "repeatDelay"]
+        children:
+        -   class: "UIControl"
+            name: "Content"
+            position: [32.000000, 32.000000]
+            pivot: [0.500000, 0.500000]
+            input: false
+            classes: "content-area"
+            components:
+                Anchor:
+                    leftAnchorEnabled: true
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+            children:
+            -   class: "UIControl"
+                name: "Fade"
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_STRETCH_BOTH"
+                        sprite: "~res:/Gfx/Lobby/backgrounds/bg_r1"
+                        leftRightStretchCap: 1.000000
+                        topBottomStretchCap: 1.000000
+                    UIOpacityComponent: {}
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                bindings:
+                - ["classes", "hoverStyle"]
+            -   class: "UIControl"
+                name: "Icon"
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_SCALE_PROPORTIONAL"
+                        perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                    UIOpacityComponent: {}
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 24.000000
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 24.000000
+                bindings:
+                - ["Background.sprite", "image"]
+                - ["UIOpacityComponent.ignoreParentOpacity", "enabled"]

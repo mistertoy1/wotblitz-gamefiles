@@ -1,0 +1,112 @@
+Header:
+    version: "99"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/BackButton.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "InventorySidebar"
+    size: [88.000000, 808.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+        LinearLayout: {}
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfParent"
+        FocusGroup: {}
+    children:
+    -   class: "UIControl"
+        name: "Background"
+        input: false
+        classes: "grey-shark-70-bg"
+        components:
+            Background:
+                drawType: "DRAW_FILL"
+            IgnoreLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+    -   class: "UIControl"
+        name: "SafeAreaInsetLeft"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfParent"
+            UIChildComponent0:
+                childType: "kPrototype"
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/Sidebar/SideBarSafeArea.yaml"
+    -   class: "UIControl"
+        name: "Content"
+        components:
+            LinearLayout:
+                orientation: "TopDown"
+                dynamicSpacing: true
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 88.000000
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   class: "UIControl"
+            name: "Top"
+            components:
+                LinearLayout:
+                    orientation: "RightToLeft"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 48.000000
+                UILayerComponent: {}
+            bindings:
+            - ["UILayerComponent.layer", "when (account.tutorialData.currentHighlightControl == eTutorialHighlights.kInventoryBack) -> 1, 0"]
+            children:
+            -   prototype: "BackButton/BackButton"
+                name: "BackButton"
+                components:
+                    UIAttachLayoutMasterComponent:
+                        attachId: "MAIN_MENU_BUTTON"
+        -   class: "UIControl"
+            name: "ContentWrapper"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+            children:
+            -   class: "UIScrollView"
+                name: "ScrollArea"
+                autoUpdate: true
+                centerContent: true
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                children:
+                -   class: "UIScrollViewContainer"
+                    name: "Content"
+                    components:
+                        LinearLayout:
+                            orientation: "TopDown"
+                            spacing: 24.000000
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfChildrenSum"
+    -   class: "UIControl"
+        name: "CamoSeparator"
+        input: false
+        classes: "white-wild-sand-10-bg"
+        components:
+            Background:
+                drawType: "DRAW_FILL"
+            Anchor:
+                rightAnchorEnabled: true
+            IgnoreLayout: {}
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 1.000000
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"

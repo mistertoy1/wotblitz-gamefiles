@@ -1,0 +1,274 @@
+Header:
+    version: "92"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/IconButton.yaml"
+- "~res:/UI/Screens3/Lobby/Common/IconButtonWithLongTap.yaml"
+- "~res:/UI/Screens3/Lobby/Common/SliderThumb.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "Slider"
+    size: [479.000000, 48.000000]
+    input: false
+    components:
+        UIAnimationComponent:
+            animations: "ON_SLIDER_CHANGED,~res:/UI/Screens3/Lobby/Common/EventSound.animation"
+        LinearLayout: {}
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfMaxChild"
+        UIAttachLayoutMasterComponent: {}
+        UIDataParamsComponent:
+            params:
+            - ["eButtonSound", "sound", "eButtonSound.UNKNOWN", "eButtonSound.UNKNOWN"]
+            - ["string", "thumbMasterId", "\"\"", "\"\""]
+            - ["int", "tutorialLayer", "0", "0"]
+            - ["string", "displayedValue", "\"\"", "\"aa\""]
+            - ["int", "index", "0", "0"]
+            - ["float", "step", "0.000000", "1.000000"]
+            - ["float", "maxAllowedValue", "100.000000", "70.000000"]
+            - ["float", "minAllowedValue", "0.000000", "10.000000"]
+            - ["float", "minValue", "0.000000", "0.000000"]
+            - ["float", "maxValue", "100.000000", "100.000000"]
+            - ["float", "currentValue", "60.000000", "55.000000"]
+            - ["float", "thumbSize", "32.000000", "32.000000"]
+            events:
+            - "ON_SLIDER_EDITING_FINISHED(float value)"
+            - "ON_SLIDER_TOUCHED(int index)"
+            - "ON_SLIDER_CHANGED(float value)"
+            - "ON_SLIDER_PLUS(int index)"
+            - "ON_SLIDER_MINUS(int index)"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "soundPath", "when sound == eButtonSound.DRAG -> \"GUI/buttons/drag\", \"\""]
+            - ["float", "roundValue", "round(currentValue / step) * step"]
+        UILayerComponent: {}
+    bindings:
+    - ["UIAttachLayoutMasterComponent.attachId", "thumbMasterId"]
+    - ["UILayerComponent.layer", "tutorialLayer"]
+    children:
+    -   class: "UIControl"
+        name: "Body"
+        input: false
+        components:
+            LinearLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 64.000000
+        children:
+        -   class: "UIControl"
+            name: "Left"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 64.000000
+                    verticalPolicy: "PercentOfParent"
+            children:
+            -   class: "UIControl"
+                name: "Control"
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfMaxChild"
+                children:
+                -   prototype: "IconButtonWithLongTap/IconButtonWithLongTap"
+                    name: "MinusBtn"
+                    components:
+                        UIDataParamsComponent:
+                            args:
+                                "visible": "true"
+                                "repeatDelay": "0.200000"
+                                "image": "\"~res:/Gfx/Lobby/icons/icon_minus_s\""
+                                "type": "eButtonType.OPTIONAL_LIGHT"
+                                "sound": "sound"
+                                "enabled": "roundValue > minValue"
+                            eventActions:
+                            - ["ON_CLICK_BUTTON", "ON_SLIDER_MINUS", "index"]
+        -   class: "UISlider"
+            name: "UISlider"
+            exclusiveInput: true
+            classes: "button-drag-sound"
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                UIInputEventComponent:
+                    onTouchDown: "ON_SLIDER_TOUCH_DOWN"
+                    onTouchDownData: "index"
+                    onTouchUpInside: "ON_SLIDER_TOUCHED"
+                    onTouchUpInsideData: "index"
+                    onTouchUpOutside: "ON_SLIDER_TOUCHED"
+                    onTouchUpOutsideData: "index"
+                    onValueChanged: "ON_SLIDER_CHANGED"
+                    onValueChangedData: "_value"
+                    onEditingFinished: "ON_SLIDER_EDITING_FINISHED"
+                    onEditingFinishedData: "_value"
+                Sound: {}
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/ButtonSound.style.yaml"
+            bindings:
+            - ["minValue", "minValue"]
+            - ["maxValue", "maxValue"]
+            - ["value", "currentValue"]
+            - ["step", "step"]
+            - ["maxAllowedValue", "maxAllowedValue"]
+            - ["minAllowedValue", "minAllowedValue"]
+            children:
+            -   class: "UIControl"
+                name: "ProgressContainer"
+                position: [40.000000, 0.000000]
+                input: false
+                components:
+                    Anchor:
+                        leftAnchorEnabled: true
+                        rightAnchorEnabled: true
+                        topAnchorEnabled: true
+                        bottomAnchorEnabled: true
+                bindings:
+                - ["Anchor.leftAnchor", "thumbSize / 2"]
+                - ["Anchor.rightAnchor", "thumbSize / 2"]
+                children:
+                -   class: "UIControl"
+                    name: "DefaultBg"
+                    input: false
+                    classes: "white-wild-sand-15-bg"
+                    components:
+                        Background: {}
+                        Anchor:
+                            vCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 4.000000
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                -   class: "UIControl"
+                    name: "AvailFiller"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    components:
+                        LinearLayout: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                    children:
+                    -   class: "UIControl"
+                        name: "ThumbSpacer"
+                        size: [32.000000, 32.000000]
+                        input: false
+                        components:
+                            SizePolicy:
+                                horizontalPolicy: "FixedSize"
+                                verticalPolicy: "PercentOfParent"
+                        bindings:
+                        - ["SizePolicy.horizontalValue", "thumbSize - 20"]
+                    -   class: "UIControl"
+                        name: "Rest"
+                        size: [32.000000, 32.000000]
+                        input: false
+                        components:
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfParent"
+                                verticalPolicy: "PercentOfParent"
+                        children:
+                        -   class: "UIControl"
+                            name: "AvailableBg"
+                            input: false
+                            classes: "white-wild-sand-25-bg"
+                            components:
+                                Background: {}
+                                Anchor:
+                                    vCenterAnchorEnabled: true
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "FixedSize"
+                                    verticalValue: 4.000000
+                                StyleSheet:
+                                    styles: "~res:/UI/Screens3/Color.style.yaml"
+                            bindings:
+                            - ["SizePolicy.horizontalValue", "maxAllowedValue / maxValue * 100.000000"]
+                -   class: "UIControl"
+                    name: "CurrentValueBg"
+                    input: false
+                    classes: "white-wild-sand-70-bg"
+                    components:
+                        Background: {}
+                        Anchor:
+                            vCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 4.000000
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["SizePolicy.horizontalValue", "currentValue / maxValue * 100.000000"]
+            -   prototype: "SliderThumb/thumbSpriteControl"
+                name: "thumbSpriteControl"
+                components:
+                    SizePolicy: {}
+                bindings:
+                - ["SizePolicy.horizontalValue", "thumbSize"]
+                - ["SizePolicy.verticalValue", "thumbSize"]
+                children:
+                -   path: "TitleBold"
+                    components:
+                        UITextComponent: {}
+                        Anchor: {}
+                    bindings:
+                    - ["UITextComponent.text", "str(currentValue, 0)"]
+                    - ["Anchor.vCenterAnchor", "when tutorialLayer > 0 -> -35, -52"]
+            -   prototype: "SliderThumb/thumbSpriteControl"
+                name: "thumbHidden"
+                position: [191.000000, 32.000000]
+                components:
+                    UIOpacityComponent:
+                        opacity: 0.000000
+                    SizePolicy: {}
+                bindings:
+                - ["SizePolicy.horizontalValue", "thumbSize"]
+                - ["SizePolicy.verticalValue", "thumbSize"]
+        -   class: "UIControl"
+            name: "Right"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 64.000000
+                    verticalPolicy: "PercentOfParent"
+            children:
+            -   class: "UIControl"
+                name: "Control"
+                position: [8.000000, 8.000000]
+                size: [48.000000, 48.000000]
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfMaxChild"
+                        verticalFormula: "parentRest"
+                children:
+                -   prototype: "IconButtonWithLongTap/IconButtonWithLongTap"
+                    name: "PlusBtn"
+                    components:
+                        UIDataParamsComponent:
+                            args:
+                                "visible": "true"
+                                "repeatDelay": "0.200000"
+                                "image": "\"~res:/Gfx/Lobby/icons/icon_plus_s\""
+                                "type": "eButtonType.OPTIONAL_LIGHT"
+                                "sound": "sound"
+                                "enabled": "roundValue < maxAllowedValue"
+                            eventActions:
+                            - ["ON_CLICK_BUTTON", "ON_SLIDER_PLUS", "index"]

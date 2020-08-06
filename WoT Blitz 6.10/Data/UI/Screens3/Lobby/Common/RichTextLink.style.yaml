@@ -1,0 +1,17 @@
+Header:
+    version: "77"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Touch.style.yaml"
+StyleSheets:
+-   selector: ".richtext-link .tap-area * .content-area"
+    properties:
+        opacity-opacity:
+            value: 1.000000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selector: ".richtext-link .tap-area:pressed_inside * .content-area"
+    properties:
+        opacity-opacity:
+            value: 0.700000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"

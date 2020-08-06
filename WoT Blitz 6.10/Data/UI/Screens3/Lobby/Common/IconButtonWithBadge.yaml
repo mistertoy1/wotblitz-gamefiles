@@ -1,0 +1,134 @@
+Header:
+    version: "82"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/BadgeHolder.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "IconButton"
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 72.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 72.000000
+        UIInputEventComponent:
+            onTouchUpInside: "ON_CLICK_BUTTON"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "locked", "false", "false"]
+            - ["bool", "isBgVisible", "true", "true"]
+            - ["bool", "visible", "true", "true"]
+            - ["string", "image", "\"\"", "\"~res:/Gfx/UI/Training/icon_refresh.psd\""]
+            - ["eButtonType", "type", "eButtonType.OPTIONAL_LIGHT", "eButtonType.OPTIONAL_LIGHT"]
+            - ["eButtonSound", "sound", "eButtonSound.UNKNOWN", "eButtonSound.UNKNOWN"]
+            - ["bool", "enabled", "true", "true"]
+            - ["eBadgeType", "badgeType", "eBadgeType.DIGIT", "eBadgeType.DIGIT"]
+            - ["string", "badgeValue", "\"\"", "\"44\""]
+            events:
+            - "ON_CLICK_BUTTON"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "hoverStyle", "(when isBgVisible -> \"button-fade \", \"button-fade-non-hide \") + (when type == eButtonType.OPTIONAL_DARK or type == eButtonType.SCENE -> \"black-10-bg\", \"white-wild-sand-10-bg\")"]
+            - ["eButtonSound", "soundType", "when sound != eButtonSound.UNKNOWN -> sound, type == eButtonType.POSITIVE or type == eButtonType.NO_BG -> eButtonSound.OPEN, type == eButtonType.ALTERNATIVE -> eButtonSound.OK, type == eButtonType.ALTERNATIVE -> eButtonSound.OK, type == eButtonType.NEGATIVE -> eButtonSound.SELL, eButtonSound.CANCEL"]
+            - ["string", "soundStyle", "when soundType == eButtonSound.OPEN -> \"button-open-sound\", soundType == eButtonSound.OK -> \"button-ok-sound\", soundType == eButtonSound.CANCEL -> \"button-cancel-sound\", soundType == eButtonSound.SELL -> \"button-sell-sound\", soundType == eButtonSound.BUY -> \"button-buy-sound\", soundType == eButtonSound.CHOOSE -> \"button-choose-sound\", soundType == eButtonSound.CHECKBOX -> \"button-checkbox-sound\", soundType == eButtonSound.CLOSE -> \"button-close-sound\", \"\""]
+            - ["string", "bgStyle", "when type == eButtonType.OPTIONAL_LIGHT -> \"white-wild-sand-15-bg\", type == eButtonType.OPTIONAL_DARK -> \"black-25-bg\", \"\""]
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/ButtonSound.style.yaml"
+    bindings:
+    - ["visible", "visible"]
+    - ["input", "locked"]
+    - ["classes", "soundStyle"]
+    children:
+    -   class: "UIControl"
+        name: "TapArea"
+        position: [-8.000000, -8.000000]
+        input: true
+        exclusiveInput: true
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            UIInputEventComponent:
+                onTouchUpInside: "ON_CLICK_BUTTON"
+            Sound: {}
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Button.style.yaml;~res:/UI/Screens3/ButtonSound.style.yaml"
+        bindings:
+        - ["enabled", "enabled and not locked"]
+        - ["classes", "\"button button-tap-area \" + str(type, eButtonType) + \" \" + soundStyle"]
+        children:
+        -   class: "UIControl"
+            name: "Content"
+            pivot: [0.500000, 0.500000]
+            input: false
+            classes: "content-area"
+            components:
+                Anchor:
+                    leftAnchorEnabled: true
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+            children:
+            -   class: "UIControl"
+                name: "Background"
+                input: false
+                classes: "black-35-bg"
+                components:
+                    Background:
+                        drawType: "DRAW_STRETCH_BOTH"
+                        sprite: "~res:/Gfx/Lobby/backgrounds/bg_r1"
+                        leftRightStretchCap: 1.000000
+                        topBottomStretchCap: 1.000000
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                        verticalFormula: "safeAreaInsets.left"
+            -   class: "UIControl"
+                name: "Fade"
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_STRETCH_BOTH"
+                        sprite: "~res:/Gfx/Lobby/backgrounds/bg_r1"
+                        leftRightStretchCap: 1.000000
+                        topBottomStretchCap: 1.000000
+                    UIOpacityComponent: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Button.style.yaml"
+                bindings:
+                - ["classes", "hoverStyle"]
+            -   class: "UIControl"
+                name: "Icon"
+                input: false
+                components:
+                    Background:
+                        perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        verticalPolicy: "PercentOfContent"
+                bindings:
+                - ["Background.sprite", "image"]
+            -   prototype: "BadgeHolder/BadgeHolder"
+                name: "BadgeHolder"
+                components:
+                    Anchor:
+                        rightAnchorEnabled: true
+                        topAnchorEnabled: true
+                    UIDataParamsComponent:
+                        args:
+                            "type": "badgeType"
+                            "value": "badgeValue"
+                bindings:
+                - ["Anchor.rightAnchor", "when value == \" \" -> 4, -8"]
+                - ["Anchor.topAnchor", "when value == \" \" -> 4, -8"]

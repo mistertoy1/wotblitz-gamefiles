@@ -1,0 +1,20 @@
+Header:
+    version: "80"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Hover.style.yaml"
+StyleSheets:
+-   selectors:
+    - ".toggle-button:pressed_inside:hover * .hover"
+    properties:
+        opacity-opacity:
+            value: 0.050000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selectors:
+    - ".toggle-vertical-size"
+    properties:
+        sizePolicy-verticalValue: 64.000000
+-   selectors:
+    - ".toggle-vertical-size.Desktop"
+    properties:
+        sizePolicy-verticalValue: 24.000000

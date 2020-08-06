@@ -1,0 +1,87 @@
+Header:
+    version: "80"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/ToggleWithTapArea.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "ToggleWithLabel"
+    input: false
+    components:
+        LinearLayout:
+            spacing: 8.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["string", "text", "\"\"", "\"InventoryPanel/Footer/AutoRecharge\""]
+            - ["bool", "isDarkMode", "false", "false"]
+            - ["bool", "turnedOn", "false", "false"]
+            events:
+            - "ON_TOGGLE_CHANGED(bool isTurnedOn)"
+    children:
+    -   prototype: "ToggleWithTapArea/ToggleWithTapArea"
+        name: "ToggleWithTapArea"
+        components:
+            Anchor:
+                vCenterAnchorEnabled: true
+            UIDataParamsComponent:
+                args:
+                    "isDarkMode": "isDarkMode"
+                    "turnedOn": "turnedOn"
+                eventActions:
+                - ["ON_TOGGLE_CHANGED", "ON_TOGGLE_CHANGED", "_event.isTurnedOn"]
+        children:
+        -   path: "Toggle"
+            components:
+                UIDataParamsComponent:
+                    eventActions:
+                    - ["ON_VALUE_CHANGED", "", ""]
+                    - ["ON_EDITING_FINISHED", "ON_TOGGLE_CHANGED", "_event.isTurnedOn"]
+            children: []
+    -   class: "UIControl"
+        name: "Clickable"
+        input: false
+        components:
+            Anchor:
+                rightAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfLastChild"
+                verticalPolicy: "PercentOfLastChild"
+        children:
+        -   class: "UIControl"
+            name: "TapArea"
+            size: [32.000000, 32.000000]
+            input: true
+            classes: "toggle-tap-area"
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "Formula"
+                    horizontalFormula: "parent+16"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 64.000000
+                UIInputEventComponent:
+                    onTouchUpInside: "ON_TOGGLE_CHANGED"
+                    onTouchUpInsideData: "not turnedOn"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Lobby/Common/ToggleWithTapArea.style.yaml"
+        -   class: "UIControl"
+            name: "Autoressuply"
+            input: false
+            classes: "t-body regular color=white-wild-sand-text"
+            components:
+                UITextComponent: {}
+                Anchor:
+                    rightAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml;"
+            bindings:
+            - ["UITextComponent.text", "localize(text)"]

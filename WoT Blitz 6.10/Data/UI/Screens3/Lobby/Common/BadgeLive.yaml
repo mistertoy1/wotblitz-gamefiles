@@ -1,0 +1,84 @@
+Header:
+    version: "79"
+Prototypes:
+-   class: "UIControl"
+    name: "BadgeLive"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 46.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 24.000000
+    children:
+    -   class: "UIControl"
+        name: "Bg"
+        size: [32.000000, 32.000000]
+        input: false
+        classes: "white-wild-sand-bg"
+        components:
+            Background:
+                drawType: "DRAW_STRETCH_BOTH"
+                sprite: "~res:/Gfx/Lobby/backgrounds/bg_r2"
+                leftRightStretchCap: 2.000000
+                topBottomStretchCap: 2.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+    -   class: "UIControl"
+        name: "Content"
+        position: [0.000000, 0.000000]
+        size: [32.000000, 32.000000]
+        components:
+            UIAnimationComponent:
+                animations: "_INIT,~res:/UI/Screens3/Lobby/Common/BadgeLive.animation"
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            LinearLayout:
+                spacing: 2.000000
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "childrenSum + 2"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "RedBadge"
+            size: [32.000000, 32.000000]
+            pivot: [0.500000, 0.500000]
+            input: false
+            classes: "red-red-bg"
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_TO_RECT"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_oval_8"
+                    perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                UIOpacityComponent: {}
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 8.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 8.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "Label"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "t-caps bold gray-cape-cod-text"
+            components:
+                UITextComponent:
+                    text: "LIVE"
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                Anchor:
+                    rightAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"

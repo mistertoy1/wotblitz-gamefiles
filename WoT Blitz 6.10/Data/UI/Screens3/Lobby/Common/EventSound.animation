@@ -1,0 +1,7 @@
+animation EventSound
+{
+	if (not empty(soundPath))
+	{    
+		PlaySound(sound=soundPath);
+	}
+}

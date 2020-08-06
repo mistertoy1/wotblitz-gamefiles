@@ -1,0 +1,156 @@
+Header:
+    version: "70"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/IconButton.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "MultilineButton"
+    size: [151.000000, 48.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 80.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 80.000000
+        UIDataParamsComponent:
+            params:
+            - ["string", "caption", "\"\"", "\"THIS IS MULTILINE BUTTON\""]
+            - ["eButtonType", "type", "eButtonType.POSITIVE", "eButtonType.POSITIVE"]
+            - ["bool", "enabled", "true", "true"]
+            events:
+            - "ON_CLICK_BUTTON"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "bgStyle", "when type == eButtonType.POSITIVE -> \"green-la-palma-bg\", type == eButtonType.ALTERNATIVE -> \"orange-meteor-bg\", type == eButtonType.NEGATIVE -> \"red-tamarillo-bg\", type == eButtonType.OPTIONAL_LIGHT -> \"white-wild-sand-15-bg\", type == eButtonType.OPTIONAL_DARK -> \"black-25-bg\", type == eButtonType.NO_BG -> \"button-bg-draw-aligned\", \"\""]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Button.style.yaml"
+    children:
+    -   class: "UIControl"
+        name: "TapArea"
+        size: [32.000000, 32.000000]
+        input: true
+        components:
+            Background:
+                color: [0.666667, 0.333333, 1.000000, 0.196078]
+            UIOpacityComponent: {}
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            UIInputEventComponent:
+                onTouchUpInside: "ON_CLICK_BUTTON"
+            Sound:
+                touchUpInside: "GUI/buttons/ok"
+        bindings:
+        - ["enabled", "enabled", "Read"]
+        - ["classes", "\"button button-tap-area \" + str(type, eButtonType)", "Read"]
+        children:
+        -   class: "UIControl"
+            name: "Content"
+            position: [65.000000, 24.000000]
+            size: [32.000000, 32.000000]
+            pivot: [0.500000, 0.500000]
+            input: false
+            classes: "scalable"
+            components:
+                Background: {}
+                Anchor:
+                    leftAnchorEnabled: true
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+            children:
+            -   class: "UIControl"
+                name: "Background"
+                size: [272.000000, 48.000000]
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_FILL"
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                bindings:
+                - ["visible", "type != eButtonType.NO_BG", "Read"]
+                - ["classes", "bgStyle", "Read"]
+            -   class: "UIControl"
+                name: "Fade"
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_FILL"
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                bindings:
+                - ["classes", "\"button-fade \" + (when type == eButtonType.OPTIONAL_DARK -> \"black-10-bg\", \"white-wild-sand-10-bg\")", "Read"]
+            -   class: "UIControl"
+                name: "CaptionWrapper"
+                position: [0.000000, 12.000000]
+                size: [77.500000, 24.000000]
+                input: false
+                components:
+                    Anchor:
+                        leftAnchorEnabled: true
+                        leftAnchor: 8.000000
+                        rightAnchorEnabled: true
+                        rightAnchor: 8.000000
+                        topAnchorEnabled: true
+                        topAnchor: 4.000000
+                        vCenterAnchorEnabled: true
+                        bottomAnchorEnabled: true
+                        bottomAnchor: 4.000000
+                    LinearLayout:
+                        dynamicPadding: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfMaxChild"
+                children:
+                -   class: "UIControl"
+                    name: "Lock"
+                    position: [0.000000, 0.000000]
+                    size: [32.000000, 32.000000]
+                    input: false
+                    components:
+                        UITextureComponent:
+                            spritePath: "~res:/Gfx/UI/LobbyCommon/lock_small.psd"
+                            drawType: "DRAW_SCALE_PROPORTIONAL"
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            vCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "FixedSize"
+                            horizontalValue: 24.000000
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 24.000000
+                    bindings:
+                    - ["visible", "not enabled", "Read"]
+                -   class: "UIControl"
+                    name: "Caption"
+                    position: [0.000000, 0.000000]
+                    size: [32.000000, 32.000000]
+                    input: false
+                    components:
+                        UIOpacityComponent: {}
+                        UITextComponent:
+                            colorInheritType: "COLOR_IGNORE_PARENT"
+                            multiline: "MULTILINE_ENABLED"
+                            fitting: "FITTING_REDUCE"
+                            align: ["HCENTER", "VCENTER"]
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            vCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "min(parentRest, content)"
+                            verticalPolicy: "Formula"
+                            verticalFormula: "min(parentRest, content)"
+                    bindings:
+                    - ["classes", "(when type != eButtonType.NO_BG -> \"bold white-wild-sand-text \", \"bold orange-meteor-text \")  + \"t-button\"", "Read"]
+                    - ["UIOpacityComponent.ignoreParentOpacity", "enabled", "Read"]
+                    - ["UITextComponent.text", "localize(caption)", "Read"]

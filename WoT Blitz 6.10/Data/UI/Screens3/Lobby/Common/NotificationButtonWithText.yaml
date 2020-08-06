@@ -1,0 +1,87 @@
+Header:
+    version: "92"
+Prototypes:
+-   class: "UIControl"
+    name: "NotificationButtonWithText"
+    size: [64.000000, 64.000000]
+    input: true
+    exclusiveInput: true
+    classes: "notification-button button-open-sound"
+    components:
+        SizePolicy:
+            horizontalPolicy: "Formula"
+            horizontalFormula: "min(164, max(lastChild+32, 88))"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["string", "text", "\"\"", "\"Go\""]
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/ButtonSound.style.yaml"
+    children:
+    -   class: "UIControl"
+        name: "Bg"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            LinearLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   class: "UIControl"
+            name: "Bg"
+            size: [56.000000, 64.000000]
+            input: false
+            classes: "white-wild-sand-5-bg"
+            components:
+                Background:
+                    leftRightStretchCap: 8.000000
+                    topBottomStretchCap: 8.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "CircleQuarter"
+            size: [8.000000, 64.000000]
+            input: false
+            classes: "white-wild-sand-5-bg button-rounded"
+            components:
+                Background:
+                    drawType: "DRAW_STRETCH_BOTH"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_half_r8"
+                    leftRightStretchCap: 8.000000
+                    topBottomStretchCap: 8.000000
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 8.000000
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/NotificationButton.style.yaml"
+    -   class: "UIControl"
+        name: "Text"
+        position: [54.000000, 22.000000]
+        size: [32.000000, 32.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        classes: "content t-button bold color=white-wild-sand-text"
+        components:
+            UIOpacityComponent: {}
+            UITextComponent:
+                fitting: "FITTING_POINTS"
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "when parent ==0 -> content, min(content, parent - 16)"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/NotificationButton.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "localize(text)"]

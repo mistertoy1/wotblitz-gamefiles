@@ -1,0 +1,69 @@
+Header:
+    version: "96"
+Prototypes:
+-   class: "UIControl"
+    name: "Popover"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["string", "popoverText", "localize(\"Текст поповера находится тут\")", "localize(\"Текст поповера находится тут\")"]
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/Common/Popover.actions"
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        input: false
+        components:
+            UIOpacityComponent:
+                opacity: 0.000000
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "lastChild + 64"
+                verticalPolicy: "Formula"
+                verticalFormula: "lastChild + 20"
+        children:
+        -   class: "UIControl"
+            name: "Background"
+            input: false
+            components:
+                Background:
+                    drawType: "DRAW_STRETCH_BOTH"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_popover_r40"
+                    perPixelAccuracy: "PER_PIXEL_ACCURACY_FORCED"
+                    leftRightStretchCap: 18.000000
+                    topBottomStretchCap: 18.000000
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+        -   class: "UIControl"
+            name: "Text"
+            input: false
+            classes: "t-caption regular white-wild-sand-50-text"
+            components:
+                UITextComponent:
+                    perPixelAccuracyType: "PER_PIXEL_ACCURACY_FORCED"
+                    multiline: "MULTILINE_ENABLED"
+                    fitting: "FITTING_POINTS"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                    vCenterAnchor: -1.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    horizontalMax: 512.000000
+                    verticalPolicy: "PercentOfContent"
+                    verticalMax: 40.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["UITextComponent.text", "popoverText"]

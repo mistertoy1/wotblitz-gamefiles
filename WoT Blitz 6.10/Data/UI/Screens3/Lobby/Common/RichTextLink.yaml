@@ -1,0 +1,140 @@
+Header:
+    version: "79"
+Prototypes:
+-   class: "UIControl"
+    name: "LinkText"
+    size: [32.000000, 32.000000]
+    input: false
+    classes: "richtext-link"
+    components:
+        SizePolicy:
+            horizontalPolicy: "Formula"
+            horizontalFormula: "maxChild - 16"
+            verticalPolicy: "Formula"
+            verticalFormula: "maxChild - 48"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "isVisited", "false", "false"]
+            - ["bool", "isExternalLink", "false", "true"]
+            - ["string", "key", "\"\"", "\"Link Text\""]
+            - ["string", "baseFontStyle", "\"bold\"", "\"bold\""]
+            - ["string", "baseFontSize", "\"t-body\"", "\"t-caption\""]
+            events:
+            - "LINK_PRESSED"
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "isHovered", "true"]
+            - ["string", "colorStyle", "when isHovered -> \"orange-orange-peel\", when not isExternalLink -> \"orange-meteor\", when isVisited -> \"white-wild-sand-50\", \"blue-curious-blue\""]
+            - ["string", "textStyle", "baseFontSize + \" \" + baseFontStyle + \" \" + colorStyle + \"-text\""]
+        UIDataOnEventComponent0:
+            eventName: "HOVER_START"
+            modelFieldExpression: "isHovered"
+            dataExpression: "true"
+        UIDataOnEventComponent1:
+            eventName: "HOVER_END"
+            modelFieldExpression: "isHovered"
+            dataExpression: "false"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Lobby/Common/RichTextLink.style.yaml"
+    children:
+    -   class: "UIControl"
+        name: "TapArea"
+        size: [32.000000, 32.000000]
+        input: true
+        classes: "tap-area"
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "maxChild + 16"
+                verticalPolicy: "Formula"
+                verticalFormula: "lastChild + 48"
+            UIInputEventComponent:
+                onTouchUpInside: "LINK_PRESSED"
+                onHoverSet: "HOVER_START"
+                onHoverRemoved: "HOVER_END"
+        children:
+        -   class: "UIControl"
+            name: "ContentWrapper"
+            position: [0.000000, 8.000000]
+            size: [78.000000, 24.000000]
+            pivot: [0.500000, 0.500000]
+            input: false
+            classes: "content-area"
+            components:
+                UIOpacityComponent: {}
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                LinearLayout:
+                    spacing: 2.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfChildrenSum"
+                    verticalPolicy: "PercentOfFirstChild"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Lobby/Common/RichTextLink.style.yaml"
+            children:
+            -   class: "UIControl"
+                name: "Content"
+                input: false
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfLastChild"
+                children:
+                -   class: "UIControl"
+                    name: "UnderLine"
+                    position: [0.000000, 20.000000]
+                    size: [32.000000, 32.000000]
+                    input: false
+                    components:
+                        Background: {}
+                        UIOpacityComponent:
+                            opacity: 0.500000
+                        Anchor:
+                            bottomAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 1.000000
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["classes", "colorStyle + \"-bg\""]
+                    - ["Anchor.bottomAnchor", "when baseFontSize == \"t-caption\" -> 0, -1"]
+                -   class: "UIControl"
+                    name: "Text"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    components:
+                        UITextComponent: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                    bindings:
+                    - ["classes", "textStyle"]
+                    - ["UITextComponent.text", "key"]
+            -   class: "UIControl"
+                name: "ExternalLinkIcon"
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_SCALE_PROPORTIONAL"
+                        sprite: "~res:/Gfx/Lobby/icons/icon_external-link_square"
+                    Anchor:
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 20.000000
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 20.000000
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+                bindings:
+                - ["visible", "isExternalLink"]
+                - ["classes", "when isHovered -> \"orange-orange-peel-bg\", \"white-wild-sand-50-bg\""]

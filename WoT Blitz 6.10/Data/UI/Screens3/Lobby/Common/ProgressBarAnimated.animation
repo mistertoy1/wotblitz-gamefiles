@@ -1,0 +1,4 @@
+animation Init
+{
+	Event("Animate", arg1 = false);
+}

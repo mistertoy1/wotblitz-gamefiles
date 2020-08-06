@@ -1,0 +1,10 @@
+animation SubPanelFinish(bool arg)
+{
+
+	  parallel
+	  {
+	  		Move ("**/Content", -panelWidth, 0, 0.3, SINE_OUT);
+			ChangeProperty (".","UIOpacityComponent","opacity", 0.5, 0.3, SINE_OUT);
+	   }
+
+}

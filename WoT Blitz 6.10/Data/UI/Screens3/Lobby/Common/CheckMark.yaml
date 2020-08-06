@@ -1,0 +1,59 @@
+Header:
+    version: "96"
+Prototypes:
+-   class: "UIControl"
+    name: "CheckMark"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            verticalPolicy: "FixedSize"
+        UIDataParamsComponent:
+            params:
+            - ["eCheckMarkType", "type", "eCheckMarkType.kLarge", "eCheckMarkType.kMicro"]
+            - ["bool", "isVisible", "false", "true"]
+        UIDataLocalsComponent:
+            locals:
+            - ["int", "largeSize", "24"]
+            - ["int", "smallSize", "20"]
+            - ["int", "microSize", "16"]
+            - ["int", "defaultSize", "largeSize"]
+            - ["int", "size", "when type == eCheckMarkType.kSmall -> smallSize, type == eCheckMarkType.kLarge -> largeSize, type == eCheckMarkType.kMicro -> microSize, defaultSize"]
+            - ["string", "smallPath", "\"~res:/Gfx/Lobby/icons/icon_tick_s\""]
+            - ["string", "largePath", "\"~res:/Gfx/Lobby/icons/icon_tick_m\""]
+            - ["string", "defaultPath", "largePath"]
+            - ["string", "spritePath", "when type == eCheckMarkType.kSmall -> smallPath, type == eCheckMarkType.kLarge -> largePath, type == eCheckMarkType.kMicro -> smallPath, defaultPath"]
+    bindings:
+    - ["visible", "isVisible"]
+    - ["SizePolicy.horizontalValue", "size"]
+    - ["SizePolicy.verticalValue", "size"]
+    children:
+    -   class: "UIControl"
+        name: "Bg"
+        input: false
+        classes: "white-wild-sand-bg"
+        components:
+            Background:
+                drawType: "DRAW_STRETCH_BOTH"
+                sprite: "~res:/Gfx/Lobby/backgrounds/bg_oval_40"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_FORCED"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+    -   class: "UIControl"
+        name: "Icon"
+        size: [32.000000, 32.000000]
+        input: false
+        classes: "grey-shark-bg"
+        components:
+            Background:
+                drawType: "DRAW_ALIGNED"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["Background.sprite", "spritePath"]

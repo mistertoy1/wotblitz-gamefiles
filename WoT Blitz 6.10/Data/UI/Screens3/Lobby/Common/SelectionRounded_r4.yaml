@@ -1,0 +1,19 @@
+Header:
+    version: "81"
+Prototypes:
+-   class: "UIControl"
+    name: "SelectorRounded_r4"
+    input: false
+    classes: "orange-orange-peel-bg"
+    components:
+        Background:
+            drawType: "DRAW_STRETCH_BOTH"
+            sprite: "~res:/Gfx/Lobby/controls/selector/selector_2px_r4"
+            perPixelAccuracy: "PER_PIXEL_ACCURACY_FORCED"
+            leftRightStretchCap: 4.000000
+            topBottomStretchCap: 4.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml"

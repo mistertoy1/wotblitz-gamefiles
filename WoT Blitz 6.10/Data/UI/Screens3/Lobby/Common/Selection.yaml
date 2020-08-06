@@ -1,0 +1,19 @@
+Header:
+    version: "79"
+Prototypes:
+-   class: "UIControl"
+    name: "Selection"
+    size: [32.000000, 32.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["eSelectionBorderType", "selectionType", "eSelectionBorderType.kRect", "eSelectionBorderType.kR8"]
+            - ["bool", "isVisible", "true", "true"]
+        UIChildComponent:
+            control: "when selectionType == eSelectionBorderType.kRect -> \"~res:/UI/Screens3/Lobby/Common/SelectionRectangle.yaml\", selectionType == eSelectionBorderType.kR4 -> \"~res:/UI/Screens3/Lobby/Common/SelectionRounded_r4.yaml\", \"~res:/UI/Screens3/Lobby/Common/SelectionRounded_r8.yaml\""
+    bindings:
+    - ["visible", "isVisible"]

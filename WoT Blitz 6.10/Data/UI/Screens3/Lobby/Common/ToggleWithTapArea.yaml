@@ -1,0 +1,50 @@
+Header:
+    version: "81"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Toggle.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "ToggleWithTapArea"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfLastChild"
+            verticalPolicy: "PercentOfLastChild"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "isDarkMode", "false", "false"]
+            - ["bool", "turnedOn", "false", "false"]
+            events:
+            - "ON_TOGGLE_CHANGED(bool isTurnedOn)"
+    children:
+    -   class: "UIControl"
+        name: "TapArea"
+        input: true
+        classes: "toggle-tap-area"
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 64.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 64.000000
+            UIInputEventComponent:
+                onTouchUpInside: "ON_TOGGLE_CHANGED"
+                onTouchUpInsideData: "not turnedOn"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/Common/ToggleWithTapArea.style.yaml"
+    -   prototype: "Toggle/Toggle"
+        name: "Toggle"
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            UIDataParamsComponent:
+                args:
+                    "isDarkMode": "isDarkMode"
+                    "isOn": "turnedOn"
+                eventActions:
+                - ["ON_VALUE_CHANGED", "ON_TOGGLE_CHANGED", "_event.isTurnedOn"]
+                - ["ON_EDITING_FINISHED", "ON_TOGGLE_CHANGED", "_event.isTurnedOn"]

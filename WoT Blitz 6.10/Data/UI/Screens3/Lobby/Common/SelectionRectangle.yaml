@@ -1,0 +1,15 @@
+Header:
+    version: "79"
+Prototypes:
+-   class: "UIControl"
+    name: "SelectorRectangle"
+    input: false
+    classes: "orange-orange-peel-border"
+    components:
+        BorderComponent:
+            border-thickness: 2U
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml"
