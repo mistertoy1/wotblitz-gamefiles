@@ -1,0 +1,35 @@
+Header:
+    version: "80"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Dialog/TextDialog.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "PushDialog"
+    size: [640.000000, 480.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+        ModalInput: {}
+        UIDataParamsComponent:
+            params:
+            - ["string", "headerText", "\"Header\"", "\"Header\""]
+            - ["string", "okText", "\"OK\"", "\"OK\""]
+            - ["string", "text", "\"text\"", "\"Enter your text here\""]
+    children:
+    -   prototype: "TextDialog/TextDialog"
+        name: "InfoTextDialog"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "type": "eDialogType.PUSH"
+                    "header": "headerText"
+                    "headerImage": "\"\""
+                    "accentButton": "okText"
+                    "optionalButton": "\"Cancel\""
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/Dialog/TextContent.yaml\", { contentText = text; }, [ ])"
+                eventActions:
+                - ["ACCENT_CLICKED", "CONFIRMATION", ""]

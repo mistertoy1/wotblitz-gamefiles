@@ -1,0 +1,194 @@
+Header:
+    version: "64"
+Prototypes:
+-   class: "UIControl"
+    name: "HintDialog"
+    size: [454.000000, 32.000000]
+    input: true
+    components:
+        Background: {}
+        SizePolicy:
+            horizontalPolicy: "Formula"
+            horizontalFormula: "lastChild+26"
+            verticalPolicy: "Formula"
+            verticalFormula: "lastChild+32"
+        UIInputEventComponent:
+            onTouchUpInside: "POPUP_ON_CLOSE_ACTION"
+        UIDataParamsComponent:
+            params:
+            - ["eHintOrientation", "orientation", "eHintOrientation.LEFT", "eHintOrientation.LEFT"]
+            - ["string", "title", "\"\"", "\"\""]
+            - ["string", "description", "\"\"", "\"\""]
+    children:
+    -   class: "UIControl"
+        name: "TailLayer"
+        size: [454.000000, 32.000000]
+        input: false
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+        children:
+        -   class: "UIControl"
+            name: "bottomTail"
+            size: [26.000000, 16.000000]
+            pivot: [0.500000, 0.500000]
+            input: false
+            classes: "yellow-lightning-bg"
+            components:
+                Background:
+                    sprite: "~res:/Gfx/UI/CommonUIElements/Selection_back_0.psd"
+                    spriteModification: ["FLIP_VERTICAL"]
+                    colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                    align: ["HCENTER", "BOTTOM"]
+                Anchor:
+                    bottomAnchorEnabled: true
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "orientation == eHintOrientation.TOP", "Read"]
+        -   class: "UIControl"
+            name: "topTail"
+            size: [26.000000, 16.000000]
+            pivot: [0.500000, 0.500000]
+            input: false
+            classes: "yellow-lightning-bg"
+            components:
+                Background:
+                    sprite: "~res:/Gfx/UI/CommonUIElements/Selection_back_0.psd"
+                    colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                    align: ["HCENTER", "BOTTOM"]
+                Anchor:
+                    topAnchorEnabled: true
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "orientation == eHintOrientation.BOTTOM", "Read"]
+        -   class: "UIControl"
+            name: "leftTail"
+            size: [26.000000, 16.000000]
+            pivot: [0.500000, 0.500000]
+            angle: 90.000000
+            input: false
+            classes: "yellow-lightning-bg"
+            components:
+                Background:
+                    sprite: "~res:/Gfx/UI/CommonUIElements/Selection_back_0.psd"
+                    spriteModification: ["FLIP_VERTICAL"]
+                    colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                    align: ["HCENTER", "BOTTOM"]
+                Anchor:
+                    leftAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "orientation == eHintOrientation.RIGHT", "Read"]
+        -   class: "UIControl"
+            name: "rightTail"
+            size: [26.000000, 16.000000]
+            pivot: [0.500000, 0.500000]
+            angle: -90.000000
+            input: false
+            classes: "yellow-lightning-bg"
+            components:
+                Background:
+                    sprite: "~res:/Gfx/UI/CommonUIElements/Selection_back_0.psd"
+                    spriteModification: ["FLIP_VERTICAL"]
+                    colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                    align: ["HCENTER", "BOTTOM"]
+                Anchor:
+                    rightAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "orientation == eHintOrientation.LEFT", "Read"]
+    -   class: "UIControl"
+        name: "InsideContainer"
+        size: [414.000000, 20.000000]
+        input: false
+        classes: "yellow-lightning-bg"
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "lastChild+32"
+                verticalPolicy: "PercentOfLastChild"
+        children:
+        -   class: "UIControl"
+            name: "Bg"
+            input: false
+            classes: "yellow-lightning-bg"
+            components:
+                Background:
+                    drawType: "DRAW_STRETCH_BOTH"
+                    sprite: "~res:/Gfx/UI/CommonUIElements/square_BigAngle.psd"
+                    colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                    leftRightStretchCap: 7.000000
+                    topBottomStretchCap: 7.000000
+                Anchor:
+                    leftAnchorEnabled: true
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "TextContainer"
+            size: [68.000000, 69.000000]
+            input: false
+            components:
+                Anchor:
+                    leftAnchorEnabled: true
+                    leftAnchor: 15.000000
+                LinearLayout:
+                    orientation: "TopDown"
+                    padding: "10.000000"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfMaxChild"
+                    verticalPolicy: "PercentOfChildrenSum"
+                    verticalMin: 34.000000
+            children:
+            -   class: "UIControl"
+                name: "Title"
+                input: false
+                classes: "t-subtitle bold color=black-text"
+                components:
+                    UITextComponent:
+                        colorInheritType: "COLOR_IGNORE_PARENT"
+                        multiline: "MULTILINE_ENABLED"
+                        align: ["LEFT", "VCENTER"]
+                    Anchor:
+                        leftAnchorEnabled: true
+                        useRtl: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        verticalPolicy: "PercentOfContent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Font.style.yaml"
+                bindings:
+                - ["UITextComponent.text", "title", "Read"]
+            -   class: "UIControl"
+                name: "Description"
+                input: false
+                classes: "t-body regular color=black-text"
+                components:
+                    UITextComponent:
+                        colorInheritType: "COLOR_IGNORE_PARENT"
+                        multiline: "MULTILINE_ENABLED"
+                        align: ["LEFT", "VCENTER"]
+                    Anchor:
+                        useRtl: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        horizontalMax: 500.000000
+                        verticalPolicy: "PercentOfContent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Font.style.yaml"
+                bindings:
+                - ["UITextComponent.text", "description", "Read"]

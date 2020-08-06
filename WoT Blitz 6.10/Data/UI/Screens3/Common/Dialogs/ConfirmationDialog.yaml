@@ -1,0 +1,44 @@
+Header:
+    version: "92"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Dialog/TextDialog.yaml"
+Controls:
+-   class: "UIControl"
+    name: "ConfirmationDialog"
+    size: [640.000000, 480.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+        UIDataParamsComponent:
+            params:
+            - ["string", "textCancelButton", "\"\"", "\"#DialogButton/Cancel\""]
+            - ["string", "textOkButton", "\"\"", "\"#DialogButton/OK\""]
+            - ["string", "text", "\"\"", "\"confirmation text\""]
+            events:
+            - "OPTIONAL_CLICKED"
+            - "CONFIRMATION"
+        UIDataLocalsComponent:
+            locals: []
+    children:
+    -   prototype: "TextDialog/TextDialog"
+        name: "InfoTextDialog"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "type": "eDialogType.CHOOSE"
+                    "header": "\"\""
+                    "headerImage": "\"\""
+                    "accentButton": "when empty(textOkButton) -> \"#common:DialogButton/OK\", textOkButton"
+                    "optionalButton": "when empty(textCancelButton) -> \"#common:DialogButton/Cancel\", textCancelButton"
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/Dialog/TextContent.yaml\", { contentText = text; }, [ ])"
+                eventActions:
+                - ["ACCENT_CLICKED", "CONFIRMATION", ""]
+                - ["OPTIONAL_CLICKED", "OPTIONAL_CLICKED", ""]
+        children:
+        -   path: "DialogContent/Footer/OptionalButtonContainer"
+            position: [25.000000, 24.000000]
+            children: []

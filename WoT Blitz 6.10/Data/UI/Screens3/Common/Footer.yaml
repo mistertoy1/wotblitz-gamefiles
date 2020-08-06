@@ -1,0 +1,79 @@
+Header:
+    version: "93"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+- "~res:/UI/Screens3/Lobby/Inventory/Common/DynamicHorizontalPadding.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "Footer"
+    size: [1036.000000, 80.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["control", "content", "null", "null"]
+            - ["string", "bgStyle", "\"black-25-bg\"", "\"black-25-bg\""]
+            - ["string", "desktopStyle", "\"inventory-limited-width\"", "\"inventory-limited-width\""]
+            - ["string", "leftPaddingStyle", "\"padding fixed-padding\"", "\"padding fixed-padding\""]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Common/Desktop.style.yaml"
+    bindings:
+    - ["classes", "desktopStyle"]
+    children:
+    -   class: "UIControl"
+        name: "Background"
+        input: false
+        components:
+            Background: {}
+            IgnoreLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["classes", "bgStyle"]
+    -   class: "UIControl"
+        name: "ContentWrapper"
+        components:
+            LinearLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 80.000000
+        children:
+        -   prototype: "DynamicHorizontalPadding/DynamicHorizontalPadding"
+            name: "DynamicHorizontalPadding_1"
+            bindings:
+            - ["classes", "leftPaddingStyle"]
+        -   class: "UIControl"
+            name: "Content"
+            input: false
+            components:
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 48.000000
+                UIChildComponent0:
+                    childType: "kControl"
+                    condition: "not isNull(content)"
+                    control: "content"
+        -   prototype: "DynamicHorizontalPadding/DynamicHorizontalPadding"
+            name: "DynamicHorizontalPadding"
+    -   class: "UIControl"
+        name: "BottomSafeArea"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "Formula"
+                verticalFormula: "when safeAreaInsets.bottom > 0 -> 21, 0"

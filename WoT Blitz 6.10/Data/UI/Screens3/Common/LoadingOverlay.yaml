@@ -1,0 +1,63 @@
+Header:
+    version: "95"
+Prototypes:
+-   class: "UIControl"
+    name: "LoadingOverlay"
+    size: [960.000000, 640.000000]
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["string", "bgStyle", "\"black-50-bg\"", "\"black-50-bg\""]
+            - ["string", "spinnerStyle", "\"loadingSpinner\"", "\"loadingSpinner\""]
+            - ["string", "description", "\"\"", "\"hangar loading sync data\""]
+    children:
+    -   class: "UIControl"
+        name: "Fade"
+        input: false
+        components:
+            Background: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["classes", "bgStyle"]
+    -   class: "UIControl"
+        name: "Description"
+        input: false
+        classes: "t-body regular white-wild-sand-text"
+        components:
+            UITextComponent:
+                multiline: "MULTILINE_ENABLED"
+                align: ["HCENTER", "TOP"]
+                useRtlAlign: "DONT_USE"
+            Anchor:
+                vCenterAnchorEnabled: true
+                vCenterAnchor: 55.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 60.000000
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["visible", "not empty(description)"]
+        - ["UITextComponent.text", "localize(description)"]
+    -   class: "UIControl"
+        name: "Spinner"
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Common/LoadingSpinner.yaml"
+                args:
+                    "spinnerStyle": "spinnerStyle"

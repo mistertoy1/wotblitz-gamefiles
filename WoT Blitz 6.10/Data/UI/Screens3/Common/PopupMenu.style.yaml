@@ -1,0 +1,9 @@
+Header:
+    version: "69"
+StyleSheets:
+-   selector: ".text-align-left"
+    properties:
+        text-align: ["LEFT", "VCENTER"]
+-   selector: ".text-align-center"
+    properties:
+        text-align: ["HCENTER", "VCENTER"]

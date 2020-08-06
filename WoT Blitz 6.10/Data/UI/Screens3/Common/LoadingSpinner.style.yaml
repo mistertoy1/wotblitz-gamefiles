@@ -1,0 +1,13 @@
+Header:
+    version: "95"
+StyleSheets:
+-   selectors:
+    - ".loadingSpinner #Background"
+    properties:
+        bg-frame: 1
+        bg-sprite: "~res:/Gfx/Shared/controls/loader/loader_default"
+-   selectors:
+    - ".loadingSpinner #Spinner"
+    properties:
+        bg-frame: 0
+        bg-sprite: "~res:/Gfx/Shared/controls/loader/loader_default"

@@ -1,0 +1,131 @@
+Header:
+    version: "79"
+Prototypes:
+-   class: "UIControl"
+    name: "RadioButton"
+    size: [32.000000, 32.000000]
+    input: true
+    classes: "button-checkbox-sound"
+    components:
+        UIAnimationComponent:
+            animations: "SELECTED_OUTSIDE,~res:/UI/Screens3/Common/RadioButton/RadioButtonSelection.animation;HOVER_ANIMATION,~res:/UI/Screens3/Common/RadioButton/RadioButtonHover.animation;_INIT,~res:/UI/Screens3/Common/RadioButton/RadioButtonInit.animation"
+        UIOpacityComponent: {}
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 32.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 32.000000
+        UIInputEventComponent:
+            onHoverSet: "HOVER_START"
+            onHoverRemoved: "HOVER_END"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "isHovered", "false", "false"]
+            - ["bool", "isEnabled", "true", "true"]
+            - ["bool", "isSelected", "true", "true"]
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "isHoveredLocal", "false"]
+        UIDataOnEventComponent0:
+            eventName: "HOVER_START"
+            modelFieldExpression: "isHoveredLocal"
+            dataExpression: "true"
+        UIDataOnEventComponent1:
+            eventName: "HOVER_END"
+            modelFieldExpression: "isHoveredLocal"
+            dataExpression: "false"
+        UIEventOnDataComponent0:
+            watchedDataExpression: "isHovered"
+            eventName: "HOVER_ANIMATION"
+        UIEventOnDataComponent1:
+            watchedDataExpression: "isSelected"
+            eventName: "SELECTED_OUTSIDE"
+        UIEventOnDataComponent2:
+            watchedDataExpression: "isHoveredLocal"
+            eventName: "HOVER_ANIMATION"
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/ButtonSound.style.yaml"
+    bindings:
+    - ["UIOpacityComponent.opacity", "when isEnabled -> 1, 0.300000"]
+    children:
+    -   class: "UIControl"
+        name: "PressedFade"
+        size: [32.000000, 32.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        classes: "white-wild-sand-50-bg"
+        components:
+            Background:
+                drawType: "DRAW_STRETCH_BOTH"
+                sprite: "~res:/Gfx/Lobby/backgrounds/bg_oval_40"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            UIOpacityComponent:
+                opacity: 0.000000
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                horizontalValue: 200.000000
+                verticalPolicy: "PercentOfParent"
+                verticalValue: 200.000000
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+    -   class: "UIControl"
+        name: "Bg"
+        size: [32.000000, 32.000000]
+        input: false
+        classes: "white-wild-sand-10-bg"
+        components:
+            Background:
+                drawType: "DRAW_STRETCH_BOTH"
+                sprite: "~res:/Gfx/Lobby/backgrounds/bg_oval_40"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+    -   class: "UIControl"
+        name: "Border"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            Background:
+                drawType: "DRAW_STRETCH_BOTH"
+                sprite: "~res:/Gfx/Lobby/controls/radio-button/radio-button_border_2px"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            UIOpacityComponent: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["classes", "when isEnabled -> (when isSelected -> \"orange-orange-peel-bg\", \"white-wild-sand-15-bg\"), \"\""]
+        - ["UIOpacityComponent.opacity", "when isEnabled -> 1, 0.300000"]
+    -   class: "UIControl"
+        name: "Selection"
+        size: [32.000000, 32.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        components:
+            Background:
+                drawType: "DRAW_STRETCH_BOTH"
+                sprite: "~res:/Gfx/Lobby/backgrounds/bg_oval_40"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            UIOpacityComponent: {}
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 16.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 16.000000
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["classes", "\"selector \" + (when isEnabled -> (when isSelected -> \"orange-orange-peel-bg\", \"white-wild-sand-15-bg\"), \"\")"]
+        - ["UIOpacityComponent.opacity", "when isEnabled -> 1, 0.300000"]

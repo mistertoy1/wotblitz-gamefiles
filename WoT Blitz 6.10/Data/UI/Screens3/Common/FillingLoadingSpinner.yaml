@@ -1,0 +1,11 @@
+Header:
+    version: "69"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/LoadingSpinner.yaml"
+Prototypes:
+-   prototype: "LoadingSpinner/LoadingSpinner"
+    name: "FillingLoadingSpinner"
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"

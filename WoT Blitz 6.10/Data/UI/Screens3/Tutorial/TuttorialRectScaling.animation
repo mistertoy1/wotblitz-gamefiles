@@ -1,0 +1,37 @@
+animation TuttorialRectScaling
+{
+        if(blockingStep)
+        {
+                repeat(2)
+                {
+                        parallel
+                        {
+                                 sequence
+                                 {
+                                        ChangeProperty("**/HighlightBg","Anchor","leftAnchor",offsetControlDelta,0.1,EASE_IN); 
+                                        ChangeProperty("**/HighlightBg","Anchor","leftAnchor",-offsetControl,0.2,EASE_OUT); 
+                                 }
+
+                                 sequence
+                                 {
+                                        ChangeProperty("**/HighlightBg","Anchor","rightAnchor",offsetControlDelta,0.1,EASE_IN); 
+                                        ChangeProperty("**/HighlightBg","Anchor","rightAnchor",-offsetControl,0.2,EASE_OUT); 
+                                 }
+
+                                 sequence
+                                 {
+                                        ChangeProperty("**/HighlightBg","Anchor","topAnchor",offsetControlDelta,0.1,EASE_IN); 
+                                        ChangeProperty("**/HighlightBg","Anchor","topAnchor",-offsetControl,0.2,EASE_OUT); 
+                                 }
+
+                                 sequence
+                                 {
+                                        ChangeProperty("**/HighlightBg","Anchor","bottomAnchor",offsetControlDelta,0.1,EASE_IN); 
+                                        ChangeProperty("**/HighlightBg","Anchor","bottomAnchor",-offsetControl,0.2,EASE_OUT); 
+                                 }
+
+                        }
+
+                }
+        }
+}

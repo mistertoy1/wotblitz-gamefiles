@@ -1,0 +1,7 @@
+animation Init
+{
+    if (not isSelected)
+    {
+        ChangeProperty("**/Selection","UIOpacityComponent","opacity", 0);
+    }
+}

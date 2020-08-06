@@ -1,0 +1,17 @@
+Header:
+    version: "57"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/DefaultStyledButton.yaml"
+Prototypes:
+-   prototype: "DefaultStyledButton/DefaultStyledButton"
+    name: "StyledButton"
+    children:
+    -   class: "UIStaticText"
+        name: "Caption"
+        classes: "header3 text-color-white"
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true

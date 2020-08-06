@@ -1,0 +1,40 @@
+Header:
+    version: "95"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/HorizontalScrollBar.yaml"
+Prototypes:
+-   class: "UIScrollView"
+    name: "ScrollView"
+    size: [200.000000, 200.000000]
+    autoUpdate: true
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["control", "content", "null", "null"]
+            - ["bool", "centerContent", "false", "false"]
+            events:
+            - "ON_SCROLL_VIEW_TOUCH"
+    bindings:
+    - ["centerContent", "centerContent"]
+    children:
+    -   class: "UIScrollViewContainer"
+        name: "scrollContainerControl"
+        scrollDirection: "kHorizontal"
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfParent"
+            UIInputEventComponent:
+                onTouchUpInside: "ON_SCROLL_VIEW_TOUCH"
+            UIChildComponent0:
+                childType: "kControl"
+                condition: "not isNull(content)"
+                control: "content"
+    -   prototype: "HorizontalScrollBar/HorizontalScrollBar"
+        name: "HorizontalScrollBar"
+        components:
+            ScrollBarDelegate:
+                delegate: ".."

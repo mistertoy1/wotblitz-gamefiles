@@ -1,0 +1,59 @@
+Header:
+    version: "80"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/DevSpinner.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "GraphicsOptionsDialogRow"
+    size: [400.000000, 66.000000]
+    input: true
+    components:
+        LinearLayout:
+            spacing: 16.000000
+            dynamicSpacing: true
+            useRtl: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "FixedSize"
+            verticalValue: 66.000000
+        UIDataParamsComponent:
+            params:
+            - ["int", "currentIdx", "0", "0"]
+            - ["vector<string>", "gOptions", "[ ]", "[ \"Forward\"; \"Deferred\"; ]"]
+            - ["string", "text", "\"FLOW\"", "\"FLOW\""]
+            events:
+            - "COMBO_CHANGED(string var)"
+    children:
+    -   class: "UIControl"
+        name: "Text"
+        position: [104.000000, 6.000000]
+        input: false
+        components:
+            UITextComponent:
+                fitting: "FITTING_POINTS"
+                align: ["LEFT", "VCENTER"]
+            Anchor:
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "min(parentRest, content)"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["classes", "\"t-body regular \""]
+        - ["UITextComponent.text", "text"]
+    -   class: "UIControl"
+        name: "SpinnerControl"
+        position: [111.000000, 0.000000]
+        size: [289.000000, 66.000000]
+        input: false
+        components:
+            Anchor: {}
+            UIChildComponent:
+                control: "\"~res:/UI/Screens3/Common/DevSpinner.yaml\""
+                args:
+                    "currentIdx": "currentIdx"
+                    "options": "gOptions"
+                eventActions:
+                - ["COMBO_CHANGED", "COMBO_CHANGED", "_event.var"]

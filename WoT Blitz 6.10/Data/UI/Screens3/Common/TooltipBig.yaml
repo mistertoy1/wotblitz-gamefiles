@@ -1,0 +1,320 @@
+Header:
+    version: "79"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Resource/Currency.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "Slave"
+    input: false
+    components:
+        UIAnimationComponent:
+            animations: "_INIT,~res:/UI/Screens3/Common/TooltipShow.animation;ANIMATE_POPUP_ON_HIDE,~res:/UI/Screens3/Common/TooltipHide.animation"
+        UIOpacityComponent:
+            ignoreParentOpacity: true
+        SizePolicy:
+            horizontalPolicy: "Formula"
+            horizontalFormula: "maxChild + 32"
+            verticalPolicy: "Formula"
+            verticalFormula: "maxChild + 32"
+        UIAttachLayoutSmartSlaveComponent: {}
+        UIDataParamsComponent:
+            params:
+            - ["int", "offset", "0", "0"]
+            - ["bool", "isAlignLeft", "true", "true"]
+            - ["bool", "buttonVisible", "false", "true"]
+            - ["bool", "rewardVisible", "true", "true"]
+            - ["ePositionAlign", "slaveAlign", "ePositionAlign.Default", "ePositionAlign.Top"]
+            - ["ResourceModel", "resource", "null", "{ bonusQuantity = 0; }"]
+            - ["string", "title", "\"Title text\"", "\"Медаль за отвагу\""]
+            - ["string", "text", "\"Body text\"", "\"Присваевается игроку за мастерство\Lвладения боевой машиной. \LДля получения награды необходимо заработать больше опыта за бой, чем средний максимальный опыт за неделю у 99% игроков на данной технике\""]
+            - ["string", "colorClass", "\"color=white-wild-sand-text\"", "\"color=white-wild-sand-text\""]
+            - ["string", "masterId", "\"TUTORIAL_HIGHLIGHT\"", "\"TUTORIAL_HIGHLIGHT\""]
+            events:
+            - "CONTINUE"
+            - "FINISH_HIDE_POPUP_ANIMATION"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "alignStyle", "when isAlignLeft -> \" text-align-left\", \" text-align-center\""]
+            - ["string", "textStyle", "\"t-subtitle regular \" + colorClass + alignStyle"]
+            - ["string", "titleStyle", "\"t-subtitle bold \" + colorClass + alignStyle"]
+            - ["string", "selectedSide", "\"\""]
+        UIDataOnEventComponent0:
+            eventName: "SELECTED_SIDE"
+            modelFieldExpression: "selectedSide"
+            dataExpression: "_event"
+    bindings:
+    - ["UIAttachLayoutSmartSlaveComponent.attachId", "masterId"]
+    - ["UIAttachLayoutSmartSlaveComponent.slaveAlign", "slaveAlign"]
+    - ["UIAttachLayoutSmartSlaveComponent.offset", "offset"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        position: [16.000000, 16.000000]
+        input: false
+        classes: "blue-curious-blue-bg"
+        components:
+            Background:
+                sprite: "~res:/Gfx/UI/CommonUIElements/square_BigAngle.psd"
+                gradientMode: "Multiply"
+                colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_DISABLED"
+                leftRightStretchCap: 5.000000
+                topBottomStretchCap: 5.000000
+            Anchor:
+                leftAnchorEnabled: true
+                leftAnchor: 16.000000
+                rightAnchorEnabled: true
+                rightAnchor: 16.000000
+                topAnchorEnabled: true
+                topAnchor: 16.000000
+                bottomAnchorEnabled: true
+                bottomAnchor: 16.000000
+            LinearLayout:
+                orientation: "TopDown"
+                padding: "16"
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "maxChild + 32"
+                verticalPolicy: "PercentOfChildrenSum"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "Title"
+            input: false
+            components:
+                UITextComponent:
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    multiline: "MULTILINE_ENABLED"
+                    useRtlAlign: "USE_BY_SYSTEM"
+                Anchor:
+                    leftAnchorEnabled: true
+                    leftAnchor: 16.000000
+                    rightAnchorEnabled: true
+                    rightAnchor: 16.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Common/PopupMenu.style.yaml"
+            bindings:
+            - ["visible", "title != \"\""]
+            - ["classes", "titleStyle"]
+            - ["UITextComponent.text", "localize(title)"]
+        -   class: "UIControl"
+            name: "Spacer4px"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 4.000000
+            bindings:
+            - ["visible", "title != \"\""]
+        -   class: "UIControl"
+            name: "Text"
+            input: false
+            components:
+                UITextComponent:
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    multiline: "MULTILINE_ENABLED"
+                    useRtlAlign: "USE_BY_SYSTEM"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    horizontalMax: 528.000000
+                    verticalPolicy: "PercentOfContent"
+                    verticalFormula: "when parent == 0 -> content, parent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Common/PopupMenu.style.yaml"
+            bindings:
+            - ["classes", "textStyle"]
+            - ["UITextComponent.text", "localize(text)"]
+        -   class: "UIControl"
+            name: "Spacer16px"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 16.000000
+            bindings:
+            - ["visible", "buttonVisible"]
+        -   class: "UIControl"
+            name: "Spacer8px"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 8.000000
+            bindings:
+            - ["visible", "rewardVisible"]
+        -   class: "UIControl"
+            name: "ButtonHolder"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfMaxChild"
+                    verticalPolicy: "PercentOfChildrenSum"
+            bindings:
+            - ["visible", "buttonVisible"]
+            children:
+            -   prototype: "Button/Button"
+                name: "ButtonOptionalDarkSmall"
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                    UIDataParamsComponent:
+                        args:
+                            "caption": "\"hangarTutorial/Button/Next\""
+                            "type": "eButtonType.OPTIONAL_DARK"
+                            "size": "eButtonSize.SMALL"
+                            "enabled": "true"
+                        eventActions:
+                        - ["ON_CLICK_BUTTON", "CONTINUE", ""]
+        -   class: "UIControl"
+            name: "Reward"
+            position: [0.000000, 256.000000]
+            size: [130.000000, 56.000000]
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                LinearLayout:
+                    spacing: 4.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfChildrenSum"
+                    verticalPolicy: "PercentOfMaxChild"
+            bindings:
+            - ["visible", "rewardVisible"]
+            children:
+            -   class: "UIControl"
+                name: "Name"
+                input: false
+                classes: "t-subtitle regular color=white-wild-sand-text"
+                components:
+                    UITextComponent:
+                        text: "hangarTutorial/TaskReward"
+                        colorInheritType: "COLOR_IGNORE_PARENT"
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        verticalPolicy: "PercentOfContent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+            -   prototype: "Currency/Currency"
+                name: "Currency"
+                components:
+                    UIDataParamsComponent:
+                        args:
+                            "currencySize": "eCurrencySize.BIG_BOLD"
+                            "forButton": "false"
+                            "canAfford": "true"
+                            "isPlusTopPaneVisible": "false"
+                            "serverTime": "0L"
+                            "plusVisible": "false"
+                            "resource": "resource"
+    -   class: "UIControl"
+        name: "ArrowBottom"
+        input: false
+        classes: "blue-curious-blue-bg"
+        components:
+            Background:
+                drawType: "DRAW_ALIGNED"
+                sprite: "~res:/Gfx/Lobby/backgrounds/bg_triangle_8.psd"
+                colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                align: []
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "Formula"
+                verticalFormula: "content+16"
+            UIAttachLayoutSlaveComponent:
+                masterAlign: "BottomCenter"
+                slaveAlign: "TopCenter"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "selectedSide == \"bottom\""]
+        - ["UIAttachLayoutSlaveComponent.attachId", "masterId"]
+        - ["UIAttachLayoutSlaveComponent.additionalOffset", "vec2(0, offset)"]
+    -   class: "UIControl"
+        name: "ArrowTop"
+        input: false
+        classes: "blue-curious-blue-bg"
+        components:
+            Background:
+                drawType: "DRAW_ALIGNED"
+                sprite: "~res:/Gfx/Lobby/backgrounds/bg_triangle_8.psd"
+                spriteModification: ["FLIP_VERTICAL"]
+                colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                align: []
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "Formula"
+                verticalFormula: "content+16"
+            UIAttachLayoutSlaveComponent:
+                masterAlign: "TopCenter"
+                slaveAlign: "BottomCenter"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "selectedSide == \"top\""]
+        - ["UIAttachLayoutSlaveComponent.attachId", "masterId"]
+        - ["UIAttachLayoutSlaveComponent.additionalOffset", "vec2(0, -offset)"]
+    -   class: "UIControl"
+        name: "ArrowRight"
+        pivot: [0.500000, 0.500000]
+        angle: 90.000000
+        input: false
+        classes: "blue-curious-blue-bg"
+        components:
+            Background:
+                drawType: "DRAW_ALIGNED"
+                sprite: "~res:/Gfx/Lobby/backgrounds/bg_triangle_8.psd"
+                spriteModification: ["FLIP_VERTICAL"]
+                colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                align: []
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "content+10"
+                verticalPolicy: "PercentOfContent"
+            UIAttachLayoutSlaveComponent:
+                masterAlign: "RightCenter"
+                slaveAlign: "LeftCenter"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "selectedSide == \"right\""]
+        - ["UIAttachLayoutSlaveComponent.attachId", "masterId"]
+        - ["UIAttachLayoutSlaveComponent.additionalOffset", "vec2(offset, 0)"]
+    -   class: "UIControl"
+        name: "ArrowLeft"
+        pivot: [0.500000, 0.500000]
+        angle: -90.000000
+        input: false
+        classes: "blue-curious-blue-bg"
+        components:
+            Background:
+                drawType: "DRAW_ALIGNED"
+                sprite: "~res:/Gfx/Lobby/backgrounds/bg_triangle_8.psd"
+                spriteModification: ["FLIP_VERTICAL"]
+                colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                align: []
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "content+10"
+                verticalPolicy: "PercentOfContent"
+            UIAttachLayoutSlaveComponent:
+                masterAlign: "LeftCenter"
+                slaveAlign: "RightCenter"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "selectedSide == \"left\""]
+        - ["UIAttachLayoutSlaveComponent.attachId", "masterId"]
+        - ["UIAttachLayoutSlaveComponent.additionalOffset", "vec2(-offset, 0)"]

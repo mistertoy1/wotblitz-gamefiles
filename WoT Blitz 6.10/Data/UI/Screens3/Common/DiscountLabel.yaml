@@ -1,0 +1,44 @@
+Header:
+    version: "99"
+Prototypes:
+-   class: "UIControl"
+    name: "DiscountLabel"
+    input: false
+    components:
+        Background: {}
+        SizePolicy:
+            horizontalPolicy: "Formula"
+            horizontalFormula: "maxChild + 8"
+            verticalPolicy: "Formula"
+            verticalFormula: "maxChild + 4"
+        UIDataParamsComponent:
+            params:
+            - ["eDiscountReason", "discountReason", "eDiscountReason.ACTION", "eDiscountReason.ACTION"]
+            - ["float", "discount", "0.000000", "0.200000"]
+            - ["bool", "display", "true", "true"]
+        UIDataLocalsComponent:
+            locals:
+            - ["float", "value", "floor(discount * 100.000000)"]
+            - ["string", "discountStr", "when value > 0 -> percent(-value, 0), \"%\""]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml"
+    bindings:
+    - ["visible", "display"]
+    - ["classes", "when discountReason == eDiscountReason.CLAN_SUPPLY -> \"blue-elm-bg\", \"orange-tango-bg\""]
+    children:
+    -   class: "UIControl"
+        name: "Discount"
+        input: false
+        classes: "white-wild-sand-text t-overline bold not-localize"
+        components:
+            UITextComponent: {}
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "discountStr"]

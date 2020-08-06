@@ -1,0 +1,5 @@
+animation TooltipHide
+{
+    Opacity(".", opacity=0, time=0.3, interpolation=EASE_IN);
+    Event("FINISH_HIDE_POPUP_ANIMATION");
+}

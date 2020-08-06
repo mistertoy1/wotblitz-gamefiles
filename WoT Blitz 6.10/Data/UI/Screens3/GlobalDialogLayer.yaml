@@ -1,0 +1,13 @@
+Header:
+    version: "82"
+Controls:
+-   class: "UIPopup"
+    name: "GlobalDialogLayer"
+    size: [960.000000, 640.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true

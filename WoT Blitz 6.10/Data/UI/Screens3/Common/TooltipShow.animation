@@ -1,0 +1,24 @@
+animation TooltipShow
+{
+    Opacity(".", opacity=0);
+    ChangeProperty(".", "UIAttachLayoutSmartSlaveComponent", "offset", offset+24);
+
+    ChangeProperty("**/ArrowBottom", "UIAttachLayoutSlaveComponent", "additionalOffset", vec2(0, offset+24));
+    ChangeProperty("**/ArrowTop", "UIAttachLayoutSlaveComponent", "additionalOffset", vec2(0, -offset-24));
+    ChangeProperty("**/ArrowLeft", "UIAttachLayoutSlaveComponent", "additionalOffset", vec2(-offset-24, 0));
+    ChangeProperty("**/ArrowRight", "UIAttachLayoutSlaveComponent", "additionalOffset", vec2(offset+24, 0));
+    
+    
+    Wait(0.1);
+    parallel
+    {
+      ChangeProperty(".", "UIAttachLayoutSmartSlaveComponent", "offset", offset, time=0.3, interpolation=EASE_OUT);
+
+      ChangeProperty("**/ArrowBottom", "UIAttachLayoutSlaveComponent", "additionalOffset", vec2(0, offset), time=0.3, interpolation=EASE_OUT);
+      ChangeProperty("**/ArrowTop", "UIAttachLayoutSlaveComponent", "additionalOffset", vec2(0, -offset), time=0.3, interpolation=EASE_OUT);
+      ChangeProperty("**/ArrowLeft", "UIAttachLayoutSlaveComponent", "additionalOffset", vec2(-offset, 0), time=0.3, interpolation=EASE_OUT);
+      ChangeProperty("**/ArrowRight", "UIAttachLayoutSlaveComponent", "additionalOffset", vec2(offset, 0), time=0.3, interpolation=EASE_OUT);
+             
+      Opacity(".", opacity=1, time=0.3, interpolation=EASE_OUT);
+    }
+}

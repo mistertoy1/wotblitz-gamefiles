@@ -1,0 +1,736 @@
+Header:
+    version: "99"
+StyleSheets:
+-   selectors:
+    - ".black-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.000000, 0.000000, 0.000000, 1.000000]
+-   selectors:
+    - ".black-border"
+    properties:
+        border-border-color: [0.000000, 0.000000, 0.000000, 1.000000]
+-   selectors:
+    - ".black-text"
+    properties:
+        text-color: [0.000000, 0.000000, 0.000000, 1.000000]
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+-   selectors:
+    - ".black-70-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.000000, 0.000000, 0.000000, 0.700000]
+-   selectors:
+    - ".black-70-border"
+    properties:
+        border-border-color: [0.000000, 0.000000, 0.000000, 0.700000]
+-   selectors:
+    - ".black-70-text"
+    properties:
+        text-color: [0.000000, 0.000000, 0.000000, 0.700000]
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+-   selectors:
+    - ".black-50-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.000000, 0.000000, 0.000000, 0.501961]
+-   selectors:
+    - ".black-50-border"
+    properties:
+        border-border-color: [0.000000, 0.000000, 0.000000, 0.501961]
+-   selectors:
+    - ".black-50-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.000000, 0.000000, 0.000000, 0.500000]
+-   selectors:
+    - ".black-35-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.000000, 0.000000, 0.000000, 0.350000]
+-   selectors:
+    - ".black-35-border"
+    properties:
+        border-border-color: [0.000000, 0.000000, 0.000000, 0.350000]
+-   selectors:
+    - ".black-35-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.000000, 0.000000, 0.000000, 0.350000]
+-   selectors:
+    - ".black-25-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.000000, 0.000000, 0.000000, 0.250980]
+-   selectors:
+    - ".black-25-border"
+    properties:
+        border-border-color: [0.000000, 0.000000, 0.000000, 0.250980]
+-   selectors:
+    - ".black-25-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.000000, 0.000000, 0.000000, 0.250980]
+-   selectors:
+    - ".black-15-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.000000, 0.000000, 0.000000, 0.149020]
+-   selectors:
+    - ".black-15-border"
+    properties:
+        border-border-color: [0.000000, 0.000000, 0.000000, 0.149020]
+-   selectors:
+    - ".black-15-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.000000, 0.000000, 0.000000, 0.149020]
+-   selectors:
+    - ".black-10-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.000000, 0.000000, 0.000000, 0.100000]
+-   selectors:
+    - ".black-10-border"
+    properties:
+        border-border-color: [0.000000, 0.000000, 0.000000, 0.100000]
+-   selectors:
+    - ".black-10-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.000000, 0.000000, 0.000000, 0.100000]
+-   selectors:
+    - ".black-5-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.000000, 0.000000, 0.000000, 0.050000]
+-   selectors:
+    - ".black-5-border"
+    properties:
+        border-border-color: [0.000000, 0.000000, 0.000000, 0.050000]
+-   selectors:
+    - ".black-5-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.000000, 0.000000, 0.000000, 0.050000]
+-   selectors:
+    - ".white-wild-sand-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.960784, 0.960784, 0.960784, 1.000000]
+-   selectors:
+    - ".white-wild-sand-border"
+    properties:
+        border-border-color: [0.960784, 0.960784, 0.960784, 1.000000]
+-   selectors:
+    - ".white-wild-sand-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.960784, 0.960784, 0.960784, 1.000000]
+-   selectors:
+    - ".white-wild-sand-70-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.960784, 0.960784, 0.960784, 0.700000]
+-   selectors:
+    - ".white-wild-sand-70-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.960784, 0.960784, 0.960784, 0.700000]
+-   selectors:
+    - ".white-wild-sand-50-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.960784, 0.960784, 0.960784, 0.501961]
+-   selectors:
+    - ".white-wild-sand-50-border"
+    properties:
+        border-border-color: [0.960784, 0.960784, 0.960784, 0.501961]
+-   selectors:
+    - ".white-wild-sand-50-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.960784, 0.960784, 0.960784, 0.501961]
+-   selectors:
+    - ".white-wild-sand-25-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.960784, 0.960784, 0.960784, 0.250980]
+-   selectors:
+    - ".white-wild-sand-25-border"
+    properties:
+        border-border-color: [0.960784, 0.960784, 0.960784, 0.250980]
+-   selectors:
+    - ".white-wild-sand-25-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.960784, 0.960784, 0.960784, 0.250980]
+-   selectors:
+    - ".white-wild-sand-15-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.960784, 0.960784, 0.960784, 0.150000]
+-   selectors:
+    - ".white-wild-sand-15-border"
+    properties:
+        border-border-color: [0.960784, 0.960784, 0.960784, 0.150000]
+-   selectors:
+    - ".white-wild-sand-15-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.960784, 0.960784, 0.960784, 0.150000]
+-   selectors:
+    - ".white-wild-sand-10-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.960784, 0.960784, 0.960784, 0.100000]
+-   selectors:
+    - ".white-wild-sand-10-border"
+    properties:
+        border-border-color: [0.960784, 0.960784, 0.960784, 0.098039]
+-   selectors:
+    - ".white-wild-sand-10-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.960784, 0.960784, 0.960784, 0.098039]
+-   selectors:
+    - ".white-wild-sand-5-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.960784, 0.960784, 0.960784, 0.047059]
+-   selectors:
+    - ".white-wild-sand-5-border"
+    properties:
+        border-border-color: [0.960784, 0.960784, 0.960784, 0.047059]
+-   selectors:
+    - ".white-wild-sand-5-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.960784, 0.960784, 0.960784, 0.047059]
+-   selectors:
+    - ".gray-cape-cod-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.223529, 0.243137, 0.250980, 1.000000]
+-   selectors:
+    - ".gray-cape-cod-border"
+    properties:
+        border-border-color: [0.223529, 0.243137, 0.250980, 1.000000]
+-   selectors:
+    - ".gray-cape-cod-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.223529, 0.243137, 0.250980, 1.000000]
+-   selectors:
+    - ".grey-shark-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.117647, 0.133333, 0.137255, 1.000000]
+-   selectors:
+    - ".grey-shark-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.117647, 0.133333, 0.137255, 1.000000]
+-   selectors:
+    - ".grey-shark-border"
+    properties:
+        border-border-color: [0.117647, 0.133333, 0.137255, 1.000000]
+-   selectors:
+    - ".grey-shark-90-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.117647, 0.133333, 0.137255, 0.900000]
+-   selectors:
+    - ".grey-shark-90-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.117647, 0.133333, 0.137255, 0.900000]
+-   selectors:
+    - ".grey-shark-90-border"
+    properties:
+        border-border-color: [0.117647, 0.133333, 0.137255, 0.900000]
+-   selectors:
+    - ".grey-shark-80-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.117647, 0.133333, 0.137255, 0.800000]
+-   selectors:
+    - ".grey-shark-80-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.117647, 0.133333, 0.137255, 0.800000]
+-   selectors:
+    - ".grey-shark-80-border"
+    properties:
+        border-border-color: [0.117647, 0.133333, 0.137255, 0.800000]
+-   selectors:
+    - ".grey-shark-70-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.117647, 0.133333, 0.137255, 0.700000]
+-   selectors:
+    - ".grey-shark-70-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.117647, 0.133333, 0.137255, 0.701961]
+-   selectors:
+    - ".grey-shark-70-border"
+    properties:
+        border-border-color: [0.117647, 0.133333, 0.137255, 0.701961]
+-   selectors:
+    - ".grey-shark-60-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.117647, 0.133333, 0.137255, 0.600000]
+-   selectors:
+    - ".grey-shark-60-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.117647, 0.133333, 0.137255, 0.600000]
+-   selectors:
+    - ".grey-shark-60-border"
+    properties:
+        border-border-color: [0.117647, 0.133333, 0.137255, 0.600000]
+-   selectors:
+    - ".grey-shark-50-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.117647, 0.133333, 0.137255, 0.500000]
+-   selectors:
+    - ".grey-shark-50-text"
+    properties:
+        text-color: [0.117647, 0.133333, 0.137255, 0.500000]
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+-   selectors:
+    - ".grey-shark-50-border"
+    properties:
+        border-border-color: [0.117647, 0.133333, 0.137255, 0.500000]
+-   selectors:
+    - ".grey-shark-25-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.117647, 0.133333, 0.137255, 0.350000]
+-   selectors:
+    - ".grey-shark-25-text"
+    properties:
+        text-color: [0.117647, 0.133333, 0.137255, 0.250000]
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+-   selectors:
+    - ".grey-shark-25-border"
+    properties:
+        border-border-color: [0.117647, 0.133333, 0.137255, 0.250000]
+-   selectors:
+    - ".red-pinky-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.901961, 0.541176, 0.541176, 1.000000]
+-   selectors:
+    - ".red-pinky-border"
+    properties:
+        border-border-color: [0.901961, 0.541176, 0.541176, 1.000000]
+-   selectors:
+    - ".red-pinky-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.901961, 0.541176, 0.541176, 1.000000]
+-   selectors:
+    - ".red-red"
+    properties:
+        bg-color: [1.000000, 0.000000, 0.000000, 1.000000]
+-   selectors:
+    - ".red-red-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 0.000000, 0.000000, 1.000000]
+-   selectors:
+    - ".red-red-border"
+    properties:
+        border-border-color: [1.000000, 0.000000, 0.000000, 1.000000]
+-   selectors:
+    - ".red-red-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [1.000000, 0.000000, 0.000000, 1.000000]
+-   selectors:
+    - ".red-tamarillo-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.600000, 0.105882, 0.058824, 1.000000]
+-   selectors:
+    - ".red-tamarillo-border"
+    properties:
+        border-border-color: [0.600000, 0.105882, 0.058824, 1.000000]
+-   selectors:
+    - ".red-tamarillo-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.600000, 0.105882, 0.058824, 1.000000]
+-   selectors:
+    - ".red-tamarillo-50-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.600000, 0.105882, 0.058824, 0.501961]
+-   selectors:
+    - ".red-tamarillo-10-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.600000, 0.105882, 0.058824, 0.100000]
+-   selectors:
+    - ".orange-meteor"
+    properties:
+        bg-color: [0.800000, 0.513726, 0.078431, 1.000000]
+-   selectors:
+    - ".orange-meteor-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.800000, 0.513726, 0.078431, 1.000000]
+-   selectors:
+    - ".orange-meteor-10-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.800000, 0.513726, 0.078431, 0.098039]
+-   selectors:
+    - ".orange-meteor-25-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.800000, 0.513726, 0.078431, 0.250980]
+-   selectors:
+    - ".orange-meteor-50-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.800000, 0.513726, 0.078431, 0.501961]
+-   selectors:
+    - ".orange-meteor-border"
+    properties:
+        border-border-color: [0.800000, 0.513726, 0.078431, 1.000000]
+-   selectors:
+    - ".orange-meteor-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.800000, 0.513726, 0.078431, 1.000000]
+-   selectors:
+    - ".orange-orange-peel-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 0.615686, 0.000000, 1.000000]
+-   selectors:
+    - ".orange-orange-peel-border"
+    properties:
+        border-border-color: [1.000000, 0.615686, 0.000000, 1.000000]
+-   selectors:
+    - ".orange-orange-peel-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [1.000000, 0.615686, 0.000000, 1.000000]
+-   selectors:
+    - ".orange-tango-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.901961, 0.360784, 0.090196, 1.000000]
+-   selectors:
+    - ".orange-tango-10-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.901961, 0.360784, 0.090196, 0.098039]
+-   selectors:
+    - ".orange-tango-25-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.901961, 0.360784, 0.090196, 0.250980]
+-   selectors:
+    - ".orange-tango-50-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.901961, 0.360784, 0.090196, 0.501961]
+-   selectors:
+    - ".orange-tango-70-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.901961, 0.360784, 0.090196, 0.701961]
+-   selectors:
+    - ".orange-tango-border"
+    properties:
+        border-border-color: [0.901961, 0.360784, 0.090196, 1.000000]
+-   selectors:
+    - ".orange-tango-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.901961, 0.360784, 0.090196, 1.000000]
+-   selectors:
+    - ".yellow-lightning-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 0.760784, 0.149020, 1.000000]
+-   selectors:
+    - ".yellow-lightning-25-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 0.760784, 0.149020, 0.250980]
+-   selectors:
+    - ".yellow-lightning-50-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 0.760784, 0.149020, 0.501961]
+-   selectors:
+    - ".yellow-lightning-70-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 0.760784, 0.149020, 0.701961]
+-   selectors:
+    - ".yellow-lightning-border"
+    properties:
+        border-border-color: [1.000000, 0.760784, 0.149020, 1.000000]
+-   selectors:
+    - ".yellow-lightning-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [1.000000, 0.760784, 0.149020, 1.000000]
+-   selectors:
+    - ".yellow-chalky-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.901961, 0.764706, 0.541176, 1.000000]
+-   selectors:
+    - ".yellow-chalky-border"
+    properties:
+        border-border-color: [0.901961, 0.764706, 0.541176, 1.000000]
+-   selectors:
+    - ".yellow-chalky-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.901961, 0.764706, 0.541176, 1.000000]
+-   selectors:
+    - ".yellow-chalky-70-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.901961, 0.764706, 0.541176, 0.431373]
+-   selectors:
+    - ".green-la-palma-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.239216, 0.600000, 0.058824, 1.000000]
+-   selectors:
+    - ".green-la-palma-border"
+    properties:
+        border-border-color: [0.239216, 0.600000, 0.058824, 1.000000]
+-   selectors:
+    - ".green-la-palma-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.239216, 0.600000, 0.058824, 1.000000]
+-   selectors:
+    - ".green-la-palma-50-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.239216, 0.600000, 0.058824, 0.501961]
+-   selectors:
+    - ".green-la-palma-50-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.239216, 0.600000, 0.058824, 0.501961]
+-   selectors:
+    - ".green-green"
+    properties:
+        bg-color: [0.007843, 0.933333, 0.039216, 1.000000]
+-   selectors:
+    - ".green-green-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.007843, 0.933333, 0.039216, 1.000000]
+-   selectors:
+    - ".green-green-border"
+    properties:
+        border-border-color: [0.007843, 0.933333, 0.039216, 1.000000]
+-   selectors:
+    - ".green-green-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.007843, 0.933333, 0.039216, 1.000000]
+-   selectors:
+    - ".green-green-50-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.007843, 0.933333, 0.039216, 0.500000]
+-   selectors:
+    - ".green-zmilly-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.658824, 0.901961, 0.541176, 1.000000]
+-   selectors:
+    - ".green-zmilly-border"
+    properties:
+        border-border-color: [0.658824, 0.901961, 0.541176, 1.000000]
+-   selectors:
+    - ".green-zmilly-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.658824, 0.901961, 0.541176, 1.000000]
+-   selectors:
+    - ".blue-curious-blue-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.156863, 0.568627, 0.772549, 1.000000]
+-   selectors:
+    - ".blue-curious-blue-border"
+    properties:
+        border-border-color: [0.156863, 0.568627, 0.772549, 1.000000]
+-   selectors:
+    - ".blue-curious-blue-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.156863, 0.568627, 0.772549, 1.000000]
+-   selectors:
+    - ".blue-elm-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.137255, 0.549020, 0.513726, 1.000000]
+-   selectors:
+    - ".blue-elm-border"
+    properties:
+        border-border-color: [0.137255, 0.549020, 0.513726, 1.000000]
+-   selectors:
+    - ".blue-elm-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.137255, 0.549020, 0.513726, 1.000000]
+-   selectors:
+    - ".blue-murzillah-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.137255, 0.274510, 0.549020, 1.000000]
+-   selectors:
+    - ".blue-murzillah-border"
+    properties:
+        border-border-color: [0.137255, 0.274510, 0.549020, 1.000000]
+-   selectors:
+    - ".blue-murzillah-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.137255, 0.274510, 0.549020, 1.000000]
+-   selectors:
+    - ".blue-rimmi-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.450980, 0.819608, 1.000000, 1.000000]
+-   selectors:
+    - ".blue-rimmi-border"
+    properties:
+        border-border-color: [0.450980, 0.819608, 1.000000, 1.000000]
+-   selectors:
+    - ".blue-rimmi-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.450980, 0.819608, 1.000000, 1.000000]
+-   selectors:
+    - ".blue-riptide-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.541176, 0.901961, 0.803922, 1.000000]
+-   selectors:
+    - ".blue-riptide-border"
+    properties:
+        border-border-color: [0.541176, 0.901961, 0.803922, 1.000000]
+-   selectors:
+    - ".blue-riptide-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.541176, 0.901961, 0.803922, 1.000000]
+-   selectors:
+    - ".purple-zhuk-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.600000, 0.541176, 0.901961, 1.000000]
+-   selectors:
+    - ".purple-zhuk-border"
+    properties:
+        border-border-color: [0.600000, 0.541176, 0.901961, 1.000000]
+-   selectors:
+    - ".purple-zhuk-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.600000, 0.541176, 0.901961, 1.000000]
+-   selectors:
+    - ".purple-chupretto-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.670588, 0.129412, 0.850980, 1.000000]
+-   selectors:
+    - ".purple-chupretto-border"
+    properties:
+        border-border-color: [0.670588, 0.129412, 0.850980, 1.000000]
+-   selectors:
+    - ".purple-chupretto-text"
+    properties:
+        text-color: [0.670588, 0.129412, 0.850980, 1.000000]
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+-   selectors:
+    - ".grades-common-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.380392, 0.380392, 0.380392, 1.000000]
+-   selectors:
+    - ".grades-common-border"
+    properties:
+        border-border-color: [0.380392, 0.380392, 0.380392, 1.000000]
+-   selectors:
+    - ".grades-common-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.380392, 0.380392, 0.380392, 1.000000]
+-   selectors:
+    - ".grades-rare-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.156863, 0.549020, 0.854902, 1.000000]
+-   selectors:
+    - ".grades-rare-border"
+    properties:
+        border-border-color: [0.156863, 0.549020, 0.854902, 1.000000]
+-   selectors:
+    - ".grades-rare-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.156863, 0.549020, 0.854902, 1.000000]
+-   selectors:
+    - ".grades-unique-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.611765, 0.211765, 0.788235, 1.000000]
+-   selectors:
+    - ".grades-unique-border"
+    properties:
+        border-border-color: [0.611765, 0.211765, 0.788235, 1.000000]
+-   selectors:
+    - ".grades-unique-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.611765, 0.211765, 0.788235, 1.000000]
+-   selectors:
+    - ".grades-legendary-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.866667, 0.549020, 0.117647, 1.000000]
+-   selectors:
+    - ".grades-legendary-border"
+    properties:
+        border-border-color: [0.866667, 0.549020, 0.117647, 1.000000]
+-   selectors:
+    - ".grades-legendary-text"
+    properties:
+        text-colorInheritType: "COLOR_IGNORE_PARENT"
+        text-color: [0.866667, 0.549020, 0.117647, 1.000000]
+-   selectors:
+    - ".orange-10-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 0.615686, 0.000000, 0.100000]
+-   selectors:
+    - ".orange-25-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 0.615686, 0.000000, 0.250000]
+-   selectors:
+    - ".orange-50-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 0.615686, 0.000000, 0.500000]

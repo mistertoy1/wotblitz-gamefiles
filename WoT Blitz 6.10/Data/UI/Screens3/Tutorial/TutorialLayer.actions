@@ -1,0 +1,11 @@
+action ShowFade()
+{
+    Opacity("Fade/FadeContent", 0);
+    Opacity("Fade/FadeContent", opacity=1, time=0.2, interpolation=EASE_OUT);
+}
+
+action HideFade()
+{
+    Opacity("Fade/FadeContent", opacity=0, time=0.2, interpolation=EASE_IN);
+}
+

@@ -1,0 +1,126 @@
+Header:
+    version: "80"
+Prototypes:
+-   class: "UIControl"
+    name: "ComboBox"
+    size: [289.000000, 66.000000]
+    input: false
+    components:
+        Background:
+            drawType: "DRAW_TILED_MULTILAYER"
+            mask: "~res:/Gfx/UI/CommonUIElements/Switch/mask.psd"
+            detail: "~res:/Gfx/UI/CommonUIElements/Switch/detail.psd"
+            gradient: "~res:/Gfx/UI/CommonUIElements/Switch/gradient.psd"
+            contour: "~res:/Gfx/UI/CommonUIElements/Switch/contour.psd"
+            gradientMode: "Overlay"
+            align: ["LEFT", "TOP"]
+            leftRightStretchCap: 15.000000
+        UIDataParamsComponent:
+            params:
+            - ["int", "currentIdx", "0", "0"]
+            - ["vector<string>", "options", "[ ]", "[ \"First\"; \"Second\"; \"Third\"; ]"]
+            events:
+            - "COMBO_CHANGED(string var)"
+        UIDataLocalsComponent:
+            locals:
+            - ["int", "index", "currentIdx"]
+            - ["string", "var", "options[index]"]
+        UIDataOnEventComponent0:
+            eventName: "ON_CLICK_RIGHT"
+            modelFieldExpression: "index"
+            dataExpression: "when index + 1 == options.Size() -> 0, index + 1"
+        UIDataOnEventComponent1:
+            eventName: "ON_CLICK_LEFT"
+            modelFieldExpression: "index"
+            dataExpression: "when index - 1 == -1 -> options.Size() - 1, index - 1"
+        UIEventOnDataComponent0:
+            watchedDataExpression: "var"
+            eventName: "COMBO_CHANGED"
+            eventData: "var"
+    children:
+    -   class: "UIControl"
+        name: "ValueContainer"
+        position: [65.000000, 0.000000]
+        size: [160.000000, 66.000000]
+        input: false
+        children:
+        -   class: "UIControl"
+            name: "BodyRegular"
+            input: false
+            classes: "t-body regular color=spinner-text"
+            components:
+                UITextComponent:
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    align: ["VCENTER"]
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["UITextComponent.text", "var"]
+    -   class: "UIControl"
+        name: "LeftButton"
+        position: [1.000000, 1.000000]
+        size: [64.000000, 64.000000]
+        input: true
+        classes: "button button-color-gray"
+        components:
+            Background:
+                drawType: "DRAW_TILED_MULTILAYER"
+                mask: "~res:/Gfx/UI/CommonUIElements/Button/mask"
+                detail: "~res:/Gfx/UI/CommonUIElements/Button/detail"
+                gradient: "~res:/Gfx/UI/CommonUIElements/Button/gray_gradient.txt"
+                contour: "~res:/Gfx/UI/CommonUIElements/Button/gray_contour.txt"
+                gradientMode: "Overlay"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                leftRightStretchCap: 20.000000
+                topBottomStretchCap: 20.000000
+            UIInputEventComponent:
+                onTouchUpInside: "ON_CLICK_LEFT"
+                onTouchUpInsideData: "index"
+        children:
+        -   class: "UIControl"
+            name: "icon"
+            position: [32.000000, 32.000000]
+            size: [0.000000, 0.000000]
+            input: false
+            components:
+                Background:
+                    sprite: "~res:/Gfx/UI/CommonUIElements/IconsSmall"
+                    frame: 3
+                    colorInherit: "COLOR_REPLACE_ALPHA_ONLY"
+                    perPixelAccuracy: "PER_PIXEL_ACCURACY_FORCED"
+    -   class: "UIControl"
+        name: "RightButton"
+        position: [225.000000, 0.000000]
+        size: [64.000000, 65.000000]
+        input: true
+        exclusiveInput: false
+        classes: "button button-color-gray"
+        components:
+            Background:
+                drawType: "DRAW_TILED_MULTILAYER"
+                mask: "~res:/Gfx/UI/CommonUIElements/Button/mask"
+                detail: "~res:/Gfx/UI/CommonUIElements/Button/detail"
+                gradient: "~res:/Gfx/UI/CommonUIElements/Button/gray_gradient.txt"
+                contour: "~res:/Gfx/UI/CommonUIElements/Button/gray_contour.txt"
+                gradientMode: "Overlay"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                leftRightStretchCap: 20.000000
+                topBottomStretchCap: 20.000000
+            UIInputEventComponent:
+                onTouchUpInside: "ON_CLICK_RIGHT"
+                onTouchUpInsideData: "index"
+        children:
+        -   class: "UIControl"
+            name: "icon"
+            position: [32.000000, 32.000000]
+            size: [0.000000, 0.000000]
+            input: false
+            components:
+                Background:
+                    sprite: "~res:/Gfx/UI/CommonUIElements/IconsSmall"
+                    frame: 2
+                    colorInherit: "COLOR_REPLACE_ALPHA_ONLY"
+                    perPixelAccuracy: "PER_PIXEL_ACCURACY_FORCED"

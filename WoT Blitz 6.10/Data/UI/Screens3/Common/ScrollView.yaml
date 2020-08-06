@@ -1,0 +1,68 @@
+Header:
+    version: "95"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/VerticalScrollBar.yaml"
+- "~res:/UI/Screens3/Common/HorizontalScrollBar.yaml"
+Prototypes:
+-   class: "UIScrollView"
+    name: "ScrollView"
+    size: [200.000000, 200.000000]
+    autoUpdate: true
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["control", "content", "null", "null"]
+            - ["bool", "centerContent", "false", "false"]
+            events:
+            - "ON_SCROLL_VIEW_TOUCH"
+    bindings:
+    - ["centerContent", "centerContent"]
+    children:
+    -   class: "UIScrollViewContainer"
+        name: "scrollContainerControl"
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfFirstChild"
+            UIInputEventComponent:
+                onTouchUpInside: "ON_SCROLL_VIEW_TOUCH"
+            UIChildComponent0:
+                childType: "kControl"
+                condition: "not isNull(content)"
+                control: "content"
+    -   prototype: "HorizontalScrollBar/HorizontalScrollBar"
+        name: "HorizontalScrollBar"
+        components:
+            Anchor:
+                rightAnchor: 6.000000
+            ScrollBarDelegate:
+                delegate: ".."
+    -   class: "UIControl"
+        name: "VerticalLayout"
+        input: false
+        components:
+            Anchor:
+                rightAnchorEnabled: true
+            LinearLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   prototype: "VerticalScrollBar/VerticalScrollBar"
+            name: "VerticalScrollBar"
+            components:
+                Anchor:
+                    bottomAnchor: 6.000000
+                ScrollBarDelegate:
+                    delegate: "../.."
+        -   class: "UIControl"
+            name: "SafeAreaInset"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "Formula"
+                    horizontalFormula: "safeAreaInsets.right"
+                    verticalPolicy: "PercentOfParent"

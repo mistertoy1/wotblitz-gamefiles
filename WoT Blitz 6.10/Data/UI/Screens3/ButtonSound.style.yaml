@@ -1,0 +1,39 @@
+Header:
+    version: "31"
+StyleSheets:
+-   selector: ".button-ok-sound"
+    properties:
+        sound-touchUpInside: "GUI/buttons/ok"
+-   selector: ".button-cancel-sound"
+    properties:
+        sound-touchUpInside: "GUI/buttons/cancel"
+-   selector: ".button-battle-sound"
+    properties:
+        sound-touchUpInside: "GUI/buttons/play"
+-   selector: ".button-choose-sound"
+    properties:
+        sound-touchUpInside: "GUI/buttons/choose"
+-   selector: ".button-checkbox-sound"
+    properties:
+        sound-touchUpInside: "GUI/buttons/checkbox"
+-   selector: ".button-carousel-sound"
+    properties:
+        sound-touchUpInside: "GUI/buttons/carousel"
+-   selector: ".button-drag-sound"
+    properties:
+        sound-touchUpInside: "GUI/buttons/drag"
+-   selector: ".button-buy-sound"
+    properties:
+        sound-touchUpInside: "GUI/buttons/buy"
+-   selector: ".button-sell-sound"
+    properties:
+        sound-touchUpInside: "GUI/buttons/sell"
+-   selector: ".button-module-install-sound"
+    properties:
+        sound-touchUpInside: "GUI/buttons/module_install"
+-   selector: ".button-open-sound"
+    properties:
+        sound-touchUpInside: "GUI/buttons/open"
+-   selector: ".button-close-sound"
+    properties:
+        sound-touchUpInside: "GUI/buttons/close"

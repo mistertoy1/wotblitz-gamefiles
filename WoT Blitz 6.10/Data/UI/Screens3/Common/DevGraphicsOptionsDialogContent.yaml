@@ -1,0 +1,100 @@
+Header:
+    version: "80"
+Prototypes:
+-   class: "UIControl"
+    name: "Content"
+    size: [700.000000, 264.000000]
+    input: false
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["int", "currentDbgDrawParticles", "0", "0"]
+            - ["int", "currentDrawParticles", "0", "0"]
+            - ["int", "currentParticleIdx", "0", "0"]
+            - ["int", "currentFlowIdx", "0", "0"]
+            - ["vector<string>", "particleOptions", "[ ]", "[ \"high\"; \"low\"; ]"]
+            - ["vector<string>", "flowOptions", "[ ]", "[ \"First\"; \"Second\"; ]"]
+            - ["vector<string>", "drawParticles", "[ ]", "[ \"Yes\"; \"No\"; ]"]
+            - ["vector<string>", "dbgDrawParticles", "[ ]", "[ \"Yes\"; \"No\"; ]"]
+            events:
+            - "DRAW_PARTICLE_CHANGED(string var)"
+            - "DBG_DRAW_PARTICLE_CHANGED(string var)"
+            - "PARTICLE_CHANGED(string var)"
+            - "FLOW_CHANGED(string var)"
+    children:
+    -   class: "UIControl"
+        name: "flowOptions"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent:
+                control: "\"~res:/UI/Screens3/Common/DevGraphicsOptionsDialogRow.yaml\""
+                args:
+                    "currentIdx": "currentFlowIdx"
+                    "gOptions": "flowOptions"
+                    "text": "\"FLOW\""
+                eventActions:
+                - ["COMBO_CHANGED", "FLOW_CHANGED", "_event.var"]
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+    -   class: "UIControl"
+        name: "particleOptions"
+        position: [0.000000, 66.000000]
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent:
+                control: "\"~res:/UI/Screens3/Common/DevGraphicsOptionsDialogRow.yaml\""
+                args:
+                    "currentIdx": "currentParticleIdx"
+                    "gOptions": "particleOptions"
+                    "text": "\"PARTICLE\""
+                eventActions:
+                - ["COMBO_CHANGED", "PARTICLE_CHANGED", "_event.var"]
+    -   class: "UIControl"
+        name: "drawParticlesToggle"
+        position: [0.000000, 66.000000]
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent:
+                control: "\"~res:/UI/Screens3/Common/DevGraphicsOptionsDialogRow.yaml\""
+                args:
+                    "currentIdx": "currentDrawParticles"
+                    "gOptions": "drawParticles"
+                    "text": "\"Draw Particles\""
+                eventActions:
+                - ["COMBO_CHANGED", "DRAW_PARTICLE_CHANGED", "_event.var"]
+    -   class: "UIControl"
+        name: "dbgDrawParticlesToggle"
+        position: [0.000000, 198.000000]
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent:
+                control: "\"~res:/UI/Screens3/Common/DevGraphicsOptionsDialogRow.yaml\""
+                args:
+                    "currentIdx": "currentDbgDrawParticles"
+                    "gOptions": "dbgDrawParticles"
+                    "text": "\"Debug Draw Particles\""
+                eventActions:
+                - ["COMBO_CHANGED", "DBG_DRAW_PARTICLE_CHANGED", "_event.var"]

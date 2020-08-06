@@ -1,0 +1,12 @@
+Header:
+    version: "74"
+Controls:
+-   class: "UIControl"
+    name: "TutorialShadow"
+    size: [137.000000, 103.000000]
+    input: false
+    classes: "black-50-bg"
+    components:
+        Background: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml"

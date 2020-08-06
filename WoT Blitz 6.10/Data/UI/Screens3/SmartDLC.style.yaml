@@ -1,0 +1,16 @@
+Header:
+    version: "19"
+StyleSheets:
+-   selector: ".no-general-pack.no-general-pack-disabled"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.501961]
+-   selector: ".no-general-pack.no-general-pack-hidden"
+    properties:
+        visible: false
+-   selector: ".no-general-pack.no-general-pack-disabled.tutorial"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 1.000000]
+-   selector: ".pane-bg.touchable.no-general-pack.no-general-pack-disabled"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 1.000000, 1.000000, 0.054902]

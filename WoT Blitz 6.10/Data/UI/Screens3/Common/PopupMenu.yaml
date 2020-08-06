@@ -1,0 +1,251 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Timer.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "Slave"
+    input: false
+    components:
+        UIAnimationComponent:
+            animations: "_INIT,~res:/UI/Screens3/Common/TooltipShow.animation;_FINISH,~res:/UI/Screens3/Common/TooltipHide.animation;ANIMATE_POPUP_ON_HIDE,~res:/UI/Screens3/Common/TooltipHide.animation"
+        UIOpacityComponent: {}
+        SizePolicy:
+            horizontalPolicy: "Formula"
+            horizontalFormula: "maxChild + 32"
+            verticalPolicy: "Formula"
+            verticalFormula: "maxChild + 32"
+        UIAttachLayoutSmartSlaveComponent: {}
+        UIDataParamsComponent:
+            params:
+            - ["bool", "timerVisible", "false", "true"]
+            - ["bool", "isAlignLeft", "true", "true"]
+            - ["string", "title", "\"Title text\"", "\"Медаль за отвагу\""]
+            - ["string", "text", "\"Body text\"", "\"Присваевается игроку за мастерство\Lвладения боевой машиной. \LДля получения награды необходимо заработать больше опыта за бой, чем средний максимальный опыт за неделю у 99% игроков на данной технике\""]
+            - ["string", "titleColor", "\"color=white-wild-sand-text\"", "\"color=white-wild-sand-text\""]
+            - ["string", "textColor", "\"color=white-wild-sand-text\"", "\"color=white-wild-sand-text\""]
+            - ["int64", "serverTime", "0L", "0L"]
+            - ["int64", "time", "0L", "0L"]
+            - ["ePositionAlign", "slaveAlign", "ePositionAlign.Default", "ePositionAlign.Top"]
+            - ["string", "masterId", "\"MASTER\"", "\"MASTER\""]
+            - ["int", "offset", "0", "0"]
+            - ["string", "buttonCaption", "\"\"", "\"BUTTON\""]
+            events:
+            - "FINISH_HIDE_POPUP_ANIMATION"
+            - "POPUP_ON_CLOSE_ACTION"
+            - "ON_CLICK_BUTTON"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "alignStyle", "when isAlignLeft -> \" text-align-left\", \" text-align-center\""]
+            - ["string", "textStyle", "\"t-body regular \" + textColor + alignStyle"]
+            - ["string", "titleStyle", "\"t-body bold \" + titleColor + alignStyle"]
+            - ["string", "selectedSide", "\"\""]
+        UIDataOnEventComponent0:
+            eventName: "SELECTED_SIDE"
+            modelFieldExpression: "selectedSide"
+            dataExpression: "_event"
+    bindings:
+    - ["UIAttachLayoutSmartSlaveComponent.attachId", "masterId"]
+    - ["UIAttachLayoutSmartSlaveComponent.slaveAlign", "slaveAlign"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        input: true
+        classes: "gray-cape-cod-bg"
+        components:
+            Background:
+                drawType: "DRAW_STRETCH_BOTH"
+                sprite: "~res:/Gfx/UI/CommonUIElements/square_BigAngle.psd"
+                colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                leftRightStretchCap: 8.000000
+                topBottomStretchCap: 8.000000
+            Anchor:
+                leftAnchorEnabled: true
+                leftAnchor: 16.000000
+                rightAnchorEnabled: true
+                rightAnchor: 16.000000
+                topAnchorEnabled: true
+                topAnchor: 16.000000
+                bottomAnchorEnabled: true
+                bottomAnchor: 16.000000
+            LinearLayout:
+                orientation: "TopDown"
+                padding: "16"
+                spacing: 8.000000
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "maxChild + 32"
+                verticalPolicy: "PercentOfChildrenSum"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "Title"
+            input: false
+            components:
+                UITextComponent:
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    multiline: "MULTILINE_ENABLED"
+                    useRtlAlign: "USE_BY_SYSTEM"
+                Anchor:
+                    leftAnchorEnabled: true
+                    leftAnchor: 16.000000
+                    rightAnchorEnabled: true
+                    rightAnchor: 16.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Common/PopupMenu.style.yaml"
+            bindings:
+            - ["visible", "title != \"\""]
+            - ["classes", "titleStyle"]
+            - ["UITextComponent.text", "title"]
+        -   class: "UIControl"
+            name: "Text"
+            position: [16.000000, 0.000000]
+            input: false
+            components:
+                UITextComponent:
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    multiline: "MULTILINE_ENABLED"
+                    useRtlAlign: "USE_BY_SYSTEM"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    horizontalMax: 368.000000
+                    verticalPolicy: "PercentOfContent"
+                    verticalFormula: "when parent == 0 -> content, parent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Common/PopupMenu.style.yaml"
+            bindings:
+            - ["classes", "textStyle"]
+            - ["UITextComponent.text", "text"]
+        -   class: "UIControl"
+            name: "ButtonHolder"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfMaxChild"
+            bindings:
+            - ["visible", "buttonCaption != \"\""]
+            children:
+            -   prototype: "Button/Button"
+                name: "ButtonWithoutBG"
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    UIDataParamsComponent:
+                        args:
+                            "caption": "buttonCaption"
+                            "type": "eButtonType.NO_BG"
+                            "size": "eButtonSize.SMALL"
+                            "enabled": "true"
+                        eventActions:
+                        - ["ON_CLICK_BUTTON", "ON_CLICK_BUTTON", ""]
+        -   prototype: "Timer/Timer"
+            name: "Timer"
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: false
+                UIDataParamsComponent:
+                    args:
+                        "visible": "timerVisible"
+                        "serverTime": "serverTime"
+                        "time": "time"
+                        "bgVisible": "false"
+                        "iconVisible": "true"
+    -   class: "UIControl"
+        name: "ArrowBottom"
+        position: [120.000000, 0.000000]
+        size: [32.000000, 32.000000]
+        input: false
+        classes: "gray-cape-cod-bg"
+        components:
+            Background:
+                drawType: "DRAW_ALIGNED"
+                sprite: "~res:/Gfx/UI/CommonUIElements/Selection_back_0.psd"
+                colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                align: []
+            UIAttachLayoutSlaveComponent:
+                masterAlign: "BottomCenter"
+                slaveAlign: "TopCenter"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "selectedSide == \"bottom\""]
+        - ["UIAttachLayoutSlaveComponent.attachId", "masterId"]
+    -   class: "UIControl"
+        name: "ArrowTop"
+        position: [120.000000, 52.000000]
+        size: [32.000000, 32.000000]
+        input: false
+        classes: "gray-cape-cod-bg"
+        components:
+            Background:
+                drawType: "DRAW_ALIGNED"
+                sprite: "~res:/Gfx/UI/CommonUIElements/Selection_back_0.psd"
+                spriteModification: ["FLIP_VERTICAL"]
+                colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                align: []
+            UIAttachLayoutSlaveComponent:
+                masterAlign: "TopCenter"
+                slaveAlign: "BottomCenter"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "selectedSide == \"top\""]
+        - ["UIAttachLayoutSlaveComponent.attachId", "masterId"]
+    -   class: "UIControl"
+        name: "ArrowRight"
+        position: [16.000000, 52.000000]
+        size: [32.000000, 32.000000]
+        pivot: [0.500000, 0.500000]
+        angle: 90.000000
+        input: false
+        classes: "gray-cape-cod-bg"
+        components:
+            Background:
+                drawType: "DRAW_ALIGNED"
+                sprite: "~res:/Gfx/UI/CommonUIElements/Selection_back_0.psd"
+                spriteModification: ["FLIP_VERTICAL"]
+                colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                align: []
+            UIAttachLayoutSlaveComponent:
+                masterAlign: "RightCenter"
+                slaveAlign: "LeftCenter"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "selectedSide == \"right\""]
+        - ["UIAttachLayoutSlaveComponent.attachId", "masterId"]
+    -   class: "UIControl"
+        name: "ArrowLeft"
+        position: [256.000000, 48.000000]
+        size: [32.000000, 32.000000]
+        pivot: [0.500000, 0.500000]
+        angle: -90.000000
+        input: false
+        classes: "gray-cape-cod-bg"
+        components:
+            Background:
+                drawType: "DRAW_ALIGNED"
+                sprite: "~res:/Gfx/UI/CommonUIElements/Selection_back_0.psd"
+                spriteModification: ["FLIP_VERTICAL"]
+                colorInherit: "COLOR_MULTIPLY_ALPHA_ONLY"
+                align: []
+            UIAttachLayoutSlaveComponent:
+                masterAlign: "LeftCenter"
+                slaveAlign: "RightCenter"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "selectedSide == \"left\""]
+        - ["UIAttachLayoutSlaveComponent.attachId", "masterId"]

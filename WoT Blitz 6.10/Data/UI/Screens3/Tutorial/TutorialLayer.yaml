@@ -1,0 +1,175 @@
+Header:
+    version: "92"
+ImportedPackages:
+- "~res:/UI/Screens3/Tutorial/Higlight.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "TutorialLayer"
+    size: [261.000000, 153.000000]
+    components:
+        UIAnimationComponent:
+            animations: "INIT,~res:/UI/Screens3/Tutorial/TutorialLayerShow.animation;TAP_TO_LAYER,~res:/UI/Screens3/Tutorial/TuttorialRectScaling.animation;_INIT,~res:/UI/Screens3/Tutorial/TutorialLayerShow.animation"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIInputEventComponent:
+            onTouchUpInside: "TAP_TO_LAYER"
+        UIDataParamsComponent:
+            params:
+            - ["TutorialDataModel", "tutorialData", "{ }", "{ }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "blockingStep", "tutorialData.stepsData[tutorialData.currentHighlightControl].stepType == eTutorialStepType.kBlocking"]
+            - ["bool", "crewFunnelRunning", "tutorialData.currentHighlightControl == eTutorialHighlights.kCrewMasteryParams or tutorialData.currentHighlightControl == eTutorialHighlights.kCrewMasteryProgress or tutorialData.currentHighlightControl == eTutorialHighlights.kCrewMasterySchool or tutorialData.currentHighlightControl == eTutorialHighlights.kTrainCrewButton"]
+            - ["bool", "hintFaded", "tutorialData.currentHint == eTutorialHint.kBuyPremium or tutorialData.currentHint == eTutorialHint.kSpendFreeXP or tutorialData.currentHint == eTutorialHint.kAmmo or tutorialData.currentHighlightControl == eTutorialHighlights.kBlockedTank or tutorialData.currentHint == eTutorialHint.kObtainFreeXP or tutorialData.currentHint == eTutorialHint.kSkillTrained or tutorialData.currentHint == eTutorialHint.kSelectSkill or tutorialData.currentHighlightControl == eTutorialHighlights.kBoostersXp or tutorialData.currentHighlightControl == eTutorialHighlights.kBoostersTable or tutorialData.currentHighlightControl == eTutorialHighlights.kSmartDLC"]
+            - ["bool", "tutorialFaded", "(tutorialData.isTutorialActive and (not (tutorialData.currentLesson == eTutorialLesson.kNewTank2 and tutorialData.currentHighlightControl == eTutorialHighlights.kBuy and currentStepMissClickCount < 2)))"]
+            - ["bool", "faded", "tutorialFaded or hintFaded or crewFunnelRunning"]
+            - ["eTutorialViewState", "viewState", "tutorialData.tutorialViewState"]
+            - ["int", "currentStepMissClickCount", "0"]
+            - ["bool", "showTutorial", "false"]
+            - ["eTutorialHighlights", "currentHighlight", "tutorialData.currentHighlightControl"]
+            - ["eTutorialStepType", "currentStepType", "tutorialData.stepsData[currentHighlight].stepType"]
+            - ["eTutorialOffsetType", "offsetControl", "tutorialData.stepsData[currentHighlight].offset"]
+            - ["int", "offsetControlDelta", "when offsetControl == 0 -> 6, -offsetControl / 2"]
+            - ["bool", "isNewNationSpecificity", "tutorialData.currentLesson == eTutorialLesson.kNewNation and faded and (tutorialData.currentHighlightControl == eTutorialHighlights.kTankHeavy or tutorialData.currentHighlightControl == eTutorialHighlights.kTankMedium or tutorialData.currentHighlightControl == eTutorialHighlights.kTankLight or tutorialData.currentHighlightControl == eTutorialHighlights.kTankAtSPG)"]
+            - ["bool", "visible", "not tutorialData.isTutorialActive or (showTutorial and not (tutorialData.tutorialViewState == eTutorialViewState.kPaused and tutorialData.currentHighlightControl == eTutorialHighlights.kBattleButtonDLC))"]
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Tutorial/TutorialLayer.actions"
+        UIDataOnEventComponent0:
+            eventName: "INIT"
+            modelFieldExpression: "showTutorial"
+            dataExpression: "_event"
+        UIDataOnEventComponent1:
+            eventName: "ON_HIGHLIGHT_CHANGED"
+            modelFieldExpression: "currentStepMissClickCount"
+            dataExpression: "0"
+        UIDataOnEventComponent2:
+            eventName: "TAP_TO_LAYER"
+            modelFieldExpression: "currentStepMissClickCount"
+            dataExpression: "currentStepMissClickCount + 1"
+        UIEventOnDataComponent0:
+            watchedDataExpression: "currentStepMissClickCount"
+            ifExpression: "currentStepMissClickCount == 2 and tutorialData.currentHighlightControl == eTutorialHighlights.kBuy and (tutorialData.currentLesson == eTutorialLesson.kNewTank2 or tutorialData.currentLesson == eTutorialLesson.kNewNation)"
+            eventName: "ShowFade"
+        UIEventOnDataComponent1:
+            watchedDataExpression: "viewState"
+            ifExpression: "viewState == eTutorialViewState.kRunning"
+            eventName: "ShowFade"
+        UIEventOnDataComponent2:
+            watchedDataExpression: "viewState"
+            ifExpression: "viewState == eTutorialViewState.kPaused"
+            eventName: "HideFade"
+        UIEventOnDataComponent3:
+            watchedDataExpression: "currentHighlight"
+            eventName: "ON_HIGHLIGHT_CHANGED"
+        UIEventOnDataComponent4:
+            watchedDataExpression: "currentHighlight"
+            ifExpression: "tutorialData.currentHighlightControl == eTutorialHighlights.kToHangarButton and (tutorialData.currentLesson == eTutorialLesson.kNewTank2 or tutorialData.currentLesson == eTutorialLesson.kNewNation)"
+            eventName: "ShowFade"
+    bindings:
+    - ["visible", "visible"]
+    - ["input", "not crewFunnelRunning"]
+    children:
+    -   class: "UIControl"
+        name: "Fade"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            LinearLayout:
+                orientation: "TopDown"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            UILayerComponent: {}
+        bindings:
+        - ["visible", "faded"]
+        - ["UILayerComponent.layer", "when tutorialData.currentHint == eTutorialHint.kSpendFreeXP and tutorialData.currentHighlightControl == eTutorialHighlights.kResearchDialogFreeXP -> 1, 0"]
+        children:
+        -   class: "UIControl"
+            name: "FadeHeader"
+            input: false
+            classes: "black-50-bg"
+            components:
+                Background: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 48.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "isNewNationSpecificity"]
+        -   class: "UIControl"
+            name: "FadeContent"
+            input: false
+            components:
+                UIOpacityComponent: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                UIShadowLayerComponent:
+                    shadowPackage: "~res:/UI/Screens3/Tutorial/TutorialShadow.yaml"
+        -   class: "UIControl"
+            name: "FadeFooter"
+            input: false
+            classes: "black-50-bg"
+            components:
+                Background: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfChildrenSum"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "isNewNationSpecificity"]
+            children:
+            -   class: "UIControl"
+                name: "BottomPart"
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 24.000000
+            -   class: "UIControl"
+                name: "SafeAreaSpacer"
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    Background: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "Formula"
+                        verticalFormula: "when safeAreaInsets.bottom == 0 -> 0, 21"
+    -   prototype: "Higlight/Higlight"
+        name: "Highlight"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "holeOffset": "offsetControl"
+                    "viewState": "viewState"
+                    "hasAngles": "currentStepType == eTutorialStepType.kBlocking or tutorialData.currentHint == eTutorialHint.kBuyPremium or tutorialData.currentHighlightControl == eTutorialHighlights.kTrainCrewButton"
+                    "attachId": "tutorialData.stepsData[currentHighlight].attachId"
+    -   class: "UIControl"
+        name: "AdditionalHelpControls"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   class: "UIControl"
+            name: "CrewSkillsMaster"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                UIAttachLayoutMasterComponent:
+                    attachId: "LAST_SKILL"
+                UIAttachLayoutSlaveComponent:
+                    slaveSizePolicy: "MasterSize"
+                    additionalOffset: [46.000000, 0.000000]
+            bindings:
+            - ["visible", "currentHighlight == eTutorialHighlights.kLastSkill"]
+            - ["UIAttachLayoutSlaveComponent.attachId", "when currentHighlight == eTutorialHighlights.kLastSkill -> \"SKILLS_CONTAINER\", \"\""]

@@ -1,0 +1,25 @@
+Header:
+    version: "57"
+Prototypes:
+-   class: "UIControl"
+    name: "DefaultStyledButton"
+    size: [222.000000, 64.000000]
+    classes: "button button-color-gray"
+    components:
+        Background:
+            drawType: "DRAW_TILED_MULTILAYER"
+            mask: "~res:/Gfx/UI/CommonUIElements/Button/mask"
+            detail: "~res:/Gfx/UI/CommonUIElements/Button/detail"
+            gradientMode: "Overlay"
+            perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            align: ["HCENTER", "VCENTER"]
+            leftRightStretchCap: 20.000000
+            topBottomStretchCap: 20.000000
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Common/Button.style.yaml;~res:/UI/Screens3/Common/DefaultStyledButton.style.yaml;~res:/UI/Screens3/Font.style.yaml"
+CustomData:
+    Guides:
+        DefaultStyledButton:
+            Vertical:
+            - 152.000000

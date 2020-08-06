@@ -1,0 +1,17 @@
+animation TutorialLayerShow
+{
+    Opacity("**/Angles", 0);
+    Opacity("Fade/FadeContent", 0);
+    Scale(path="**/Angles", x = 0.8, y = 0.8, interpolation=EASE_OUT);
+    Wait(0.3);
+    parallel
+    {
+      if(tutorialData.currentHighlightControl != eTutorialHighlights.kBuy)
+      {
+        Opacity("Fade/FadeContent", opacity=1, time=0.2, interpolation=EASE_OUT);
+      }
+
+      Opacity("**/Angles", opacity=1, time=0.2, interpolation=EASE_OUT);
+      Scale(path="**/Angles", x = 1,y = 1, time = 0.2, interpolation=EASE_OUT);
+    }
+}

@@ -1,0 +1,78 @@
+Header:
+    version: "85"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Dialog/TextDialog.yaml"
+Controls:
+-   class: "UIControl"
+    name: "OptionsDialog"
+    size: [960.000000, 640.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            topAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["int", "currentDrawParticles", "0", "0"]
+            - ["vector<string>", "drawParticles", "[ ]", "[ \"Yes\"; \"No\"; ]"]
+            - ["vector<string>", "dbgDrawParticles", "[ ]", "[ \"Yes\"; \"No\"; ]"]
+            - ["int", "currentDbgDrawParticles", "0", "0"]
+            - ["int", "currentParticleIdx", "0", "1"]
+            - ["int", "currentFlowIdx", "0", "0"]
+            - ["string", "optionalButtonText", "\"\"", "\"\""]
+            - ["vector<string>", "particleOptions", "[ ]", "[ \"high_\"; \"low_\"; ]"]
+            - ["vector<string>", "flowOptions", "[ ]", "[ \"first_\"; \"second_\"; ]"]
+            - ["eDialogType", "type", "eDialogType.PUSH", "eDialogType.PUSH"]
+            events:
+            - "DBG_DRAW_PARTICLE_CHANGED(string var)"
+            - "DRAW_PARTICLE_CHANGED(string var)"
+            - "PARTICLE_CHANGED(string var)"
+            - "FLOW_CHANGED(string var)"
+            - "CONVERT_CLICKED"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "convertButtonText", "\"Done\""]
+    children:
+    -   prototype: "TextDialog/TextDialog"
+        name: "TextDialog"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "accentButtonType": "eButtonType.POSITIVE"
+                    "type": "eDialogType.PUSH"
+                    "header": "\"\""
+                    "headerImage": "\"\""
+                    "accentButton": "convertButtonText"
+                    "optionalButton": "optionalButtonText"
+                    "contentControl": "control(\"~res:/UI/Screens3/Common/DevGraphicsOptionsDialogContent.yaml\", { particleOptions = particleOptions; flowOptions = flowOptions; currentFlowIdx = currentFlowIdx; currentParticleIdx = currentParticleIdx; currentDrawParticles = currentDrawParticles; currentDbgDrawParticles = currentDbgDrawParticles; dbgDrawParticles = dbgDrawParticles; drawParticles = drawParticles; }, [ { event = \"FLOW_CHANGED\"; action = \"FLOW_CHANGED\"; args = [ _event.var; ]; }; { event = \"PARTICLE_CHANGED\"; action = \"PARTICLE_CHANGED\"; args = [ _event.var; ]; }; { event = \"DRAW_PARTICLE_CHANGED\"; action = \"DRAW_PARTICLE_CHANGED\"; args = [ _event.var; ]; }; { event = \"DBG_DRAW_PARTICLE_CHANGED\"; action = \"DBG_DRAW_PARTICLE_CHANGED\"; args = [ _event.var; ]; }; ])"
+                eventActions:
+                - ["START_CLOSING_ANIMATION", "", ""]
+                - ["ACCENT_CLICKED", "CANCEL", ""]
+                - ["OPTIONAL_CLICKED", "CANCEL_CLICKED", ""]
+                - ["DBG_DRAW_PARTICLE_CHANGED", "DBG_DRAW_PARTICLE_CHANGED", "_event.var"]
+                - ["DRAW_PARTICLE_CHANGED", "DRAW_PARTICLE_CHANGED", "_event.var"]
+                - ["FLOW_CHANGED", "FLOW_CHANGED", "_event.var"]
+                - ["PARTICLE_CHANGED", "PARTICLE_CHANGED", "_event.var"]
+        children:
+        -   path: "DialogContent"
+            size: [700.000000, 480.000000]
+            components:
+                SizePolicy:
+                    horizontalValue: 700.000000
+            children: []
+        -   path: "DialogContent/UIScrollView"
+            size: [700.000000, 336.000000]
+            children: []
+        -   path: "DialogContent/UIScrollView/scrollContainerControl"
+            size: [700.000000, 336.000000]
+            children: []
+        -   path: "DialogContent/UIScrollView/scrollContainerControl/Content"
+            position: [24.000000, 48.000000]
+            components:
+                UIChildComponent:
+                    eventActions:
+                    - ["PARTICLE_CHANGED", "PARTICLE_CHANGED", "_event.var"]
+                    - ["FLOW_CHANGED", "FLOW_CHANGED", "_event.var"]

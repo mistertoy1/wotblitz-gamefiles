@@ -1,0 +1,42 @@
+animation ScaleSelector
+{       
+    if (isEnabled)
+    {
+        if (isSelected)
+        {
+            Scale ("**/PressedFade", 0, 0);
+            ChangeProperty("**/PressedFade","UIOpacityComponent","opacity", 1);
+
+            parallel
+            {
+                Scale ("**/PressedFade", 1, 1, 0.3, SINE_IN_SINE_OUT);
+                ChangeProperty("**/PressedFade","UIOpacityComponent","opacity", 0, 0.3, SINE_IN_SINE_OUT);
+                ChangeProperty("**/Selection","UIOpacityComponent","opacity", 1, 0, SINE_OUT);
+                
+                sequence
+                {
+                    parallel 
+                    {
+                        Scale ("**/Selection", 1.35, 1.35, 0.15, SINE_OUT);
+                        ChangeProperty("**/Border","UIOpacityComponent","opacity", 0.5, 0.15, SINE_OUT);
+                    }
+
+                    Scale ("**/Selection", 1, 1, 0.15, SINE_OUT);
+                }
+            }  
+        }
+        else
+        {
+            parallel
+            {
+                Scale ("**/Selection", 0, 0, 0.2, SINE_IN_SINE_OUT);
+                ChangeProperty("**/Border","UIOpacityComponent","opacity", 1, 0.2, SINE_OUT);
+                Scale ("**/PressedFade", 1, 1, 0.3, SINE_IN_SINE_OUT);
+                ChangeProperty("**/PressedFade","UIOpacityComponent","opacity", 0, 0.3, SINE_IN_SINE_OUT);
+            }
+        }
+    }
+}
+
+
+

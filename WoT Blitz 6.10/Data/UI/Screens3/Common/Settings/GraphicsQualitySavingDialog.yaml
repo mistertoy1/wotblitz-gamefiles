@@ -1,0 +1,39 @@
+Header:
+    version: "94"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Dialog/TextDialog.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "GraphicsQualitySaving"
+    size: [1024.000000, 640.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+        UIDataParamsComponent:
+            params:
+            - ["int", "replaysOverLimit", "0", "70"]
+    children:
+    -   prototype: "TextDialog/TextDialog"
+        name: "TextDialog"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "accentButtonType": "eButtonType.POSITIVE"
+                    "type": "eDialogType.CHOOSE"
+                    "header": "\"\""
+                    "headerImage": "\"\""
+                    "accentButton": "localize(\"#settings:Graphics/Quality/Saving/OK\")"
+                    "optionalButton": "localize(\"#settings:Graphics/Quality/Saving/Cancel\")"
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/Dialog/TextContent.yaml\", { contentText = localize(\"#settings:Graphics/Quality/Saving/Notification\"); }, [ ])"
+                eventActions:
+                - ["START_CLOSING_ANIMATION", "", ""]
+                - ["ACCENT_CLICKED", "SAVING", ""]
+                - ["OPTIONAL_CLICKED", "CANCEL", ""]
+            UIDataLocalsComponent:
+                locals:
+                - ["string", "accentButtonText", "accentButton"]
+                - ["string", "optionalButtonText", "optionalButton"]

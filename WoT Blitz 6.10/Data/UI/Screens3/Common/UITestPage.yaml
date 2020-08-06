@@ -1,0 +1,2053 @@
+Header:
+    version: "92"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/IconButton.yaml"
+- "~res:/UI/Screens3/Common/OverlayBlur.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Tabs/TextTabsBar.yaml"
+- "~res:/UI/Screens3/Common/VerticalScrollBar.yaml"
+Controls:
+-   class: "UIControl"
+    name: "Screen"
+    size: [1024.000000, 1927.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIShortcutEventComponent:
+            shortcuts: "ON_CLOSE_TEST_PAGE,Escape"
+        UIDataParamsComponent:
+            events:
+            - "ON_CLOSE_TEST_PAGE"
+        UIDataLocalsComponent:
+            locals:
+            - ["int", "Lenght", "1"]
+            - ["string", "NotCaps1", "\"tournaments/TeamDescrScreen/Quick/StaticTeam/Header\""]
+            - ["string", "NotCaps2", "\"#wgn:APIErrors/spa_weak_password\""]
+            - ["string", "NotCaps3", "\"#hangar_tutorial:boosters/InstallBoosters/hint\""]
+            - ["string", "defaultCapsString", "localize(\"#modules_tech_tree:CantInstallDescription\")"]
+            - ["string", "defaultNotCapsString", "when Lenght == 1 -> localize(NotCaps1), Lenght == 2 -> localize(NotCaps2), Lenght == 3 -> localize(NotCaps3), \"\""]
+    children:
+    -   class: "UIControl"
+        name: "Bg"
+        position: [0.000000, 0.000000]
+        size: [960.000000, 640.000000]
+        components:
+            IgnoreLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   class: "UIControl"
+            name: "Bg"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+            children:
+            -   prototype: "OverlayBlur/BlurAndFade"
+                name: "BlurAndFade"
+    -   class: "UIControl"
+        name: "ContentWrapper"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            LinearLayout:
+                orientation: "TopDown"
+                padding: "16;0"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   class: "UIControl"
+            name: "Header"
+            position: [0.000000, 0.000000]
+            size: [64.000000, 64.000000]
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfFirstChild"
+            children:
+            -   prototype: "IconButton/IconButton"
+                name: "Close"
+                position: [16.000000, 16.000000]
+                components:
+                    Anchor:
+                        leftAnchorEnabled: true
+                        leftAnchor: 16.000000
+                        vCenterAnchorEnabled: true
+                    UIDataParamsComponent:
+                        args:
+                            "visible": "true"
+                            "isBgVisible": "false"
+                            "image": "\"~res:/Gfx/Lobby/icons/icon_close_n.psd\""
+                            "type": "eButtonType.OPTIONAL_LIGHT"
+                            "sound": "eButtonSound.UNKNOWN"
+                            "enabled": "true"
+                        eventActions:
+                        - ["ON_CLICK_BUTTON", "ON_CLOSE_TEST_PAGE", ""]
+            -   class: "UIControl"
+                name: "Title"
+                size: [32.000000, 32.000000]
+                input: false
+                classes: "t-headline regular white-wild-sand-text"
+                components:
+                    UITextComponent:
+                        text: "Experimental Page"
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        verticalPolicy: "PercentOfContent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Font.style.yaml"
+        -   prototype: "TextTabsBar/TextTabsBar"
+            name: "TextTabsBar"
+            components:
+                UIDataParamsComponent:
+                    args:
+                        "activeTab": "0"
+                        "info": "[ { text = localize(\"TYPOGRAPHY\"); autotestKey = \"briefTab\"; }; { text = localize(\"BUTTONS\"); autotestKey = \"statsTab\"; }; { text = localize(\"SOMETHING\"); autotestKey = \"vehiclesTab\"; }; ]"
+                        "bgStyle": "\"\""
+        -   class: "UIControl"
+            name: "PageConent"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                LinearLayout:
+                    orientation: "TopDown"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+            children:
+            -   class: "UIScrollView"
+                name: "UIScrollView"
+                size: [32.000000, 32.000000]
+                autoUpdate: true
+                centerContent: false
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                children:
+                -   class: "UIScrollViewContainer"
+                    name: "scrollContainerControl"
+                    components:
+                        LinearLayout:
+                            orientation: "TopDown"
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            horizontalMax: 960.000000
+                            verticalPolicy: "PercentOfChildrenSum"
+                    children:
+                    -   class: "UIControl"
+                        name: "Spacer"
+                        size: [32.000000, 32.000000]
+                        input: false
+                        components:
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfParent"
+                                verticalPolicy: "FixedSize"
+                                verticalValue: 32.000000
+                    -   class: "UIControl"
+                        name: "Typography"
+                        size: [32.000000, 32.000000]
+                        input: false
+                        components:
+                            LinearLayout:
+                                orientation: "TopDown"
+                                spacing: 40.000000
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfParent"
+                                verticalPolicy: "PercentOfChildrenSum"
+                        children:
+                        -   class: "UIControl"
+                            name: "t-caps"
+                            position: [0.000000, 0.000000]
+                            size: [480.000000, 160.000000]
+                            components:
+                                LinearLayout:
+                                    orientation: "TopDown"
+                                    spacing: 16.000000
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "PercentOfChildrenSum"
+                            children:
+                            -   class: "UIControl"
+                                name: "header"
+                                position: [0.000000, 0.000000]
+                                size: [156.000000, 36.000000]
+                                classes: "font-preset-layout"
+                                components:
+                                    LinearLayout: {}
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfMaxChild"
+                                    StyleSheet:
+                                        styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                children:
+                                -   class: "UIControl"
+                                    name: "spacer"
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-right font-preset-label"
+                                    components:
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "FixedSize"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                -   class: "UIControl"
+                                    name: "label"
+                                    position: [196.000000, 0.000000]
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-left not-localize"
+                                    components:
+                                        UITextComponent:
+                                            text: "t-caps"
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                            -   class: "UIControl"
+                                name: "examples"
+                                position: [0.000000, 36.000000]
+                                size: [480.000000, 144.000000]
+                                components:
+                                    LinearLayout:
+                                        orientation: "TopDown"
+                                        spacing: 16.000000
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfChildrenSum"
+                                children:
+                                -   class: "UIControl"
+                                    name: "regular"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-caps regular white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "REGULAR"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-caps regular white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultCapsString"]
+                                -   class: "UIControl"
+                                    name: "bold"
+                                    position: [0.000000, 80.000000]
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-caps bold white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "BOLD"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-caps bold white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultCapsString"]
+                        -   class: "UIControl"
+                            name: "t-caption"
+                            position: [0.000000, 133.000000]
+                            size: [480.000000, 160.000000]
+                            components:
+                                LinearLayout:
+                                    orientation: "TopDown"
+                                    spacing: 16.000000
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "PercentOfChildrenSum"
+                            children:
+                            -   class: "UIControl"
+                                name: "header"
+                                position: [0.000000, 0.000000]
+                                size: [156.000000, 36.000000]
+                                classes: "font-preset-layout"
+                                components:
+                                    LinearLayout: {}
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfMaxChild"
+                                    StyleSheet:
+                                        styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                children:
+                                -   class: "UIControl"
+                                    name: "spacer"
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-right font-preset-label"
+                                    components:
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "FixedSize"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                -   class: "UIControl"
+                                    name: "label"
+                                    position: [0.000000, 16.000000]
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-left font-preset-label not-localize"
+                                    components:
+                                        UITextComponent:
+                                            text: "t-caption"
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                            -   class: "UIControl"
+                                name: "examples"
+                                position: [0.000000, 36.000000]
+                                size: [480.000000, 144.000000]
+                                components:
+                                    LinearLayout:
+                                        orientation: "TopDown"
+                                        spacing: 16.000000
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfChildrenSum"
+                                children:
+                                -   class: "UIControl"
+                                    name: "regular"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-caption regular white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Regular"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        position: [196.000000, 0.000000]
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-caption regular white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                                -   class: "UIControl"
+                                    name: "bold"
+                                    position: [0.000000, 80.000000]
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-caption bold white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Bold"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-caption bold white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                        -   class: "UIControl"
+                            name: "t-overline"
+                            position: [0.000000, 0.000000]
+                            size: [480.000000, 160.000000]
+                            components:
+                                LinearLayout:
+                                    orientation: "TopDown"
+                                    spacing: 16.000000
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "PercentOfChildrenSum"
+                            children:
+                            -   class: "UIControl"
+                                name: "header"
+                                position: [0.000000, 0.000000]
+                                size: [156.000000, 36.000000]
+                                classes: "font-preset-layout"
+                                components:
+                                    LinearLayout: {}
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfMaxChild"
+                                    StyleSheet:
+                                        styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                children:
+                                -   class: "UIControl"
+                                    name: "spacer"
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-right font-preset-label"
+                                    components:
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "FixedSize"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                -   class: "UIControl"
+                                    name: "label"
+                                    position: [0.000000, 16.000000]
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-left not-localize"
+                                    components:
+                                        UITextComponent:
+                                            text: "t-overline"
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                            -   class: "UIControl"
+                                name: "examples"
+                                position: [0.000000, 36.000000]
+                                size: [480.000000, 144.000000]
+                                components:
+                                    LinearLayout:
+                                        orientation: "TopDown"
+                                        spacing: 16.000000
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfChildrenSum"
+                                children:
+                                -   class: "UIControl"
+                                    name: "regular"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-overline regular white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "REGULAR"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        position: [196.000000, 0.000000]
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-overline regular white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultCapsString"]
+                                -   class: "UIControl"
+                                    name: "bold"
+                                    position: [0.000000, 80.000000]
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-overline bold white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "BOLD"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-overline bold white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultCapsString"]
+                        -   class: "UIControl"
+                            name: "t-button"
+                            position: [0.000000, 447.000000]
+                            size: [480.000000, 160.000000]
+                            components:
+                                LinearLayout:
+                                    orientation: "TopDown"
+                                    spacing: 16.000000
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "PercentOfChildrenSum"
+                            children:
+                            -   class: "UIControl"
+                                name: "header"
+                                position: [0.000000, 0.000000]
+                                size: [156.000000, 36.000000]
+                                classes: "font-preset-layout"
+                                components:
+                                    LinearLayout: {}
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfMaxChild"
+                                    StyleSheet:
+                                        styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                children:
+                                -   class: "UIControl"
+                                    name: "spacer"
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-right font-preset-label"
+                                    components:
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "FixedSize"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                -   class: "UIControl"
+                                    name: "label"
+                                    position: [0.000000, 16.000000]
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-left not-localize"
+                                    components:
+                                        UITextComponent:
+                                            text: "t-button"
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                            -   class: "UIControl"
+                                name: "examples"
+                                position: [0.000000, 36.000000]
+                                size: [480.000000, 144.000000]
+                                components:
+                                    LinearLayout:
+                                        orientation: "TopDown"
+                                        spacing: 16.000000
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfChildrenSum"
+                                children:
+                                -   class: "UIControl"
+                                    name: "regular"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-button regular white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "REGULAR"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        position: [196.000000, 0.000000]
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-button regular white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultCapsString"]
+                                -   class: "UIControl"
+                                    name: "bold"
+                                    position: [0.000000, 80.000000]
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-button bold white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "BOLD"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-button bold white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultCapsString"]
+                        -   class: "UIControl"
+                            name: "t-body"
+                            position: [0.000000, 652.000000]
+                            size: [480.000000, 160.000000]
+                            components:
+                                LinearLayout:
+                                    orientation: "TopDown"
+                                    spacing: 16.000000
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "PercentOfChildrenSum"
+                            children:
+                            -   class: "UIControl"
+                                name: "header"
+                                position: [0.000000, 0.000000]
+                                size: [156.000000, 36.000000]
+                                classes: "font-preset-layout"
+                                components:
+                                    LinearLayout: {}
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfMaxChild"
+                                    StyleSheet:
+                                        styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                children:
+                                -   class: "UIControl"
+                                    name: "spacer"
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-right font-preset-label"
+                                    components:
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "FixedSize"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                -   class: "UIControl"
+                                    name: "label"
+                                    position: [0.000000, 16.000000]
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-left not-localize"
+                                    components:
+                                        UITextComponent:
+                                            text: "t-body"
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                            -   class: "UIControl"
+                                name: "examples"
+                                position: [0.000000, 36.000000]
+                                size: [480.000000, 144.000000]
+                                components:
+                                    LinearLayout:
+                                        orientation: "TopDown"
+                                        spacing: 16.000000
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfChildrenSum"
+                                children:
+                                -   class: "UIControl"
+                                    name: "regular"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-body regular white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Regular"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        position: [196.000000, 4.000000]
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-body regular white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                letterSpacing: 0.120000
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                                -   class: "UIControl"
+                                    name: "bold"
+                                    position: [0.000000, 80.000000]
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-body bold white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Bold"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        position: [196.000000, 1.000000]
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-body bold white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                        -   class: "UIControl"
+                            name: "t-subtitle"
+                            position: [0.000000, 799.000000]
+                            size: [480.000000, 160.000000]
+                            components:
+                                LinearLayout:
+                                    orientation: "TopDown"
+                                    spacing: 16.000000
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "PercentOfChildrenSum"
+                            children:
+                            -   class: "UIControl"
+                                name: "header"
+                                position: [0.000000, 0.000000]
+                                size: [156.000000, 36.000000]
+                                classes: "font-preset-layout"
+                                components:
+                                    LinearLayout: {}
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfMaxChild"
+                                    StyleSheet:
+                                        styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                children:
+                                -   class: "UIControl"
+                                    name: "spacer"
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-right font-preset-label"
+                                    components:
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "FixedSize"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                -   class: "UIControl"
+                                    name: "label"
+                                    position: [0.000000, 16.000000]
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-left not-localize"
+                                    components:
+                                        UITextComponent:
+                                            text: "t-subtitle"
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                            -   class: "UIControl"
+                                name: "examples"
+                                position: [0.000000, 36.000000]
+                                size: [480.000000, 144.000000]
+                                components:
+                                    LinearLayout:
+                                        orientation: "TopDown"
+                                        spacing: 16.000000
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfChildrenSum"
+                                children:
+                                -   class: "UIControl"
+                                    name: "regular"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-subtitle regular white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Regular"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        position: [196.000000, 0.000000]
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-subtitle regular white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                                -   class: "UIControl"
+                                    name: "bold"
+                                    position: [0.000000, 40.000000]
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-subtitle bold white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Bold"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-subtitle bold white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                        -   class: "UIControl"
+                            name: "t-headline"
+                            position: [0.000000, 837.000000]
+                            size: [480.000000, 160.000000]
+                            components:
+                                LinearLayout:
+                                    orientation: "TopDown"
+                                    spacing: 16.000000
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "PercentOfChildrenSum"
+                            children:
+                            -   class: "UIControl"
+                                name: "header"
+                                position: [0.000000, 0.000000]
+                                size: [156.000000, 36.000000]
+                                classes: "font-preset-layout"
+                                components:
+                                    LinearLayout: {}
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfMaxChild"
+                                    StyleSheet:
+                                        styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                children:
+                                -   class: "UIControl"
+                                    name: "spacer"
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-right font-preset-label"
+                                    components:
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "FixedSize"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                -   class: "UIControl"
+                                    name: "label"
+                                    position: [0.000000, 16.000000]
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-left not-localize"
+                                    components:
+                                        UITextComponent:
+                                            text: "t-headline"
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                            -   class: "UIControl"
+                                name: "examples"
+                                position: [0.000000, 36.000000]
+                                size: [480.000000, 144.000000]
+                                components:
+                                    LinearLayout:
+                                        orientation: "TopDown"
+                                        spacing: 16.000000
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfChildrenSum"
+                                children:
+                                -   class: "UIControl"
+                                    name: "light"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-headline light white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Lite"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        position: [196.000000, 7.000000]
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-headline light white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                letterSpacing: 0.500000
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                                -   class: "UIControl"
+                                    name: "regular"
+                                    position: [0.000000, 35.000000]
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-headline regular white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Regular"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        position: [196.000000, 0.000000]
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-headline regular white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                                -   class: "UIControl"
+                                    name: "bold"
+                                    position: [0.000000, 40.000000]
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-headline bold white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Bold"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-headline bold white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                        -   class: "UIControl"
+                            name: "t-title"
+                            position: [0.000000, 0.000000]
+                            size: [480.000000, 160.000000]
+                            components:
+                                LinearLayout:
+                                    orientation: "TopDown"
+                                    spacing: 16.000000
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "PercentOfChildrenSum"
+                            children:
+                            -   class: "UIControl"
+                                name: "header"
+                                position: [0.000000, 0.000000]
+                                size: [156.000000, 36.000000]
+                                classes: "font-preset-layout"
+                                components:
+                                    LinearLayout: {}
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfMaxChild"
+                                    StyleSheet:
+                                        styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                children:
+                                -   class: "UIControl"
+                                    name: "spacer"
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-right font-preset-label"
+                                    components:
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "FixedSize"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                -   class: "UIControl"
+                                    name: "label"
+                                    position: [0.000000, 16.000000]
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-left not-localize"
+                                    components:
+                                        UITextComponent:
+                                            text: "t-title"
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                            -   class: "UIControl"
+                                name: "examples"
+                                position: [0.000000, 36.000000]
+                                size: [480.000000, 144.000000]
+                                components:
+                                    LinearLayout:
+                                        orientation: "TopDown"
+                                        spacing: 16.000000
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfChildrenSum"
+                                children:
+                                -   class: "UIControl"
+                                    name: "light"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-title light white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Lite"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        position: [196.000000, 0.000000]
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-title light white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                                -   class: "UIControl"
+                                    name: "regular"
+                                    position: [0.000000, 44.000000]
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-title regular white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Regular"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        position: [196.000000, 0.000000]
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-title regular white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                                -   class: "UIControl"
+                                    name: "bold"
+                                    position: [0.000000, 40.000000]
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-title bold white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Bold"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-title bold white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                        -   class: "UIControl"
+                            name: "t-content-h2"
+                            position: [0.000000, 1469.000000]
+                            size: [480.000000, 160.000000]
+                            components:
+                                LinearLayout:
+                                    orientation: "TopDown"
+                                    spacing: 16.000000
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "PercentOfChildrenSum"
+                            children:
+                            -   class: "UIControl"
+                                name: "header"
+                                position: [0.000000, 0.000000]
+                                size: [156.000000, 36.000000]
+                                classes: "font-preset-layout"
+                                components:
+                                    LinearLayout: {}
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfMaxChild"
+                                    StyleSheet:
+                                        styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                children:
+                                -   class: "UIControl"
+                                    name: "spacer"
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-right font-preset-label"
+                                    components:
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "FixedSize"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                -   class: "UIControl"
+                                    name: "label"
+                                    position: [0.000000, 16.000000]
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-left not-localize"
+                                    components:
+                                        UITextComponent:
+                                            text: "t-content-h2"
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                            -   class: "UIControl"
+                                name: "examples"
+                                position: [0.000000, 36.000000]
+                                size: [480.000000, 144.000000]
+                                components:
+                                    LinearLayout:
+                                        orientation: "TopDown"
+                                        spacing: 16.000000
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfChildrenSum"
+                                children:
+                                -   class: "UIControl"
+                                    name: "light"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-content-h2 light white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Lite"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        position: [196.000000, 0.000000]
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-content-h2 light white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                                -   class: "UIControl"
+                                    name: "regular"
+                                    position: [0.000000, 87.000000]
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-content-h2 regular white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Regular"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-content-h2 regular white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                                -   class: "UIControl"
+                                    name: "bold"
+                                    position: [0.000000, 184.000000]
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-content-h2 bold white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Bold"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-content-h2 bold white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                        -   class: "UIControl"
+                            name: "t-content-h4"
+                            position: [0.000000, 1797.000000]
+                            size: [480.000000, 160.000000]
+                            components:
+                                LinearLayout:
+                                    orientation: "TopDown"
+                                    spacing: 16.000000
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "PercentOfChildrenSum"
+                            children:
+                            -   class: "UIControl"
+                                name: "header"
+                                position: [0.000000, 0.000000]
+                                size: [156.000000, 36.000000]
+                                classes: "font-preset-layout"
+                                components:
+                                    LinearLayout: {}
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfMaxChild"
+                                    StyleSheet:
+                                        styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                children:
+                                -   class: "UIControl"
+                                    name: "spacer"
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-right font-preset-label"
+                                    components:
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "FixedSize"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                -   class: "UIControl"
+                                    name: "label"
+                                    position: [0.000000, 16.000000]
+                                    input: false
+                                    classes: "t-body bold white-wild-sand-50-text align-left not-localize"
+                                    components:
+                                        UITextComponent:
+                                            text: "t-content-h4"
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfContent"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                            -   class: "UIControl"
+                                name: "examples"
+                                position: [0.000000, 36.000000]
+                                size: [480.000000, 144.000000]
+                                components:
+                                    LinearLayout:
+                                        orientation: "TopDown"
+                                        spacing: 16.000000
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfChildrenSum"
+                                children:
+                                -   class: "UIControl"
+                                    name: "light"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-content-h4 light white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Lite"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        position: [196.000000, 0.000000]
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-content-h4 light white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                                -   class: "UIControl"
+                                    name: "regular"
+                                    position: [0.000000, 66.000000]
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-content-h4 regular white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Regular"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-content-h4 regular white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                                -   class: "UIControl"
+                                    name: "bold"
+                                    position: [0.000000, 120.000000]
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    classes: "font-preset-layout"
+                                    components:
+                                        LinearLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        StyleSheet:
+                                            styles: "~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "name"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-content-h4 bold white-wild-sand-50-text align-right font-preset-label not-localize"
+                                        components:
+                                            UITextComponent:
+                                                text: "Bold"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                topAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/UITestPage.style.yaml"
+                                    -   class: "UIControl"
+                                        name: "value"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        classes: "t-content-h4 bold white-wild-sand-text align-left"
+                                        components:
+                                            UITextComponent:
+                                                multiline: "MULTILINE_ENABLED"
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfContent"
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        bindings:
+                                        - ["UITextComponent.text", "defaultNotCapsString"]
+                    -   class: "UIControl"
+                        name: "Spacer_1"
+                        size: [32.000000, 32.000000]
+                        input: false
+                        components:
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfParent"
+                                verticalPolicy: "FixedSize"
+                                verticalValue: 48.000000
+            -   prototype: "VerticalScrollBar/VerticalScrollBar"
+                name: "VerticalScrollBar"
+                components:
+                    Anchor:
+                        rightAnchorEnabled: true
+                        topAnchorEnabled: true
+                        bottomAnchorEnabled: true
+                    IgnoreLayout: {}
+                    ScrollBarDelegate:
+                        delegate: "../UIScrollView"
+CustomData:
+    Guides:
+        Screen:
+            Horizontal:
+            - 200.000000
+            - 208.000000
+            - 232.000000
+            - 240.000000
+            - 327.000000
+            - 335.000000
+            - 363.000000
+            - 371.000000
+            - 457.000000
+            - 467.000000
+            - 493.000000
+            - 503.000000
+            - 589.000000
+            - 600.000000
+            - 625.000000
+            - 636.000000
+            - 723.000000
+            - 732.000000
+            - 759.000000
+            - 768.000000
+            - 858.000000
+            - 868.000000
+            - 898.000000
+            - 908.000000
+            - 997.000000
+            - 1009.000000
+            - 1037.000000
+            - 1049.000000
+            - 1077.000000
+            - 1089.000000
+            - 1182.000000
+            - 1200.000000
+            - 1234.000000
+            - 1252.000000
+            - 1285.000000
+            - 1303.000000
+            - 1402.000000
+            - 1425.000000
+            - 1466.000000
+            - 1488.000000
+            - 1530.000000
+            - 1553.000000
+            - 1646.000000
+            - 1661.000000
+            - 1690.000000
+            - 1705.000000
+            - 1735.000000
+            - 1749.000000

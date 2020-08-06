@@ -1,0 +1,11 @@
+Header:
+    version: "83"
+StyleSheets:
+-   selectors:
+    - ".font-preset-layout"
+    properties:
+        linearLayout-spacing: 40.000000
+-   selectors:
+    - ".font-preset-label"
+    properties:
+        sizePolicy-horizontalValue: 156.000000

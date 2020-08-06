@@ -1,0 +1,49 @@
+Header:
+    version: "96"
+Prototypes:
+-   class: "UIControl"
+    customClass: "UILoadingSpinner"
+    name: "LoadingSpinner"
+    size: [40.000000, 40.000000]
+    input: false
+    components:
+        UIDataParamsComponent:
+            params:
+            - ["string", "spinnerStyle", "\"loadingSpinner\"", "\"loadingSpinner\""]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Common/LoadingSpinner.style.yaml"
+    bindings:
+    - ["classes", "spinnerStyle"]
+    children:
+    -   class: "UIControl"
+        name: "Spinner"
+        pivot: [0.500000, 0.500000]
+        input: false
+        components:
+            Background:
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+                vCenterAnchor: -1.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+    -   class: "UIControl"
+        name: "Background"
+        input: false
+        components:
+            Background:
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+    -   class: "UIControl"
+        name: "Fade"
+        input: false
+        components:
+            Background:
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"

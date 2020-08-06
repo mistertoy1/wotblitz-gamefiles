@@ -1,0 +1,11 @@
+Header:
+    version: "23"
+StyleSheets:
+-   selector: ".button-payment"
+    properties:
+        bg-contour: "~res:/Gfx/UI/CommonUIElements/Button/green_contour.txt"
+        bg-gradient: "~res:/Gfx/UI/CommonUIElements/Button/green_gradient.txt"
+-   selector: ".button-sell"
+    properties:
+        bg-contour: "~res:/Gfx/UI/CommonUIElements/Button/red_contour.txt"
+        bg-gradient: "~res:/Gfx/UI/CommonUIElements/Button/red_gradient.txt"

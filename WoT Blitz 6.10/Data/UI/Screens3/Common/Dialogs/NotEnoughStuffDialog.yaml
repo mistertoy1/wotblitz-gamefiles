@@ -1,0 +1,52 @@
+Header:
+    version: "82"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Dialog/TextDialog.yaml"
+Controls:
+-   class: "UIControl"
+    name: "NotEnoughStuffDialog"
+    size: [640.000000, 480.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+        ModalInput: {}
+        UIDataParamsComponent:
+            params:
+            - ["Price", "price", "null", "{ }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["ResourceModel", "emptyResource", "{ }"]
+            - ["ResourceModel", "res1Copy", "when price.resources.Empty() -> emptyResource, price.resources[0]"]
+            - ["ResourceModel", "res2Copy", "when price.resources.Size() > 1 -> price.resources[1], emptyResource"]
+            - ["ResourceModel", "res3Copy", "when price.resources.Size() > 2 -> price.resources[2], emptyResource"]
+            - ["ResourceModel", "res4Copy", "when price.resources.Size() > 3 -> price.resources[3], emptyResource"]
+            - ["ResourceModel", "resource1", "{ type = res1Copy.type; quantity = res1Copy.quantity; localizedQuantity = res1Copy.localizedQuantity; grade = res1Copy.grade; icon = res1Copy.icon; iconUrl = res1Copy.iconUrl; imageURL = res1Copy.imageURL; name = res1Copy.name; showGrade = res1Copy.showGrade; }"]
+            - ["ResourceModel", "resource2", "{ type = res2Copy.type; quantity = res2Copy.quantity; localizedQuantity = res2Copy.localizedQuantity; grade = res2Copy.grade; icon = res2Copy.icon; iconUrl = res2Copy.iconUrl; imageURL = res2Copy.imageURL; name = res2Copy.name; showGrade = res2Copy.showGrade; }"]
+            - ["ResourceModel", "resource3", "{ type = res3Copy.type; quantity = res3Copy.quantity; localizedQuantity = res3Copy.localizedQuantity; grade = res3Copy.grade; icon = res3Copy.icon; iconUrl = res3Copy.iconUrl; imageURL = res3Copy.imageURL; name = res3Copy.name; showGrade = res3Copy.showGrade; }"]
+            - ["ResourceModel", "resource4", "{ type = res4Copy.type; quantity = res4Copy.quantity; localizedQuantity = res4Copy.localizedQuantity; grade = res4Copy.grade; icon = res4Copy.icon; iconUrl = res4Copy.iconUrl; imageURL = res4Copy.imageURL; name = res4Copy.name; showGrade = res4Copy.showGrade; }"]
+    children:
+    -   prototype: "TextDialog/TextDialog"
+        name: "InfoTextDialog"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "accentButtonType": "eButtonType.POSITIVE"
+                    "type": "eDialogType.INFO"
+                    "header": "\"\""
+                    "headerImage": "\"\""
+                    "accentButton": "\"#common:DialogButton/Approve\""
+                    "optionalButton": "\"#common:DialogButton/Cancel\""
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/Dialog/TextBuyConfirmation.yaml\", { resource1Model = resource1; resource2Model = resource2; resource3Model = resource3; resource4Model = resource4; baseContent = \"dialog/notEnoughResourcesForPurchase\"; }, [ ])"
+                eventActions:
+                - ["OPTIONAL_CLICKED", "OPTIONAL_CLICKED", ""]
+                - ["ACCENT_CLICKED", "CONFIRMATION", ""]
+        children:
+        -   path: "DialogContent/UIScrollView/scrollContainerControl/Content"
+            position: [24.000000, 0.000000]
+        -   path: "DialogContent/Footer/OptionalButtonContainer"
+            position: [25.000000, 24.000000]
+            children: []

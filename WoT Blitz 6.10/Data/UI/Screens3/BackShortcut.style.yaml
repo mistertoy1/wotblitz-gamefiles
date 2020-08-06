@@ -1,0 +1,6 @@
+Header:
+    version: "54"
+StyleSheets:
+-   selector: ".back-shortcut"
+    properties:
+        shortcutEvent-shortcuts: "BACK_EVENT, Escape; BACK_EVENT, Back"

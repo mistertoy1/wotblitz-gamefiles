@@ -1,0 +1,32 @@
+Header:
+    version: "95"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Dialog/TextDialog.yaml"
+Controls:
+-   class: "UIControl"
+    name: "PleaseRebootDialog"
+    size: [1024.000000, 640.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+    children:
+    -   prototype: "TextDialog/TextDialog"
+        name: "TextDialog"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "accentButtonType": "eButtonType.POSITIVE"
+                    "type": "eDialogType.PUSH"
+                    "header": "localize(\"#settings:Graphics/Quality/Reboot/Notification/Header\")"
+                    "headerImage": "\"\""
+                    "accentButton": "localize(\"#settings:Graphics/Quality/Reboot/Notification/OK\")"
+                    "optionalButton": "\"Cancel\""
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/Dialog/TextContent.yaml\", { contentText = localize(\"#settings:Graphics/Quality/Reboot/Notification\"); }, [ ])"
+                eventActions:
+                - ["START_CLOSING_ANIMATION", "", ""]
+                - ["ACCENT_CLICKED", "CONFIRMATION", ""]
+                - ["OPTIONAL_CLICKED", "CANCEL", ""]

@@ -1,0 +1,181 @@
+Header:
+    version: "99"
+StyleSheets:
+-   selectors:
+    - ".pane-bg.crew"
+    properties:
+        bg-drawType: "DRAW_ALIGNED"
+-   selectors:
+    - ".pane-bg.crew:selected"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.235294, 0.596078, 1.000000, 0.301961]
+-   selectors:
+    - ".pane-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 1.000000, 1.000000, 0.050980]
+-   selectors:
+    - ".pane-bg:selected"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.235294, 0.596078, 1.000000, 0.301961]
+-   selectors:
+    - ".pane-bg.alternative"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 1.000000, 1.000000, 0.027451]
+-   selectors:
+    - ".pane-bg.alternative:selected"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.235294, 0.596078, 1.000000, 0.141176]
+-   selectors:
+    - ".pane-bg.touchable"
+    - ".pane-bg-cell.touchable #Background"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 1.000000, 1.000000, 0.109804]
+-   selectors:
+    - ".pane-bg.touchable:pressed_inside"
+    - ".pane-bg-cell.touchable:pressed_inside #Background"
+    - ".pane-bg.touchable.toggled"
+    - ".pane-bg.touchable:disabled"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.054902]
+-   selectors:
+    - ".pane-bg.touchable.alternative"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 1.000000, 1.000000, 0.125490]
+-   selectors:
+    - ".pane-bg.touchable.alternative:pressed_inside"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.062745]
+-   selectors:
+    - ".pane-bg.touchable.alternative:selected"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.000000, 0.000000, 0.000000, 0.313726]
+-   selectors:
+    - ".footer-background"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.000000, 0.000000, 0.000000, 0.525490]
+-   selectors:
+    - ".screen-background"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.058824, 0.109804, 0.141176, 0.894118]
+-   selectors:
+    - ".header-line"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.835294, 0.533333, 0.090196, 1.000000]
+-   selectors:
+    - ".popup-option-selection"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.000000, 0.000000, 0.000000, 0.098039]
+-   selectors:
+    - ".tab-pane-bg"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.192157, 0.243137, 0.301961, 0.705882]
+-   selectors:
+    - ".pane-bg.touchable:disabled"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.054902]
+-   selectors:
+    - ".switch-background"
+    properties:
+        bg-drawType: "DRAW_TILED_MULTILAYER"
+        bg-mask: "~res:/Gfx/UI/CommonUIElements/Switch/mask.psd"
+        bg-detail: "~res:/Gfx/UI/CommonUIElements/Switch/detail.psd"
+        bg-gradient: "~res:/Gfx/UI/CommonUIElements/Switch/gradient.psd"
+        bg-contour: "~res:/Gfx/UI/CommonUIElements/Switch/contour.psd"
+        bg-gradientMode: "Overlay"
+-   selectors:
+    - ".battlepass-bg"
+    properties:
+        texture-spritePath: "~res:/Gfx/Lobby/events/battle-pass/bg_battlepass_main"
+-   selectors:
+    - ".color-link"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.321569, 0.301961, 0.270588, 1.000000]
+-   selectors:
+    - ".slider-full-background"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.439216, 0.521569, 0.619608, 1.000000]
+-   selectors:
+    - ".slider-background"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.270588, 0.321569, 0.376471, 1.000000]
+-   selectors:
+    - ".black-bg-70"
+    properties:
+        bg-color: [0.000000, 0.000000, 0.000000, 0.700000]
+-   selectors:
+    - ".black-bg-50"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.000000, 0.000000, 0.000000, 0.500000]
+-   selectors:
+    - ".black-bg-45"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.000000, 0.000000, 0.000000, 0.450000]
+-   selectors:
+    - ".row:disabled"
+    properties:
+        bg-color: [1.000000, 1.000000, 1.000000, 0.501961]
+-   selectors:
+    - ".row:disabled #Switch #buttonToggle #Bg"
+    properties:
+        bg-color: [0.462745, 0.458824, 0.458824, 1.000000]
+-   selectors:
+    - ".row:disabled ? ? #Switch #buttonToggle #Bg"
+    properties:
+        bg-color: [0.462745, 0.458824, 0.458824, 1.000000]
+-   selectors:
+    - ".fade-notifications"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.094118, 0.094118, 0.094118, 1.000000]
+-   selectors:
+    - ".row:disabled ? #Switch #buttonToggle #Bg"
+    properties:
+        bg-color: [0.462745, 0.458824, 0.458824, 1.000000]
+-   selectors:
+    - ".menu-button"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.337255, 0.200000, 0.219608, 0.784314]
+-   selectors:
+    - ".menu-button:pressed_inside"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.337255, 0.200000, 0.219608, 0.392157]
+-   selectors:
+    - ".white-bg-20"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 1.000000, 1.000000, 0.200000]
+-   selectors:
+    - ".black-bg-25"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [0.000000, 0.000000, 0.000000, 0.250000]
+-   selectors:
+    - ".white-bg-10"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 1.000000, 1.000000, 0.100000]
+-   selectors:
+    - ".white-bg-05"
+    properties:
+        bg-drawType: "DRAW_FILL"
+        bg-color: [1.000000, 1.000000, 1.000000, 0.050000]

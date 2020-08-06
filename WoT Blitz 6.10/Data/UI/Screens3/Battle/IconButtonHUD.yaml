@@ -1,0 +1,121 @@
+Header:
+    version: "100"
+Prototypes:
+-   class: "UIControl"
+    name: "IconButton"
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 48.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 48.000000
+        UIInputEventComponent:
+            onTouchUpInside: "ON_CLICK_BUTTON"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "locked", "false", "false"]
+            - ["bool", "visible", "true", "true"]
+            - ["bool", "isBgVisible", "true", "true"]
+            - ["string", "image", "\"\"", "\"~res:/Gfx/Shared/icons/icon_exit_m\""]
+            - ["float", "imageOpacity", "1.000000", "1.000000"]
+            - ["eButtonType", "type", "eButtonType.OPTIONAL_LIGHT", "eButtonType.OPTIONAL_LIGHT"]
+            - ["eButtonSound", "sound", "eButtonSound.UNKNOWN", "eButtonSound.CLOSE"]
+            - ["bool", "enabled", "true", "true"]
+            - ["bool", "hasSound", "true", "true"]
+            events:
+            - "ON_CLICK_BUTTON"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "hoverStyle", "(when isBgVisible -> \"button-fade \", \"button-fade-non-hide \") + (when type == eButtonType.OPTIONAL_DARK or type == eButtonType.SCENE -> \"black-10-bg\", \"white-wild-sand-10-bg\")"]
+            - ["eButtonSound", "soundType", "when not hasSound -> eButtonSound.UNKNOWN, sound != eButtonSound.UNKNOWN -> sound, type == eButtonType.POSITIVE or type == eButtonType.NO_BG -> eButtonSound.OPEN, type == eButtonType.ALTERNATIVE -> eButtonSound.OK, type == eButtonType.ALTERNATIVE -> eButtonSound.OK, type == eButtonType.NEGATIVE -> eButtonSound.SELL, eButtonSound.CANCEL"]
+            - ["string", "bgStyle", "when type == eButtonType.OPTIONAL_LIGHT -> \"white-wild-sand-15-bg\", type == eButtonType.OPTIONAL_DARK -> \"black-25-bg\", type == eButtonType.SCENE -> \"grey-shark-70-bg\", \"\""]
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/Common/Button.actions"
+    bindings:
+    - ["visible", "visible"]
+    - ["input", "locked"]
+    children:
+    -   class: "UIControl"
+        name: "TapArea"
+        input: true
+        exclusiveInput: true
+        classes: "button button-tap-area"
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            UIInputEventComponent:
+                onTouchUpInside: "BUTTON_CLICKED"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Button.style.yaml"
+        bindings:
+        - ["enabled", "enabled and not locked"]
+        children:
+        -   class: "UIControl"
+            name: "Content"
+            pivot: [0.500000, 0.500000]
+            input: false
+            classes: "content-area"
+            components:
+                Background: {}
+                Anchor:
+                    leftAnchorEnabled: true
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+            children:
+            -   class: "UIControl"
+                name: "Background"
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_STRETCH_BOTH"
+                        sprite: "~res:/Gfx/Shared/backgrounds/bg_r1"
+                        leftRightStretchCap: 1.000000
+                        topBottomStretchCap: 1.000000
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                bindings:
+                - ["visible", "isBgVisible"]
+                - ["classes", "bgStyle"]
+            -   class: "UIControl"
+                name: "Fade"
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_STRETCH_BOTH"
+                        sprite: "~res:/Gfx/Shared/backgrounds/bg_r1"
+                        leftRightStretchCap: 1.000000
+                        topBottomStretchCap: 1.000000
+                    UIOpacityComponent: {}
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Button.style.yaml"
+                bindings:
+                - ["classes", "hoverStyle"]
+            -   class: "UIControl"
+                name: "Icon"
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_SCALE_PROPORTIONAL"
+                    UIOpacityComponent: {}
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 24.000000
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 24.000000
+                bindings:
+                - ["Background.sprite", "image"]
+                - ["UIOpacityComponent.opacity", "imageOpacity"]

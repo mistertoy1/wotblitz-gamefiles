@@ -1,0 +1,71 @@
+Header:
+    version: "85"
+Prototypes:
+-   class: "UIScrollBar"
+    name: "HorizontalScrollBar"
+    size: [30.000000, 10.000000]
+    input: false
+    orientation: "ORIENTATION_HORIZONTAL"
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            bottomAnchorEnabled: true
+            bottomAnchor: 2.000000
+        SizePolicy:
+            verticalPolicy: "PercentOfMaxChild"
+        ScrollBarDelegate: {}
+    children:
+    -   class: "UIControl"
+        name: "slider"
+        position: [0.000000, 0.000000]
+        size: [20.000000, 4.000000]
+        components:
+            LinearLayout: {}
+            SizePolicy:
+                verticalPolicy: "FixedSize"
+                verticalValue: 4.000000
+        children:
+        -   class: "UIControl"
+            name: "left"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "white-wild-sand-15-bg"
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_PROPORTIONAL"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_half_r8"
+                    spriteModification: ["FLIP_HORIZONTAL"]
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 2.000000
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "center"
+            size: [20.000000, 10.000000]
+            input: false
+            classes: "white-wild-sand-15-bg"
+            components:
+                Background: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "right"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "white-wild-sand-15-bg"
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_PROPORTIONAL"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_half_r8"
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 2.000000
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"

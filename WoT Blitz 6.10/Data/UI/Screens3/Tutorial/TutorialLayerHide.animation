@@ -1,0 +1,5 @@
+animation TutorialLayerHide
+{
+    Opacity("**/Angles", 0, time=0.2, interpolation=EASE_IN);
+    Opacity("Fade/FadeContent", 0, time=0.2, interpolation=EASE_IN);
+}

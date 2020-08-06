@@ -1,0 +1,13 @@
+Header:
+    version: "71"
+Controls:
+-   class: "UIControl"
+    name: "Control"
+    size: [32.000000, 32.000000]
+    input: false
+    classes: "red-tamarillo-bg"
+    components:
+        Background:
+            drawType: "DRAW_FILL"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml"

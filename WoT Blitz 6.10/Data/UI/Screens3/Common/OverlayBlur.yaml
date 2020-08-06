@@ -1,0 +1,70 @@
+Header:
+    version: "93"
+Prototypes:
+-   class: "UIControl"
+    name: "BlurAndFade"
+    size: [200.000000, 100.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIInputEventComponent:
+            onTouchUpInside: "CLOSE_OVERLAY"
+    children:
+    -   class: "UIControl"
+        name: "Blur"
+        input: false
+        components:
+            Background:
+                drawType: "DRAW_SCALE_TO_RECT"
+                usePostProcessedSprite: true
+            UIOpacityComponent: {}
+            UIPostProcessTextureComponent0:
+                materialPath: "~res:/Materials.custom/2d.Textured.Blur.material"
+                needClearAlphaAfterRender: true
+                scale: 0.200000
+                useVirtualCoordinateSystem: true
+                needDepth: true
+                renderRequestingType: "ON_SIZE_CHANGED"
+                minFilter: "Linear"
+                magFilter: "Linear"
+            UIPostProcessTextureComponent1:
+                materialPath: "~res:/Materials.custom/2d.Textured.HBlur.material"
+                scale: 0.200000
+                useVirtualCoordinateSystem: true
+                renderRequestingType: "ON_SIZE_CHANGED"
+                minFilter: "Linear"
+                magFilter: "Linear"
+            UIPostProcessTextureComponent2:
+                materialPath: "~res:/Materials/2d.Textured.Alphablend.material"
+                scale: 0.200000
+                useVirtualCoordinateSystem: true
+                renderRequestingType: "ON_SIZE_CHANGED"
+                minFilter: "Linear"
+                magFilter: "Linear"
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["UIPostProcessTextureComponent0.customParameters", "generateGaussParameter(1.000000)"]
+        - ["UIPostProcessTextureComponent1.customParameters", "generateGaussParameter(1.000000)"]
+    -   class: "UIControl"
+        name: "Fade"
+        input: false
+        classes: "black-bg"
+        components:
+            Background: {}
+            UIOpacityComponent:
+                opacity: 0.600000
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"

@@ -1,0 +1,127 @@
+Header:
+    version: "76"
+Prototypes:
+-   class: "UIControl"
+    name: "Higlight"
+    size: [32.000000, 32.000000]
+    input: false
+    components:
+        IgnoreLayout: {}
+        UIAttachLayoutSlaveComponent:
+            slaveSizePolicy: "MasterSize"
+        UIDataParamsComponent:
+            params:
+            - ["eTutorialOffsetType", "holeOffset", "eTutorialOffsetType.kEmpty", "eTutorialOffsetType.kBig"]
+            - ["eTutorialViewState", "viewState", "eTutorialViewState.kRunning", "eTutorialViewState.kRunning"]
+            - ["bool", "hasAngles", "false", "true"]
+            - ["string", "attachId", "\"\"", "\"MASTER_ID\""]
+        UIDataLocalsComponent:
+            locals:
+            - ["int", "offset", "holeOffset + 0"]
+        UIShadowHoleComponent: {}
+    bindings:
+    - ["visible", "not empty(attachId) and viewState == eTutorialViewState.kRunning", "Read"]
+    - ["UIAttachLayoutSlaveComponent.attachId", "attachId", "Read"]
+    - ["UIShadowHoleComponent.leftOffset", "offset", "Read"]
+    - ["UIShadowHoleComponent.rightOffset", "offset", "Read"]
+    - ["UIShadowHoleComponent.topOffset", "offset", "Read"]
+    - ["UIShadowHoleComponent.bottomOffset", "offset", "Read"]
+    children:
+    -   class: "UIControl"
+        name: "HighlightBg"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            UIAttachLayoutMasterComponent:
+                attachId: "TUTORIAL_HIGHLIGHT"
+        bindings:
+        - ["Anchor.leftAnchor", "offset * (-1)", "Read"]
+        - ["Anchor.rightAnchor", "offset * (-1)", "Read"]
+        - ["Anchor.topAnchor", "offset * (-1)", "Read"]
+        - ["Anchor.bottomAnchor", "offset * (-1)", "Read"]
+        children:
+        -   class: "UIControl"
+            name: "Angles"
+            size: [32.000000, 32.000000]
+            pivot: [0.500000, 0.500000]
+            input: false
+            components:
+                UIOpacityComponent: {}
+                Anchor:
+                    leftAnchorEnabled: true
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "hasAngles", "Read"]
+            children:
+            -   class: "UIControl"
+                name: "AngleLeftTop"
+                pivot: [0.500000, 0.500000]
+                angle: 90.000000
+                input: false
+                classes: "white-wild-sand-bg"
+                components:
+                    Background:
+                        drawType: "DRAW_ALIGNED"
+                        sprite: "~res:/Gfx/Lobby/backgrounds/bg_corner_16.psd"
+                    Anchor:
+                        leftAnchorEnabled: true
+                        topAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        verticalPolicy: "PercentOfContent"
+            -   class: "UIControl"
+                name: "AngleRightTop"
+                pivot: [0.500000, 0.500000]
+                angle: 180.000000
+                input: false
+                classes: "white-wild-sand-bg"
+                components:
+                    Background:
+                        drawType: "DRAW_ALIGNED"
+                        sprite: "~res:/Gfx/Lobby/backgrounds/bg_corner_16.psd"
+                    Anchor:
+                        rightAnchorEnabled: true
+                        topAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        verticalPolicy: "PercentOfContent"
+            -   class: "UIControl"
+                name: "AngleRightBottom"
+                pivot: [0.500000, 0.500000]
+                angle: -90.000000
+                input: false
+                classes: "white-wild-sand-bg"
+                components:
+                    Background:
+                        drawType: "DRAW_ALIGNED"
+                        sprite: "~res:/Gfx/Lobby/backgrounds/bg_corner_16.psd"
+                    Anchor:
+                        rightAnchorEnabled: true
+                        topAnchorEnabled: false
+                        bottomAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        verticalPolicy: "PercentOfContent"
+            -   class: "UIControl"
+                name: "AngleLeftBottom"
+                input: false
+                classes: "white-wild-sand-bg"
+                components:
+                    Background:
+                        drawType: "DRAW_ALIGNED"
+                        sprite: "~res:/Gfx/Lobby/backgrounds/bg_corner_16.psd"
+                    Anchor:
+                        leftAnchorEnabled: true
+                        bottomAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        verticalPolicy: "PercentOfContent"

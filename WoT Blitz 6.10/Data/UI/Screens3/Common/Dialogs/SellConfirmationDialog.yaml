@@ -1,0 +1,43 @@
+Header:
+    version: "96"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Dialog/TextDialog.yaml"
+Controls:
+-   class: "UIControl"
+    name: "ConfirmationDialog"
+    size: [640.000000, 480.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+        UIDataParamsComponent:
+            params:
+            - ["bool", "isPermanentPrem", "false", "true"]
+            - ["string", "textCancelButton", "\"\"", "\"\""]
+            - ["string", "textOkButton", "\"\"", "\"\""]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "text", "when isPermanentPrem -> localize(\"premialization/Notification/SellTemporaryPremializedVehicle\"), localize(\"premialization/Notification/SellPermanentlyPremializedVehicle\")"]
+    children:
+    -   prototype: "TextDialog/TextDialog"
+        name: "WarningTextDialog"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "accentButtonType": "eButtonType.NEGATIVE"
+                    "type": "eDialogType.CHOOSE"
+                    "header": "\"\""
+                    "headerImage": "\"\""
+                    "accentButton": "when empty(textOkButton) -> \"#hangar_showcase:SellButton\", textOkButton"
+                    "optionalButton": "when empty(textCancelButton) -> \"#hangar_showcase:CancelButton\", textCancelButton"
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/Dialog/TextContent.yaml\", { contentText = text; }, [ ])"
+                eventActions:
+                - ["ACCENT_CLICKED", "ACCENT_CLICKED", ""]
+                - ["OPTIONAL_CLICKED", "OPTIONAL_CLICKED", ""]
+        children:
+        -   path: "DialogContent/Footer/OptionalButtonContainer"
+            position: [25.000000, 24.000000]
+            children: []

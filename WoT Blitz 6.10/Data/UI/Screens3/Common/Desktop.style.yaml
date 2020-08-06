@@ -1,0 +1,31 @@
+Header:
+    version: "79"
+StyleSheets:
+-   selectors:
+    - ".desktop-visible"
+    properties:
+        visible: false
+-   selectors:
+    - ".desktop-visible.Desktop"
+    properties:
+        visible: true
+-   selectors:
+    - ".desktop-unvisible"
+    properties:
+        visible: true
+-   selectors:
+    - ".desktop-unvisible.Desktop"
+    properties:
+        visible: false
+-   selectors:
+    - ".inventory-limited-width.Desktop"
+    properties:
+        sizePolicy-horizontalMax: 1560.000000
+-   selectors:
+    - ".inventory-limited-width.ammo.Desktop"
+    properties:
+        sizePolicy-horizontalMax: 1280.000000
+-   selectors:
+    - ".default-limited-width.Desktop"
+    properties:
+        sizePolicy-horizontalMax: 1072.000000

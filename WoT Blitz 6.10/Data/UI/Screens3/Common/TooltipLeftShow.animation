@@ -1,0 +1,13 @@
+animation TooltipLeftShow
+{
+    Opacity(".", opacity=0);
+    ChangeProperty(".", "UIAttachLayoutSlaveComponent", "additionalOffset", vec2(offset+24, 0));
+    ChangeProperty("**/ArrowLeft", "UIAttachLayoutSlaveComponent", "additionalOffset", vec2(offset+24, 0), time=0.3, interpolation=EASE_OUT);
+    Wait(0.1);
+    parallel
+    {
+      ChangeProperty(".", "UIAttachLayoutSlaveComponent", "additionalOffset", vec2(offset, 0), time=0.3, interpolation=EASE_OUT);
+      ChangeProperty("**/ArrowLeft", "UIAttachLayoutSlaveComponent", "additionalOffset", vec2(offset, 0), time=0.3, interpolation=EASE_OUT);
+      Opacity(".", opacity=1, time=0.3, interpolation=EASE_OUT);
+    }
+}
