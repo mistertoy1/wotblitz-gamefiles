@@ -1,0 +1,72 @@
+Header:
+    version: "85"
+StyleSheets:
+-   selectors:
+    - ".ribbon.ribbonMakeDamage #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/InflictedDamage.psd"
+-   selectors:
+    - ".ribbon.ribbonTankSpotted #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/TankLight.psd"
+-   selectors:
+    - ".ribbon.ribbonKill #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/TankDestroyed.psd"
+-   selectors:
+    - ".ribbon.ribbonPointCapture #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/PointCapture.psd"
+-   selectors:
+    - ".ribbon.ribbonArmorBlock #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/Ricochet.psd"
+-   selectors:
+    - ".ribbon.ribbonFireDamage #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/Arson.psd"
+-   selectors:
+    - ".ribbon.ribbonExplosion #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/Disruption.psd"
+-   selectors:
+    - ".ribbon.ribbonModuleHit #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/ModuleDamage.psd"
+-   selectors:
+    - ".ribbon.ribbonBaseCapture #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/BaseCapture.psd"
+-   selectors:
+    - ".ribbon.ribbonBaseProtection #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/BaseProtection.psd"
+-   selectors:
+    - ".ribbon.ribbonKillAssist #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/DestructionHelp.psd"
+-   selectors:
+    - ".ribbon.ribbonFullKill #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/FullDestruction.psd"
+-   selectors:
+    - ".ribbon.ribbonKillLevelPlus #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/TopDestruction.psd"
+-   selectors:
+    - ".ribbon.ribbonRamDamage #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/Ram.psd"
+-   selectors:
+    - ".ribbon.ribbonRepairMan #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/Repair.psd"
+-   selectors:
+    - ".ribbon.ribbonDamageAssist #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/Assist.psd"
+-   selectors:
+    - ".ribbon.invalidId #RibbonBack #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Shared/ribbons/TankDestroyed.psd"
+        bg-color: [0.000000, 0.000000, 0.000000, 1.000000]
