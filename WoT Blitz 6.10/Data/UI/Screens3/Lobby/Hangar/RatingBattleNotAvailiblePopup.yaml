@@ -1,0 +1,29 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/PopupMenu.yaml"
+Controls:
+-   class: "UIControl"
+    name: "Popup"
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+    children:
+    -   prototype: "PopupMenu/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "timerVisible": "false"
+                    "isAlignLeft": "false"
+                    "title": "\"\""
+                    "text": "localize(\"ratingBattles/battleNotAvailable/seasonStartUnknown\")"
+                    "textColor": "\"color=white-wild-sand-text\""
+                    "serverTime": "0L"
+                    "time": "0L"
+                    "slaveAlign": "ePositionAlign.Bottom"
+                    "masterId": "\"BATTLE_BUTTON\""

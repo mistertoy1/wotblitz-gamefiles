@@ -1,0 +1,28 @@
+Header:
+    version: "70"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/PopupMenuWithRichText.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "XPTimerHint"
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+    children:
+    -   prototype: "PopupMenuWithRichText/Slave"
+        name: "Slave"
+        size: [272.000000, 64.000000]
+        components:
+            UIDataParamsComponent:
+                args:
+                    "title": "localize(\"#hangar:Info/Counter_x2/Header\")"
+                    "slaveAlign": "ePositionAlign.Default"
+                    "text": "localize(\"#hangar:Info/Counter_x2/Descr\", { xp = \"<price/>\"; })"
+                    "masterId": "\"XP_TIMER_HINT\""
+        children:
+        -   path: "Content/Text"
+            size: [208.000000, 142.000000]

@@ -1,0 +1,37 @@
+Header:
+    version: "80"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Dialog/TextDialog.yaml"
+Controls:
+-   class: "UIControl"
+    name: "Control"
+    size: [640.000000, 480.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+        UIDataParamsComponent:
+            params:
+            - ["string", "name", "\"\"", "\"Masha\""]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "formatName", "\"%(highlight_start)\" + name + \"%(highlight_end)\""]
+    children:
+    -   prototype: "TextDialog/TextDialog"
+        name: "ChooseTextDialog"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "accentButtonType": "eButtonType.POSITIVE"
+                    "type": "eDialogType.CHOOSE"
+                    "header": "\"\""
+                    "headerImage": "\"\""
+                    "accentButton": "\"SQUAD_DISBAND_CONFIRM\""
+                    "optionalButton": "\"SQUAD_DISBAND_CANCEL\""
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/RichTextContent.yaml\", { key = localize(\"chat/message/dismissPlatoon\", { userName = formatName; }); }, [ ])"
+                eventActions:
+                - ["OPTIONAL_CLICKED", "OPTIONAL_CLICKED", ""]
+                - ["ACCENT_CLICKED", "CONFIRMATION", ""]

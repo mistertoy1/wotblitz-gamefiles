@@ -1,0 +1,11 @@
+animation BattlePassUnlockedWidget
+{
+	if (battlePass.battlePassUnlockedWidget)
+	{
+		StartParticles(path="./Light");
+		Wait(1);
+		ChangeData(battlePass.battlePassUnlockedWidget, false);
+		Wait(2);
+		StopParticles(path="./Light");
+	}
+}

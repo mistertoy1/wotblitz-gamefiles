@@ -1,0 +1,17 @@
+Header:
+    version: "92"
+Prototypes:
+-   class: "UIControl"
+    name: "NoApplicableTanksPopup"
+    size: [432.000000, 104.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIChildComponent0:
+            prototypePath: "~res:/UI/Screens3/Common/PopupMenu.yaml"
+            args:
+                "masterId": "\"STUFF_ACTIONS\""
+                "title": "\"\""
+                "text": "localize(\"storage/certificate_victory_multiplier/no_applicable_tanks_hint\")"

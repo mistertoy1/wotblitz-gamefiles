@@ -1,0 +1,82 @@
+action HANDLE_EVENT(string eventName)
+{
+    if (eventName == "SCROLL_TO_TRAINING" or eventName == "SCROLL_TO_CHAT" or eventName == "SCROLL_TO_TASK_JOURNAL" or eventName == "SCROLL_TO_STORAGE")
+    {
+        DirectEvent(eventName, "**/SideBar/SideBar");
+    }
+    if (eventName == "SCROLL_PANEL_TO_START")
+    {
+        DirectEvent("SCROLL_PANEL_TO_START", "**/Container/TanksPanelHolder/TanksPanel");
+    }
+}
+
+action CAPTURED_BACK_EVENT
+{
+  if (captureInput)
+  {
+    Event("SwitchFilterAnimation", arg1=false);
+  }
+  else
+  {
+    Event("HANGAR_BACK_EVENT");
+  }
+}
+
+action SwitchFilterAnimation(bool showRequested)
+{
+  Event("SLIDE_PANEL_OPENED", arg1 = showRequested);
+  
+  if (showRequested)
+  {
+    Event("PAUSE_HANGAR_SCENE", arg1=true);
+    parallel
+    {
+      {
+        Event("ENABLE_BLUR", arg1=true);
+        Opacity("**/FadedBlur", 1.0, time=0.4, interpolation=EASE_OUT);
+      }
+      if (currentScreen == eCurrentScreen.kHangar)
+      {
+        DirectEvent("SHOW_INVENTORY_PANEL", "**/DefaultControls/Inventory", false, eInventoryPanelAnimation.kBubbleUp, 0.2);
+      }
+      {
+        DirectEvent("SHOW_FILTER", "**/TanksPanelHolder/TanksPanel", true, 0.4);
+        WaitEvent("FILTER_ANIMATION_FINISHED");
+      }
+    }
+    Event("CAPTURE_INPUT", arg1=true);
+  }
+  else
+  {
+    Event("CAPTURE_INPUT", arg1=false);
+    parallel
+    {
+      {
+        DirectEvent("SHOW_FILTER", "**/TanksPanelHolder/TanksPanel", false, 0.4);
+        WaitEvent("FILTER_ANIMATION_FINISHED");
+      }
+      {
+        Opacity("**/FadedBlur", 0.0, time=0.4, interpolation=EASE_OUT);
+        Event("ENABLE_BLUR", arg1=false);
+      }
+    }
+    Event("PAUSE_HANGAR_SCENE", arg1=false);
+    if (currentScreen == eCurrentScreen.kHangar)
+    {
+      DirectEvent("SHOW_INVENTORY_PANEL", "**/DefaultControls/Inventory", true, eInventoryPanelAnimation.kBubbleUp, 0.2);
+    }
+  }
+}
+
+action ShowCalibrationPopup
+{
+    if(session.gameModesAccountModel.mode.battleType == "7" and isNoRatingBattles and isBattleTypeChanged and notRatingSeasonMismatch and session.gameModesAccountModel.mode.availabilityStatus == eGameModeAvailability.AVAILABLE and prebattleIsAvailableForCalibration and not isHasRating)
+    {
+    	 Event("SHOW_RATING_CALIBRATION_POPUP");
+    }
+}
+
+action ENSURE_SELECTED_TANK_VISIBILITY
+{
+  DirectEvent("EnsureSelectedCellVisibility", "**/Container/TanksPanelHolder/TanksPanel");
+}

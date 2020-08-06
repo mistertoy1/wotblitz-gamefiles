@@ -1,0 +1,272 @@
+Header:
+    version: "93"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+- "~res:/UI/Screens3/Common/OverlayBlur.yaml"
+Controls:
+-   class: "UIControl"
+    name: "PartialEquipmentDialog"
+    size: [960.000000, 640.000000]
+    input: false
+    classes: ""
+    components:
+        UIAnimationComponent:
+            animations: "_INIT,~res:/UI/Screens3/Lobby/Common/Dialog/DialogOpen.animation"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        ModalInput: {}
+        UIShortcutEventComponent:
+            shortcuts: "CLOSE_DIALOG_OPTIONAL,Back;CLOSE_DIALOG_OPTIONAL,Escape;ACCENT_CLICKED,Enter"
+        UIDataParamsComponent:
+            params:
+            - ["string", "user", "\"\"", "\"\""]
+            args:
+                "accentButtonType": "eButtonType.POSITIVE"
+                "type": "eDialogType.CHOOSE"
+                "header": "\"Header\""
+                "headerImage": "\"\""
+                "accentButton": "\"#APPLY\""
+                "optionalButton": "\"#Cancel\""
+                "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/Dialog/TextContent.yaml\", { \"contentText\" = localize(\"chat/message/platoonInvitation\", { \"userName\" = user; }); }, [ ])"
+            events:
+            - "DECLINE_CLICKED"
+            - "ACCENT_CLICKED"
+            - "CANCEL"
+            eventActions:
+            - ["ACCENT_CLICKED", "", ""]
+            - ["OPTIONAL_CLICKED", "", ""]
+            - ["DECLINE_CLICKED", "", ""]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "contentText", "\"#garage_screen:PartialEquipment\""]
+            - ["eDialogType", "type", "eDialogType.CHOOSE"]
+            - ["control", "contentControl", "control(\"~res:/UI/Screens3/Lobby/Common/Dialog/TextContent.yaml\", { contentText = localize(\"#garage_screen:PartialEquipment\"); }, [ ])"]
+            - ["string", "declineButtonText", "\"hangar/BattleButton\""]
+            - ["string", "accentButtonText", "\"Resupply\""]
+            - ["string", "optionalButtonText", "\"#common:DialogButton/Cancel\""]
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/Common/Dialog/DialogClose.actions"
+    children:
+    -   prototype: "OverlayBlur/BlurAndFade"
+        name: "BlurAndFade"
+    -   class: "UIControl"
+        name: "AccentTapArea"
+        position: [16.000000, 16.000000]
+        input: true
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "parent - 32"
+                verticalPolicy: "Formula"
+                verticalFormula: "parent - 32"
+            UIInputEventComponent:
+                onTouchUpInside: "CLOSE_DIALOG_ACCENT"
+        bindings:
+        - ["visible", "type == eDialogType.INFO"]
+    -   class: "UIControl"
+        name: "OptionalTapArea"
+        position: [16.000000, 16.000000]
+        input: true
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "parent - 32"
+                verticalPolicy: "Formula"
+                verticalFormula: "parent - 32"
+            UIInputEventComponent:
+                onTouchUpInside: "CLOSE_DIALOG_OPTIONAL"
+        bindings:
+        - ["visible", "type == eDialogType.CHOOSE or type == eDialogType.FILL"]
+    -   class: "UIControl"
+        name: "DialogContent"
+        position: [480.000000, 320.000000]
+        pivot: [0.500000, 0.500000]
+        classes: "black-50-bg"
+        components:
+            Background:
+                drawType: "DRAW_STRETCH_BOTH"
+                sprite: "~res:/Gfx/Lobby/backgrounds/bg_r16.psd"
+                leftRightStretchCap: 16.000000
+                topBottomStretchCap: 16.000000
+            UIOpacityComponent: {}
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            LinearLayout:
+                orientation: "TopDown"
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 448.000000
+                verticalPolicy: "Formula"
+                verticalFormula: "when parent == 0 -> childrenSum,min(childrenSum, parent-80)"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "SeparatorTop"
+            input: false
+            classes: "white-wild-sand-10-bg"
+            components:
+                Background:
+                    drawType: "DRAW_FILL"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 1.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "type == eDialogType.FILL"]
+        -   class: "UIScrollView"
+            name: "UIScrollView"
+            autoUpdate: true
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "Formula"
+                    verticalFormula: "when parent == 0 -> maxChild, min(parentRest, maxChild)"
+            children:
+            -   class: "UIScrollViewContainer"
+                name: "scrollContainerControl"
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                    LinearLayout:
+                        orientation: "TopDown"
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfChildrenSum"
+                children:
+                -   class: "UIControl"
+                    name: "SpacerTop"
+                    input: false
+                    components:
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 48.000000
+                -   class: "UIControl"
+                    name: "Content"
+                    input: false
+                    components:
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                        LinearLayout:
+                            orientation: "TopDown"
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "parent - 48"
+                            verticalPolicy: "PercentOfChildrenSum"
+                        UIChildComponent0:
+                            childType: "kOldExpression"
+                            control: "contentControl"
+                -   class: "UIControl"
+                    name: "SpacerDown"
+                    visible: true
+                    input: false
+                    components:
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 24.000000
+        -   class: "UIControl"
+            name: "SeparatorBottom"
+            input: false
+            classes: "white-wild-sand-10-bg"
+            components:
+                Background:
+                    drawType: "DRAW_FILL"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 1.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "type == eDialogType.FILL"]
+        -   class: "UIControl"
+            name: "Footer"
+            position: [0.000000, 92.000000]
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfChildrenSum"
+                FlowLayout:
+                    hPadding: "28"
+                    hSpacing: 24.000000
+                    vPadding: "24"
+                    vSpacing: 24.000000
+            children:
+            -   class: "UIControl"
+                name: "OptionalButtonContainer"
+                position: [28.000000, 24.000000]
+                input: false
+                components:
+                    Anchor:
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "Formula"
+                        horizontalFormula: "parent/2-40"
+                        verticalPolicy: "PercentOfFirstChild"
+                bindings:
+                - ["visible", "type == eDialogType.CHOOSE or type == eDialogType.FILL"]
+                children:
+                -   prototype: "Button/Button"
+                    name: "ButtonOptionalLight"
+                    components:
+                        Anchor:
+                            vCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                        UIDataParamsComponent:
+                            args:
+                                "locked": "false"
+                                "caption": "declineButtonText"
+                                "type": "eButtonType.ALTERNATIVE"
+                                "size": "eButtonSize.NORMAL"
+                                "sound": "eButtonSound.UNKNOWN"
+                                "enabled": "true"
+                            eventActions:
+                            - ["ON_CLICK_BUTTON", "DECLINE_CLICKED", ""]
+            -   prototype: "Button/Button"
+                name: "ButtonPositive"
+                position: [236.000000, 24.000000]
+                components:
+                    Anchor:
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "Formula"
+                        horizontalFormula: "parent/2-40"
+                    UIDataParamsComponent:
+                        args:
+                            "locked": "false"
+                            "caption": "accentButtonText"
+                            "type": "eButtonType.POSITIVE"
+                            "size": "eButtonSize.NORMAL"
+                            "sound": "eButtonSound.UNKNOWN"
+                            "enabled": "true"
+                        eventActions:
+                        - ["ON_CLICK_BUTTON", "ACCENT_CLICKED", "_event"]
+            -   prototype: "Button/Button"
+                name: "CancelButton"
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                    UIDataParamsComponent:
+                        args:
+                            "locked": "false"
+                            "caption": "\"#common:DialogButton/Cancel\""
+                            "type": "eButtonType.OPTIONAL_LIGHT"
+                            "size": "eButtonSize.NORMAL"
+                            "sound": "eButtonSound.UNKNOWN"
+                            "enabled": "true"
+                        eventActions:
+                        - ["ON_CLICK_BUTTON", "CLOSE_DIALOG_OPTIONAL", ""]

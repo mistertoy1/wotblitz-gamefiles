@@ -1,0 +1,1028 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/InventoryPanel/InventoryPanel.yaml"
+- "~res:/UI/Screens3/Lobby/Hangar/TanksPanel/TanksPanel.yaml"
+- "~res:/UI/Screens3/Lobby/Hangar/TournamentButton.yaml"
+- "~res:/UI/Screens3/Common/OverlayBlur.yaml"
+- "~res:/UI/Screens3/Lobby/Common/IconButton.yaml"
+- "~res:/UI/Screens3/Lobby/Common/BadgeHolder.yaml"
+- "~res:/UI/Screens3/Lobby/Common/IconButtonWithBadge.yaml"
+Controls:
+-   class: "UIControl"
+    name: "Hangar"
+    size: [960.000000, 640.000000]
+    input: false
+    components:
+        UIAnimationComponent:
+            animations: "BACK_EVENT,~res:/UI/Screens3/Lobby/Hangar/BackEvent.animation;_INIT,~res:/UI/Screens3/Lobby/Hangar/HangarInitialization.animation"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        ModalInput: {}
+        UIShortcutEventComponent:
+            shortcuts: "CAPTURED_BACK_EVENT,Escape;CAPTURED_BACK_EVENT,Back;SHOW_UI,SHIFT+L;SHOW_DEV_UI,SHIFT+K"
+        UIDataParamsComponent:
+            params:
+            - ["HangarDevInfoViewModel", "devInfo", "null", "{ }"]
+            - ["TankModulesTreeModel", "modulesData", "null", "{ }"]
+            - ["InventoryPanelViewModel", "inventoryPanel", "null", "{ optionalDevices = [ { }; { }; { }; ]; }"]
+            - ["AppDataModel", "app", "null", "{ sDlc = { isGeneralPackLoaded = true; }; }"]
+            - ["LobbyDataModel", "lobby", "null", "{ }"]
+            - ["SessionDataModel", "session", "null", "{ }"]
+            - ["RatingBattleModel", "battleRating", "null", "{ }"]
+            - ["AccountDataModel", "account", "null", "{ prebattleModel = { settings = { prebattleType = PrebattleType.TOURNAMENT; }; }; }"]
+            - ["TanksPanelViewModel", "tanksPanel", "null", "{ offeredTankSelected = false; }"]
+            - ["TournamentButtonViewModel", "tournamentButton", "null", "{ battlesStartTime = 7L; tournamentId = 1L; }"]
+            - ["SquadMembers", "squadMembers", "null", "{ friendsVector = [ { name = \"FriendName1\"; tag = \"testTag\"; }; { name = \"FriendName2\"; tag = \"testTag2\"; }; ]; invitesVector = [ { name = \"FriendName3\"; tag = \"WGTag\"; }; ]; }"]
+            - ["StoryFragmentViewModel", "storyFragment", "null", "{ buttons = { BTH2019 = { story = { name = \"BTH2019\"; isBoxStory = true; stage = { type = eStageType.PROCESS; }; tree = { steps = { 1 = { id = 1; }; 2 = { id = 2; }; 3 = { id = 3; }; }; }; stageResources = { buttonPath = \"~res:/UI/Screens3/Lobby/Story/SPRING_SEASON2020/Button.yaml\"; }; progress = { 1 = 1; 2 = 1; }; finishTime = 1554299463L; }; progressValue = 78; progressMax = 120; isReady = false; }; CHINA_SUMMER019 = { story = { name = \"BTH2019\"; isBoxStory = true; stage = { type = eStageType.PROCESS; }; tree = { steps = { 1 = { id = 1; }; 2 = { id = 2; }; 3 = { id = 3; }; }; }; stageResources = { buttonPath = \"~res:/UI/Screens3/Lobby/Story/SPRING_SEASON2020/Button.yaml\"; }; progress = { 1 = 1; 2 = 1; }; finishTime = 1554299463L; }; progressValue = 78; progressMax = 120; isReady = false; }; CHINA_SPRING2020 = { story = { name = \"CHINA_SPRING2020\"; isBoxStory = false; stage = { type = eStageType.PROCESS; }; tree = { steps = { 1 = { id = 1; }; 2 = { id = 2; }; 3 = { id = 3; }; }; }; stageResources = { buttonPath = \"~res:/UI/Screens3/Lobby/Story/SPRING_SEASON2020/Button.yaml\"; }; progress = { 1 = 1; 2 = 1; }; finishTime = 1554299463L; }; progressValue = 78; progressMax = 120; isReady = false; }; }; }"]
+            - ["BattlePass", "battlePass", "null", "{ }"]
+            events:
+            - "COPY_SPA"
+            - "COPY_ENTITY_ID"
+            - "ON_SQUAD_DIALOG_SHOW"
+        UIDataLocalsComponent:
+            locals:
+            - ["int", "messagesCountFromClanCanal", "when session.chatInfo.clanMessagesCount > 0 -> 1, 0"]
+            - ["eTutorialLesson", "currentLesson", "account.tutorialData.currentLesson"]
+            - ["eTutorialHighlights", "currentHighlightControl", "account.tutorialData.currentHighlightControl"]
+            - ["bool", "isTournamentPrebattle", "when not isNull(account.prebattleModel.settings) -> when account.prebattleModel.settings.prebattleType == PrebattleType.TOURNAMENT or account.prebattleModel.settings.prebattleType == PrebattleType.QUICK_TOURNAMENT -> true, false, false"]
+            - ["bool", "isTournamentParticipant", "isTournamentPrebattle or (tournamentButton.tournamentId > 0L)"]
+            - ["bool", "squadSubMenuShow", "false"]
+            - ["bool", "communitySubMenuShow", "false"]
+            - ["bool", "showXpBonusHint", "false"]
+            - ["bool", "chatLocked", "false"]
+            - ["bool", "chatLockedPressed", "false"]
+            - ["bool", "squadSubMenuShow", "false"]
+            - ["bool", "communitySubMenuShow", "false"]
+            - ["string", "playerName", "session.playerName"]
+            - ["bool", "tankAbilitiesVisible", "session.playerTanks.currentTank.abilities.Contains(session.gameModesAccountModel.mode.gameModeOptions.code)"]
+            - ["bool", "battleRatingVisible", "true"]
+            - ["bool", "tutorialObjectiveVisible", "false"]
+            - ["int", "ratingBattlesCountDone", "battleRating.calibrationBattlesCount - battleRating.calibrationBattlesLeft"]
+            - ["bool", "isNoRatingBattles", "battleRating.calibrationBattlesCount == battleRating.calibrationBattlesLeft or battleRating.calibrationBattlesCount == ratingBattlesCountDone"]
+            - ["bool", "isBattleTypeChanged", "lobby.previousBattleType != session.gameModesAccountModel.mode.battleType"]
+            - ["bool", "trainingVisible", "account.prebattleModel.settings.prebattleType == PrebattleType.TRAINING"]
+            - ["bool", "prebattleIsAvailableForCalibration", "account.prebattleModel.settings.prebattleType == PrebattleType.UNDEFINED or account.prebattleModel.settings.prebattleType == PrebattleType.TOURNAMENT or account.prebattleModel.settings.prebattleType == PrebattleType.QUICK_TOURNAMENT"]
+            - ["bool", "notRatingSeasonMismatch", "session.gameModesAccountModel.mode.availabilityStatus != eGameModeAvailability.SEASON_MISMATCH"]
+            - ["bool", "offeredTankSelected", "tanksPanel.offeredTankSelected and not isNull(tanksPanel.offeredTank.tank)"]
+            - ["bool", "isSquad", "account.prebattleModel.settings.prebattleType == PrebattleType.SQUAD"]
+            - ["bool", "isSquadFormed", "isSquad and not isNull(account.prebattleModel.squadTeamMateInfo)"]
+            - ["bool", "advertisingAvailable", "not account.tutorialData.isTutorialActive and session.shopData.advertising.hangarLimit > 0 and session.stats.hangarAds.remainingAds > 0 and session.stats.hangarAds.nextViewTime <= session.serverTime and not app.netease.neteaseAvailable and session.advertising.hangarAdAvailable and not session.advertising.playingAd"]
+            - ["bool", "showTanksPanel", "not (account.tutorialData.isTutorialActive and account.tutorialData.currentLesson < eTutorialLesson.kBattle4)"]
+            - ["bool", "captureInput", "false"]
+            - ["bool", "isHasRating", "battleRating.state == eBattleRatingState.HAS_RATING"]
+            - ["bool", "enableBlur", "false"]
+            - ["bool", "showUI", "true"]
+            - ["bool", "localDevUI", "app.constants.developerUI"]
+            - ["bool", "pingIndicatorVisible", "lobby.pingState == ePingState.MIDDLE or lobby.pingState == ePingState.BAD or lobby.pingState == ePingState.NOT_PINGED"]
+            - ["string", "storiesPanelPackage", "when app.sDlc.isGeneralPackLoaded and not account.tutorialData.isTutorialActive -> \"~res:/UI/Screens3/Lobby/Hangar/Story/StoryFragment.yaml\", \"\""]
+            - ["bool", "DLCDownloadButtonVisible", "app.sDlc.state != SmartDLCState.kDone"]
+            - ["bool", "DLCDownloadErrorVisible", "app.sDlc.state == SmartDLCState.kError"]
+            - ["bool", "showTestPage", "false"]
+            - ["bool", "DLCDownloadHintVisible", "(not lobby.arePacksAvailableForBattle) and (app.sDlc.state != SmartDLCState.kError) and (app.sDlc.state != SmartDLCState.kDone) and (not offeredTankSelected) and (not isNull(session.playerTanks.currentTank))"]
+            - ["bool", "showOffers", "app.sDlc.isGeneralPackLoaded and lobby.prmpOffersData.placements.Contains(ePrmpOfferPlacement.Hangar) and not lobby.prmpOffersData.placements[ePrmpOfferPlacement.Hangar].offers.Empty()"]
+            - ["eCurrentScreen", "currentScreen", "eCurrentScreen.kHangar"]
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/Hangar/Hangar.actions"
+        UIDataOnEventComponent0:
+            eventName: "SHOW_HINT_XP_TIMER"
+            modelFieldExpression: "showXpBonusHint"
+            dataExpression: "not showXpBonusHint"
+        UIDataOnEventComponent1:
+            eventName: "SCREEN_PRESSED"
+            modelFieldExpression: "showXpBonusHint"
+            dataExpression: "false"
+        UIDataOnEventComponent2:
+            eventName: "HIDE_COMMUNITY_PANEL"
+            modelFieldExpression: "communitySubMenuShow"
+            dataExpression: "false"
+        UIDataOnEventComponent3:
+            eventName: "SHOW_SQUAD_PANEL"
+            modelFieldExpression: "squadSubMenuShow"
+            dataExpression: "true"
+        UIDataOnEventComponent4:
+            eventName: "ON_SQUAD_DIALOG_SHOW"
+            modelFieldExpression: "squadSubMenuShow"
+            dataExpression: "false"
+        UIDataOnEventComponent5:
+            eventName: "CAPTURE_INPUT"
+            modelFieldExpression: "captureInput"
+            dataExpression: "_event"
+        UIDataOnEventComponent6:
+            eventName: "ENABLE_BLUR"
+            modelFieldExpression: "enableBlur"
+            dataExpression: "_event"
+        UIDataOnEventComponent7:
+            eventName: "ON_SQUAD_DIALOG_SHOW"
+            modelFieldExpression: "communitySubMenuShow"
+            dataExpression: "false"
+        UIDataOnEventComponent8:
+            eventName: "SHOW_UI"
+            modelFieldExpression: "showUI"
+            dataExpression: "not showUI"
+        UIDataOnEventComponent9:
+            eventName: "SHOW_DEV_UI"
+            modelFieldExpression: "localDevUI"
+            dataExpression: "not localDevUI"
+        UIDataOnEventComponent10:
+            eventName: "SHOW_DEBUG_UI_PAGE"
+            modelFieldExpression: "showTestPage"
+            dataExpression: "not showTestPage"
+        UIDataOnEventComponent11:
+            eventName: "ON_CLOSE_TEST_PAGE"
+            modelFieldExpression: "showTestPage"
+            dataExpression: "not showTestPage"
+    children:
+    -   class: "UI3DView"
+        customClass: "UIHangar3dView"
+        name: "HangarScene"
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+    -   class: "UIControl"
+        name: "Container"
+        input: false
+        components:
+            LinearLayout:
+                orientation: "RightToLeft"
+                skipInvisible: false
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["visible", "not (not showUI and app.constants.developerUI)"]
+        children:
+        -   class: "UIControl"
+            name: "Content"
+            position: [88.000000, 0.000000]
+            input: false
+            classes: "notch-tightly-bottom-inset"
+            components:
+                Anchor:
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                UIAnchorSafeAreaComponent: {}
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/SafeArea.style.yaml"
+            children:
+            -   class: "UIControl"
+                name: "MainContent"
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    UIOpacityComponent: {}
+                    LinearLayout:
+                        orientation: "TopDown"
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                children:
+                -   class: "UIControl"
+                    name: "Header"
+                    input: false
+                    components:
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 48.000000
+                    children:
+                    -   class: "UIControl"
+                        name: "OfferedTankBackground"
+                        position: [-35.000000, -10.000000]
+                        input: false
+                        components:
+                            Anchor:
+                                hCenterAnchorEnabled: false
+                                rightAnchorEnabled: true
+                                topAnchorEnabled: true
+                            SizePolicy:
+                                horizontalPolicy: "Formula"
+                                horizontalFormula: "parent + 88 + safeAreaInsets.left"
+                                verticalPolicy: "PercentOfMaxChild"
+                        bindings:
+                        - ["visible", "offeredTankSelected"]
+                        children:
+                        -   class: "UIControl"
+                            name: "TopLinearGradient"
+                            input: false
+                            classes: "black-70-bg"
+                            components:
+                                Background:
+                                    drawType: "DRAW_SCALE_TO_RECT"
+                                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_vertical_0-100"
+                                    spriteModification: ["FLIP_VERTICAL"]
+                                Anchor:
+                                    hCenterAnchorEnabled: true
+                                    topAnchorEnabled: true
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "FixedSize"
+                                    verticalValue: 384.000000
+                                StyleSheet:
+                                    styles: "~res:/UI/Screens3/Color.style.yaml"
+                        -   class: "UIControl"
+                            name: "LeftRadialGradient"
+                            input: false
+                            classes: "black-35-bg"
+                            components:
+                                Background:
+                                    drawType: "DRAW_SCALE_TO_RECT"
+                                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_radial-gradient_quarter"
+                                Anchor:
+                                    leftAnchorEnabled: true
+                                    topAnchorEnabled: true
+                                SizePolicy:
+                                    horizontalPolicy: "FixedSize"
+                                    horizontalValue: 384.000000
+                                    verticalPolicy: "FixedSize"
+                                    verticalValue: 384.000000
+                                StyleSheet:
+                                    styles: "~res:/UI/Screens3/Color.style.yaml"
+                    -   class: "UIControl"
+                        name: "Header"
+                        input: false
+                        components:
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfParent"
+                                verticalPolicy: "PercentOfFirstChild"
+                            UIChildComponent0:
+                                prototypePath: "~res:/UI/Screens3/Lobby/Common/Headers/HangarHeader.yaml"
+                                args:
+                                    "statsData": "session.stats"
+                                    "lobby": "lobby"
+                                    "serverTime": "session.serverTime"
+                                    "playerName": "session.playerName"
+                                    "clanTag": "session.playerClanTag"
+                                    "isGeneralPackLoaded": "app.sDlc.isGeneralPackLoaded"
+                                    "isTutorialActive": "account.tutorialData.isTutorialActive"
+                                    "firstLessonCompleted": "currentLesson > eTutorialLesson.kTurretUnlock"
+                                    "showBackButton": "false"
+                                    "isFullScreen": "false"
+                                eventActions:
+                                - ["PREMIUM_INFO_EVENT", "PREMIUM_INFO_EVENT", ""]
+                                - ["SHOP_BUTTON", "SHOP_BUTTON", "_event.requiredResource"]
+                                - ["BACK_EVENT", "BACK_EVENT", ""]
+                                - ["SHOW_ACHIEVEMENTS", "SHOW_ACHIEVEMENTS", ""]
+                -   class: "UIControl"
+                    name: "MainControls"
+                    position: [0.000000, 48.000000]
+                    input: false
+                    components:
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                    children:
+                    -   class: "UIControl"
+                        name: "TankDependentControls"
+                        input: false
+                        components:
+                            Anchor:
+                                topAnchorEnabled: true
+                                bottomAnchorEnabled: true
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfParent"
+                        bindings:
+                        - ["Anchor.bottomAnchor", "when showTanksPanel -> 120, 0"]
+                        children:
+                        -   class: "UIControl"
+                            name: "DLCDownloadHintHolder"
+                            input: false
+                            components:
+                                Anchor:
+                                    hCenterAnchorEnabled: true
+                                    vCenterAnchorEnabled: true
+                                    vCenterAnchor: -24.000000
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfChildrenSum"
+                                    verticalPolicy: "PercentOfMaxChild"
+                                UIChildAnimatedSwitchingComponent:
+                                    switchPolicy: "kAfterRemovingAnimation"
+                                    keepUpdateBindings: false
+                                UIChildComponent0:
+                                    childType: "kOldExpression"
+                                    control: "when DLCDownloadHintVisible -> \"~res:/UI/Screens3/Lobby/SmartDLC/DLCDownloadHint.yaml\", \"\""
+                                    args:
+                                        "availableTankLevels": "lobby.battleResources.availableTankLevels"
+                                        "sizeLeft": "lobby.battleResources.leftToPlayOnCurrentTankSize"
+                                        "tankLevel": "session.playerTanks.currentTank.info.level"
+                                        "visible": "true"
+                                    eventActions:
+                                    - ["SHOW_SMART_DLC_SCREEN", "SHOW_SMART_DLC_SCREEN", ""]
+                        -   class: "UIControl"
+                            name: "DefaultControls"
+                            input: false
+                            components:
+                                LinearLayout:
+                                    orientation: "TopDown"
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "PercentOfParent"
+                            bindings:
+                            - ["visible", "not offeredTankSelected"]
+                            children:
+                            -   class: "UIControl"
+                                name: "TopPart"
+                                input: false
+                                components:
+                                    LinearLayout:
+                                        orientation: "TopDown"
+                                        padding: "24;0"
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfMaxChild"
+                                children:
+                                -   class: "UIControl"
+                                    name: "TopWrapper"
+                                    position: [0.000000, 0.000000]
+                                    size: [558.000000, 160.000000]
+                                    components:
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "Formula"
+                                            horizontalFormula: "parent - safeAreaInsets.left"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "DevInfoHolder"
+                                        input: false
+                                        components:
+                                            Anchor:
+                                                rightAnchorEnabled: true
+                                                rightAnchor: 8.000000
+                                            IgnoreLayout: {}
+                                            SizePolicy:
+                                                horizontalPolicy: "FixedSize"
+                                                horizontalValue: 400.000000
+                                                verticalPolicy: "FixedSize"
+                                                verticalValue: 250.000000
+                                            UIChildComponent0:
+                                                childType: "kOldExpression"
+                                                control: "when app.constants.developerUI -> \"~res:/UI/Screens3/Lobby/Hangar/DevInfo.yaml\", \"\""
+                                                args:
+                                                    "model": "devInfo"
+                                                    "accountEntityId": "session.accountEntityId"
+                                                    "dbId": "session.dbid"
+                                                eventActions:
+                                                - ["COPY_SPA", "COPY_SPA", ""]
+                                                - ["COPY_ENTITY_ID", "COPY_ENTITY_ID", ""]
+                                        bindings:
+                                        - ["visible", "localDevUI"]
+                                    -   class: "UIControl"
+                                        name: "BattleButtonContainer"
+                                        position: [314.000000, 24.000000]
+                                        input: false
+                                        components:
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfFirstChild"
+                                                verticalPolicy: "PercentOfFirstChild"
+                                            UIChildComponent0:
+                                                childType: "kOldExpression"
+                                                control: "\"~res:/UI/Screens3/Lobby/Hangar/BattleButton.yaml\""
+                                                args:
+                                                    "isDeveloperUI": "localDevUI and app.constants.developerUI"
+                                                    "tutorialHighlight": "account.tutorialData.currentHighlightControl"
+                                                    "tutorialLesson": "account.tutorialData.currentLesson"
+                                                    "isGeneralPackLoaded": "app.sDlc.isGeneralPackLoaded"
+                                                    "isPrebattleTraining": "account.prebattleModel.settings.prebattleType == PrebattleType.TRAINING"
+                                                    "boosterSlotStatus": "lobby.boosterSlotStatus"
+                                                    "boostersButtonIsVisible": "not account.tutorialData.isTutorialActive"
+                                                    "tankIsAccept": "when isNull(session.playerTanks.currentTank) -> false, session.playerTanks.currentTank.lockReason != LOCK_REASON.ON_ARENA"
+                                                    "isSquadReady": "lobby.isSquadReady"
+                                                    "isBadgeVisible": "session.gameModesBadgeSystem.hasGlobalBadge"
+                                                    "isVehicleFitsForGameMode": "not isNull(session.playerTanks.currentTank) and session.playerTanks.currentTank.allowedForGameMode and not session.playerTanks.currentTank.needsTopMastery and not session.playerTanks.currentTank.needsTopModules"
+                                                    "packIsAvailibleForBattle": "lobby.arePacksAvailableForBattle"
+                                                    "isRepair": "when isNull(session.playerTanks.currentTank) -> false, session.playerTanks.currentTank.repairCost > 0 -> true, false"
+                                                    "squadTeamMateIsJoined": "when isNull(account.prebattleModel.squadTeamMateInfo) -> false, true"
+                                                    "squadTeamMateReady": "when isNull(account.prebattleModel.squadTeamMateInfo) -> false, account.prebattleModel.squadTeamMateInfo.isReady"
+                                                    "isReadyToBattle": "when isNull(account.prebattleModel.accountInfo) -> false, account.prebattleModel.accountInfo.isReady"
+                                                    "isTournamentType": "isTournamentPrebattle"
+                                                    "isSquadType": "account.prebattleModel.settings.prebattleType == PrebattleType.SQUAD and not isNull(account.prebattleModel.squadTeamMateInfo)"
+                                                    "isRandomBan": "lobby.punishmentRandomBan"
+                                                    "isJoined": "account.prebattleModel.settings.prebattleType != PrebattleType.UNDEFINED"
+                                                    "isSquadCreator": "session.dbid == account.prebattleModel.settings.squadCreator"
+                                                    "battleType": "session.gameModesAccountModel.mode.battleType"
+                                                    "availabilityStatus": "session.gameModesAccountModel.mode.availabilityStatus == eGameModeAvailability.AVAILABLE"
+                                                    "isBattleTypeButtonVIsible": "account.tutorialSyncData.isBattleTypeButtonVisible"
+                                                eventActions:
+                                                - ["DEV_LOGOUT", "DEV_LOGOUT", ""]
+                                                - ["ON_DEV_BUTTON", "ON_DEV_BUTTON", ""]
+                                                - ["ON_BOOSTERS", "ON_BOOSTERS", ""]
+                                                - ["BATTLE_BUTTON_PRESSED", "BATTLE_BUTTON_PRESSED", "_event"]
+                                                - ["BATTLE_TYPE_PRESSED", "BATTLE_TYPE_PRESSED", ""]
+                                        bindings:
+                                        - ["classes", "account.prebattleModel.squadTeamMateInfo"]
+                                    -   class: "UIControl"
+                                        name: "XpFactorWrapper"
+                                        input: false
+                                        components:
+                                            Anchor:
+                                                leftAnchorEnabled: true
+                                                leftAnchor: 16.000000
+                                                topAnchorEnabled: true
+                                            LinearLayout:
+                                                orientation: "TopDown"
+                                                spacing: 8.000000
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfMaxChild"
+                                                verticalPolicy: "PercentOfChildrenSum"
+                                        children:
+                                        -   class: "UIControl"
+                                            name: "XpBonusResetTimer"
+                                            input: false
+                                            components:
+                                                SizePolicy:
+                                                    horizontalPolicy: "PercentOfFirstChild"
+                                                    verticalPolicy: "PercentOfFirstChild"
+                                                UIAttachLayoutMasterComponent:
+                                                    attachId: "XP_TIMER_HINT"
+                                                UIChildComponent0:
+                                                    childType: "kOldExpression"
+                                                    control: "\"~res:/UI/Screens3/Lobby/Hangar/XpBonusResetTimer.yaml\""
+                                                    args:
+                                                        "bgVisible": "false"
+                                                        "dailyXPFactor": "int(session.shopData.dailyXPFactor)"
+                                                        "serverTime": "session.serverTime"
+                                                        "time": "session.shopData.nextResetTimestamp"
+                                                    eventActions:
+                                                    - ["SHOW_HINT_XP_TIMER", "SHOW_HINT_XP_TIMER", ""]
+                                            bindings:
+                                            - ["visible", "not session.shopData.isDailyXPTimesEmpty and not account.tutorialData.isTutorialActive"]
+                                        -   class: "UIControl"
+                                            name: "PingWrapper"
+                                            size: [32.000000, 32.000000]
+                                            input: false
+                                            components:
+                                                LinearLayout:
+                                                    padding: "0; 8"
+                                                    spacing: 4.000000
+                                                SizePolicy:
+                                                    horizontalPolicy: "PercentOfChildrenSum"
+                                                    verticalPolicy: "FixedSize"
+                                                    verticalValue: 24.000000
+                                            bindings:
+                                            - ["visible", "pingIndicatorVisible"]
+                                            children:
+                                            -   class: "UIControl"
+                                                name: "Bg"
+                                                size: [32.000000, 32.000000]
+                                                input: false
+                                                classes: "red-tamarillo-bg"
+                                                components:
+                                                    Background: {}
+                                                    IgnoreLayout: {}
+                                                    SizePolicy:
+                                                        horizontalPolicy: "PercentOfParent"
+                                                        verticalPolicy: "PercentOfParent"
+                                                    StyleSheet:
+                                                        styles: "~res:/UI/Screens3/Color.style.yaml"
+                                            -   class: "UIControl"
+                                                name: "Icon"
+                                                size: [32.000000, 32.000000]
+                                                input: false
+                                                classes: "white-wild-sand-bg"
+                                                components:
+                                                    Background:
+                                                        drawType: "DRAW_ALIGNED"
+                                                        sprite: "~res:/Gfx/Lobby/icons/icon_attention_s"
+                                                    SizePolicy:
+                                                        horizontalPolicy: "FixedSize"
+                                                        horizontalValue: 24.000000
+                                                        verticalPolicy: "FixedSize"
+                                                        verticalValue: 24.000000
+                                                    StyleSheet:
+                                                        styles: "~res:/UI/Screens3/Color.style.yaml"
+                                            -   class: "UIControl"
+                                                name: "Label"
+                                                size: [32.000000, 32.000000]
+                                                input: false
+                                                classes: "t-caps bold white-wild-sand-text"
+                                                components:
+                                                    UITextComponent:
+                                                        text: "hangar/Indicator/UnstableCompound"
+                                                        perPixelAccuracyType: "PER_PIXEL_ACCURACY_ENABLED"
+                                                    Anchor:
+                                                        vCenterAnchorEnabled: true
+                                                    SizePolicy:
+                                                        horizontalPolicy: "PercentOfContent"
+                                                        verticalPolicy: "PercentOfContent"
+                                                    StyleSheet:
+                                                        styles: "~res:/UI/Screens3/Font.style.yaml"
+                            -   class: "UIControl"
+                                name: "Spacer"
+                                size: [32.000000, 32.000000]
+                                input: false
+                                components:
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "FixedSize"
+                                        verticalValue: 8.000000
+                            -   class: "UIControl"
+                                name: "CenterPart"
+                                position: [0.000000, 88.000000]
+                                input: false
+                                components:
+                                    LinearLayout:
+                                        orientation: "LeftToRight"
+                                        padding: "16; 0"
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfParent"
+                                children:
+                                -   class: "UIControl"
+                                    name: "Left"
+                                    size: [32.000000, 32.000000]
+                                    visible: true
+                                    input: false
+                                    components:
+                                        LinearLayout:
+                                            orientation: "TopDown"
+                                            spacing: 16.000000
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfParent"
+                                    children:
+                                    -   prototype: "TournamentButton/TournamentButton"
+                                        name: "TournamentButton"
+                                        components:
+                                            UIDataParamsComponent:
+                                                args:
+                                                    "model": "tournamentButton"
+                                                    "visible": "isTournamentParticipant and not trainingVisible and not isSquadFormed"
+                                                    "prebattleSettings": "account.prebattleModel.settings"
+                                                    "serverTime": "session.serverTime"
+                                                eventActions:
+                                                - ["ON_TOURN_BTN_CLICKED", "ON_TOURN_BTN_CLICKED", ""]
+                                    -   class: "UIControl"
+                                        name: "StoryButtonsHolder"
+                                        input: false
+                                        components:
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfFirstChild"
+                                                verticalPolicy: "PercentOfFirstChild"
+                                            UIChildComponent0:
+                                                childType: "kOldExpression"
+                                                control: "storiesPanelPackage"
+                                                args:
+                                                    "serverTime": "session.serverTime"
+                                                    "storyFragment": "storyFragment"
+                                                eventActions:
+                                                - ["SHOW_INFO", "SHOW_INFO", "_event.storyName"]
+                                                - ["SHOW_PROGRESS", "SHOW_PROGRESS", "_event.storyName"]
+                                                - ["STORY_BOX_PRESSED", "STORY_BOX_PRESSED", "_event.storyName"]
+                                                - ["STORY_BUTTON_PRESSED", "STORY_BUTTON_PRESSED", "_event.storyName"]
+                                        bindings:
+                                        - ["visible", "not account.tutorialData.isTutorialActive"]
+                                    -   class: "UIControl"
+                                        name: "BattlePassButton"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        components:
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfChildrenSum"
+                                                verticalPolicy: "PercentOfChildrenSum"
+                                            UIChildComponent0:
+                                                condition: "app.sDlc.isGeneralPackLoaded and not account.tutorialData.isTutorialActive"
+                                                prototypePath: "~res:/UI/Screens3/Lobby/Hangar/BattlePassBoxWidget.yaml"
+                                                args:
+                                                    "battlePass": "battlePass"
+                                                    "serverTime": "session.serverTime"
+                                                eventActions:
+                                                - ["ON_BATTLEPASS_BTN_CLICKED", "ON_BATTLEPASS_BTN_CLICKED", ""]
+                                            StyleSheet:
+                                                styles: "~res:/UI/Screens3/Color.style.yaml"
+                                        bindings:
+                                        - ["visible", "not account.tutorialData.isTutorialActive and app.sDlc.isGeneralPackLoaded"]
+                                -   class: "UIControl"
+                                    name: "Center"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    components:
+                                        LinearLayout:
+                                            orientation: "TopDown"
+                                            spacing: 8.000000
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfMaxChild"
+                                            verticalPolicy: "PercentOfParent"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "GameModeAbilities"
+                                        size: [32.000000, 32.000000]
+                                        input: true
+                                        components:
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfMaxChild"
+                                                verticalPolicy: "PercentOfMaxChild"
+                                            UIChildComponent0:
+                                                childType: "kOldExpression"
+                                                control: "when tankAbilitiesVisible -> \"~res:/UI/Screens3/Lobby/Hangar/GameModeAbilities.yaml\", \"\""
+                                                args:
+                                                    "abilities": "session.playerTanks.currentTank.abilities[session.gameModesAccountModel.mode.gameModeOptions.code].abilities"
+                                                    "masterId": "\"CHOOSE_BATTLE_TYPE\""
+                                                eventActions:
+                                                - ["ON_ABILITIES", "ON_ABILITIES", ""]
+                                    -   class: "UIControl"
+                                        name: "GameModeAvailabilityHolder"
+                                        input: false
+                                        components:
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfMaxChild"
+                                                verticalPolicy: "PercentOfMaxChild"
+                                            UIChildComponent0:
+                                                childType: "kOldExpression"
+                                                control: "when app.sDlc.isGeneralPackLoaded -> \"~res:/UI/Screens3/Lobby/Hangar/HangarControlGroups/GameModeAvailabilityGroup.yaml\", \"\""
+                                                args:
+                                                    "isTraining": "account.prebattleModel.settings.prebattleType == PrebattleType.TRAINING"
+                                                    "isSeasonMismatch": "session.gameModesAccountModel.mode.availabilityStatus == eGameModeAvailability.SEASON_MISMATCH"
+                                                    "isVehicleLevelMismatch": "session.gameModesAccountModel.mode.availabilityStatus == eGameModeAvailability.VEHICLE_LEVEL_MISMATCH"
+                                                    "availabilityMessage": "session.gameModesAccountModel.mode.availabilityMessage"
+                                    -   class: "UIControl"
+                                        name: "DLCDownloadErrorHolder"
+                                        input: false
+                                        components:
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfChildrenSum"
+                                                verticalPolicy: "PercentOfMaxChild"
+                                            UIChildAnimatedSwitchingComponent:
+                                                switchPolicy: "kAfterRemovingAnimation"
+                                                keepUpdateBindings: false
+                                            UIChildComponent0:
+                                                childType: "kOldExpression"
+                                                control: "when DLCDownloadErrorVisible -> \"~res:/UI/Screens3/Lobby/SmartDLC/DLCDownloadError.yaml\", \"\""
+                                                args:
+                                                    "errorDescription": "app.sDlc.errorMessage"
+                                                    "visible": "true"
+                                                eventActions:
+                                                - ["SHOW_SMART_DLC_SCREEN", "SHOW_SMART_DLC_SCREEN", ""]
+                                -   class: "UIControl"
+                                    name: "Right"
+                                    input: false
+                                    components:
+                                        LinearLayout:
+                                            orientation: "TopDown"
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfParent"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "TopHolder"
+                                        input: false
+                                        components:
+                                            LinearLayout:
+                                                orientation: "TopDown"
+                                                spacing: 16.000000
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfChildrenSum"
+                                        children:
+                                        -   class: "UIControl"
+                                            name: "SpacerForEventButtons"
+                                            input: false
+                                            components:
+                                                SizePolicy:
+                                                    horizontalPolicy: "PercentOfParent"
+                                                    verticalPolicy: "FixedSize"
+                                                    verticalValue: 24.000000
+                                        -   class: "UIControl"
+                                            name: "LimitedTimeOffers"
+                                            input: false
+                                            components:
+                                                Anchor:
+                                                    rightAnchorEnabled: true
+                                                SizePolicy:
+                                                    horizontalPolicy: "PercentOfMaxChild"
+                                                    verticalPolicy: "PercentOfMaxChild"
+                                                UIChildComponent0:
+                                                    childType: "kPrototype"
+                                                    condition: "showOffers"
+                                                    prototypePath: "~res:/UI/Screens3/Lobby/Hangar/Offers/PRMP/LimitedTimeOffersContainer.yaml"
+                                                    args:
+                                                        "ltos": "lobby.prmpOffersData.placements[ePrmpOfferPlacement.Hangar].offers"
+                                                        "serverTime": "session.serverTime"
+                                                    eventActions:
+                                                    - ["PIGGY_BANK_STAGE_PROGRESS", "PIGGY_BANK_STAGE_PROGRESS", "_event.stuffDescr"]
+                                                    - ["PIGGY_BANK_SAVE_PROGRESS", "PIGGY_BANK_SAVE_PROGRESS", "_event.stuffDescr"]
+                                                    - ["ON_OFFER_CLICKED", "SHOW_LTO", "_event"]
+                                            bindings:
+                                            - ["visible", "showOffers"]
+                                        -   class: "UIControl"
+                                            name: "Group"
+                                            input: false
+                                            components:
+                                                Anchor:
+                                                    rightAnchorEnabled: true
+                                                LinearLayout:
+                                                    orientation: "LeftToRight"
+                                                    spacing: 8.000000
+                                                SizePolicy:
+                                                    horizontalPolicy: "PercentOfChildrenSum"
+                                                    verticalPolicy: "PercentOfMaxChild"
+                                            children:
+                                            -   class: "UIControl"
+                                                name: "CHINA_SPRING2020"
+                                                input: false
+                                                components:
+                                                    Anchor:
+                                                        vCenterAnchorEnabled: true
+                                                    SizePolicy:
+                                                        horizontalPolicy: "PercentOfFirstChild"
+                                                        verticalPolicy: "PercentOfFirstChild"
+                                                    UIChildComponent0:
+                                                        condition: "storyFragment.buttons.Contains(\"CHINA_SPRING2020\") and app.sDlc.isGeneralPackLoaded and not account.tutorialData.isTutorialActive"
+                                                        prototypePath: "~res:/UI/Screens3/Lobby/Story/CHINA_SPRING2020/Button.yaml"
+                                                        args:
+                                                            "story": "storyFragment.buttons[\"CHINA_SPRING2020\"].story"
+                                                            "serverTime": "session.serverTime"
+                                                            "isBadgeVisible": "storyFragment.buttons[\"CHINA_SPRING2020\"].isReady"
+                                                        eventActions:
+                                                        - ["STORY_BUTTON_PRESSED", "STORY_BUTTON_PRESSED", "_event.storyName"]
+                                                bindings:
+                                                - ["visible", "storyFragment.buttons.Contains(\"CHINA_SPRING2020\") and app.sDlc.isGeneralPackLoaded and not account.tutorialData.isTutorialActive"]
+                                            -   class: "UIControl"
+                                                name: "Advertising"
+                                                input: false
+                                                components:
+                                                    Anchor:
+                                                        vCenterAnchorEnabled: true
+                                                    SizePolicy:
+                                                        horizontalPolicy: "PercentOfMaxChild"
+                                                        verticalPolicy: "PercentOfMaxChild"
+                                                    UIChildComponent0:
+                                                        childType: "kPrototype"
+                                                        prototypePath: "~res:/UI/Screens3/Lobby/Hangar/HangarAdvertisingButton.yaml"
+                                                        args:
+                                                            "showHint": "not app.requestedAd"
+                                                        eventActions:
+                                                        - ["ON_CLICK_BUTTON", "PLAY_ADVERTISING_VIDEO", ""]
+                                                bindings:
+                                                - ["visible", "advertisingAvailable"]
+                                    -   class: "UIControl"
+                                        name: "Spacer"
+                                        input: false
+                                        components:
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfParent"
+                                    -   class: "UIControl"
+                                        name: "BottomHolder"
+                                        components:
+                                            Anchor:
+                                                rightAnchorEnabled: true
+                                            LinearLayout:
+                                                spacing: 8.000000
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfChildrenSum"
+                                                verticalPolicy: "PercentOfMaxChild"
+                                        children:
+                                        -   class: "UIControl"
+                                            name: "DLCDownloadButtonHolder"
+                                            input: false
+                                            components:
+                                                SizePolicy:
+                                                    horizontalPolicy: "PercentOfChildrenSum"
+                                                    verticalPolicy: "PercentOfMaxChild"
+                                                UIChildAnimatedSwitchingComponent:
+                                                    switchPolicy: "kAfterRemovingAnimation"
+                                                    keepUpdateBindings: true
+                                                UIChildComponent0:
+                                                    childType: "kOldExpression"
+                                                    control: "when DLCDownloadButtonVisible -> \"~res:/UI/Screens3/Lobby/SmartDLC/DLCDownloadProgress.yaml\", \"\""
+                                                    args:
+                                                        "model": "app.sDlc"
+                                                    eventActions:
+                                                    - ["SHOW_SMART_DLC_SCREEN", "SHOW_SMART_DLC_SCREEN", ""]
+                                        -   prototype: "IconButtonWithBadge/IconButton"
+                                            name: "ChatButton"
+                                            components:
+                                                UIAttachLayoutMasterComponent:
+                                                    attachId: "CHAT"
+                                                UIDataParamsComponent:
+                                                    args:
+                                                        "locked": "not app.sDlc.isGeneralPackLoaded"
+                                                        "isBgVisible": "true"
+                                                        "visible": "account.tutorialSyncData.isChatAvailable"
+                                                        "image": "\"~res:/Gfx/Lobby/icons/icon_chat_n.psd\""
+                                                        "type": "eButtonType.OPTIONAL_DARK"
+                                                        "sound": "eButtonSound.OK"
+                                                        "enabled": "true"
+                                                        "badgeType": "eBadgeType.DIGIT"
+                                                        "badgeValue": "when app.sDlc.isGeneralPackLoaded -> badge(session.chatInfo.friendRequestsCount + session.chatInfo.privateMessagesCount + messagesCountFromClanCanal + session.prebattleInvites.activeTrainingRoomInvitesNumber), \"\""
+                                                    eventActions:
+                                                    - ["ON_CLICK_BUTTON", "CHAT_PRESSED", ""]
+                                -   class: "UIControl"
+                                    name: "SafeAreaSpacer"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    components:
+                                        SizePolicy:
+                                            horizontalPolicy: "Formula"
+                                            horizontalFormula: "max(safeAreaInsets.right, 8)"
+                                -   class: "UIControl"
+                                    name: "SquadDialogHolder"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    components:
+                                        Anchor:
+                                            hCenterAnchorEnabled: true
+                                            vCenterAnchorEnabled: true
+                                        IgnoreLayout: {}
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfFirstChild"
+                                            verticalPolicy: "PercentOfFirstChild"
+                            -   class: "UIControl"
+                                name: "Spacer"
+                                size: [32.000000, 32.000000]
+                                input: false
+                                components:
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "FixedSize"
+                                        verticalValue: 8.000000
+                                bindings:
+                                - ["visible", "session.playerTanks.tanks.Empty()"]
+                            -   prototype: "InventoryPanel/Inventory"
+                                name: "Inventory"
+                                components:
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                    UIDataParamsComponent:
+                                        args:
+                                            "tankPanelVisible": "showTanksPanel"
+                                            "optionalDevicesAreVisible": "account.tutorialData.completedLessons.Contains(eTutorialLesson.kBattle4Reward)"
+                                            "isGeneralPackLoaded": "app.sDlc.isGeneralPackLoaded"
+                                            "modulesModel": "null"
+                                            "modulesLayer": "when currentHighlightControl == eTutorialHighlights.kModuleHangar or currentHighlightControl == eTutorialHighlights.kModuleGunUpdateHangar -> 1, 0"
+                                            "ammoLayer": "when currentHighlightControl == eTutorialHighlights.kTankAmmunition -> 1, 0"
+                                            "ammoMasterId": "\"AMMO_HANGAR\""
+                                            "modulesMasterId": "\"MODULES_HANGAR\""
+                                            "visible": "not session.playerTanks.tanks.Empty()"
+                                            "camoIsVisible": "account.tutorialSyncData.isCustomizationAvailable"
+                                            "tank": "session.playerTanks.currentTank"
+                                            "selectedTab": "InventoryTabType.UNDEFINED"
+                                            "ammoIsVisible": "account.tutorialData.completedLessons.Contains(eTutorialLesson.kBattle4Reward)"
+                                            "consumablesIsVisible": "account.tutorialData.completedLessons.Contains(eTutorialLesson.kBattle2Reward)"
+                                            "provisionsIsVisible": "not isNull(session.playerTanks.currentTank) and session.playerTanks.currentTank.info.provisionSlots > 0 and not account.tutorialData.isTutorialActive"
+                                            "crewFragmentVisible": "lobby.crewFragmentVisible"
+                                            "panel": "inventoryPanel"
+                                            "initializationAnimation": "eInventoryPanelAnimation.kNoAnimation"
+                        -   class: "UIControl"
+                            name: "OfferedTankControls"
+                            input: false
+                            components:
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "PercentOfParent"
+                                UIChildComponent0:
+                                    childType: "kOldExpression"
+                                    control: "when offeredTankSelected -> \"~res:/UI/Screens3/Lobby/Hangar/Offers/OfferedTankInfo.yaml\", \"\""
+                                    args:
+                                        "offer": "tanksPanel.offeredTank.tank"
+                                        "serverTime": "session.serverTime"
+                                    eventActions:
+                                    - ["EXECUTE_OFFER_ACTION", "EXECUTE_OFFER_ACTION", ""]
+                                    - ["SHOW_OFFERED_TANK_MODULES", "SHOW_OFFERED_TANK_MODULES", ""]
+        -   class: "UIControl"
+            name: "FadedBlur"
+            components:
+                UIOpacityComponent:
+                    opacity: 0.000000
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                UIInputEventComponent:
+                    onTouchUpInside: "SwitchFilterAnimation"
+                    onTouchUpInsideData: "false"
+                StyleSheet: {}
+            bindings:
+            - ["visible", "enableBlur"]
+            - ["input", "captureInput"]
+            children:
+            -   prototype: "OverlayBlur/BlurAndFade"
+                name: "BlurAndFade"
+        -   class: "UIControl"
+            name: "TanksPanelHolder"
+            input: false
+            classes: "notch-tightly-bottom-inset"
+            components:
+                Anchor:
+                    leftAnchorEnabled: true
+                    leftAnchor: 88.000000
+                    rightAnchorEnabled: true
+                    bottomAnchorEnabled: true
+                IgnoreLayout: {}
+                UIAnchorSafeAreaComponent:
+                    leftSafeInset: "INSET"
+                    leftInsetCorrection: -16.000000
+                UIChildComponent0:
+                    condition: "showTanksPanel"
+                    prototypePath: "~res:/UI/Screens3/Lobby/Hangar/TanksPanel/TanksPanel.yaml"
+                    args:
+                        "isGeneralPackLoaded": "app.sDlc.isGeneralPackLoaded"
+                        "account": "account"
+                        "layer": "when account.tutorialData.isTutorialActive and account.tutorialData.currentHighlightControl == eTutorialHighlights.kTree -> 1, 0"
+                        "filter": "tanksPanel.filter"
+                        "tanks": "tanksPanel.tanks"
+                        "resources": "lobby.battleResources"
+                        "offeredTank": "tanksPanel.offeredTank"
+                        "selectedVehicle": "tanksPanel.selectedVehicle"
+                        "levelSharedBonus": "session.stats.levelSharedDailyBonus"
+                        "birthdayXpFactor": "session.shopData.birthdayXPFactor"
+                        "birthdayCreditsFactor": "session.shopData.birthdayCreditsFactor"
+                        "dailyXpFactor": "session.shopData.dailyXPFactor"
+                        "withOpenedFilter": "false"
+                        "serverTime": "session.serverTime"
+                        "prebattle": "account.prebattleModel"
+                        "freeSlots": "session.stats.slots - session.playerTanks.tanks.Size()"
+                        "bestSlotsDiscount": "session.shopData.bestSlotsDiscount"
+                        "bestCertificateFactor": "session.playerTanks.bestCertificateFactor"
+                    eventActions:
+                    - ["SHOW_TANKS_TREE", "SHOW_TANKS_TREE", ""]
+                    - ["RESET_FILTER", "RESET_FILTER", ""]
+                    - ["SWITCH_LEVEL_FILTER", "SWITCH_LEVEL_FILTER", "_event"]
+                    - ["SWITCH_CLASS_FILTER", "SWITCH_CLASS_FILTER", "_event"]
+                    - ["SWITCH_NATION_FILTER", "SWITCH_NATION_FILTER", "_event"]
+                    - ["SWITCH_FAVORITE_FILTER", "SWITCH_FAVORITE_FILTER", ""]
+                    - ["SWITCH_DAILY_BONUS_FILTER", "SWITCH_DAILY_BONUS_FILTER", ""]
+                    - ["SWITCH_BIRTHDAY_FILTER", "SWITCH_BIRTHDAY_FILTER", ""]
+                    - ["SWITCH_CERIFICATE_BONUS_FILTER", "SWITCH_CERIFICATE_BONUS_FILTER", ""]
+                    - ["SWITCH_NON_ELITE_FILTER", "SWITCH_NON_ELITE_FILTER", ""]
+                    - ["SWITCH_ELITE_FILTER", "SWITCH_ELITE_FILTER", ""]
+                    - ["SWITCH_RESEARCHABLE_FILTER", "SWITCH_RESEARCHABLE_FILTER", ""]
+                    - ["SWITCH_PREMIUM_FILTER", "SWITCH_PREMIUM_FILTER", ""]
+                    - ["SWITCH_COLLECTIBLE_FILTER", "SWITCH_COLLECTIBLE_FILTER", ""]
+                    - ["SWITCH_TANK_FAVORITE", "SWITCH_TANK_FAVORITE", "_event"]
+                    - ["SELECT_PLAYER_TANK", "SELECT_PLAYER_TANK", "_event"]
+                    - ["SELECT_OFFERED_TANK", "SELECT_OFFERED_TANK", "_event"]
+                    - ["BUY_SLOTS", "BUY_SLOTS", ""]
+                    - ["SWITCH_FILTER", "SwitchFilterAnimation", "_event.show"]
+                    - ["FILTER_ANIMATION_FINISHED", "FILTER_ANIMATION_FINISHED", ""]
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/SafeArea.style.yaml"
+        -   class: "UIControl"
+            name: "SideBar"
+            components:
+                Anchor:
+                    leftAnchorEnabled: true
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfMaxChild"
+                UIChildComponent0:
+                    childType: "kOldExpression"
+                    control: "\"~res:/UI/Screens3/Lobby/Hangar/Sidebar/SideBarHangar.yaml\""
+                    args:
+                        "lobby": "lobby"
+                        "squadSubMenuShowExternal": "squadSubMenuShow"
+                        "communitySubMenuShowExternal": "communitySubMenuShow"
+                        "battleRating": "battleRating"
+                        "avatar": "lobby.avatar"
+                        "account": "account"
+                        "menu": "menu"
+                        "app": "app"
+                        "session": "session"
+                        "squadMembers": "squadMembers"
+                    eventActions:
+                    - ["ON_AVATAR_CLICKED", "ON_AVATAR_CLICKED", "_event"]
+                    - ["SHOW_TANKS_TREE", "SHOW_TANKS_TREE", ""]
+                    - ["ON_SQUAD_CLICKED", "ON_SQUAD_CLICKED", "_event"]
+                    - ["SQUAD_SEARCH", "SQUAD_SEARCH", ""]
+                    - ["SETTINGS_PRESSED", "SETTINGS_PRESSED", ""]
+                    - ["COMMUNITY_SELECT", "COMMUNITY_SELECT", "_event"]
+                    - ["AVATAR_PRESSED", "SHOW_ACHIEVEMENTS", ""]
+                    - ["NEWS_PRESSED", "NEWS_PRESSED", ""]
+                    - ["SQUAD_INVITE_SHOW", "SQUAD_INVITE_SHOW", "_event"]
+                    - ["CLANS_PRESSED", "CLANS_PRESSED", ""]
+                    - ["TOURNAMENTS_PRESSED", "TOURNAMENTS_PRESSED", ""]
+                    - ["LEADERBOARD_PRESSED", "LEADERBOARD_PRESSED", ""]
+                    - ["COMMUNITY_SHOW", "COMMUNITY_SHOW", ""]
+                    - ["CHAT_PRESSED", "CHAT_PRESSED", ""]
+                    - ["TASK_JOURNAL_PRESSED", "TASK_JOURNAL_PRESSED", ""]
+                    - ["SKIP_TUTORIAL_PRESSED", "SKIP_TUTORIAL_PRESSED", ""]
+                    - ["STORAGE_PRESSED", "STORAGE_PRESSED", ""]
+                    - ["TRAINING_PRESSED", "TRAINING_PRESSED", ""]
+        -   class: "UIControl"
+            name: "UITestPage"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                UIChildComponent0:
+                    childType: "kOldExpression"
+                    control: "when showTestPage and app.constants.developerUI -> \"~res:/UI/Screens3/Common/UITestPage.yaml\", \"\""

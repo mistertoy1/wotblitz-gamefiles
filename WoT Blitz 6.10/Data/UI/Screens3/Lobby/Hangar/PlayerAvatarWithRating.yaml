@@ -1,0 +1,88 @@
+Header:
+    version: "82"
+Prototypes:
+-   class: "UIControl"
+    name: "AvatarWithRating"
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+            spacing: -12.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIAttachLayoutMasterComponent: {}
+        UIDataParamsComponent:
+            params:
+            - ["RatingBattleModel", "battleRating", "null", "{ }"]
+            - ["bool", "isRatingAvailiable", "false", "false"]
+            - ["PlayerAvatar", "avatar", "null", "{ }"]
+            - ["eAvatarSize", "size", "eAvatarSize.BIG", "eAvatarSize.BIG"]
+            - ["bool", "isRatingMode", "true", "true"]
+            - ["bool", "visible", "true", "true"]
+            - ["bool", "enabled", "true", "true"]
+            - ["string", "badge", "\"\"", "\"\""]
+            events:
+            - "ON_PRESSED"
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "avatarIsClickable", "false"]
+            - ["string", "attachId", "\"AVATAR\""]
+            - ["bool", "isRatingVisible", "isRatingAvailiable and (isRatingMode or battleRating.state == eBattleRatingState.HAS_RATING)"]
+        UIDataOnEventComponent0:
+            eventName: "kPlayerAvatarWithRatingInit"
+            modelFieldExpression: "avatarIsClickable"
+            dataExpression: "true"
+    bindings:
+    - ["visible", "visible"]
+    - ["UIAttachLayoutMasterComponent.attachId", "attachId"]
+    children:
+    -   class: "UIControl"
+        name: "Avatar"
+        input: false
+        components:
+            UIAnimationComponent:
+                animations: "_INIT,~res:/UI/Screens3/Lobby/Hangar/PlayerAvatarWithRatingInit.animation"
+            LinearLayout:
+                dynamicPadding: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent:
+                control: "\"~res:/UI/Screens3/Lobby/Common/Resource/PlayerAvatar.yaml\""
+                args:
+                    "interactive": "avatarIsClickable"
+                    "visible": "visible"
+                    "avatar": "avatar"
+                    "size": "eAvatarSize.BIG"
+                    "enabled": "enabled"
+                    "badge": "badge"
+                eventActions:
+                - ["ON_PRESSED", "ON_PRESSED", ""]
+    -   class: "UIControl"
+        name: "BattleRating"
+        position: [0.000000, 76.000000]
+        input: true
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfChildrenSum"
+            UIChildComponent:
+                control: "\"~res:/UI/Screens3/Lobby/Common/BattleRating.yaml\""
+                args:
+                    "isRatingMode": "isRatingMode"
+                    "battleRating": "battleRating"
+                    "enabled": "enabled"
+        bindings:
+        - ["visible", "isRatingVisible"]
+    -   class: "UIControl"
+        name: "Spacer"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 28.000000
+        bindings:
+        - ["visible", "not isRatingVisible"]

@@ -1,0 +1,28 @@
+Header:
+    version: "80"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Hover.style.yaml"
+- "~res:/UI/Screens3/Common/Touch.style.yaml"
+StyleSheets:
+-   selectors:
+    - ".tournament-button * .tournament-name"
+    properties:
+        text-multiline: "MULTILINE_ENABLED"
+-   selectors:
+    - ".tournament-button.before-tournament-start-stage * .tournament-name"
+    properties:
+        text-multiline: "MULTILINE_DISABLED"
+-   selectors:
+    - ".tournament-button * .content-area"
+    properties:
+        opacity-opacity:
+            value: 1.000000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selectors:
+    - ".tournament-button:pressed_inside * .content-area"
+    properties:
+        opacity-opacity:
+            value: 0.700000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"

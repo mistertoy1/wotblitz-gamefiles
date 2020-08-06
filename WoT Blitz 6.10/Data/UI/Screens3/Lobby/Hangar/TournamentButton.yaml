@@ -1,0 +1,552 @@
+Header:
+    version: "85"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Timer.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "TournamentButton"
+    size: [32.000000, 32.000000]
+    input: true
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfMaxChild"
+        UIInputEventComponent:
+            onTouchUpInside: "ON_TOURN_BTN_CLICKED"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "squadFormed", "false", "false"]
+            - ["TournamentButtonViewModel", "model", "null", "{ titleText = \"Турнир Восхождения Twister #1 (билетный)\"; stageTitle = \"Отборочные\"; round = 6; roundDenominator = 64; battlesStartTime = 3L; system = eTournamentSystem.kDoubleElimination; isQuick = false; }"]
+            - ["bool", "visible", "true", "true"]
+            - ["PrebattleSettingsDataModel", "prebattleSettings", "null", "{ prebattleType = PrebattleType.QUICK_TOURNAMENT; }"]
+            - ["int64", "serverTime", "0L", "0L"]
+            events:
+            - "ON_TOURN_BTN_CLICKED"
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "isSettingsReady", "not isNull(prebattleSettings)"]
+            - ["PrebattleType", "prebattleType", "when isSettingsReady -> prebattleSettings.prebattleType, PrebattleType.UNDEFINED"]
+            - ["bool", "isTournamentPrebattle", "prebattleType == PrebattleType.QUICK_TOURNAMENT or prebattleType == PrebattleType.TOURNAMENT"]
+            - ["int64", "pauseEndTime", "when isSettingsReady -> prebattleSettings.extraDataQuick.pauseStartTime + prebattleSettings.extraData.pauseDuration, 0L"]
+            - ["eQuickPrebattleState", "prebattleQuickState", "when isSettingsReady -> prebattleSettings.extraDataQuick.state, eQuickPrebattleState.WAITING_FOR_TEAM"]
+            - ["string", "quickTitle", "when isSettingsReady -> when prebattleQuickState == eQuickPrebattleState.WAITING_FOR_TEAM -> localize(\"tournaments/TournamentButton/Status/GatherTeam\"), when prebattleQuickState == eQuickPrebattleState.MATCHING -> localize(\"tournaments/TournamentButton/Status/AwaitingEnemy\"), when prebattleQuickState == eQuickPrebattleState.MATCHED -> localize(\"tournaments/TournamentButton/Status/BattleStartsIn\"), when prebattleQuickState == eQuickPrebattleState.PAUSED -> localize(\"tournaments/TournamentButton/Status/SearchPause\"), \"\", \"\""]
+            - ["bool", "isQuick", "when isSettingsReady -> prebattleType == PrebattleType.QUICK_TOURNAMENT, model.isQuick"]
+            - ["int64", "quickTimeOfEvent", "when (isQuick == true) and not isNull(prebattleSettings) -> when prebattleSettings.extraDataQuick.state == eQuickPrebattleState.MATCHED -> prebattleSettings.startTime, when prebattleSettings.extraDataQuick.state == eQuickPrebattleState.PAUSED -> pauseEndTime, 0L, 0L"]
+            - ["int64", "timeOfEvent", "when isTournamentPrebattle -> when isQuick == true -> quickTimeOfEvent, prebattleSettings.startTime, model.battlesStartTime"]
+            - ["bool", "isTimerVisible", "(timeOfEvent - serverTime) >= 1L"]
+            - ["bool", "isTimerCaptionVisible", "isTimerVisible or isTournamentPrebattle"]
+            - ["bool", "isJoined", "when isSettingsReady -> prebattleSettings.prebattleType != PrebattleType.UNDEFINED, false"]
+            - ["bool", "isSquadInvitation", "when isJoined -> not squadFormed and prebattleSettings.prebattleType == PrebattleType.SQUAD, false"]
+            - ["string", "timerCaptionText", "when isQuick == true and isJoined and not isSquadInvitation -> quickTitle, \"\""]
+            - ["string", "stageText", "localize(\"%(stage)\", { stage = model.stageTitle; })"]
+            - ["string", "groupText", "localize(\"tournaments/TournamentButton/StageTour/Group\", { name = model.group; })"]
+            - ["map<int,string>", "seRoundNames", "{ 1 = localize(\"tournaments/TournamentButton/StageTour/Final\"); 2 = localize(\"tournaments/TournamentButton/StageTour/Semifinal\"); 3 = localize(\"tournaments/TournamentButton/StageTour/Quarterfinal\"); 4 = localize(\"tournaments/TournamentButton/StageTour/LastSixteen\"); 5 = localize(\"tournaments/TournamentButton/StageTour/Last32\"); -1 = localize(\"tournaments/TournamentButton/StageTour/ThirdPlace\"); }"]
+            - ["map<int,string>", "deRoundNames", "{ 0 = localize(\"tournaments/TournamentButton/StageTour/GrandFinal\"); 1 = localize(\"tournaments/TournamentButton/StageTour/Final\"); 2 = localize(\"tournaments/TournamentButton/StageTour/Semifinal\"); 3 = localize(\"tournaments/TournamentButton/StageTour/Quarterfinal\"); 4 = localize(\"tournaments/TournamentButton/StageTour/LastSixteen\"); 5 = localize(\"tournaments/TournamentButton/StageTour/Last32\"); }"]
+            - ["string", "seRoundKey", "when seRoundNames.Contains(model.round) -> seRoundNames[model.round], format(\"1/%(denominator)\", { denominator = model.roundDenominator; })"]
+            - ["string", "deRoundKey", "when deRoundNames.Contains(abs(model.round)) -> deRoundNames[abs(model.round)], format(\"1/%(denominator)\", { denominator = model.roundDenominator; })"]
+            - ["string", "roundTitleText", "when model.system == eTournamentSystem.kSingleElimination -> localize(seRoundKey), when model.system == eTournamentSystem.kDoubleElimination -> localize(deRoundKey), when model.system == eTournamentSystem.kRoundRobin -> localize(\"#%(round)\", { round = model.round; }), \"\""]
+            - ["string", "roundText", "localize(\"%(round)\", { round = roundTitleText; })"]
+            - ["string", "bracketText", "when model.system == eTournamentSystem.kDoubleElimination -> when model.round < 0 -> localize(\"%(round)\", { round = localize(\"tournaments/DoubleElimination/LowerBracket\"); }), localize(\"%(round)\", { round = localize(\"tournaments/DoubleElimination/UpperBracket\"); }), \"\""]
+            - ["bool", "stageGroupRoundVisible", "isTournamentPrebattle and not isQuick"]
+            - ["bool", "isBracketVisible", "stageGroupRoundVisible and model.system == eTournamentSystem.kDoubleElimination"]
+            - ["string", "linkText", "when isTournamentPrebattle -> localize(when isQuick -> \"tournaments/Button/GoToQuickRoom\", \"tournaments/Button/ToTournamentRoom\"), localize(\"tournaments/Button/ToTeam\")"]
+            - ["bool", "isTournamentStarted", "(model.battlesStartTime - serverTime) <= 0L"]
+            - ["string", "buttonStyle", "\"tournament-button button-open-sound \" + (when isTournamentStarted -> \"\", \"before-tournament-start-stage\")"]
+            - ["string", "statusBgStyle", "when isSettingsReady -> when prebattleQuickState == eQuickPrebattleState.WAITING_FOR_TEAM -> \"blue-murzillah-bg\", when prebattleQuickState == eQuickPrebattleState.MATCHING -> \"green-la-palma-bg\", when prebattleQuickState == eQuickPrebattleState.MATCHED -> \"red-tamarillo-bg\", when prebattleQuickState == eQuickPrebattleState.PAUSED -> \"gray-cape-cod-bg\", \"\", \"\""]
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Background.style.yaml;~res:/UI/Screens3/ButtonSound.style.yaml"
+    bindings:
+    - ["visible", "visible"]
+    - ["classes", "buttonStyle"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        position: [106.000000, 86.000000]
+        size: [208.000000, 72.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        classes: "content-area"
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                leftAnchorEnabled: true
+                topAnchorEnabled: true
+            LinearLayout:
+                orientation: "LeftToRight"
+                padding: "12"
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 212.000000
+                verticalPolicy: "PercentOfMaxChild"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/Hangar/TournamentButton.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "Bg"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                ClipContent: {}
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+            children:
+            -   class: "UIControl"
+                name: "Image"
+                position: [0.000000, -62.000000]
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    Background:
+                        sprite: "~res:/Gfx/Lobby/controls/buttons/button_hangar-tournament/button_hangar-tournament_bg"
+                    Anchor:
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfContent"
+            -   class: "UIControl"
+                name: "Dark"
+                size: [32.000000, 32.000000]
+                input: false
+                classes: "black-50-bg"
+                components:
+                    Background: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   class: "UIControl"
+                name: "Hover"
+                size: [32.000000, 32.000000]
+                visible: true
+                input: false
+                classes: "hover white-wild-sand-5-bg"
+                components:
+                    Background: {}
+                    UIOpacityComponent: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Hangar/TournamentButton.style.yaml"
+        -   class: "UIControl"
+            name: "ContentWrapper"
+            size: [228.000000, 116.000000]
+            input: false
+            components:
+                Anchor:
+                    topAnchorEnabled: true
+                LinearLayout:
+                    orientation: "TopDown"
+                    padding: "12"
+                    spacing: 8.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfChildrenSum"
+            children:
+            -   class: "UIControl"
+                name: "Status"
+                position: [0.000000, 24.000000]
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "Formula"
+                        horizontalFormula: "min(parent, lastChild + 8) "
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 20.000000
+                bindings:
+                - ["visible", "isTournamentPrebattle and isQuick"]
+                children:
+                -   class: "UIControl"
+                    name: "Bg"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_STRETCH_BOTH"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_r1"
+                            leftRightStretchCap: 1.000000
+                            topBottomStretchCap: 1.000000
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["classes", "statusBgStyle"]
+                -   class: "UIControl"
+                    name: "Label"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    classes: "t-caps bold white-wild-sand-text"
+                    components:
+                        UITextComponent:
+                            fitting: "FITTING_POINTS"
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            vCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "when parent == 0 -> content, min(parent - 8, content)"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                    bindings:
+                    - ["UITextComponent.text", "timerCaptionText"]
+            -   class: "UIControl"
+                name: "Name"
+                position: [0.000000, 14.000000]
+                input: false
+                classes: "tournament-name t-body bold white-wild-sand-text"
+                components:
+                    UITextComponent:
+                        colorInheritType: "COLOR_IGNORE_PARENT"
+                        fitting: "FITTING_POINTS"
+                        align: ["LEFT", "VCENTER"]
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfContent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Lobby/Hangar/TournamentButton.style.yaml"
+                bindings:
+                - ["UITextComponent.text", "model.titleText"]
+            -   class: "UIControl"
+                name: "Description"
+                position: [0.000000, 44.000000]
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfChildrenSum"
+                    FlowLayout:
+                        hSpacing: 5.000000
+                bindings:
+                - ["visible", "isTournamentPrebattle and not isQuick"]
+                children:
+                -   class: "UIControl"
+                    name: "BracketWrapper"
+                    position: [0.000000, 0.000000]
+                    size: [152.000000, 32.000000]
+                    components:
+                        LinearLayout: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfChildrenSum"
+                            verticalPolicy: "PercentOfMaxChild"
+                    bindings:
+                    - ["visible", "isBracketVisible"]
+                    children:
+                    -   class: "UIControl"
+                        name: "Bracket"
+                        input: false
+                        classes: "t-caption regular white-wild-sand-70-text align-left"
+                        components:
+                            UITextComponent: {}
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfContent"
+                                verticalPolicy: "PercentOfContent"
+                            StyleSheet:
+                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                        bindings:
+                        - ["UITextComponent.text", "bracketText"]
+                    -   class: "UIControl"
+                        name: "Comma"
+                        input: false
+                        classes: "t-caption regular white-wild-sand-70-text"
+                        components:
+                            UITextComponent:
+                                text: ","
+                                colorInheritType: "COLOR_IGNORE_PARENT"
+                                align: ["LEFT", "VCENTER"]
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfContent"
+                                verticalPolicy: "PercentOfContent"
+                            StyleSheet:
+                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                -   class: "UIControl"
+                    name: "StageWrapper"
+                    position: [120.000000, 0.000000]
+                    size: [67.000000, 20.000000]
+                    components:
+                        LinearLayout: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfChildrenSum"
+                            verticalPolicy: "PercentOfMaxChild"
+                    bindings:
+                    - ["visible", "stageGroupRoundVisible"]
+                    children:
+                    -   class: "UIControl"
+                        name: "Stage"
+                        input: false
+                        classes: "t-caption regular white-wild-sand-70-text align-left"
+                        components:
+                            UITextComponent: {}
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfContent"
+                                verticalPolicy: "PercentOfContent"
+                            StyleSheet:
+                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                        bindings:
+                        - ["UITextComponent.text", "stageText"]
+                    -   class: "UIControl"
+                        name: "Comma"
+                        position: [63.000000, 0.000000]
+                        input: false
+                        classes: "t-caption regular white-wild-sand-70-text"
+                        components:
+                            UITextComponent:
+                                text: ","
+                                colorInheritType: "COLOR_IGNORE_PARENT"
+                                align: ["LEFT", "VCENTER"]
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfContent"
+                                verticalPolicy: "PercentOfContent"
+                            StyleSheet:
+                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                -   class: "UIControl"
+                    name: "GroupWrapper"
+                    position: [0.000000, 20.000000]
+                    size: [79.000000, 20.000000]
+                    components:
+                        LinearLayout: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfChildrenSum"
+                            verticalPolicy: "PercentOfParent"
+                    bindings:
+                    - ["visible", "stageGroupRoundVisible"]
+                    children:
+                    -   class: "UIControl"
+                        name: "Group"
+                        input: false
+                        classes: "t-caption regular white-wild-sand-70-text align-left"
+                        components:
+                            UITextComponent: {}
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfContent"
+                                verticalPolicy: "PercentOfContent"
+                            StyleSheet:
+                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                        bindings:
+                        - ["UITextComponent.text", "groupText"]
+                    -   class: "UIControl"
+                        name: "Comma"
+                        position: [75.000000, 0.000000]
+                        input: false
+                        classes: "t-caption regular white-wild-sand-70-text"
+                        components:
+                            UITextComponent:
+                                text: ","
+                                colorInheritType: "COLOR_IGNORE_PARENT"
+                                align: ["LEFT", "VCENTER"]
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfContent"
+                                verticalPolicy: "PercentOfContent"
+                            StyleSheet:
+                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                -   class: "UIControl"
+                    name: "Round"
+                    input: false
+                    classes: "t-caption regular white-wild-sand-70-text align-left"
+                    components:
+                        UITextComponent: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                    bindings:
+                    - ["visible", "stageGroupRoundVisible"]
+                    - ["UITextComponent.text", "roundText"]
+            -   class: "UIControl"
+                name: "Link"
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    LinearLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "Formula"
+                        horizontalFormula: "min(parent, childrenSum)"
+                        verticalPolicy: "PercentOfMaxChild"
+                bindings:
+                - ["visible", "isTournamentStarted"]
+                children:
+                -   class: "UIControl"
+                    name: "Label"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    classes: "t-caps bold blue-curious-blue-text align-left"
+                    components:
+                        UITextComponent:
+                            fitting: "FITTING_POINTS"
+                        Anchor:
+                            vCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "when parent == 0 -> content, min(parentRest, content)"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml"
+                    bindings:
+                    - ["UITextComponent.text", "linkText"]
+                -   class: "UIControl"
+                    name: "Icon"
+                    size: [32.000000, 32.000000]
+                    pivot: [0.500000, 0.500000]
+                    angle: 90.000000
+                    input: false
+                    classes: "blue-curious-blue-bg"
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_PROPORTIONAL"
+                            sprite: "~res:/Gfx/Lobby/icons/icon_chevron_l"
+                        Anchor:
+                            vCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "FixedSize"
+                            horizontalValue: 24.000000
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 24.000000
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "Timer"
+            position: [196.000000, 0.000000]
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                Anchor:
+                    rightAnchorEnabled: true
+                    rightAnchor: -8.000000
+                    topAnchorEnabled: true
+                    topAnchor: -8.000000
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "Formula"
+                    horizontalFormula: "lastChild + 16"
+                    verticalPolicy: "PercentOfFirstChild"
+            bindings:
+            - ["visible", "isTimerVisible"]
+            children:
+            -   class: "UIControl"
+                name: "Bg"
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    LinearLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfMaxChild"
+                children:
+                -   class: "UIControl"
+                    name: "Left"
+                    input: false
+                    classes: "gray-cape-cod-bg"
+                    components:
+                        Background:
+                            drawType: "DRAW_ALIGNED"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_leaf_24_r4_left"
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                -   class: "UIControl"
+                    name: "Center"
+                    input: false
+                    classes: "gray-cape-cod-bg"
+                    components:
+                        Background: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                -   class: "UIControl"
+                    name: "Right"
+                    input: false
+                    classes: "gray-cape-cod-bg"
+                    components:
+                        Background:
+                            drawType: "DRAW_ALIGNED"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_leaf_24_r4_left"
+                            spriteModification: ["FLIP_HORIZONTAL", "FLIP_VERTICAL"]
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   class: "UIControl"
+                name: "Hover"
+                size: [32.000000, 32.000000]
+                input: false
+                classes: "hover"
+                components:
+                    UIOpacityComponent: {}
+                    LinearLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfMaxChild"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Lobby/Hangar/TournamentButton.style.yaml"
+                children:
+                -   class: "UIControl"
+                    name: "Left"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    classes: "white-wild-sand-5-bg"
+                    components:
+                        Background:
+                            drawType: "DRAW_ALIGNED"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_leaf_24_r4_left"
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                -   class: "UIControl"
+                    name: "Center"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    classes: "white-wild-sand-5-bg"
+                    components:
+                        Background: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                -   class: "UIControl"
+                    name: "Right"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    classes: "white-wild-sand-5-bg"
+                    components:
+                        Background:
+                            drawType: "DRAW_ALIGNED"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_leaf_24_r4_left"
+                            spriteModification: ["FLIP_HORIZONTAL", "FLIP_VERTICAL"]
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   prototype: "Timer/Timer"
+                name: "Timer"
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    LinearLayout:
+                        padding: "0"
+                    UIDataParamsComponent:
+                        args:
+                            "visible": "true"
+                            "serverTime": "serverTime"
+                            "time": "timeOfEvent"
+                            "bgVisible": "false"
+                            "iconVisible": "false"
+                            "alertTime": "0L"

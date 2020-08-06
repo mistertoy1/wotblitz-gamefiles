@@ -1,0 +1,35 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Timer.yaml"
+- "~res:/UI/Screens3/Common/PopupMenu.yaml"
+Controls:
+-   class: "UIControl"
+    name: "PunismentActivePopup"
+    size: [272.000000, 136.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["string", "attachId", "\"BATTLE_BUTTON\"", "\"BATTLE_BUTTON\""]
+            - ["int64", "serverTime", "0L", "0L"]
+            - ["int64", "time", "0L", "0L"]
+    children:
+    -   prototype: "PopupMenu/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "timerVisible": "true"
+                    "isAlignLeft": "false"
+                    "title": "\"\""
+                    "text": "localize(\"LOCK_REASON_ACTIVE_PUNISHMENT\")"
+                    "textColor": "\"color=red-red-text\""
+                    "serverTime": "serverTime"
+                    "time": "time"
+                    "slaveAlign": "ePositionAlign.Bottom"
+                    "masterId": "attachId"
+                    "offset": "0"

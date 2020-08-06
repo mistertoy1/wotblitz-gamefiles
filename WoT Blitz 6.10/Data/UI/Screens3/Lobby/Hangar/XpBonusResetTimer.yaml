@@ -1,0 +1,156 @@
+Header:
+    version: "80"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Timer.yaml"
+- "~res:/UI/Screens3/Lobby/Common/BonusFactor.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "XpBonusResetTimer"
+    components:
+        LinearLayout: {}
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "FixedSize"
+            verticalValue: 24.000000
+        UIInputEventComponent:
+            onTouchUpInside: "SHOW_HINT_XP_TIMER"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "bgVisible", "false", "false"]
+            - ["bool", "iconVisible", "true", "true"]
+            - ["int", "dailyXPFactor", "0", "4"]
+            - ["int64", "serverTime", "22222L", "22222L"]
+            - ["int64", "time", "22272L", "22272L"]
+            events:
+            - "SHOW_HINT_XP_TIMER"
+    children:
+    -   class: "UIControl"
+        name: "TapArea"
+        input: true
+        classes: "bonus-timer tap-area button-ok-sound"
+        components:
+            Anchor:
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+            UIInputEventComponent:
+                onTouchUpInside: "SHOW_HINT_XP_TIMER"
+            Sound: {}
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/Hangar/XpBonusResetTimer.style.yaml;~res:/UI/Screens3/ButtonSound.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "Content"
+            pivot: [0.500000, 0.500000]
+            input: false
+            classes: "content-area"
+            components:
+                UIOpacityComponent: {}
+                Anchor:
+                    leftAnchorEnabled: true
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+                LinearLayout:
+                    padding: "2; 0"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfChildrenSum"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Lobby/Hangar/XpBonusResetTimer.style.yaml"
+            children:
+            -   class: "UIControl"
+                name: "Bg"
+                input: false
+                components:
+                    LinearLayout: {}
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "Formula"
+                        horizontalFormula: "parent - 8"
+                        verticalPolicy: "PercentOfParent"
+                children:
+                -   class: "UIControl"
+                    name: "Left"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    classes: "grey-shark-70-bg"
+                    components:
+                        Background:
+                            drawType: "DRAW_ALIGNED"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_leaf_24_r4_left"
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfParent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                -   class: "UIControl"
+                    name: "Right"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    classes: "grey-shark-70-bg"
+                    components:
+                        Background: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   class: "UIControl"
+                name: "Hover"
+                input: false
+                classes: "hover"
+                components:
+                    UIOpacityComponent: {}
+                    LinearLayout: {}
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "Formula"
+                        horizontalFormula: "parent - 8"
+                        verticalPolicy: "PercentOfParent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Lobby/Hangar/XpBonusResetTimer.style.yaml"
+                children:
+                -   class: "UIControl"
+                    name: "Left"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    classes: "grey-shark-70-bg"
+                    components:
+                        Background:
+                            drawType: "DRAW_ALIGNED"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_leaf_24_r4_left"
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfParent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                -   class: "UIControl"
+                    name: "Right"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    classes: "grey-shark-70-bg"
+                    components:
+                        Background: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   prototype: "Timer/Timer"
+                name: "Timer"
+                components:
+                    UIDataParamsComponent:
+                        args:
+                            "serverTime": "serverTime"
+                            "time": "time"
+                            "bgVisible": "false"
+                            "iconVisible": "iconVisible"
+            -   prototype: "BonusFactor/BonusFactor"
+                name: "BonusFactor"
+                components:
+                    UIDataParamsComponent:
+                        args:
+                            "size": "eBonusFactorSize.kNormal"
+                            "factor": "dailyXPFactor"
+                            "type": "eBonusFactor.kXP"
+                            "visible": "true"

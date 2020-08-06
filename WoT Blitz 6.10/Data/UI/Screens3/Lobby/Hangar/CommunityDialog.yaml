@@ -1,0 +1,37 @@
+Header:
+    version: "80"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Dialog/TextDialog.yaml"
+Controls:
+-   class: "UIControl"
+    name: "CommunityDialog"
+    size: [640.000000, 480.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+        UIDataParamsComponent:
+            params:
+            - ["string", "currentCommunity", "\"\"", "\"VK\""]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "communityText", "when currentCommunity == \"VK\" -> \"#community:VK\", currentCommunity == \"FACEBOOK\" -> \"#community:FB\", currentCommunity == \"YOUTUBE\" -> \"#community:Youtube\", currentCommunity == \"TWITTER\" -> \"#community:Twitter\", currentCommunity == \"INSTAGRAM\" -> \"#community:Instagram\", currentCommunity == \"VIBER\" -> \"#community:Viber\", currentCommunity == \"DISCORD\" -> \"#community:Discord\", currentCommunity == \"PORTAL\" -> \"#community:Portal\", currentCommunity == \"WARGAMING\" -> \"#community:WargamingNet\", \"\""]
+    children:
+    -   prototype: "TextDialog/TextDialog"
+        name: "ChooseTextDialog"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "accentButtonType": "eButtonType.POSITIVE"
+                    "type": "eDialogType.CHOOSE"
+                    "header": "\"\""
+                    "headerImage": "\"\""
+                    "accentButton": "\"#community:OpenPage/OK\""
+                    "optionalButton": "\"#community:OpenPage/Cancel\""
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/Dialog/TextContent.yaml\", { contentText = localize(communityText + \"/OpenPage/Notification\"); }, [ ])"
+                eventActions:
+                - ["OPTIONAL_CLICKED", "CANCEL", ""]
+                - ["ACCENT_CLICKED", "COMMUNITY_OK", ""]

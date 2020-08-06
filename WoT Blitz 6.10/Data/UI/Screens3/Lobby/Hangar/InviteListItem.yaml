@@ -1,0 +1,136 @@
+Header:
+    version: "59"
+Prototypes:
+-   class: "UIControl"
+    name: "SquadInviteListItem"
+    size: [400.000000, 80.000000]
+    input: true
+    classes: "pane-bg touchable button-open-sound"
+    components:
+        Background: {}
+        UIInputEventComponent:
+            onTouchUpInside: "SEND_INVITE"
+            onTouchUpInsideData: "userId"
+        UIDataParamsComponent:
+            params:
+            - ["string", "name", "\"\"", "\"BD\""]
+            - ["string", "tag", "\"\"", "\"XXX\""]
+            - ["string", "statusSprite", "\"\"", "\"\""]
+            - ["int", "typeContactFrame", "0", "0"]
+            - ["string", "userIcon", "\"\"", "\"\""]
+            - ["bool", "onlineStatus", "false", "true"]
+            - ["bool", "mutualFriend", "true", "false"]
+            - ["bool", "inviteSend", "true", "false"]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "onlineStyleLocal", "when onlineStatus -> \"green-green-bg\", \"red-red-bg\""]
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Background.style.yaml;~res:/UI/Screens3/ButtonSound.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+    children:
+    -   class: "UIControl"
+        name: "userIcon"
+        position: [30.000000, 7.500000]
+        size: [64.000000, 64.000000]
+        input: false
+        components:
+            Background: {}
+            Anchor:
+                leftAnchorEnabled: true
+                leftAnchor: 30.000000
+                vCenterAnchorEnabled: true
+                vCenterAnchor: 0.000000
+        bindings:
+        - ["Background.sprite", "userIcon", "Read"]
+        - ["Background.frame", "typeContactFrame", "Read"]
+    -   class: "UIControl"
+        name: "inviteSent"
+        position: [60.000000, 59.000000]
+        size: [73.000000, 67.000000]
+        input: false
+        classes: "t-overline regular color=blue2"
+        components:
+            UITextComponent:
+                text: "SQUAD_INVITE_LIST_INVITE_SENT"
+                colorInheritType: "COLOR_IGNORE_PARENT"
+                align: ["RIGHT", "VCENTER"]
+            Anchor:
+                rightAnchorEnabled: true
+                rightAnchor: 16.000000
+                topAnchorEnabled: true
+                topAnchor: 6.000000
+                bottomAnchorEnabled: true
+                bottomAnchor: 6.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["visible", "inviteSend", "Read"]
+    -   class: "UIControl"
+        name: "iconOnline"
+        position: [17.000000, 33.500000]
+        size: [12.000000, 12.000000]
+        input: false
+        components:
+            Background:
+                drawType: "DRAW_SCALE_TO_RECT"
+            Anchor:
+                leftAnchorEnabled: true
+                leftAnchor: 17.000000
+                vCenterAnchorEnabled: true
+                vCenterAnchor: 0.000000
+        bindings:
+        - ["visible", "mutualFriend and onlineStatus", "Read"]
+        - ["classes", "onlineStyleLocal", "Read"]
+        - ["Background.sprite", "statusSprite", "Read"]
+    -   class: "UIControl"
+        name: "AccountName"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                leftAnchor: 100.000000
+                rightAnchorEnabled: true
+                rightAnchor: 110.000000
+                vCenterAnchorEnabled: true
+            LinearLayout:
+                spacing: 5.000000
+                useRtl: false
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Lobby/Clans.style.yaml;~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "name"
+            input: false
+            classes: "body bold white-wild-sand-text"
+            components:
+                UITextComponent:
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    fitting: "FITTING_POINTS"
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "Formula"
+                    horizontalFormula: "min(parentRest, content)"
+                    verticalPolicy: "PercentOfContent"
+            bindings:
+            - ["UITextComponent.text", "name", "Read"]
+        -   class: "UIControl"
+            name: "tag"
+            input: false
+            classes: "body bold color=orange-orange-peel-text"
+            components:
+                UITextComponent:
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    fitting: "FITTING_REDUCE"
+                    align: ["LEFT", "VCENTER"]
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+            bindings:
+            - ["visible", "tag != \"\"", "Read"]
+            - ["UITextComponent.text", "\"[\"+tag+\"]\"", "Read"]

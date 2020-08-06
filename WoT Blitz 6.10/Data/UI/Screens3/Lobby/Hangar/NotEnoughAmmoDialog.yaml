@@ -1,0 +1,38 @@
+Header:
+    version: "80"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Dialog/TextDialog.yaml"
+Controls:
+-   class: "UIControl"
+    name: "NotEnoughAmmoDialog"
+    size: [800.000000, 600.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["int", "ammoRequired", "0", "32"]
+            events:
+            - "CANCEL"
+            - "ACCENT_CLICKED"
+    children:
+    -   prototype: "TextDialog/TextDialog"
+        name: "TextDialog"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "accentButtonType": "eButtonType.POSITIVE"
+                    "type": "eDialogType.CHOOSE"
+                    "header": "\"\""
+                    "headerImage": "\"\""
+                    "accentButton": "localize(\"Resupply\")"
+                    "optionalButton": "localize(\"#common:DialogButton/Cancel\")"
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/RichTextContent.yaml\", { key = localize(\"#garage_screen:NotEnoughAmmunition\", { number = str(ammoRequired); }); }, [ ])"
+                eventActions:
+                - ["ACCENT_CLICKED", "ACCENT_CLICKED", ""]
+                - ["OPTIONAL_CLICKED", "CANCEL", ""]
+        children:
+        -   path: "DialogContent/UIScrollView/scrollContainerControl/Content"
+            position: [24.000000, 48.000000]

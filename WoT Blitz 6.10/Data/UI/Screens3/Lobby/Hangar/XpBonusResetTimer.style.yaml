@@ -1,0 +1,34 @@
+Header:
+    version: "80"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Touch.style.yaml"
+- "~res:/UI/Screens3/Common/Hover.style.yaml"
+StyleSheets:
+-   selectors:
+    - ".bonus-timer.tap-area"
+    properties:
+        anchor-bottomAnchor: -16.000000
+        anchor-topAnchor: -16.000000
+-   selectors:
+    - ".bonus-timer.tap-area.Desktop"
+    properties:
+        anchor-bottomAnchor: 0.000000
+        anchor-topAnchor: 0.000000
+-   selectors:
+    - ".bonus-timer * .content-area"
+    properties:
+        anchor-bottomAnchor: 16.000000
+        anchor-topAnchor: 16.000000
+-   selectors:
+    - ".bonus-timer * .content-area.Desktop"
+    properties:
+        anchor-bottomAnchor: 0.000000
+        anchor-topAnchor: 0.000000
+-   selectors:
+    - ".bonus-timer * .content-area"
+    properties:
+        opacity-opacity: 1.000000
+-   selectors:
+    - ".bonus-timer:pressed_inside * .content-area"
+    properties:
+        opacity-opacity: 0.700000

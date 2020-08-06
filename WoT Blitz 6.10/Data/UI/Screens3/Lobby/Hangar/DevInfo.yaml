@@ -1,0 +1,279 @@
+Header:
+    version: "92"
+Prototypes:
+-   class: "UIControl"
+    name: "DevInfo"
+    size: [32.000000, 32.000000]
+    input: false
+    components:
+        Anchor:
+            rightAnchorEnabled: true
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["int64", "dbId", "0L", "200500L"]
+            - ["int64", "accountEntityId", "0L", "100500L"]
+            - ["HangarDevInfoViewModel", "model", "null", "{ }"]
+            events:
+            - "COPY_ENTITY_ID"
+            - "COPY_SPA"
+    bindings:
+    - ["visible", "model.visible"]
+    children:
+    -   class: "UIControl"
+        name: "TutorialQueue"
+        input: false
+        classes: "t-caption regular color=white-wild-sand-50-text"
+        components:
+            UITextComponent: {}
+            Anchor:
+                rightAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "\"Players in tutorial queue: \" + str(model.tutorialQueue)"]
+    -   class: "UIControl"
+        name: "Fps"
+        input: false
+        classes: "t-caption regular color=white-wild-sand-50-text"
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+                align: ["LEFT", "VCENTER"]
+            Anchor:
+                rightAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "\"FPS: \" + str(model.fps, 0) + \", PING: \" + str(model.ping, 0)"]
+    -   class: "UIControl"
+        name: "CurrentServer"
+        input: false
+        classes: "t-caption regular color=white-wild-sand-50-text"
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+                align: ["LEFT", "VCENTER"]
+            Anchor:
+                rightAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "\"Server: \" + model.serverName"]
+    -   class: "UIControl"
+        name: "ClusterPlayers"
+        input: false
+        classes: "t-caption regular color=white-wild-sand-50-text"
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+                align: ["LEFT", "VCENTER"]
+            Anchor:
+                rightAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "\"Cluster players: \" + str1000Separated(model.clusterCCU)"]
+    -   class: "UIControl"
+        name: "RegionPlayers"
+        input: false
+        classes: "t-caption regular color=white-wild-sand-50-text"
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+                align: ["LEFT", "VCENTER"]
+            Anchor:
+                rightAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "\"Region players \" + str1000Separated(model.regionCCU)"]
+    -   class: "UIControl"
+        name: "AccountEntityId"
+        input: false
+        classes: "t-caption regular color=white-wild-sand-50-text"
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+                align: ["LEFT", "VCENTER"]
+            Anchor:
+                rightAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "\"Account entity ID: \" + str(accountEntityId)"]
+    -   class: "UIControl"
+        name: "Group"
+        input: false
+        components:
+            Anchor:
+                rightAnchorEnabled: true
+            LinearLayout:
+                spacing: 6.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "AccountDbId"
+            input: false
+            classes: "t-caption regular color=white-wild-sand-50-text"
+            components:
+                UITextComponent:
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    align: ["LEFT", "VCENTER"]
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+            bindings:
+            - ["UITextComponent.text", "\"Database ID: \" + str(dbId)"]
+        -   class: "UIControl"
+            name: "AccountClanId"
+            input: false
+            classes: "t-caption regular color=white-wild-sand-50-text"
+            components:
+                UITextComponent:
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    align: ["LEFT", "VCENTER"]
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+            bindings:
+            - ["UITextComponent.text", "when model.clanId == -1L -> \"\", \"Clan ID: \" + str(model.clanId)"]
+    -   class: "UIControl"
+        name: "ServerUTCTime"
+        input: false
+        classes: "t-caption regular color=white-wild-sand-50-text"
+        components:
+            UITextComponent: {}
+            Anchor:
+                rightAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "\"Server UTC Time: \" + model.serverTime"]
+    -   class: "UIControl"
+        name: "SmartDlcPack"
+        input: false
+        classes: "t-caption regular color=white-wild-sand-50-text"
+        components:
+            UITextComponent: {}
+            Anchor:
+                rightAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "model.smartDlc"]
+    -   class: "UIControl"
+        name: "version"
+        input: false
+        classes: "t-caption regular color=white-wild-sand-50-text"
+        components:
+            UITextComponent: {}
+            Anchor:
+                rightAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "\"Version: \" + model.version"]
+    -   class: "UIControl"
+        name: "build"
+        input: false
+        classes: "t-caption regular color=white-wild-sand-50-text"
+        components:
+            UITextComponent:
+                multiline: "MULTILINE_ENABLED_BY_SYMBOL"
+                align: ["RIGHT", "VCENTER"]
+            Anchor:
+                rightAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                horizontalMax: 270.000000
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "\"Build: \" + model.buildInfo"]
+    -   class: "UIControl"
+        name: "CopyButtons"
+        input: false
+        components:
+            Anchor:
+                rightAnchorEnabled: true
+            LinearLayout:
+                spacing: 8.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["visible", "model.clipboardCopyingAvailable"]
+        children:
+        -   class: "UIControl"
+            name: "CopyEntityId"
+            classes: "t-caption regular color=white-wild-sand-50-text"
+            components:
+                UITextComponent:
+                    text: "Copy Entity ID"
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    align: ["HCENTER", "VCENTER"]
+                BorderComponent: {}
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 100.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 40.000000
+                UIInputEventComponent:
+                    onTouchUpInside: "COPY_ENTITY_ID"
+        -   class: "UIControl"
+            name: "CopySpa"
+            classes: "t-caption regular color=white-wild-sand-50-text"
+            components:
+                UITextComponent:
+                    text: "Copy SPA"
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    align: ["HCENTER", "VCENTER"]
+                BorderComponent: {}
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 100.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 40.000000
+                UIInputEventComponent:
+                    onTouchUpInside: "COPY_SPA"

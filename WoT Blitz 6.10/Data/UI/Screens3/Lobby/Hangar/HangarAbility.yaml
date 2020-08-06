@@ -1,0 +1,32 @@
+Header:
+    version: "83"
+Controls:
+-   class: "UIControl"
+    name: "HangarAbility"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 40.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 40.000000
+        UIDataParamsComponent:
+            params:
+            - ["EquipmentModel", "equipment", "null", "{ icon = \"moonwalk\"; }"]
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Inventory/Abilities/HangarAbilityImage.style.yaml"
+    bindings:
+    - ["classes", "\"ability_item \" + equipment.icon"]
+    children:
+    -   class: "UIControl"
+        name: "Img"
+        input: false
+        components:
+            Background:
+                drawType: "DRAW_SCALE_TO_RECT"
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"

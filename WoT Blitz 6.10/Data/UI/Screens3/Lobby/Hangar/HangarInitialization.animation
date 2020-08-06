@@ -1,0 +1,10 @@
+animation Initialization
+{
+  Event("PAUSE_HANGAR_SCENE", arg1=false);
+  Opacity("./Container/FadedBlur", 0.0, time=0.0);
+  Event("ENABLE_BLUR", arg1=true);
+  DirectEvent("SHOW_FILTER", "**/Container/TanksPanelHolder/TanksPanel", false, 0.0);
+  Event("CAPTURE_INPUT", arg1=false);
+
+  Event("ShowCalibrationPopup");
+}

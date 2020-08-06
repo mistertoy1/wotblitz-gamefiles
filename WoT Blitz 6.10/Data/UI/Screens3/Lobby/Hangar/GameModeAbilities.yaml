@@ -1,0 +1,194 @@
+Header:
+    version: "85"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Timer.yaml"
+Controls:
+-   class: "UIControl"
+    name: "GameModePopup"
+    input: true
+    classes: "game-mode-popup button-open-sound"
+    components:
+        SizePolicy:
+            horizontalPolicy: "Formula"
+            horizontalFormula: "maxChild + 32"
+            verticalPolicy: "Formula"
+            verticalFormula: "maxChild + 16"
+        UIAttachLayoutSlaveComponent:
+            masterAlign: "BottomCenter"
+            slaveAlign: "TopCenter"
+            additionalOffset: [0.000000, 4.000000]
+        UIInputEventComponent:
+            onTouchUpInside: "ON_ABILITIES"
+        UIDataParamsComponent:
+            params:
+            - ["vector<EquipmentModel>", "abilities", "null", "[ { icon = \"moonwalk\"; }; { icon = \"tornado\"; }; { icon = \"moonwalk\"; }; { icon = \"tornado\"; }; ]"]
+            - ["string", "masterId", "\"MASTER\"", "\"MASTER\""]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "title", "\"#abilitiesPopup/Title\""]
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/ButtonSound.style.yaml;~res:/UI/Screens3/Common/Hover.style.yaml"
+    bindings:
+    - ["UIAttachLayoutSlaveComponent.attachId", "masterId"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        position: [110.000000, 60.000000]
+        size: [204.000000, 72.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        classes: "content-area"
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                leftAnchor: 8.000000
+                rightAnchorEnabled: true
+                rightAnchor: 8.000000
+                topAnchorEnabled: true
+                topAnchor: 8.000000
+                bottomAnchorEnabled: true
+                bottomAnchor: 8.000000
+            LinearLayout:
+                orientation: "TopDown"
+                padding: "8;4"
+                spacing: 4.000000
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "maxChild + 32"
+                verticalPolicy: "PercentOfChildrenSum"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Common/Touch.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "Wrapper"
+            input: false
+            components:
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+            children:
+            -   class: "UIControl"
+                name: "Bg"
+                size: [204.000000, 100.000000]
+                input: false
+                classes: "black-50-bg"
+                components:
+                    Background: {}
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   class: "UIControl"
+                name: "ArrowBottom"
+                position: [90.000000, 8.000000]
+                size: [24.000000, 24.000000]
+                input: false
+                classes: "black-50-bg"
+                components:
+                    Background:
+                        drawType: "DRAW_ALIGNED"
+                        sprite: "~res:/Gfx/Lobby/backgrounds/bg_triangle_8.psd"
+                        gradientMode: "Multiply"
+                        colorInherit: "COLOR_IGNORE_PARENT"
+                        perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                        align: []
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        topAnchorEnabled: true
+                        topAnchor: -16.000000
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "Hover"
+            position: [0.000000, 0.000000]
+            size: [204.000000, 100.000000]
+            input: false
+            classes: "hover black-15-bg"
+            components:
+                Background: {}
+                UIOpacityComponent: {}
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Common/Hover.style.yaml"
+            children:
+            -   class: "UIControl"
+                name: "Bg"
+                size: [32.000000, 32.000000]
+                input: false
+                classes: "black-15-bg"
+                components:
+                    Background: {}
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   class: "UIControl"
+                name: "ArrowBottom"
+                position: [90.000000, 8.000000]
+                size: [24.000000, 24.000000]
+                input: false
+                classes: "black-15-bg"
+                components:
+                    Background:
+                        drawType: "DRAW_ALIGNED"
+                        sprite: "~res:/Gfx/Lobby/backgrounds/bg_triangle_8.psd"
+                        gradientMode: "Multiply"
+                        colorInherit: "COLOR_ADD_TO_PARENT"
+                        perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+                        align: []
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        topAnchorEnabled: true
+                        topAnchor: -16.000000
+                    UIInputEventComponent:
+                        onTouchUpInside: "ON_ABILITIES"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "Title"
+            input: false
+            classes: "t-caps bold white-wild-sand-text"
+            components:
+                UITextComponent: {}
+                Anchor:
+                    hCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Common/PopupMenu.style.yaml"
+            bindings:
+            - ["visible", "title != \"\""]
+            - ["UITextComponent.text", "localize(title)"]
+        -   class: "UIControl"
+            name: "GameModeAbilities"
+            input: false
+            classes: ""
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                LinearLayout:
+                    spacing: 4.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfChildrenSum"
+                    verticalPolicy: "PercentOfMaxChild"
+                UIDataParamsComponent:
+                    params:
+                    - ["vector<EquipmentModel>", "abilities", "null", "[ { \"icon\" = \"curse\"; }; { \"icon\" = \"tornado\"; }; ]"]
+                    args:
+                        "abilities": "abilities"
+                UIRepeatComponent:
+                    control: "~res:/UI/Screens3/Lobby/Hangar/HangarAbility.yaml"
+                    dataContainer: "abilities"
+                    args:
+                        "equipment": "_item"

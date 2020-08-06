@@ -1,0 +1,73 @@
+Header:
+    version: "82"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Touch.style.yaml"
+- "~res:/UI/Screens3/Common/Hover.style.yaml"
+StyleSheets:
+-   selectors:
+    - ".battle-button * .content-area"
+    - ".battle-type-button * .content-area"
+    - ".battle-type-button:pressed_inside:disabled * .content-area"
+    - ".booster-button * .content-area"
+    - ".training-button * .content-area"
+    - ".booster-button.disabled * .content-area"
+    properties:
+        opacity-opacity:
+            value: 1.000000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selectors:
+    - ".battle-button * .button-effect"
+    - ".training-button * .button-effect"
+    - ".battle-type-button * .button-effect"
+    properties:
+        visible: true
+-   selectors:
+    - ".battle-button:pressed_inside * .content-area"
+    - ".battle-type-button:pressed_inside * .content-area"
+    - ".booster-button:pressed_inside * .content-area"
+    - ".training-button:pressed_inside * .content-area"
+    properties:
+        opacity-opacity:
+            value: 0.700000
+            transitionTime: 0.080000
+            transitionFunction: "EASE_IN_EASY_OUT"
+-   selectors:
+    - ".battle-button * .button-active-bg"
+    - ".battle-type-button * .button-active-bg"
+    - ".battle-button.disabled * .button-disabled-bg"
+    - ".battle-type-button.disabled * .button-disabled-bg"
+    properties:
+        visible: true
+-   selectors:
+    - ".battle-button * .button-disabled-bg"
+    - ".battle-type-button * .button-disabled-bg"
+    - ".battle-button.disabled * .button-active-bg"
+    - ".battle-type-button.disabled * .button-active-bg"
+    - ".battle-button:pressed_inside * .button-effect"
+    - ".training-button:pressed_inside * .button-effect"
+    - ".battle-type-button:pressed_inside * .button-effect"
+    properties:
+        visible: false
+-   selectors:
+    - ".battle-button.disabled * .content-area"
+    - ".battle-type-button.disabled * .content-area"
+    properties:
+        opacity-opacity: 0.500000
+-   selectors:
+    - ".booster-button.available-in-storage * .booster-badge #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Lobby/icons/icon_plus_xs.psd"
+-   selectors:
+    - ".booster-button.available-in-shop * .booster-badge #Icon"
+    properties:
+        bg-sprite: "~res:/Gfx/Lobby/icons/icon_shop-boosters.psd"
+-   selectors:
+    - ".booster-button.installed * .booster-badge"
+    - ".booster-button.unavailable * .booster-badge"
+    properties:
+        visible: false
+-   selectors:
+    - ".booster-button.disabled * .content-area"
+    properties:
+        opacity-opacity: 0.500000

@@ -1,0 +1,25 @@
+Header:
+    version: "96"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/TooltipRight.yaml"
+Controls:
+-   class: "UIControl"
+    name: "Popup"
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+    children:
+    -   prototype: "TooltipRight/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "colorClass": "\"color=white-wild-sand-text\""
+                    "masterId": "\"kAutodetectButton\""
+                    "offset": "5"
+                    "text": "\"#settings:Graphics/Autodetect/SmartDLC/Popup\""
+                    "title": "\"dlc/Notification/UnfinishedDownload/Header\""

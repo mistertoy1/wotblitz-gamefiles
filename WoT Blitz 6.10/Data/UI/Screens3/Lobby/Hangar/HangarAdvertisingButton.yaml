@@ -1,0 +1,146 @@
+Header:
+    version: "81"
+Prototypes:
+-   class: "UIControl"
+    name: "HangarAdvertisingButton"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 72.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 72.000000
+        UIDataParamsComponent:
+            params:
+            - ["bool", "showHint", "false", "true"]
+            events:
+            - "ON_CLICK_BUTTON"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Color.style.yaml;~res:/UI/Screens3/Lobby/Common/Button.style.yaml;~res:/UI/Screens3/ButtonSound.style.yaml"
+    children:
+    -   class: "UIControl"
+        name: "TapArea"
+        position: [-8.000000, -8.000000]
+        input: true
+        classes: "button button-tap-area button-open-sound"
+        components:
+            Background:
+                color: [0.666667, 0.333333, 1.000000, 0.196078]
+            UIOpacityComponent: {}
+            Anchor:
+                leftAnchorEnabled: true
+                rightAnchorEnabled: true
+                topAnchorEnabled: true
+                bottomAnchorEnabled: true
+            UIInputEventComponent:
+                onTouchUpInside: "ON_CLICK_BUTTON"
+            Sound: {}
+        children:
+        -   class: "UIControl"
+            name: "Content"
+            pivot: [0.500000, 0.500000]
+            input: false
+            classes: "content-area"
+            components:
+                Background: {}
+                Anchor:
+                    leftAnchorEnabled: true
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+            children:
+            -   class: "UIControl"
+                name: "Background"
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_STRETCH_BOTH"
+                        sprite: "~res:/Gfx/Lobby/controls/buttons/button_video.psd"
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+            -   class: "UIControl"
+                name: "Fade"
+                input: false
+                classes: "button-fade white-wild-sand-10-bg"
+                components:
+                    Background:
+                        drawType: "DRAW_FILL"
+                    UIOpacityComponent: {}
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+            -   class: "UIControl"
+                name: "Icon"
+                input: false
+                components:
+                    UIOpacityComponent: {}
+                    UITextureComponent:
+                        spritePath: "~res:/Gfx/Lobby/icons/icon_video"
+                        drawType: "DRAW_ALIGNED"
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 48.000000
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 48.000000
+                children:
+                -   class: "UIControl"
+                    name: "reward_icon"
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_PROPORTIONAL"
+                            sprite: "~res:/Gfx/UI/Hangar/ads_gold"
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            hCenterAnchor: 16.000000
+                            vCenterAnchorEnabled: true
+                            vCenterAnchor: 16.000000
+                        SizePolicy:
+                            horizontalPolicy: "FixedSize"
+                            horizontalValue: 24.000000
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 24.000000
+            -   class: "UIControl"
+                name: "EffectsContainer"
+                input: false
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                bindings:
+                - ["visible", "showHint"]
+                children:
+                -   class: "UIParticles"
+                    name: "VideoAdsTop"
+                    input: false
+                    effectPath: "~res:/3d/FX/UI/VideoAds_top.sc2"
+                    autoStart: true
+                    components:
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            topAnchorEnabled: true
+                -   class: "UIParticles"
+                    name: "VideoAdsCenter"
+                    pivot: [0.500000, 0.500000]
+                    input: false
+                    effectPath: "~res:/3d/FX/UI/VideoAds.sc2"
+                    autoStart: true
+                    components:
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            vCenterAnchorEnabled: true
+                -   class: "UIParticles"
+                    name: "VideoAdsBottom"
+                    input: false
+                    effectPath: "~res:/3d/FX/UI/VideoAds_top.sc2"
+                    autoStart: true
+                    components:
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            bottomAnchorEnabled: true

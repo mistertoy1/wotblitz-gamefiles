@@ -1,0 +1,35 @@
+Header:
+    version: "80"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Dialog/TextDialog.yaml"
+Controls:
+-   class: "UIControl"
+    name: "RepairVehicleDialog"
+    size: [640.000000, 480.000000]
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+        UIDataParamsComponent:
+            params:
+            - ["int", "credits", "0", "0"]
+            - ["int", "repairCost", "0", "0"]
+    children:
+    -   prototype: "TextDialog/TextDialog"
+        name: "InfoTextDialog"
+        size: [960.000000, 640.000000]
+        components:
+            UIDataParamsComponent:
+                args:
+                    "type": "eDialogType.CHOOSE"
+                    "header": "\"\""
+                    "headerImage": "\"\""
+                    "accentButton": "\"OK\""
+                    "optionalButton": "\"Cancel\""
+                    "contentControl": "control(\"~res:/UI/Screens3/Lobby/Common/Dialog/TextContent.yaml\", { contentText = localize(\"hangar repair no credits message\", { cost = repairCost; credits = credits; }); }, [ ])"
+                eventActions:
+                - ["OPTIONAL_CLICKED", "OPTIONAL_CLICKED", ""]
+                - ["ACCENT_CLICKED", "ACCENT_CLICKED", ""]

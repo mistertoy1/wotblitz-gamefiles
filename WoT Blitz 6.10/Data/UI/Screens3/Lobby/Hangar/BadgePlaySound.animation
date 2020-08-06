@@ -1,0 +1,4 @@
+animation BadgePlaySoubd
+{
+    PlaySound(sound="GUI/buttons/receive_news");
+}

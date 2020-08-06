@@ -1,0 +1,140 @@
+Header:
+    version: "100"
+Prototypes:
+-   class: "UIControl"
+    name: "BattlePassBoxWidget"
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfMaxChild"
+        UIDataParamsComponent:
+            params:
+            - ["BattlePassView", "battlePassView", "null", "{ }"]
+            - ["BattlePass", "battlePass", "null", "{ }"]
+            - ["int64", "serverTime", "0L", "1561565973L"]
+            events:
+            - "ON_BATTLEPASS_BTN_CLICKED"
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "isActive", "battlePass.activeStage.type != eStageType.UNKNOWN"]
+            - ["int", "currentProgress", "when isActive -> battlePass.levels[battlePass.activeLevelIndex].currentProgress, 0"]
+            - ["int", "totalProgress", "when isActive -> battlePass.levels[battlePass.activeLevelIndex].totalProgress, 1"]
+            - ["bool", "isCompleted", "when isActive -> (battlePass.activeLevelIndex == Size(battlePass.levels) - 1) and battlePass.levels[battlePass.activeLevelIndex].currentProgress == totalProgress, false"]
+            - ["string", "levelStr", "when isCompleted -> str(battlePass.activeLevelIndex + 1), str(battlePass.activeLevelIndex)"]
+            - ["string", "buttonStyle", "\"battlepass-widget button-open-sound\""]
+            - ["int", "badgeValue", "battlePass.untakenRewardsCount"]
+            - ["bool", "battlePassUnlocked", "when isActive -> battlePass.pathsInfo[eBattlePassPath.Paid].isOpened, false"]
+    bindings:
+    - ["visible", "isActive"]
+    children:
+    -   class: "UIControl"
+        name: "ContentHolder"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/ButtonDecorator.yaml"
+                args:
+                    "content": "Content"
+                    "sound": "eButtonSound.OPEN"
+                    "type": "eButtonType.OPTIONAL_LIGHT"
+                    "enabled": "true"
+                eventActions:
+                - ["ON_CLICK_BUTTON", "ON_BATTLEPASS_BTN_CLICKED", ""]
+Slots:
+-   class: "UIControl"
+    name: "Content"
+    input: false
+    components:
+        UIAnimationComponent:
+            animations: "_INIT,~res:/UI/Screens3/Lobby/Hangar/BattlePassUnlockedWidget.animation"
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfFirstChild"
+    children:
+    -   class: "UIControl"
+        name: "StoryBoxHolder"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/Story/StoryBoxSimple.yaml"
+                args:
+                    "scaleImage": "true"
+                    "serverTime": "serverTime"
+                    "imagePath": "\"\""
+                    "imageUrl": "when not isActive -> \"\", not battlePassUnlocked or battlePass.battlePassUnlockedWidget -> battlePass.resources.graphics[\"battlePassWidget\"], battlePass.resources.graphics[\"battlePassWidgetGold\"]"
+                    "showFx": "false"
+                    "isReady": "false"
+                    "alertTime": "0L"
+                    "finishTime": "battlePass.activeStage.finishTime"
+                    "maximum": "totalProgress"
+                    "value": "currentProgress"
+                    "showProgress": "battlePass.activeStage.type == eStageType.PROCESS"
+    -   class: "UIControl"
+        name: "BadgeHolder"
+        position: [84.000000, 10.000000]
+        input: false
+        components:
+            Anchor:
+                rightAnchorEnabled: true
+                rightAnchor: -8.000000
+                topAnchorEnabled: true
+                topAnchor: 8.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/BadgeHolder.yaml"
+                args:
+                    "value": "when badgeValue > 0 -> str(badgeValue), \"\""
+                    "type": "eBadgeType.DIGIT"
+    -   class: "UIControl"
+        name: "Level"
+        position: [38.000000, 18.000000]
+        input: false
+        classes: "t-content-h2 bold grey-shark-70-text"
+        components:
+            UITextComponent: {}
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 60.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 60.000000
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "levelStr"]
+    -   class: "UIParticles"
+        name: "Light"
+        position: [54.000000, 57.000000]
+        size: [32.000000, 32.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        effectPath: "~res:/3d/FX/UI/BattlePass/WidgetGlow.sc2"
+        autoStart: false
+        startDelay: 0.500000
+    -   class: "UIParticles"
+        name: "Star"
+        position: [12.000000, 23.000000]
+        size: [32.000000, 32.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        effectPath: "~res:/3d/FX/UI/BattlePass/WidgetStar.sc2"
+        autoStart: true
+        bindings:
+        - ["visible", "badgeValue > 0"]
+    -   class: "UIParticles"
+        name: "GlowCircuit"
+        position: [51.000000, 57.000000]
+        size: [32.000000, 32.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        effectPath: "~res:/3d/FX/UI/BattlePass/WidgetGlow_circuit.sc2"
+        autoStart: true
+        bindings:
+        - ["visible", "badgeValue > 0"]
