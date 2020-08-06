@@ -1,0 +1,42 @@
+Header:
+    version: "100"
+Prototypes:
+-   class: "UIControl"
+    name: "BattlePassLevelMask"
+    input: false
+    components:
+        Background:
+            drawType: "DRAW_FILL"
+        Anchor:
+            bottomAnchorEnabled: true
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["int", "width", "0", "120"]
+            - ["int", "freeHeight", "0", "108"]
+            - ["int", "paidHeight", "0", "248"]
+    children:
+    -   class: "UIControl"
+        name: "Top"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                verticalPolicy: "FixedSize"
+        bindings:
+        - ["SizePolicy.horizontalValue", "width"]
+        - ["SizePolicy.verticalValue", "freeHeight"]
+    -   class: "UIControl"
+        name: "Bottom"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                verticalPolicy: "FixedSize"
+        bindings:
+        - ["SizePolicy.horizontalValue", "width"]
+        - ["SizePolicy.verticalValue", "paidHeight"]

@@ -1,0 +1,98 @@
+action UpdateInfo
+{
+	parallel
+	{
+		Opacity("**/titleWrapper", opacity=0.0, time=0.7, interpolation=EASE_IN);
+    	Opacity("**/currentDeposit", opacity=0.0, time=0.7, interpolation=EASE_IN);
+        if (actionEnabled)
+        {
+            Opacity("**/Caption", opacity=0.0, time=0.7, interpolation=EASE_IN);
+        }
+    }
+    Wait(0.5);
+    ChangeData(currentDepositIndex, tempDepositIndex);
+    parallel
+	{
+		Opacity("**/titleWrapper", opacity=1.0, time=0.4, interpolation=EASE_OUT);
+    	Opacity("**/currentDeposit", opacity=1.0, time=0.4, interpolation=EASE_OUT);
+        if (actionEnabled)
+        {
+            Opacity("**/Caption", opacity=1.0, time=0.4, interpolation=EASE_IN);
+        }
+    }
+}
+
+action OnCurrentBankClicked
+{
+    if (not isNull(currentBank) and currentBankIsFull and not currentDepositHasMaxLevel)
+    {
+        PlaySound("GUI/buttons/open");
+        Event("ON_EXTENDER_CLICKED", arg1=currentDeposit.bankName);
+    }
+}
+
+action OnActionButtonClicked
+{
+    if (canTakeCurrentBank)
+    {
+        Event("ON_CLAIM_DEPOSIT", arg1=currentDeposit.bankName);
+    }
+    else
+    {
+        if (not isNull(currentBank) and not currentBank.activated)
+        {
+            Event("ON_SHOW_OFFER");
+        }
+        else
+        {
+            if (not isNull(currentBank))
+            {
+                Event("ON_SHOW_CLAIM_DEPOSIT_POPUP", arg1=currentDeposit.bankName);
+            }
+            else
+            {
+                Event("ON_SHOW_OPENED_DEPOSIT_POPUP");
+            }
+        }
+    }
+}
+
+action ShowDepositFullPopup
+{
+    Wait(1.0);
+    if (claimPopupVisible)
+    {
+        Event("ON_SHOW_DEPOSIT_FULL_POPUP");
+    }
+}
+
+action ShowDepositExtendedPopup
+{
+    Wait(1.0);
+    if (extendedPopupVisible)
+    {
+        Event("ON_SHOW_DEPOSIT_EXTENDED_POPUP", arg1=extendedLevelIndex);
+    }
+}
+
+action AnimateProgress(bool forced)
+{
+    if (not isNull(currentBank))
+    {
+        DirectEvent("StopAnimateNumber", "**/AnimatedNumber");
+        DirectEvent("ForceUpdate", "**/AnimatedNumber");
+    }
+    if (not forced)
+    {
+        Wait(0.25);
+        Event("PIGGY_BANK_STAGE_PROGRESS", arg1=currentBank.stuffDescr);
+        Wait(0.25);
+
+        if (currentBank.previousQuantity < currentBank.stagedQuantity)
+        {
+          DirectEvent("AnimateNumber", "**/AnimatedNumber");
+          WaitEvent("NUMBER_ANIMATION_FINISHED");
+          Event("PIGGY_BANK_SAVE_PROGRESS", arg1=currentBank.stuffDescr);
+        }
+    }
+}

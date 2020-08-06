@@ -1,0 +1,571 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/IconButton.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "DepositsScreen"
+    size: [960.000000, 680.000000]
+    input: false
+    components:
+        UIAnimationComponent:
+            animations: "_INIT,~res:/UI/Screens3/Lobby/BattlePass/Deposits/DepositsScreenInit.animation"
+        ClipContent:
+            enabled: true
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UILayoutEventComponent:
+            sizeChangedEvent: "SCREEN_SIZE_CHANGED"
+            sizeChangedEventData: "_size"
+        UIShortcutEventComponent:
+            shortcuts: "CLOSE_CLICKED,Escape;CLOSE_CLICKED,Back"
+        UIDataParamsComponent:
+            params:
+            - ["BattlePass", "battlePass", "null", "{ }"]
+            - ["SessionDataModel", "session", "null", "{ }"]
+            events:
+            - "PIGGY_BANK_SAVE_PROGRESS(int stuffDescr)"
+            - "PIGGY_BANK_STAGE_PROGRESS(int stuffDescr)"
+            - "ON_SHOW_DEPOSIT_EXTENDED_POPUP"
+            - "ON_SHOW_DEPOSIT_FULL_POPUP"
+            - "ON_SHOW_OPENED_DEPOSIT_POPUP"
+            - "ON_SHOW_CLAIM_DEPOSIT_POPUP"
+            - "ON_EXTENDER_CLICKED"
+            - "ON_SHOW_OFFER"
+            - "ON_CLAIM_DEPOSIT"
+            - "CLOSE_CLICKED"
+            - "INFO_BUTTON_CLICKED"
+        UIDataLocalsComponent:
+            locals:
+            - ["vector2", "camera", "vec2(80, 40)"]
+            - ["float", "radius", "36.000000"]
+            - ["string", "valueTitleStyle", "\"t-content-h1 bold color=white-wild-sand-text\""]
+            - ["vector2", "screenSize", "vec2(0, 0)"]
+            - ["float", "timeAnim", "1.100000"]
+            - ["float", "progressAnimationTime", "1.500000"]
+            - ["int", "tempDepositIndex", "0"]
+            - ["int", "currentDepositIndex", "0"]
+            - ["BattlePassDeposit", "currentDeposit", "battlePass.deposits.deposits[currentDepositIndex]"]
+            - ["PiggyBankState", "currentBank", "currentDeposit.bank"]
+            - ["bool", "currentDepositHasMaxLevel", "not currentDeposit.limitLevels.Contains(currentDeposit.level + 1)"]
+            - ["bool", "currentBankIsFull", "not isNull(currentBank) and currentBank.current.quantity == currentBank.max.quantity"]
+            - ["bool", "currentDepositIsFull", "currentBankIsFull and currentDepositHasMaxLevel"]
+            - ["bool", "canTakeCurrentBank", "not isNull(currentBank) and currentBank.activated and (currentDepositIsFull or battlePass.activeStage.type == eStageType.BUY)"]
+            - ["bool", "timerVisible", "not isNull(currentBank) and not canTakeCurrentBank and currentBank.activated"]
+            - ["bool", "actionEnabled", "(not isNull(currentBank) and not currentBank.activated) or canTakeCurrentBank"]
+            - ["bool", "extendedPopupVisible", "currentBankIsFull and not currentDepositIsFull"]
+            - ["bool", "claimPopupVisible", "currentDepositIsFull"]
+            - ["int", "extendedLevelIndex", "when extendedPopupVisible -> currentDeposit.limitLevels[currentDeposit.level + 1].battlePassLevelIndex, 0"]
+            - ["bool", "buttonsRight", "screenSize.Y < 940"]
+            - ["bool", "progressAnimationNeeded", "not isNull(currentBank) and currentBank.previousQuantity < currentBank.current.quantity"]
+            - ["int", "currentProgressValue", "when isNull(currentBank) -> 0, currentBank.current.quantity"]
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/BattlePass/Deposits/DepositsScreen.actions"
+        UIDataOnEventComponent0:
+            eventName: "CURENT_BANK_CHANGED"
+            modelFieldExpression: "tempDepositIndex"
+            dataExpression: "_event"
+        UIDataOnEventComponent1:
+            eventName: "SCREEN_SIZE_CHANGED"
+            modelFieldExpression: "screenSize"
+            dataExpression: "_event"
+        UIEventOnDataComponent0:
+            watchedDataExpression: "currentDeposit"
+            eventName: "AnimateProgress"
+            eventData: "not progressAnimationNeeded"
+        UIEventOnDataComponent1:
+            watchedDataExpression: "currentDepositIndex"
+            ifExpression: "claimPopupVisible"
+            eventName: "ShowDepositFullPopup"
+        UIEventOnDataComponent2:
+            watchedDataExpression: "currentDepositIndex"
+            ifExpression: "extendedPopupVisible"
+            eventName: "ShowDepositExtendedPopup"
+        UIEventOnDataComponent3:
+            watchedDataExpression: "claimPopupVisible"
+            ifExpression: "claimPopupVisible"
+            eventName: "ShowDepositFullPopup"
+        UIEventOnDataComponent4:
+            watchedDataExpression: "extendedPopupVisible"
+            ifExpression: "extendedPopupVisible"
+            eventName: "ShowDepositExtendedPopup"
+        UIEventOnDataComponent5:
+            watchedDataExpression: "currentProgressValue"
+            ifExpression: "progressAnimationNeeded"
+            eventName: "AnimateProgress"
+            eventData: "false"
+    children:
+    -   class: "UIControl"
+        name: "bg"
+        pivot: [0.500000, 0.500000]
+        input: false
+        components:
+            UITextureComponent:
+                spritePath: "~res:/Gfx/Lobby/events/battle-pass/battlepass_deposits_bg"
+                drawType: "DRAW_SCALE_TO_RECT"
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "content / 0.75"
+                verticalPolicy: "PercentOfContent"
+            ScalePolicy:
+                horizontalFormula: "max(parentSize.X / size.X, parentSize.Y / size.Y)"
+                verticalFormula: "max(parentSize.X / size.X, parentSize.Y / size.Y)"
+    -   class: "UIParticles"
+        name: "Sparks"
+        position: [641.000000, 267.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        effectPath: "~res:/3d/FX/UI/BattlePass/SparksAndGlobes.sc2"
+        autoStart: true
+    -   class: "UIControl"
+        name: "header"
+        input: false
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                leftAnchor: 24.000000
+                rightAnchorEnabled: true
+                rightAnchor: 24.000000
+                topAnchorEnabled: true
+                topAnchor: 24.000000
+            SizePolicy:
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   prototype: "IconButton/IconButton"
+            name: "CloseButton"
+            components:
+                Anchor:
+                    leftAnchorEnabled: true
+                UIAnchorSafeAreaComponent:
+                    leftSafeInset: "INSET"
+                UIDataParamsComponent:
+                    args:
+                        "locked": "false"
+                        "visible": "true"
+                        "isBgVisible": "false"
+                        "image": "\"~res:/Gfx/Lobby/icons/icon_cross_m.psd\""
+                        "type": "eButtonType.OPTIONAL_LIGHT"
+                        "sound": "eButtonSound.CLOSE"
+                        "enabled": "true"
+                    eventActions:
+                    - ["ON_CLICK_BUTTON", "CLOSE_CLICKED", ""]
+        -   prototype: "IconButton/IconButton"
+            name: "InfoButton"
+            components:
+                Anchor:
+                    rightAnchorEnabled: true
+                UIDataParamsComponent:
+                    args:
+                        "image": "\"~res:/Gfx/Lobby/icons/icon_info_xs\""
+                    eventActions:
+                    - ["ON_CLICK_BUTTON", "INFO_BUTTON_CLICKED", ""]
+    -   class: "UIControl"
+        name: "content"
+        input: false
+        components:
+            LinearLayout:
+                orientation: "TopDown"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   class: "UIControl"
+            name: "titleWrapper"
+            input: false
+            components:
+                UIOpacityComponent: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+            children:
+            -   class: "UIControl"
+                name: "Title"
+                input: false
+                components:
+                    UITextComponent:
+                        colorInheritType: "COLOR_IGNORE_PARENT"
+                        align: ["LEFT", "VCENTER"]
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        bottomAnchorEnabled: true
+                        bottomAnchor: -4.000000
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        verticalPolicy: "PercentOfContent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+                bindings:
+                - ["classes", "valueTitleStyle"]
+                - ["UITextComponent.text", "localize(currentDeposit.title)"]
+        -   class: "UIControl"
+            name: "smallSpacer"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 10.000000
+                    verticalPolicy: "Formula"
+                    verticalFormula: "when parent > 800 -> parent * 0.05, 0"
+        -   class: "UIControl"
+            name: "depositsWrapper"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfMaxChild"
+            children:
+            -   class: "UIControl"
+                name: "deposits"
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        topAnchorEnabled: true
+                        topAnchor: -20.000000
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfMaxChild"
+                    UIChildComponent0:
+                        prototypePath: "~res:/UI/Screens3/Lobby/BattlePass/Deposits/DepositsScene.yaml"
+                        args:
+                            "camera": "camera"
+                            "radius": "radius"
+                            "timeAnim": "timeAnim"
+                            "deposits": "battlePass.deposits.deposits"
+                        eventActions:
+                        - ["CURRENT_BANK_CLICKED", "OnCurrentBankClicked", ""]
+                        - ["ROTATION_STARTED", "UpdateInfo", ""]
+                        - ["CURENT_BANK_CHANGED", "CURENT_BANK_CHANGED", "_event"]
+        -   class: "UIControl"
+            name: "smallSpacer"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 10.000000
+                    verticalPolicy: "Formula"
+                    verticalFormula: "when parent > 800 -> parent * 0.05, 0"
+        -   class: "UIControl"
+            name: "currentDeposit"
+            input: false
+            components:
+                UIOpacityComponent: {}
+                LinearLayout:
+                    orientation: "TopDown"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "Formula"
+                    verticalFormula: "when parent > 780 -> parentRest * 0.5 , parentRest * 0.7"
+            children:
+            -   class: "UIControl"
+                name: "currentValueWrapper"
+                input: false
+                components:
+                    UIOpacityComponent:
+                        opacity: 0.000000
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfMaxChild"
+                    UIChildComponent0:
+                        childType: "kControl"
+                        condition: "isNull(currentBank)"
+                        control: "DepositTakenTitle"
+                    UIChildComponent1:
+                        childType: "kControl"
+                        condition: "not currentBank.activated"
+                        control: "DepositActivateTitle"
+                    UIChildComponent2:
+                        prototypePath: "~res:/UI/Screens3/Lobby/Hangar/Offers/PRMP/AnimatedNumber/AnimatedNumber.yaml"
+                        args:
+                            "textStyle": "valueTitleStyle"
+                            "targetNumber": "currentBank.stagedQuantity"
+                            "initialNumber": "currentBank.previousQuantity"
+                            "animationTime": "progressAnimationTime"
+                        eventActions:
+                        - ["NUMBER_ANIMATION_FINISHED", "NUMBER_ANIMATION_FINISHED", ""]
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+            -   class: "UIControl"
+                name: "wrapper"
+                input: false
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 48.000000
+                children:
+                -   class: "UIControl"
+                    name: "progressWrapper"
+                    input: false
+                    components:
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            vCenterAnchorEnabled: true
+                        LinearLayout: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfChildrenSum"
+                            verticalPolicy: "PercentOfMaxChild"
+                    children:
+                    -   class: "UIControl"
+                        name: "proggress"
+                        input: false
+                        components:
+                            Anchor:
+                                hCenterAnchorEnabled: true
+                                vCenterAnchorEnabled: true
+                            SizePolicy:
+                                horizontalPolicy: "FixedSize"
+                                horizontalValue: 350.000000
+                                verticalPolicy: "FixedSize"
+                                verticalValue: 24.000000
+                            UIChildComponent0:
+                                condition: "not isNull(currentBank)"
+                                prototypePath: "~res:/UI/Screens3/Lobby/Hangar/Offers/PRMP/PiggyBankProgress.yaml"
+                                args:
+                                    "animationTime": "progressAnimationTime"
+                                    "animated": "true"
+                                    "changeColor": "true"
+                                    "forceFullProgress": "false"
+                                    "state": "currentBank"
+                    -   class: "UIControl"
+                        name: "DepositProgressId"
+                        input: false
+                        components:
+                            SizePolicy:
+                                horizontalPolicy: "FixedSize"
+                                horizontalValue: 2.000000
+                                verticalPolicy: "FixedSize"
+                                verticalValue: 4.000000
+                            UIAttachLayoutMasterComponent:
+                                attachId: "DEPOSIT_PROGRESS_ID"
+                -   class: "UIControl"
+                    name: "buttonsLeft"
+                    input: false
+                    components:
+                        Anchor:
+                            rightAnchorEnabled: true
+                            rightAnchor: 24.000000
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfMaxChild"
+                            verticalPolicy: "PercentOfMaxChild"
+                        UIChildComponent0:
+                            childType: "kControl"
+                            condition: "buttonsRight"
+                            control: "OpenDepositButtonsLeft"
+            -   class: "UIControl"
+                name: "spacer"
+                input: false
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "Ignore"
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 10.000000
+            -   class: "UIControl"
+                name: "fillMethod"
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 650.000000
+                        verticalPolicy: "PercentOfMaxChild"
+                    UIChildComponent0:
+                        condition: "not isNull(currentBank)"
+                        prototypePath: "~res:/UI/Screens3/Lobby/Hangar/Offers/PRMP/PiggyBankFillMethod.yaml"
+                        args:
+                            "multiline": "false"
+                            "piggyBank": "currentBank"
+                    UIChildComponent1:
+                        childType: "kControl"
+                        condition: "isNull(currentBank)"
+                        control: "DepositTakenDescription"
+            -   class: "UIControl"
+                name: "spacer"
+                input: false
+                components:
+                    SizePolicy:
+                        horizontalPolicy: "Ignore"
+                        verticalPolicy: "FixedSize"
+                        verticalValue: 20.000000
+                bindings:
+                - ["visible", "not buttonsRight"]
+            -   class: "UIControl"
+                name: "buttonsBottom"
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfMaxChild"
+                    UIChildComponent0:
+                        childType: "kControl"
+                        condition: "not buttonsRight"
+                        control: "OpenDepositButtonsBottom"
+Slots:
+-   class: "UIControl"
+    name: "OpenDepositButtonsLeft"
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIAttachLayoutMasterComponent:
+            attachId: "DEPOSIT_BUTTON_ID"
+    children:
+    -   class: "UIControl"
+        name: "button"
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfMaxChild"
+                verticalPolicy: "PercentOfMaxChild"
+            UIChildComponent0:
+                condition: "not isNull(currentBank)"
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/Button/TextIconButton.yaml"
+                args:
+                    "enabled": "actionEnabled"
+                    "locked": "not actionEnabled"
+                    "type": "when not isNull(currentBank) and not currentBank.activated -> eButtonType.ALTERNATIVE, canTakeCurrentBank -> eButtonType.POSITIVE, eButtonType.OPTIONAL_LIGHT"
+                    "caption": "when not isNull(currentBank) and not currentBank.activated -> \"BattlePass/BuyPaidBattlePass/Button\", \"BattlePass/ClaimReward/Button\""
+                eventActions:
+                - ["ON_CLICK_BUTTON", "OnActionButtonClicked", ""]
+    -   class: "UIControl"
+        name: "spacer10"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 10.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 12.000000
+    -   class: "UIControl"
+        name: "timer"
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfMaxChild"
+                verticalPolicy: "PercentOfMaxChild"
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/Timer.yaml"
+                args:
+                    "colorStyle": "\"white-wild-sand-50\""
+                    "serverTime": "session.serverTime"
+                    "time": "battlePass.activeStage.finishTime"
+        bindings:
+        - ["visible", "timerVisible"]
+-   class: "UIControl"
+    name: "OpenDepositButtonsBottom"
+    input: false
+    components:
+        LinearLayout:
+            orientation: "LeftToRight"
+            spacing: 24.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfChildrenSum"
+            verticalPolicy: "PercentOfMaxChild"
+        UIAttachLayoutMasterComponent:
+            attachId: "DEPOSIT_BUTTON_ID"
+    children:
+    -   class: "UIControl"
+        name: "button"
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfMaxChild"
+                verticalPolicy: "PercentOfMaxChild"
+            UIChildComponent0:
+                condition: "not isNull(currentBank)"
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/Button/TextIconButton.yaml"
+                args:
+                    "enabled": "actionEnabled"
+                    "locked": "not actionEnabled"
+                    "type": "when not isNull(currentBank) and not currentBank.activated -> eButtonType.ALTERNATIVE, canTakeCurrentBank -> eButtonType.POSITIVE, eButtonType.OPTIONAL_LIGHT"
+                    "caption": "when not isNull(currentBank) and not currentBank.activated -> \"BattlePass/BuyPaidBattlePass/Button\", \"BattlePass/ClaimReward/Button\""
+                eventActions:
+                - ["ON_CLICK_BUTTON", "OnActionButtonClicked", ""]
+    -   class: "UIControl"
+        name: "timer"
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfMaxChild"
+                verticalPolicy: "PercentOfMaxChild"
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/Timer.yaml"
+                args:
+                    "colorStyle": "\"white-wild-sand-50\""
+                    "serverTime": "session.serverTime"
+                    "time": "battlePass.activeStage.finishTime"
+        bindings:
+        - ["visible", "timerVisible"]
+-   class: "UIControl"
+    name: "DepositTakenDescription"
+    input: false
+    classes: "t-subtitle regular color=white-wild-sand-text"
+    components:
+        UITextComponent:
+            colorInheritType: "COLOR_IGNORE_PARENT"
+            align: ["LEFT", "VCENTER"]
+        Anchor:
+            hCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfContent"
+            verticalPolicy: "PercentOfContent"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+    bindings:
+    - ["UITextComponent.text", "localize(\"BattlePass/SafeDeposit/SafeFull/ResourcesCollected/Description\")"]
+-   class: "UIControl"
+    name: "DepositTakenTitle"
+    input: false
+    components:
+        UITextComponent:
+            colorInheritType: "COLOR_IGNORE_PARENT"
+            align: ["LEFT", "VCENTER"]
+        SizePolicy:
+            horizontalPolicy: "PercentOfContent"
+            verticalPolicy: "PercentOfContent"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+    bindings:
+    - ["classes", "valueTitleStyle"]
+    - ["UITextComponent.text", "localize(\"BattlePass/SafeDeposit/SafeFull/ResourcesCollected/Title\")"]
+-   class: "UIControl"
+    name: "DepositActivateTitle"
+    input: false
+    components:
+        UITextComponent:
+            colorInheritType: "COLOR_IGNORE_PARENT"
+            align: ["LEFT", "VCENTER"]
+        SizePolicy:
+            horizontalPolicy: "PercentOfContent"
+            verticalPolicy: "PercentOfContent"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+    bindings:
+    - ["classes", "valueTitleStyle"]
+    - ["UITextComponent.text", "localize(\"BattlePass/SafeDeposit/Gold/WithoutPaidBattlePass\")"]

@@ -1,0 +1,55 @@
+action UpdateWhileScroll(float itemWidth, float parentWidth, float offset)
+{
+	Opacity(".", min(
+			clamp(((indexInScrollableContainer + 1) * itemWidth + offset) / itemWidth, 0.0, 1.0),
+			clamp((parentWidth - itemWidth * indexInScrollableContainer - offset) / itemWidth, 0.0, 1.0))
+		);
+	Scale(path="**/GoldEffects", time=0, 
+		x = min(
+			clamp(((indexInScrollableContainer + 1) * itemWidth + offset) / itemWidth, 0.0, 1.0),
+			clamp((parentWidth - itemWidth * indexInScrollableContainer - offset) / itemWidth, 0.0, 1.0)), 
+		y =	min(
+			clamp(((indexInScrollableContainer + 1) * itemWidth + offset) / itemWidth, 0.0, 1.0),
+			clamp((parentWidth - itemWidth * indexInScrollableContainer - offset) / itemWidth, 0.0, 1.0)) 
+		);
+}
+
+action ShowAnimation(int maxRewardsCountOnPath)
+{
+	parallel
+	{
+		ChangeProperty(".", "", "scale", vec2(0.01, 0.01)); 
+		ChangeProperty("Content", "UIOpacityComponent", "opacity", 0);
+	}
+	
+	Wait(indexInScrollableContainer * 0.1);
+
+	parallel
+	{
+		sequence
+		{
+			Scale(".", 1.2, 1.2, 0.3, SINE_OUT);
+			Scale(".", 1.0, 1.0, 0.2, SINE_IN_SINE_OUT);
+		}
+		Opacity("Content", 1.0, 0.5);
+	}
+}
+
+action TranformRewardToReadyForTaking(float time, bool isLevelPassed)
+{
+	if (isLevelPassed)
+	{
+		Scale("**/GoldEffects", 0.01, 0.01, 0);
+		ChangeData(showGoldEffect, true);
+	}
+
+	parallel
+	{
+		Opacity(".", 1.0, time);
+		
+		if (isLevelPassed)
+		{
+			Scale("**/GoldEffects", 1.0, 1.0, time);
+		}
+	}
+}

@@ -1,0 +1,175 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Overlay/Overlay.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Resource/Detailed/ResourceDetailedWithIcon.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Resource/Currency.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Overlay/OverlayWithContent.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "LevelPurchaseOverlay"
+    size: [1000.000000, 600.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["StatsDataModel", "stats", "null", "{ }"]
+            - ["BattlePass", "battlePass", "null", "{ }"]
+            - ["vector<int>", "levelsIds", "[ ]", "[ 1001; 1002; 1003; 1004; ]"]
+            - ["bool", "wasPushed", "true", "true"]
+            events: []
+        UIDataLocalsComponent:
+            locals:
+            - ["int", "offersSize", "Size(battlePass.offers)"]
+            - ["bool", "isBlocked", "battlePass.pathsInfo[eBattlePassPath.Paid].isOpened == false"]
+            - ["int", "levelsAmountRatio", "when Size(battlePass.levels) > 0 -> battlePass.levels[0].totalProgress, 1"]
+    children:
+    -   prototype: "OverlayWithContent/OverlayScreen"
+        name: "OverlayScreen"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "title": "\"BattlePass/LevelPurchase/Header\""
+                    "wasPushed": "wasPushed"
+                    "content": "Content"
+                eventActions:
+                - ["BACK_EVENT", "BACK_EVENT", ""]
+                - ["CLOSE_OVERLAY", "CLOSE_OVERLAY", ""]
+                - ["OVERLAY_OPEN_FINISH", "OVERLAY_OPEN_FINISH", ""]
+    -   class: "UIControl"
+        name: "AdditionalInfo"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            Anchor:
+                rightAnchorEnabled: true
+                rightAnchor: 16.000000
+                topAnchorEnabled: true
+                topAnchor: 3.000000
+            LinearLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   prototype: "Currency/Currency"
+            name: "Gold"
+            components:
+                UIDataParamsComponent:
+                    args:
+                        "currencySize": "eCurrencySize.BIG"
+                        "forButton": "false"
+                        "canAfford": "true"
+                        "isPlusTopPaneVisible": "false"
+                        "serverTime": "0L"
+                        "plusVisible": "false"
+                        "resource": "stats.gold"
+        -   class: "UIControl"
+            name: "Control"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "Formula"
+                    horizontalFormula: "safeAreaInsets.right"
+Slots:
+-   class: "UIControl"
+    name: "Content"
+    size: [800.000000, 530.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+            spacing: 20.000000
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+    children:
+    -   class: "UIControl"
+        name: "MainContent"
+        position: [0.000000, 0.000000]
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+            LinearLayout:
+                dynamicPadding: true
+                dynamicSpacing: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+                verticalMin: 440.000000
+            UIRepeatComponent:
+                control: "~res:/UI/Screens3/Lobby/BattlePass/PurchaseLevelCell.yaml"
+                dataContainer: "levelsIds"
+                args:
+                    "enabled": "not isBlocked"
+                    "levelsAmountRatio": "levelsAmountRatio"
+                    "levelsLeft": "Size(battlePass.levels) - battlePass.activeLevelIndex"
+                    "levelAmountCaption": "when battlePass.resources.strings.Contains(str(_index)) -> battlePass.resources.strings[str(_index)], \"#УРОВЕНЬ\""
+                    "offer": "battlePass.offers[levelsIds[_index]]"
+                    "backgroundUrl": "battlePass.resources.graphics[\"purchaseLevelBackground\" + str(battlePass.offers[levelsIds[_index]].stepId)]"
+                eventActions:
+                - ["ON_CARD_CLICK", "ON_CARD_CLICK", "_event"]
+        bindings:
+        - ["SizePolicy.horizontalValue", "when offersSize > 3 -> 110, 100"]
+    -   class: "UIControl"
+        name: "Footer"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            LinearLayout:
+                orientation: "TopDown"
+                padding: "-40"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 60.000000
+        children:
+        -   class: "UIControl"
+            name: "LevelsProgressInfo"
+            input: false
+            classes: "t-body regular color white-wild-sand-50-text"
+            components:
+                UITextComponent:
+                    colorInheritType: "COLOR_IGNORE_PARENT"
+                    align: ["LEFT", "VCENTER"]
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+            bindings:
+            - ["visible", "not isBlocked"]
+            - ["UITextComponent.text", "localize(\"BattlePass/LevelPurchase/CurrentLevel\", { currentLevel = str(battlePass.activeLevelIndex); maximumLevel = str(Size(battlePass.levels)); })"]
+        -   class: "UIControl"
+            name: "BuyPremiumPassButton"
+            position: [400.000000, -30.000000]
+            input: false
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfFirstChild"
+                    verticalPolicy: "PercentOfFirstChild"
+                UIAttachLayoutMasterComponent:
+                    attachId: "BUY_BUTTON"
+                UIChildComponent0:
+                    condition: "isBlocked"
+                    prototypePath: "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+                    args:
+                        "caption": "\"BattlePass/BuyPaidBattlePass/Button\""
+                        "type": "eButtonType.ALTERNATIVE"
+                        "size": "eButtonSize.NORMAL"
+                        "enabled": "true"
+                    eventActions:
+                    - ["ON_CLICK_BUTTON", "ON_BUY_BATTLE_PASS", ""]
+            bindings:
+            - ["visible", "isBlocked"]

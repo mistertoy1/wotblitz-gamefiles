@@ -1,0 +1,288 @@
+Header:
+    version: "100"
+Prototypes:
+-   class: "UIControl"
+    name: "DepositItem"
+    size: [137.000000, 127.000000]
+    input: true
+    components:
+        UIInputEventComponent:
+            onTouchUpInside: "BANK_CLICKED"
+            onTouchUpInsideData: "id"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "central", "false", "true"]
+            - ["int", "id", "0", "0"]
+            - ["int", "dataIndex", "0", "0"]
+            - ["BattlePassDeposit", "deposit", "null", "{ }"]
+            events:
+            - "BANK_CLICKED"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "extenderStyle", "\"t-headline bold color=white-wild-sand-text\""]
+            - ["string", "titleStyle", "\"t-subtitle regular color=white-wild-sand-50-text\""]
+            - ["bool", "bankFull", "not isNull(deposit.bank) and deposit.bank.current.quantity == deposit.bank.max.quantity"]
+            - ["bool", "needExtension", "bankFull and deposit.limitLevels.Contains(deposit.level + 1)"]
+            - ["int", "extenderCount", "when needExtension -> deposit.limitLevels[deposit.level + 1].depositLimitProxyCount, 0"]
+            - ["string", "extenderCountStr", "\"+\" + shortStr(extenderCount, 1000)"]
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/BattlePass/Deposits/DepositItem.actions"
+    children:
+    -   class: "UIControl"
+        name: "Info"
+        input: false
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                hCenterAnchorEnabled: true
+                topAnchorEnabled: true
+            LinearLayout:
+                orientation: "TopDown"
+            SizePolicy:
+                horizontalPolicy: "PercentOfMaxChild"
+                verticalPolicy: "FixedSize"
+                verticalValue: 60.000000
+        bindings:
+        - ["Anchor.topAnchor", "-60"]
+        children:
+        -   class: "UIControl"
+            name: "spacer"
+            input: false
+            components:
+                SizePolicy:
+                    verticalPolicy: "PercentOfParent"
+        -   class: "UIControl"
+            name: "infoWrapper"
+            input: false
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfMaxChild"
+                    verticalPolicy: "PercentOfMaxChild"
+                UIChildComponent0:
+                    childType: "kControl"
+                    condition: "central and needExtension"
+                    control: "extenderCentral"
+                UIChildComponent1:
+                    childType: "kControl"
+                    condition: "needExtension"
+                    control: "extenderSimple"
+                UIChildComponent2:
+                    childType: "kControl"
+                    condition: "not central"
+                    control: "simpleTitle"
+    -   class: "UIControl"
+        name: "glow"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            UIAttachLayoutMasterComponent: {}
+        bindings:
+        - ["UIAttachLayoutMasterComponent.attachId", "\"ITEM_ID_\" + str(dataIndex)"]
+    -   class: "UIControl"
+        name: "image"
+        visible: true
+        input: false
+        components:
+            Background:
+                drawType: "DRAW_SCALE_PROPORTIONAL_ONE"
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        bindings:
+        - ["Background.sprite", "when isNull(deposit.bank) -> deposit.openedIcon, deposit.levelIcons.Contains(deposit.level) -> deposit.levelIcons[deposit.level], \"\""]
+    -   class: "UIControl"
+        name: "progress"
+        input: false
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                bottomAnchorEnabled: true
+                bottomAnchor: -8.000000
+            IgnoreLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 20.000000
+        bindings:
+        - ["visible", "not central"]
+        children:
+        -   class: "UIControl"
+            name: "progressBar"
+            position: [36.500000, 6.000000]
+            size: [64.000000, 6.000000]
+            input: false
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 64.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 4.000000
+                UIChildComponent0:
+                    condition: "not isNull(deposit.bank)"
+                    prototypePath: "~res:/UI/Screens3/Lobby/Common/ProgressBar.yaml"
+                    args:
+                        "changeColor": "true"
+                        "value": "when isNull(deposit.bank) -> 100, deposit.bank.current.quantity"
+                        "maximum": "when isNull(deposit.bank) -> 100, deposit.bank.max.quantity"
+                        "minimum": "0"
+        -   class: "UIControl"
+            name: "lock"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                Background:
+                    sprite: "~res:/Gfx/Lobby/icons/icon_lock"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 12.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 12.000000
+            bindings:
+            - ["visible", "not isNull(deposit.bank) and not deposit.bank.activated"]
+Slots:
+-   class: "UIControl"
+    name: "simpleTitle"
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfChildrenSum"
+    children:
+    -   class: "UIControl"
+        name: "title"
+        input: false
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 20.000000
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["classes", "titleStyle"]
+        - ["UITextComponent.text", "localize(deposit.title)"]
+    -   class: "UIControl"
+        name: "spacer"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 10.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 12.000000
+-   class: "UIControl"
+    name: "extenderCentral"
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfChildrenSum"
+    children:
+    -   class: "UIControl"
+        name: "extenderSmall"
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 30.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 30.000000
+            UIChildComponent0:
+                condition: "needExtension"
+                prototypePath: "~res:/UI/Screens3/Lobby/BattlePass/Deposits/DepositExtender.yaml"
+    -   class: "UIControl"
+        name: "spacer"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 10.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 4.000000
+    -   class: "UIControl"
+        name: "extenderTitle"
+        input: false
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 20.000000
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["classes", "extenderStyle"]
+        - ["UITextComponent.text", "extenderCountStr"]
+-   class: "UIControl"
+    name: "extenderSimple"
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfChildrenSum"
+    children:
+    -   class: "UIControl"
+        name: "title"
+        input: false
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "FixedSize"
+                verticalValue: 20.000000
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["classes", "titleStyle"]
+        - ["UITextComponent.text", "localize(deposit.title)"]
+    -   class: "UIControl"
+        name: "spacer"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 10.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 12.000000
+    -   class: "UIControl"
+        name: "extenderSmall"
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 30.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 30.000000
+            UIChildComponent0:
+                condition: "needExtension"
+                prototypePath: "~res:/UI/Screens3/Lobby/BattlePass/Deposits/DepositExtender.yaml"

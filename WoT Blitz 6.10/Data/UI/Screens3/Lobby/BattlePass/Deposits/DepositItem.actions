@@ -1,0 +1,19 @@
+action SetInfoVisisble(bool visible)
+{
+	if (not visible)
+	{ 
+		parallel
+		{
+			Opacity("**/Info", opacity = 0.0, time = 0.3);
+			Opacity("**/progress", opacity = 0.0, time = 0.3);
+		}
+	}
+	else 
+	{ 
+		parallel
+		{
+			Opacity("**/Info", opacity = 1.0, time = 0.2);
+			Opacity("**/progress", opacity = 1.0, time = 0.2);  
+		}
+	}
+}

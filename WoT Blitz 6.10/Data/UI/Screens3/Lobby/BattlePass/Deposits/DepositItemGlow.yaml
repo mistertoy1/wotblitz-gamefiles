@@ -1,0 +1,31 @@
+Header:
+    version: "100"
+Prototypes:
+-   class: "UIParticles"
+    name: "DepositGlow"
+    input: false
+    effectPath: "~res:/3d/FX/UI/BattlePass/SafeWidget.sc2"
+    autoStart: true
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        ScalePolicy:
+            horizontalFormula: "size.X / 127"
+            verticalFormula: "size.Y/120"
+        UIAttachLayoutSlaveComponent:
+            slaveAlign: "Pivot"
+            slaveSizePolicy: "MasterSize"
+        UIDataParamsComponent:
+            params:
+            - ["string", "masterId", "\"\"", "\"\""]
+            - ["BattlePassDeposit", "deposit", "null", "{ }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "bankFull", "not isNull(deposit.bank) and deposit.bank.current.quantity == deposit.bank.max.quantity"]
+            - ["bool", "needExtension", "bankFull and deposit.limitLevels.Contains(deposit.level + 1)"]
+        Update:
+            updateInvisible: true
+    bindings:
+    - ["visible", "needExtension"]
+    - ["UIAttachLayoutSlaveComponent.attachId", "masterId"]

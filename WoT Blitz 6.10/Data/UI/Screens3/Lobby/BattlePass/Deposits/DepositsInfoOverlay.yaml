@@ -1,0 +1,127 @@
+Header:
+    version: "99"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/Overlay/OverlayWithContent.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "DepositInfoOverlay"
+    size: [1000.000000, 900.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            events:
+            - "BACK_EVENT"
+            - "OVERLAY_OPEN_FINISH"
+            - "CLOSE_OVERLAY"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "title", "\"BattlePass/SafeDeposit/InfoScreen/Header\""]
+    children:
+    -   prototype: "OverlayWithContent/OverlayScreen"
+        name: "OverlayScreen"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "centerContent": "false"
+                    "titleContent": "TitleContent"
+                    "content": "InfoContent"
+                eventActions:
+                - ["BACK_EVENT", "BACK_EVENT", ""]
+                - ["CLOSE_OVERLAY", "CLOSE_OVERLAY", ""]
+                - ["OVERLAY_OPEN_FINISH", "OVERLAY_OPEN_FINISH", ""]
+Slots:
+-   class: "UIControl"
+    name: "InfoContent"
+    size: [400.000000, 32.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+    children:
+    -   class: "UIControl"
+        name: "spacer"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 50.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 60.000000
+    -   class: "UIControl"
+        name: "question0"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfChildrenSum"
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/BattlePass/Deposits/DepositInfoViewBlock.yaml"
+                args:
+                    "title": "\"BattlePass/SafeDeposit/InfoScreen/EarningTerms/Title\""
+                    "description": "\"BattlePass/SafeDeposit/InfoScreen/EarningTerms/Description\""
+    -   class: "UIControl"
+        name: "question1"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfChildrenSum"
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/BattlePass/Deposits/DepositInfoViewBlock.yaml"
+                args:
+                    "title": "\"BattlePass/SafeDeposit/InfoScreen/GoldSafe/Title\""
+                    "description": "\"BattlePass/SafeDeposit/InfoScreen/GoldSafe/Description\""
+    -   class: "UIControl"
+        name: "question2"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfChildrenSum"
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/BattlePass/Deposits/DepositInfoViewBlock.yaml"
+                args:
+                    "title": "\"BattlePass/SafeDeposit/InfoScreen/IncreaseLimit/Title\""
+                    "description": "\"BattlePass/SafeDeposit/InfoScreen/IncreaseLimit/Description\""
+    -   class: "UIControl"
+        name: "question3"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfChildrenSum"
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/BattlePass/Deposits/DepositInfoViewBlock.yaml"
+                args:
+                    "title": "\"BattlePass/SafeDeposit/InfoScreen/ClaimReward/Title\""
+                    "description": "\"BattlePass/SafeDeposit/InfoScreen/ClaimReward/Description\""
+-   class: "UIControl"
+    name: "TitleContent"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfMaxChild"
+    children:
+    -   class: "UIControl"
+        name: "label"
+        input: false
+        classes: "t-subtitle regular color=white-wild-sand-text"
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+                align: ["HCENTER", "VCENTER"]
+            Anchor: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfContent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "localize(title)"]

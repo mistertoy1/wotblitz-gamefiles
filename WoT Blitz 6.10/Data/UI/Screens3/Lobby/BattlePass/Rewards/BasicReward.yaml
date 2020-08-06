@@ -1,0 +1,39 @@
+Header:
+    version: "96"
+Controls:
+-   class: "UIControl"
+    name: "Content"
+    size: [120.000000, 108.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["eBattlePassRewardSize", "size", "eBattlePassRewardSize.Big", "eBattlePassRewardSize.Big"]
+            - ["ResourceType", "type", "ResourceType.undefined", "ResourceType.premium"]
+            - ["BasicResource", "basic", "null", "{ quantity = 2000000; }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "iconPath", "when type == ResourceType.credits -> \"~res:/Gfx/Lobby/currency/currency_silver_xl\", type == ResourceType.free_xp -> \"~res:/Gfx/Lobby/currency/currency_free-xp_xl\", type == ResourceType.gold -> \"~res:/Gfx/Lobby/currency/currency_gold_xl\", type == ResourceType.premium -> \"~res:/Gfx/Lobby/currency/currency_premium_xl\", \"\""]
+    children:
+    -   class: "UIControl"
+        name: "Icon"
+        input: false
+        components:
+            Background:
+                drawType: "DRAW_SCALE_PROPORTIONAL_ONE"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_ENABLED"
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                verticalPolicy: "FixedSize"
+            DebugRender:
+                enabled: false
+        bindings:
+        - ["Background.sprite", "iconPath"]
+        - ["SizePolicy.horizontalValue", "when size == eBattlePassRewardSize.Big -> 96, 64"]
+        - ["SizePolicy.verticalValue", "when size == eBattlePassRewardSize.Big -> 96, 64"]

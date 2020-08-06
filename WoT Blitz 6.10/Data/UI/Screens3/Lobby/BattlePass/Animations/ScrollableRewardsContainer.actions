@@ -1,0 +1,15 @@
+action UpdateFreeRewardsVisibility(FloatParamPack params)
+{
+  if (freeRewardsCount > 0)
+  {
+    BroadcastEvent("UpdateWhileScroll", "**/FreeRewards", (params.first / float(freeRewardsCount)), params.second, params.third);
+  }
+}
+
+action UpdatePaidRewardsVisibility(FloatParamPack params)
+{
+  if (paidRewardsCount > 0)
+  {
+    BroadcastEvent("UpdateWhileScroll", "**/PaidRewards", (params.first / float(paidRewardsCount)), params.second, params.third);
+  }
+}

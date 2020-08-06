@@ -1,0 +1,6 @@
+animation BATTLE_PASS_UNLOCKED
+{
+    StartParticles(path="**/MainLight");
+	Wait(2);
+    StopParticles(path="**/MainLight");
+}

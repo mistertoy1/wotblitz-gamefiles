@@ -1,0 +1,123 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/BattlePass/Deposits/DepositItem.yaml"
+- "~res:/UI/Screens3/Lobby/BattlePass/Deposits/DepositItemGlow.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "DepositsScene"
+    size: [675.000000, 388.000000]
+    input: false
+    components:
+        UIAnimationComponent:
+            animations: "_INIT,~res:/UI/Screens3/Lobby/BattlePass/Deposits/DepositsSceneInit.animation"
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 800.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 400.000000
+        UIDataParamsComponent:
+            params:
+            - ["vector2", "camera", "vec2(300, 100)", "vec2(320, 10)"]
+            - ["float", "radius", "100.000000", "230.000000"]
+            - ["float", "timeAnim", "2.000000", "12.000000"]
+            - ["vector<BattlePassDeposit>", "deposits", "null", "[ { }; { }; { }; ]"]
+            events:
+            - "CURRENT_BANK_CLICKED"
+            - "ROTATION_STARTED"
+            - "CURENT_BANK_CHANGED"
+        UIDataLocalsComponent:
+            locals:
+            - ["float", "sceneCenterX", "400.000000"]
+            - ["int", "width", "350"]
+            - ["vector2", "centerObjPos", "vec2(sceneCenterX - 0.500000 * width, 100)"]
+            - ["vector2", "focus", "vec2(700, 300)"]
+            - ["float", "y0", "centerObjPos.Y + width"]
+            - ["float", "sceneCenterY", "y0 - focus.Y * camera.Y / (camera.X - radius)"]
+            - ["vector2", "sceneCenter", "vec2(sceneCenterX, sceneCenterY)"]
+            - ["float", "objHeight", "(centerObjPos.Y - sceneCenter.Y) * (camera.X - radius) / focus.Y - camera.Y"]
+            - ["vector2", "item2P", "vec2(focus.X * -radius / camera.X + sceneCenter.X, focus.Y * (objHeight + camera.Y) / camera.X + sceneCenter.Y)"]
+            - ["vector2", "item1P", "vec2(focus.X * radius / camera.X + sceneCenter.X, item2P.Y)"]
+            - ["float", "itemY0", "abs(focus.Y * camera.Y / camera.X + sceneCenter.Y - item1P.Y)"]
+            - ["vector<int>", "rightZ", "[ 0; 2; 1; ]"]
+            - ["vector<int>", "leftZ", "[ 0; 1; 2; ]"]
+            - ["int", "currentBoxInfoData", "0"]
+            - ["int", "currentBox", "0"]
+            - ["vector<int>", "positionIndexes", "leftZ"]
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/BattlePass/Deposits/DepositsScene.actions"
+        UIDataOnEventComponent0:
+            eventName: "ROTATION_ENDED"
+            modelFieldExpression: "currentBox"
+            dataExpression: "currentBoxInfoData"
+        UIDataOnEventComponent1:
+            eventName: "UPDATE_CURRENT_INFO"
+            modelFieldExpression: "currentBoxInfoData"
+            dataExpression: "when _event -> (currentBox + 1) % 3, currentBox - 1 < 0 -> 2, currentBox - 1"
+        UIEventOnDataComponent0:
+            watchedDataExpression: "currentBoxInfoData"
+            eventName: "CURENT_BANK_CHANGED"
+            eventData: "currentBoxInfoData"
+    children:
+    -   prototype: "DepositItemGlow/DepositGlow"
+        name: "DepositGlow0"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "masterId": "\"ITEM_ID_0\""
+                    "deposit": "when deposits.Size() > 0 -> deposits[0], null"
+    -   prototype: "DepositItemGlow/DepositGlow"
+        name: "DepositGlow1"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "masterId": "\"ITEM_ID_1\""
+                    "deposit": "when deposits.Size() > 1 -> deposits[1], null"
+    -   prototype: "DepositItemGlow/DepositGlow"
+        name: "DepositGlow2"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "masterId": "\"ITEM_ID_2\""
+                    "deposit": "when deposits.Size() > 2 -> deposits[2], null"
+    -   prototype: "DepositItem/DepositItem"
+        name: "Deposit2"
+        position: [15.000000, 149.000000]
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                topAnchorEnabled: true
+            UIDataParamsComponent:
+                args:
+                    "dataIndex": "(positionIndexes[2] + currentBox) % 3"
+                    "deposit": "deposits[(positionIndexes[2] + currentBox) % 3]"
+                    "id": "2"
+                eventActions:
+                - ["BANK_CLICKED", "UpdateDataOnClicked", "_event"]
+    -   prototype: "DepositItem/DepositItem"
+        name: "Deposit1"
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                topAnchorEnabled: true
+            UIDataParamsComponent:
+                args:
+                    "dataIndex": "(positionIndexes[1] + currentBox) % 3"
+                    "deposit": "deposits[(positionIndexes[1] + currentBox) % 3]"
+                    "id": "1"
+                eventActions:
+                - ["BANK_CLICKED", "UpdateDataOnClicked", "_event"]
+    -   prototype: "DepositItem/DepositItem"
+        name: "Deposit0"
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                topAnchorEnabled: true
+            UIDataParamsComponent:
+                args:
+                    "dataIndex": "(positionIndexes[0] + currentBox) % 3"
+                    "central": "true"
+                    "deposit": "deposits[(positionIndexes[0] + currentBox) % 3]"
+                    "id": "0"
+                eventActions:
+                - ["BANK_CLICKED", "UpdateDataOnClicked", "_event"]

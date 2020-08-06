@@ -1,0 +1,33 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Tooltip.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "DepositExtendedPopup"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["int", "extendedLevelIndex", "0", "0"]
+    children:
+    -   prototype: "Tooltip/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "offset": "0"
+                    "isAlignLeft": "false"
+                    "buttonVisible": "false"
+                    "rewardVisible": "false"
+                    "slaveAlign": "ePositionAlign.Top"
+                    "resource": "{ }"
+                    "title": "\"BattlePass/SafeDeposit/SafeFull/Hint/Title\""
+                    "text": "localize(\"BattlePass/SafeDeposit/SafeFull/Hint/Description\", { level1 = extendedLevelIndex + 1; })"
+                    "colorClass": "\"color=white-wild-sand-text\""
+                    "masterId": "\"DEPOSIT_PROGRESS_ID\""
+                eventActions:
+                - ["FINISH_HIDE_POPUP_ANIMATION", "FINISH_HIDE_POPUP_ANIMATION", ""]

@@ -1,0 +1,176 @@
+Header:
+    version: "100"
+Prototypes:
+-   class: "UIControl"
+    name: "BattlePassLevel"
+    input: false
+    components:
+        Anchor:
+            bottomAnchorEnabled: true
+        LinearLayout:
+            orientation: "TopDown"
+            skipInvisible: false
+        SizePolicy:
+            horizontalPolicy: "PercentOfFirstChild"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["float", "additionalScale", "1.000000", "1.000000"]
+            - ["string", "passUrl", "\"\"", "\"\""]
+            - ["string", "passUrlGold", "\"\"", "\"\""]
+            - ["int", "width", "0", "120"]
+            - ["int", "freeHeight", "0", "108"]
+            - ["int", "paidHeight", "0", "248"]
+            events: []
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "titleStyle", "when additionalScale > 1.000000 -> \"t-subtitle bold white-wild-sand-text\", \"t-caption bold white-wild-sand-text\""]
+            - ["int", "passWidth", "int(80 * additionalScale)"]
+            - ["int", "passHeight", "int(80 * additionalScale)"]
+    children:
+    -   class: "UIControl"
+        name: "Top"
+        input: false
+        classes: "white-wild-sand-25-bg"
+        components:
+            Background: {}
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                verticalPolicy: "FixedSize"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["SizePolicy.horizontalValue", "width"]
+        - ["SizePolicy.verticalValue", "freeHeight"]
+        children:
+        -   class: "UIControl"
+            name: "BattlePassContainer"
+            input: false
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                LinearLayout:
+                    orientation: "TopDown"
+                    spacing: -8.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfFirstChild"
+                    verticalPolicy: "PercentOfChildrenSum"
+            children:
+            -   class: "UIControl"
+                name: "PassIcon"
+                position: [0.000000, 0.000000]
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_SCALE_PROPORTIONAL"
+                    UIUrlImageComponent: {}
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        verticalPolicy: "FixedSize"
+                bindings:
+                - ["UIUrlImageComponent.imageUrl", "passUrl"]
+                - ["SizePolicy.horizontalValue", "passWidth"]
+                - ["SizePolicy.verticalValue", "passHeight"]
+            -   class: "UIControl"
+                name: "Title"
+                input: false
+                components:
+                    UITextComponent:
+                        text: "BattlePass/FreeBattlePass/Title"
+                        colorInheritType: "COLOR_IGNORE_PARENT"
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfContent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Font.style.yaml"
+                bindings:
+                - ["classes", "titleStyle"]
+    -   class: "UIControl"
+        name: "Bottom"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                verticalPolicy: "FixedSize"
+        bindings:
+        - ["SizePolicy.horizontalValue", "width"]
+        - ["SizePolicy.verticalValue", "paidHeight"]
+        children:
+        -   class: "UIControl"
+            name: "BGFill"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "yellow-lightning-50-bg"
+            components:
+                Background:
+                    drawType: "DRAW_FILL"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "PaidRewards"
+            size: [120.000000, 108.000000]
+            input: false
+            classes: "orange-tango-70-bg"
+            components:
+                Background:
+                    drawType: "DRAW_STRETCH_BOTH"
+                    sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_vertical_0-100"
+                LinearLayout:
+                    orientation: "TopDown"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "BattlePassGoldContainer"
+            input: false
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                LinearLayout:
+                    orientation: "TopDown"
+                    spacing: -8.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfFirstChild"
+                    verticalPolicy: "PercentOfChildrenSum"
+            children:
+            -   class: "UIControl"
+                name: "PassIconGold"
+                position: [0.000000, 0.000000]
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_SCALE_PROPORTIONAL"
+                    UIUrlImageComponent: {}
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        verticalPolicy: "FixedSize"
+                bindings:
+                - ["UIUrlImageComponent.imageUrl", "passUrlGold"]
+                - ["SizePolicy.horizontalValue", "passWidth"]
+                - ["SizePolicy.verticalValue", "passHeight"]
+            -   class: "UIControl"
+                name: "GoldTitle"
+                input: false
+                components:
+                    UITextComponent:
+                        text: "BattlePass/PaidBattlePass/Title"
+                        colorInheritType: "COLOR_IGNORE_PARENT"
+                        multiline: "MULTILINE_ENABLED"
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        topAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "Formula"
+                        horizontalFormula: "parent * 1.2"
+                        verticalPolicy: "PercentOfContent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Font.style.yaml"
+                bindings:
+                - ["classes", "titleStyle"]

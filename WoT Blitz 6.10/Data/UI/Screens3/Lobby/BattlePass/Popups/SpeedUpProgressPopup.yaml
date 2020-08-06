@@ -1,0 +1,31 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/Tooltip.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "DepositExtendedPopup"
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent: {}
+    children:
+    -   prototype: "Tooltip/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "offset": "0"
+                    "isAlignLeft": "false"
+                    "buttonVisible": "false"
+                    "rewardVisible": "false"
+                    "slaveAlign": "ePositionAlign.Top"
+                    "resource": "{ }"
+                    "title": "\"\""
+                    "text": "localize(\"BattlePass/SpeedUpButton/Popup\")"
+                    "colorClass": "\"color=white-wild-sand-text\""
+                    "masterId": "\"BATTLE_PASS_SPEEDUP_BUTTON\""
+                eventActions:
+                - ["FINISH_HIDE_POPUP_ANIMATION", "FINISH_HIDE_POPUP_ANIMATION", ""]

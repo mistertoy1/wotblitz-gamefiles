@@ -1,0 +1,67 @@
+Header:
+    version: "100"
+Controls:
+-   class: "UIControl"
+    name: "Content"
+    size: [128.000000, 128.000000]
+    input: false
+    components:
+        ClipContent: {}
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["UnlockItemResource", "unlock", "null", "{ title = \"#vehicle_customization:camouflage/sentinel_ac_iv_ik/Name\"; description = \"\"; icon = \"~res:/Gfx/UI/CamouflagesShop/Skin/british-GB35_Sentinel_AC_IV.txt\"; type = eItemType.CAMOUFLAGE; kind = eCamouflageKind.WINTER; }"]
+            - ["bool", "useCustomIcon", "false", "false"]
+        UIDataLocalsComponent:
+            locals: []
+    children:
+    -   class: "UIControl"
+        name: "Padding"
+        input: false
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                leftAnchor: 8.000000
+                rightAnchorEnabled: true
+                rightAnchor: 8.000000
+                topAnchorEnabled: true
+                topAnchor: 8.000000
+                bottomAnchorEnabled: true
+                bottomAnchor: 8.000000
+        children:
+        -   class: "UIControl"
+            name: "DefaultIcon"
+            input: false
+            components:
+                UITextureComponent:
+                    spritePath: "~res:/Gfx/UI/BattleLoadingScreen/Tips/camouflage_tank.psd"
+                    drawType: "DRAW_SCALE_PROPORTIONAL_ONE"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    horizontalMax: 96.000000
+                    verticalPolicy: "PercentOfParent"
+                    verticalMax: 60.000000
+            bindings:
+            - ["visible", "not useCustomIcon"]
+        -   class: "UIControl"
+            name: "CustomIcon"
+            input: false
+            components:
+                UITextureComponent:
+                    drawType: "DRAW_SCALE_PROPORTIONAL_ONE"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    horizontalMax: 90.000000
+                    verticalPolicy: "PercentOfParent"
+                    verticalMax: 90.000000
+            bindings:
+            - ["visible", "useCustomIcon"]
+            - ["UITextureComponent.spritePath", "unlock.icon"]

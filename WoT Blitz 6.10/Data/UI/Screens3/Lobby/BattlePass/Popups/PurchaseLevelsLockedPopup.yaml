@@ -1,0 +1,38 @@
+Header:
+    version: "100"
+Controls:
+-   class: "UIControl"
+    name: "PurchaseLevelsPopup"
+    size: [960.000000, 640.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            events:
+            - "POPUP_ON_CLOSE_ACTION"
+            - "CONTINUE"
+            - "FINISH_HIDE_POPUP_ANIMATION"
+    children:
+    -   class: "UIControl"
+        name: "TooltipHolder"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Common/Tooltip.yaml"
+                args:
+                    "isAlignLeft": "false"
+                    "rewardVisible": "false"
+                    "slaveAlign": "ePositionAlign.Top"
+                    "resource": "{ }"
+                    "title": "\"\""
+                    "text": "\"BattlePass/LevelPurchase/Popup/BuyPass\""
+                    "masterId": "\"BUY_BUTTON\""
+                eventActions:
+                - ["FINISH_HIDE_POPUP_ANIMATION", "FINISH_HIDE_POPUP_ANIMATION", ""]
+                - ["CONTINUE", "CONTINUE", ""]
+                - ["POPUP_ON_CLOSE_ACTION", "POPUP_ON_CLOSE_ACTION", ""]

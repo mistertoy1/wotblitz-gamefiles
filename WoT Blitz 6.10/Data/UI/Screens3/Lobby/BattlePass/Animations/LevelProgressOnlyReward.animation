@@ -1,0 +1,18 @@
+animation LEVEL_PROGRESS_ANIMATION
+{
+	if (isNeedAnimation)
+	{
+		if (level.index > oldLevelProgressIndex and level.index <= newLevelProgressIndex)
+		{
+			Wait(((level.index - oldLevelProgressIndex - 1)*totalProgress + totalProgress - oldLevelProgressValue) * 0.05);
+		}
+
+		parallel
+		{			
+			BroadcastEvent("TranformRewardToReadyForTaking", "**/FreeRewards", 0.5, isLevelPassedForReal);
+			BroadcastEvent("TranformRewardToReadyForTaking", "**/PaidRewards", 0.5, isLevelPassedForReal);		
+		}
+		
+		DirectEvent("PROGRESS_ANIMATION_ENDED", ".");
+	}
+}

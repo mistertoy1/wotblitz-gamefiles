@@ -1,0 +1,48 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/PopupMenu.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "RewardInfoPopup"
+    size: [960.000000, 640.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["string", "masterId", "\"\"", "\"level_0_0_0\""]
+            - ["ResourceDetailed", "resource", "null", "{ type = ResourceType.gold; basic = { quantity = 2000000; }; }"]
+            - ["bool", "isTopAlign", "true", "true"]
+            events:
+            - "FINISH_HIDE_POPUP_ANIMATION"
+            - "POPUP_ON_CLOSE_ACTION"
+            - "ON_POPUP_BUTTON_CLICKED"
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "isBasicResource", "resource.type == ResourceType.gold or resource.type == ResourceType.free_xp or resource.type == ResourceType.premium or resource.type == ResourceType.xp or resource.type == ResourceType.tankmenXP or resource.type == ResourceType.credits or resource.type == ResourceType.slots or resource.type == ResourceType.equipment_slots"]
+            - ["bool", "isStuff", "resource.type == ResourceType.stuff"]
+            - ["string", "rewardPackage", "when isBasicResource -> \"~res:/UI/Screens3/Lobby/BattlePass/Rewards/BasicReward.yaml\", resource.type == ResourceType.stuff -> \"~res:/UI/Screens3/Lobby/BattlePass/Rewards/StuffReward.yaml\", resource.type == ResourceType.unlocks -> \"~res:/UI/Screens3/Lobby/BattlePass/Rewards/UnlockReward.yaml\", resource.type == ResourceType.vehicle -> \"~res:/UI/Screens3/Lobby/BattlePass/Rewards/VehicleReward.yaml\", \"\""]
+            - ["string", "name", "when resource.type == ResourceType.gold -> \"shop/Gold\", resource.type == ResourceType.credits -> \"shop/Credits\", resource.type == ResourceType.free_xp -> \"hangar/freeXP\", resource.type == ResourceType.stuff -> resource.stuff.title, resource.type == ResourceType.unlocks -> resource.unlock.title, resource.type == ResourceType.vehicle -> resource.vehicle.info.name, resource.type == ResourceType.premium -> \"storage/Items/PremiumAccount/Title\", \"#Resource Name\""]
+            - ["string", "description", "when resource.type == ResourceType.gold -> \"BattlePass/Tooltip/Gold\", resource.type == ResourceType.credits -> \"BattlePass/Tooltip/Silver\", resource.type == ResourceType.free_xp -> \"BattlePass/Tooltip/FreeXP\", resource.type == ResourceType.stuff -> resource.stuff.description, resource.type == ResourceType.unlocks -> resource.unlock.description, resource.type == ResourceType.vehicle -> \"\", resource.type == ResourceType.premium -> \"BattlePass/Tooltip/Premium\", \"#Resource Description\""]
+            - ["ArtefactGrade", "grade", "when not isStuff -> ArtefactGrade.common, resource.stuff.grade"]
+            - ["string", "gradeColor", "when grade == ArtefactGrade.common -> \"white-wild-sand-text\", grade == ArtefactGrade.rare -> \"grades-rare-text\", grade == ArtefactGrade.unique -> \"grades-unique-text\", grade == ArtefactGrade.legendary -> \"grades-legendary-text\", \"white-wild-sand-text\""]
+    children:
+    -   prototype: "PopupMenu/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "titleColor": "gradeColor"
+                    "isAlignLeft": "false"
+                    "title": "localize(name)"
+                    "slaveAlign": "when isTopAlign -> ePositionAlign.Top, ePositionAlign.Bottom"
+                    "text": "localize(description)"
+                    "masterId": "masterId"
+                    "buttonCaption": "when not isNull(resource.stuff) and (resource.stuff.type == ArtefactType.coupon and not isNull(resource.stuff.coupon) and not resource.stuff.coupon.appliesToUnlocks.Empty() or resource.stuff.type == ArtefactType.profile_background) -> \"BattlePass/Reward/InfoPopup/Button/Preview\", \"\""
+                eventActions:
+                - ["ON_CLICK_BUTTON", "ON_POPUP_BUTTON_CLICKED", ""]
+                - ["POPUP_ON_CLOSE_ACTION", "POPUP_ON_CLOSE_ACTION", ""]
+                - ["FINISH_HIDE_POPUP_ANIMATION", "FINISH_HIDE_POPUP_ANIMATION", ""]

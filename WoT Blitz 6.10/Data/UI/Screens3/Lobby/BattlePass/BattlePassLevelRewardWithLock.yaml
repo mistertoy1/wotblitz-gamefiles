@@ -1,0 +1,214 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/BattlePass/Rewards/RewardHolder.yaml"
+- "~res:/UI/Screens3/Lobby/Common/CheckMark.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "BattlePassLevelReward"
+    pivot: [0.500000, 0.500000]
+    classes: "battlepass-reward button-open-sound"
+    components:
+        UIAnimationComponent:
+            animations: "LOCK_UNLOCKED,~res:/UI/Screens3/Lobby/BattlePass/Animations/LockUnlocked.animation"
+        UIOpacityComponent: {}
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfMaxChild"
+        UIAttachLayoutMasterComponent: {}
+        UIInputEventComponent:
+            onTouchUpInside: "ON_REWARD_CLICKED"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "noOpacity", "false", "false"]
+            - ["eBattlePassRewardSize", "size", "eBattlePassRewardSize.Big", "eBattlePassRewardSize.Big"]
+            - ["bool", "isAnchoredSection", "false", "false"]
+            - ["string", "attachId", "\"\"", "\"test_attach_id\""]
+            - ["int", "indexInScrollableContainer", "0", "0"]
+            - ["bool", "isTaken", "false", "false"]
+            - ["bool", "canBeTaken", "false", "true"]
+            - ["int", "stepId", "0", "0"]
+            - ["bool", "isSelected", "false", "false"]
+            - ["ResourceDetailed", "reward", "null", "{ type = ResourceType.premium; }"]
+            - ["bool", "isOpened", "false", "false"]
+            - ["bool", "bigEffect", "false", "true"]
+            events:
+            - "ON_REWARD_CLICKED"
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "showGoldEffect", "canBeTaken and not isTaken"]
+            - ["bool", "isLocked", "not isOpened"]
+            - ["float", "rewardOpacity", "when isAnchoredSection -> 1.000000, not canBeTaken and not isSelected -> 0.500000, 1.000000"]
+            - ["int", "rewardWidth", "when size == eBattlePassRewardSize.Big -> 146, 120"]
+            - ["int", "rewardHeight", "when size == eBattlePassRewardSize.Big -> 146, 108"]
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/BattlePass/Animations/LevelReward.actions"
+        UIEventOnDataComponent0:
+            watchedDataExpression: "isOpened"
+            ifExpression: "isOpened == true"
+            eventName: "LOCK_UNLOCKED"
+        Sound: {}
+        StyleSheet:
+            styles: "~res:/UI/Screens3/ButtonSound.style.yaml;~res:/UI/Screens3/Common/Hover.style.yaml"
+    bindings:
+    - ["UIOpacityComponent.opacity", "when (noOpacity and reward.type == ResourceType.vehicle) -> 1.000000, rewardOpacity"]
+    - ["UIAttachLayoutMasterComponent.attachId", "attachId"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        pivot: [0.500000, 0.500000]
+        input: false
+        classes: "content-area"
+        components:
+            UIOpacityComponent: {}
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                verticalPolicy: "FixedSize"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Common/Touch.style.yaml"
+        bindings:
+        - ["SizePolicy.horizontalValue", "rewardWidth"]
+        - ["SizePolicy.verticalValue", "rewardHeight"]
+        children:
+        -   class: "UIControl"
+            name: "GoldEffects"
+            pivot: [0.500000, 0.500000]
+            input: false
+            components:
+                ClipContent: {}
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    verticalPolicy: "FixedSize"
+                UIChildComponent0:
+                    childType: "kControl"
+                    condition: "showGoldEffect and not bigEffect"
+                    control: "Glow"
+                UIChildComponent1:
+                    childType: "kControl"
+                    condition: "showGoldEffect and bigEffect"
+                    control: "GlowBig"
+            bindings:
+            - ["visible", "showGoldEffect"]
+            - ["SizePolicy.horizontalValue", "when bigEffect -> 180, rewardWidth"]
+            - ["SizePolicy.verticalValue", "rewardHeight"]
+        -   class: "UIControl"
+            name: "LockContainer"
+            input: false
+            components:
+                Anchor:
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                    topAnchor: 8.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfFirstChild"
+                    verticalPolicy: "PercentOfFirstChild"
+                UIChildComponent0:
+                    childType: "kControl"
+                    condition: "isOpened"
+                    control: "LockDisintegration"
+                UIChildComponent1:
+                    childType: "kControl"
+                    condition: "isLocked"
+                    control: "Lock"
+            bindings:
+            - ["Anchor.rightAnchor", "when size == eBattlePassRewardSize.Big -> 0, 8"]
+        -   class: "UIControl"
+            name: "Taken"
+            input: false
+            components:
+                UIOpacityComponent:
+                    opacity: 0.500000
+                Anchor:
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                    topAnchor: 8.000000
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfMaxChild"
+                    verticalPolicy: "PercentOfMaxChild"
+                UIChildComponent0:
+                    childType: "kControl"
+                    condition: "isTaken"
+                    control: "TakenCheckMark"
+            bindings:
+            - ["Anchor.rightAnchor", "when size == eBattlePassRewardSize.Big -> 0, 8"]
+        -   prototype: "RewardHolder/RewardHolder"
+            name: "RewardHolder"
+            components:
+                UIDataParamsComponent:
+                    args:
+                        "rewardOpacity": "rewardOpacity"
+                        "resource": "reward"
+                        "size": "size"
+Slots:
+-   class: "UIParticles"
+    name: "Glow"
+    size: [32.000000, 32.000000]
+    pivot: [0.500000, 0.500000]
+    input: false
+    effectPath: "~res:/3d/FX/UI/BattlePass/GlowReward.sc2"
+    autoStart: true
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+-   class: "UIParticles"
+    name: "GlowBig"
+    size: [32.000000, 32.000000]
+    scale: [1.500000, 1.350000]
+    pivot: [0.500000, 0.500000]
+    input: false
+    effectPath: "~res:/3d/FX/UI/BattlePass/GlowReward.sc2"
+    autoStart: true
+    components:
+        Anchor:
+            hCenterAnchorEnabled: true
+            vCenterAnchorEnabled: true
+-   class: "UIParticles"
+    name: "LockDisintegration"
+    position: [8.000000, 8.000000]
+    size: [32.000000, 32.000000]
+    pivot: [0.500000, 0.500000]
+    input: false
+    effectPath: "~res:/3d/FX/UI/BattlePass/LockDesintegration.sc2"
+-   class: "UIControl"
+    name: "Lock"
+    input: false
+    components:
+        Background:
+            drawType: "DRAW_SCALE_PROPORTIONAL"
+            sprite: "~res:/Gfx/Lobby/icons/icon_lock.psd"
+        UIOpacityComponent: {}
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 24.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 24.000000
+    bindings:
+    - ["visible", "isLocked"]
+    - ["UIOpacityComponent.opacity", "when isSelected -> 1.000000, 0.500000"]
+-   class: "UIControl"
+    name: "TakenCheckMark"
+    size: [32.000000, 32.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfMaxChild"
+            verticalPolicy: "PercentOfMaxChild"
+    children:
+    -   prototype: "CheckMark/CheckMark"
+        name: "CheckMark"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "type": "eCheckMarkType.kMicro"
+                    "isVisible": "isTaken"

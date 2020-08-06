@@ -1,0 +1,24 @@
+Header:
+    version: "99"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/PopupMenuWithRichText.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "DepositOpenedPopup"
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+    children:
+    -   prototype: "PopupMenuWithRichText/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "title": "\"\""
+                    "text": "localize(\"BattlePass/SafeDeposit/SafeFull/ResourcesCollected/Hint\")"
+                    "slaveAlign": "ePositionAlign.Top"
+                    "masterId": "\"DEPOSIT_BUTTON_ID\""

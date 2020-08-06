@@ -1,0 +1,129 @@
+Header:
+    version: "79"
+Prototypes:
+-   class: "UIControl"
+    name: "MedalContainer"
+    size: [1241.000000, 70.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "FixedSize"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "isBattleResults", "true", "true"]
+            - ["bool", "visible", "true", "true"]
+            - ["BattleResult", "battleResult", "BattleResult.WIN", "BattleResult.LOSE"]
+            - ["vector<AchievementViewModel>", "achievements", "null", "[ { }; { }; { }; { }; { }; ]"]
+            - ["vector<RibbonViewModel>", "ribbons", "null", "[ { }; { }; { }; { }; { }; ]"]
+            events:
+            - "ON_RIBBON_PRESSED"
+            - "ON_ACHIEVEMENT_PRESSED"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "bgSpriteType", "when battleResult == BattleResult.WIN -> \"win\", battleResult == BattleResult.LOSE -> \"defeat\", \"tie\""]
+            - ["string", "bgSprite", "\"~res:/Gfx/Lobby/backgrounds/bg_medal-strip_\" + bgSpriteType"]
+            - ["int", "itemsCount", "achievements.Size() + ribbons.Size()"]
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/BattleResults/ScrollableMedalContainer.actions"
+    bindings:
+    - ["visible", "visible"]
+    - ["SizePolicy.verticalValue", "when visible -> 84, 0"]
+    children:
+    -   class: "UIControl"
+        name: "BgStripContainer"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   class: "UIControl"
+            name: "Strip"
+            input: false
+            components:
+                Background: {}
+                Anchor:
+                    vCenterAnchorEnabled: true
+                    vCenterAnchor: 4.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfContent"
+            bindings:
+            - ["Background.sprite", "bgSprite"]
+    -   class: "UIScrollView"
+        name: "Medals"
+        input: false
+        autoUpdate: true
+        centerContent: true
+        components:
+            ClipContent:
+                enabled: false
+            Anchor:
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIScrollViewContainer"
+            name: "scrollContainerControl"
+            scrollDirection: "kHorizontal"
+            components:
+                Anchor: {}
+                LinearLayout:
+                    spacing: 8.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfChildrenSum"
+                    verticalPolicy: "PercentOfMaxChild"
+                UILayoutEventComponent:
+                    positionChangedEvent: "UpdateMedalsVisibility"
+                    positionChangedEventData: "{first=_size.X;second=_parentSize.X; third=_position.X;}"
+            children:
+            -   class: "UIControl"
+                name: "AchievementsContainer"
+                input: false
+                components:
+                    Anchor:
+                        vCenterAnchorEnabled: true
+                    LinearLayout:
+                        spacing: 8.000000
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfChildrenSum"
+                        verticalPolicy: "PercentOfMaxChild"
+                    UIRepeatComponent:
+                        control: "~res:/UI/Screens3/Lobby/Profile/Common/AchievementItem.yaml"
+                        dataContainer: "achievements"
+                        args:
+                            "isBattleResults": "isBattleResults"
+                            "showDescription": "false"
+                            "singleAchievementMode": "true"
+                            "achievement": "_item"
+                            "visible": "true"
+                            "indexInScrollableContainer": "_index"
+                        eventActions:
+                        - ["ON_PRESSED", "ON_ACHIEVEMENT_PRESSED", "_event"]
+                        elementName: "_item.name"
+                        holderName: "_item.name"
+            -   class: "UIControl"
+                name: "RibbonsContainer"
+                input: false
+                components:
+                    Anchor:
+                        vCenterAnchorEnabled: true
+                    LinearLayout:
+                        spacing: 8.000000
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfChildrenSum"
+                        verticalPolicy: "PercentOfMaxChild"
+                    UIRepeatComponent:
+                        control: "~res:/UI/Screens3/Lobby/Profile/Common/Ribbon.yaml"
+                        dataContainer: "ribbons"
+                        args:
+                            "isBattleResults": "isBattleResults"
+                            "isBattle": "false"
+                            "ribbon": "_item"
+                            "indexInScrollableContainer": "achievements.Size() + _index"
+                        eventActions:
+                        - ["ON_PRESSED", "ON_RIBBON_PRESSED", "_event"]
+                        elementName: "_item.codeName"
+                        holderName: "_item.codeName"

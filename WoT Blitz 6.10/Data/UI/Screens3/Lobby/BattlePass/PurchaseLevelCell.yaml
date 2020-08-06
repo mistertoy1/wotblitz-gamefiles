@@ -1,0 +1,335 @@
+Header:
+    version: "100"
+Prototypes:
+-   class: "UIControl"
+    name: "PurchaseLevelCell"
+    classes: "battlepass-level button-open-sound"
+    components:
+        UIOpacityComponent: {}
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 188.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 440.000000
+        UIInputEventComponent:
+            onTouchUpInside: "ON_CARD_CLICK"
+            onTouchUpInsideData: "offer.stepId"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "enabled", "true", "false"]
+            - ["int", "levelsAmountRatio", "0", "10"]
+            - ["int", "levelsLeft", "0", "10"]
+            - ["BattlePassBuyLevelsOffer", "offer", "null", "{ discount = 30; rewards = [ { type = ResourceType.stuff; stuff = { quantity = 100; }; }; ]; }"]
+            - ["string", "backgroundUrl", "\"\"", "\"\""]
+            events:
+            - "ON_CARD_CLICK"
+        UIDataLocalsComponent:
+            locals:
+            - ["string", "shiningColor", "when offer.discount > 25 -> \"yellow-lightning-bg\", \"white-wild-sand-50-bg\""]
+            - ["int", "levelsAmount", "when Size(offer.rewards) > 0 -> (when offer.rewards[0].type == ResourceType.stuff -> offer.rewards[0].stuff.quantity / levelsAmountRatio, 0), 0"]
+            - ["bool", "isVisible", "levelsAmount <= levelsLeft"]
+        Sound:
+            touchUpInside: "GUI/buttons/open"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/ButtonSound.style.yaml;~res:/UI/Screens3/Common/Hover.style.yaml;~res:/UI/Screens3/Common/Touch.style.yaml"
+    bindings:
+    - ["visible", "isVisible"]
+    - ["input", "enabled"]
+    - ["UIOpacityComponent.opacity", "when enabled -> 1.000000, 0.400000"]
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        position: [94.000000, 200.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        classes: "content-area"
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Common/Touch.style.yaml"
+        children:
+        -   class: "UIControl"
+            name: "Shining"
+            position: [0.000000, 20.000000]
+            input: false
+            components:
+                Anchor:
+                    topAnchorEnabled: true
+                    topAnchor: 0.000000
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 410.000000
+            bindings:
+            - ["visible", "offer.discount > 0"]
+            children:
+            -   class: "UIControl"
+                name: "Small"
+                size: [26.000000, 400.000000]
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_STRETCH_BOTH"
+                        sprite: "~res:/Gfx/UI/ProfileScreen/rating_gradient"
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        topAnchorEnabled: true
+                        topAnchor: 0.000000
+                        bottomAnchorEnabled: true
+                        bottomAnchor: 0.000000
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 26.000000
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+                bindings:
+                - ["classes", "shiningColor"]
+            -   class: "UIControl"
+                name: "Medium"
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_STRETCH_BOTH"
+                        sprite: "~res:/Gfx/UI/ProfileScreen/rating_gradient"
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        topAnchorEnabled: true
+                        topAnchor: 10.000000
+                        bottomAnchorEnabled: true
+                        bottomAnchor: 20.000000
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 61.000000
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+                bindings:
+                - ["classes", "shiningColor"]
+            -   class: "UIControl"
+                name: "Big"
+                input: false
+                components:
+                    Background:
+                        drawType: "DRAW_STRETCH_BOTH"
+                        sprite: "~res:/Gfx/UI/ProfileScreen/rating_gradient"
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        topAnchorEnabled: true
+                        topAnchor: 20.000000
+                        bottomAnchorEnabled: true
+                        bottomAnchor: 30.000000
+                    SizePolicy:
+                        horizontalPolicy: "FixedSize"
+                        horizontalValue: 96.000000
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+                bindings:
+                - ["classes", "shiningColor"]
+        -   class: "UIControl"
+            name: "Card"
+            position: [0.000000, 50.000000]
+            input: false
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    topAnchorEnabled: true
+                    topAnchor: 40.000000
+                    vCenterAnchorEnabled: false
+                SizePolicy:
+                    horizontalPolicy: "FixedSize"
+                    horizontalValue: 200.000000
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 300.000000
+            children:
+            -   class: "UIControl"
+                name: "BG"
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfChildrenSum"
+                        verticalPolicy: "PercentOfChildrenSum"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Color.style.yaml"
+                children:
+                -   class: "UIControl"
+                    name: "BGImage"
+                    input: false
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_TO_RECT"
+                        UIOpacityComponent:
+                            ignoreParentOpacity: true
+                        UIUrlImageComponent: {}
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "FixedSize"
+                            horizontalValue: 188.000000
+                            verticalPolicy: "FixedSize"
+                            verticalValue: 300.000000
+                    bindings:
+                    - ["UIUrlImageComponent.imageUrl", "backgroundUrl"]
+                -   class: "UIControl"
+                    name: "ShadowMask"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    components:
+                        Background: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["classes", "when enabled -> \"\", \"black-50-bg\""]
+            -   class: "UIControl"
+                name: "LevelsAmountContainer"
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        topAnchorEnabled: true
+                        topAnchor: 32.000000
+                    LinearLayout:
+                        orientation: "TopDown"
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfMaxChild"
+                        verticalPolicy: "PercentOfChildrenSum"
+                children:
+                -   class: "UIControl"
+                    name: "LevelsAmount"
+                    input: false
+                    classes: "t-content-h1 bold color=white-wild-sand-text"
+                    components:
+                        UITextComponent: {}
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["UITextComponent.text", "str(levelsAmount)"]
+                -   class: "UIControl"
+                    name: "LevelsAmountCaption"
+                    input: false
+                    classes: "t-caps bold color=white-wild-sand-text"
+                    components:
+                        UITextComponent: {}
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfContent"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["UITextComponent.text", "when levelsAmount == 1 -> localize(\"BattlePass/LevelPurchase/1Level\"), localize(\"BattlePass/LevelPurchase/MultipleLevels\")"]
+            -   class: "UIControl"
+                name: "DiscountContainer"
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    UIOpacityComponent:
+                        ignoreParentOpacity: true
+                    Anchor:
+                        leftAnchorEnabled: true
+                        leftAnchor: -4.000000
+                        topAnchorEnabled: true
+                        topAnchor: -4.000000
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfFirstChild"
+                        verticalPolicy: "PercentOfFirstChild"
+                children:
+                -   class: "UIControl"
+                    name: "DiscountHolder"
+                    input: false
+                    components:
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfFirstChild"
+                            verticalPolicy: "PercentOfFirstChild"
+                        UIChildComponent0:
+                            prototypePath: "~res:/UI/Screens3/Common/DiscountLabel.yaml"
+                            args:
+                                "discount": "offer.discount * 0.010000"
+                                "display": "offer.discount > 0"
+                -   class: "UIControl"
+                    name: "ShadowMask"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    components:
+                        Background: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                    bindings:
+                    - ["visible", "offer.discount > 0"]
+                    - ["classes", "when enabled -> \"\", \"black-50-bg\""]
+            -   class: "UIControl"
+                name: "LockContainer"
+                input: false
+                components:
+                    UIOpacityComponent:
+                        ignoreParentOpacity: true
+                    Anchor:
+                        vCenterAnchorEnabled: true
+                    LinearLayout:
+                        orientation: "TopDown"
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfFirstChild"
+                bindings:
+                - ["visible", "not enabled"]
+                children:
+                -   class: "UIControl"
+                    name: "Lock"
+                    input: false
+                    components:
+                        Background:
+                            sprite: "~res:/Gfx/Lobby/icons/icon_lock.psd"
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfContent"
+                -   class: "UIControl"
+                    name: "Caption"
+                    input: false
+                    classes: "t-body regular color=white-wild-sand-text"
+                    components:
+                        UITextComponent:
+                            text: "BattlePass/LevelPurchase/Offer/Locked"
+                            multiline: "MULTILINE_ENABLED"
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "parent - 16"
+                            verticalPolicy: "PercentOfContent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Font.style.yaml"
+        -   class: "UIControl"
+            name: "PriceHolder"
+            position: [71.500000, 374.000000]
+            input: false
+            components:
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    bottomAnchorEnabled: true
+                    bottomAnchor: 48.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfFirstChild"
+                    verticalPolicy: "PercentOfFirstChild"
+                UIChildComponent0:
+                    prototypePath: "~res:/UI/Screens3/Lobby/Common/Resource/Detailed/ResourceDetailedWithIcon.yaml"
+                    args:
+                        "resource": "offer.price"

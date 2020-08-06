@@ -1,0 +1,11 @@
+animation ReceivedReward
+{
+	ChangeProperty("**/FreeRewards/**/Rewards", "UIOpacityComponent", "opacity", 0);
+	ChangeProperty("**/PaidRewards/**/Rewards", "UIOpacityComponent", "opacity", 0);
+	Wait(0.1);
+	BroadcastEvent("ShowAnimation", "**/FreeRewards/**/Rewards", max(freeRewardsCount, paidRewardsCount));
+	BroadcastEvent("ShowAnimation", "**/PaidRewards/**/Rewards", max(freeRewardsCount, paidRewardsCount));
+	Wait(0.1);
+	ChangeProperty("**/FreeRewards/**/Rewards", "UIOpacityComponent", "opacity", 1);
+	ChangeProperty("**/PaidRewards/**/Rewards", "UIOpacityComponent", "opacity", 1);
+}

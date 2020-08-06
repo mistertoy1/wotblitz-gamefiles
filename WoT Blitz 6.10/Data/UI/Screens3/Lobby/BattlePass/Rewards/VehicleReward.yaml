@@ -1,0 +1,56 @@
+Header:
+    version: "100"
+Controls:
+-   class: "UIControl"
+    name: "Content"
+    size: [128.000000, 128.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["float", "rewardOpacity", "1.000000", "1.000000"]
+            - ["eBattlePassRewardSize", "size", "eBattlePassRewardSize.Big", "eBattlePassRewardSize.Normal"]
+            - ["VehicleResource", "vehicle", "null", "{ info = { shortName = \"#germany_vehicles:Lowe\"; bigIconPath = \"~res:/Gfx/UI/BigTankIcons/germany-Lowe.psd\"; level = 8; tankClass = eTankClass.TANK_CLASS_HEAVY; isCollectible = false; isPremium = true; }; stats = { isElite = true; isPremiumized = false; }; }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["eVehicleDescriptionType", "vehicleType", "when vehicle.info.isPremium -> eVehicleDescriptionType.PREMIUM, vehicle.info.isCollectible -> eVehicleDescriptionType.COLLECTIBLE, vehicle.stats.isPremiumized -> eVehicleDescriptionType.PREMIUMISED, eVehicleDescriptionType.NORMAL"]
+    children:
+    -   class: "UIControl"
+        name: "Icon"
+        input: false
+        components:
+            UITextureComponent:
+                drawType: "DRAW_SCALE_PROPORTIONAL_ONE"
+                perPixelAccuracy: "PER_PIXEL_ACCURACY_DISABLED"
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+                vCenterAnchor: 8.000000
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                verticalPolicy: "FixedSize"
+        bindings:
+        - ["UITextureComponent.spritePath", "when not isNull(vehicle.info) -> vehicle.info.bigIconPath, \"\""]
+        - ["SizePolicy.horizontalValue", "when size == eBattlePassRewardSize.Big -> 160, 112"]
+        - ["SizePolicy.verticalValue", "when size == eBattlePassRewardSize.Big -> 100, 70"]
+    -   class: "UIControl"
+        name: "VehicleInfo"
+        input: false
+        components:
+            Anchor:
+                leftAnchorEnabled: true
+                topAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfFirstChild"
+                verticalPolicy: "PercentOfFirstChild"
+            UIChildComponent0:
+                childType: "kOldExpression"
+                control: "\"~res:/UI/Screens3/Lobby/Common/Vehicle/VehicleInfo.yaml\""
+                args:
+                    "class": "vehicle.info.tankClass"
+                    "level": "vehicle.info.level"
+                    "type": "vehicleType"
+                    "elite": "vehicle.stats.isElite"

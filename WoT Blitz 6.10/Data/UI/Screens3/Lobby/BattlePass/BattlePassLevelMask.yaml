@@ -1,0 +1,31 @@
+Header:
+    version: "100"
+Prototypes:
+-   class: "UIControl"
+    name: "levelMask"
+    input: false
+    components:
+        Background:
+            drawType: "DRAW_FILL"
+        Anchor:
+            bottomAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            verticalPolicy: "FixedSize"
+        UIDataParamsComponent:
+            params:
+            - ["bool", "visible", "true", "true"]
+            - ["bool", "isSelected", "false", "true"]
+            - ["int", "cellWidth", "0", "120"]
+            - ["int", "cellHeight", "0", "108"]
+            - ["int", "cellHeightSelected", "0", "128"]
+            - ["int", "progressHeight", "0", "32"]
+        UIDataLocalsComponent:
+            locals:
+            - ["int", "currentCellHeight", "when isSelected -> cellHeightSelected, cellHeight"]
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/BattlePass/Animations/LevelMask.actions"
+    bindings:
+    - ["visible", "visible"]
+    - ["SizePolicy.horizontalValue", "cellWidth"]
+    - ["SizePolicy.verticalValue", "currentCellHeight + progressHeight + (cellHeight * 2)"]

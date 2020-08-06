@@ -1,0 +1,124 @@
+Header:
+    version: "99"
+Prototypes:
+-   class: "UIControl"
+    name: "InfoBlock"
+    size: [200.000000, 123.000000]
+    input: false
+    components:
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["string", "description", "\"\"", "\"description\""]
+            - ["string", "title", "\"\"", "\"QUESTION\""]
+    children:
+    -   class: "UIControl"
+        name: "QuestionBlock"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            LinearLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "line"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "black-bg"
+            components:
+                Background:
+                    drawType: "DRAW_FILL"
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 1.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+        -   class: "UIControl"
+            name: "title"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                LinearLayout:
+                    padding: "15"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfChildrenSum"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 25.000000
+            children:
+            -   class: "UIControl"
+                name: "label"
+                input: false
+                classes: "caps bold color=white-wild-sand-text"
+                components:
+                    UITextComponent:
+                        colorInheritType: "COLOR_IGNORE_PARENT"
+                        align: []
+                    Anchor:
+                        bottomAnchorEnabled: true
+                        bottomAnchor: 1.000000
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfContent"
+                        verticalPolicy: "PercentOfContent"
+                    StyleSheet:
+                        styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+                bindings:
+                - ["UITextComponent.text", "localize(title)"]
+        -   class: "UIControl"
+            name: "line"
+            size: [32.000000, 32.000000]
+            input: false
+            classes: "black-bg"
+            components:
+                Background:
+                    drawType: "DRAW_FILL"
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "FixedSize"
+                    verticalValue: 1.000000
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Color.style.yaml"
+    -   class: "UIControl"
+        name: "spacer24"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            SizePolicy:
+                verticalPolicy: "FixedSize"
+                verticalValue: 24.000000
+    -   class: "UIControl"
+        name: "description"
+        input: false
+        classes: "t-body regular color=white-wild-sand-text"
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+                multiline: "MULTILINE_ENABLED"
+                align: ["HCENTER", "VCENTER"]
+            Anchor:
+                hCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+        bindings:
+        - ["UITextComponent.text", "localize(description)"]
+    -   class: "UIControl"
+        name: "spacer52"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            SizePolicy:
+                verticalPolicy: "FixedSize"
+                verticalValue: 52.000000

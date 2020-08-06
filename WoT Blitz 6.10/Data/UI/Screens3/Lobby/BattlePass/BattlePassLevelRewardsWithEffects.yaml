@@ -1,0 +1,135 @@
+Header:
+    version: "100"
+Prototypes:
+-   class: "UIControl"
+    name: "BattlePassLevelREwardsWithEffects"
+    input: false
+    components:
+        UIAnimationComponent:
+            animations: "SHOW_LEVEL_PROGRESS_ANIMATION,~res:/UI/Screens3/Lobby/BattlePass/Animations/LevelProgressOnlyReward.animation"
+        Anchor:
+            bottomAnchorEnabled: true
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 120.000000
+            verticalPolicy: "PercentOfChildrenSum"
+        UIDataParamsComponent:
+            params:
+            - ["int", "cellWidth", "0", "120"]
+            - ["int", "cellHeight", "0", "108"]
+            - ["int", "cellHeightSelected", "0", "128"]
+            - ["int", "progressHeight", "0", "32"]
+            - ["int", "tag", "0", "0"]
+            - ["bool", "isAnchoredSection", "false", "false"]
+            - ["float", "additionalScrollOpacity", "1.000000", "1.000000"]
+            - ["vector<BattlePassPathInfo>", "pathsInfo", "null", "[ { }; { }; ]"]
+            - ["bool", "visible", "true", "true"]
+            - ["BattlePassLevel", "level", "null", "{ index = 1; tag = \"\"; currentProgress = 10; }"]
+            - ["int", "oldLevelProgressIndex", "0", "1"]
+            - ["int", "oldLevelProgressValue", "0", "3"]
+            - ["int", "newLevelProgressIndex", "0", "3"]
+            - ["int", "newLevelProgressValue", "0", "2"]
+            - ["int", "previousAnchoredIndex", "0", "0"]
+            - ["string", "backgroundImageUrl", "\"\"", "\"\""]
+            events:
+            - "ON_REWARD_CLICKED(int stepId, int rewardIndex)"
+        UIDataLocalsComponent:
+            locals:
+            - ["eBattlePassRewardSize", "rewardSize", "when cellWidth > 160 and cellHeight > 160 -> eBattlePassRewardSize.Big, eBattlePassRewardSize.Normal"]
+            - ["bool", "isNeedAnimation", "visible and level.index >= oldLevelProgressIndex and level.index <= newLevelProgressIndex"]
+            - ["bool", "isAnchored", "level.tag == \"anchored\""]
+            - ["int", "animationProgressIndex", "when isNeedAnimation -> oldLevelProgressIndex, newLevelProgressIndex"]
+            - ["int", "animationProgressValue", "when isNeedAnimation -> oldLevelProgressValue, newLevelProgressValue"]
+            - ["int", "totalProgress", "level.totalProgress"]
+            - ["int", "initialProgress", "when not isNeedAnimation -> level.currentProgress, level.index > animationProgressIndex -> 0, level.index < animationProgressIndex -> totalProgress, animationProgressValue"]
+            - ["int", "progressAnimationDelta", "level.currentProgress - initialProgress"]
+            - ["bool", "isLevelPassedForAnimation", "level.index < animationProgressIndex or (level.index == animationProgressIndex and totalProgress == animationProgressValue)"]
+            - ["bool", "isLevelPassedForReal", "level.index < newLevelProgressIndex or (level.index == newLevelProgressIndex and totalProgress == newLevelProgressValue)"]
+            - ["bool", "isSelectedForAnimation", "level.index == oldLevelProgressIndex"]
+            - ["bool", "isSelectedForReal", "level.index == newLevelProgressIndex"]
+            - ["string", "progressStyle", "when not isLevelPassedForAnimation or isAnchoredSection -> \"t-subtitle bold white-wild-sand-text\", \"t-subtitle bold white-wild-sand-70-text\""]
+            - ["string", "freeRewardColorStyle", "when isSelectedForAnimation -> \"white-wild-sand-50-bg\", isAnchored -> \"white-wild-sand-25-bg\", isLevelPassedForAnimation -> \"white-wild-sand-25-bg\", \"white-wild-sand-10-bg\""]
+            - ["string", "paidRewardColorStyleBG", "when isSelectedForAnimation and isAnchored -> \"yellow-lightning-70-bg\", isSelectedForAnimation -> \"yellow-lightning-50-bg\", isAnchored -> \"yellow-lightning-50-bg\", isLevelPassedForAnimation -> \"yellow-lightning-50-bg\", \"orange-meteor-25-bg\""]
+            - ["string", "paidRewardColorStyle", "when isSelectedForAnimation -> \"white-wild-sand-25-bg\", isAnchored -> \"orange-tango-70-bg\", isLevelPassedForAnimation -> \"orange-tango-50-bg\", \"orange-tango-25-bg\""]
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/BattlePass/Animations/Level.actions"
+    bindings:
+    - ["visible", "visible"]
+    children:
+    -   class: "UIControl"
+        name: "FreeRewards"
+        input: false
+        components:
+            Background: {}
+            UIOpacityComponent: {}
+            LinearLayout:
+                enabled: true
+                orientation: "BottomUp"
+                dynamicPadding: true
+                dynamicSpacing: false
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                verticalPolicy: "FixedSize"
+            UIRepeatComponent:
+                control: "~res:/UI/Screens3/Lobby/BattlePass/BattlePassLevelReward.yaml"
+                dataContainer: "level.paths[eBattlePassPath.Free].reward"
+                args:
+                    "attachId": "\"level_\" + str(level.index) + \"_\" + str(eBattlePassPath.Free) + \"_\" + str(_index) + \"_\" + str(tag)"
+                    "isAnchoredSection": "isAnchoredSection"
+                    "size": "rewardSize"
+                    "isOpened": "pathsInfo[eBattlePassPath.Free].isOpened"
+                    "reward": "_item"
+                    "isTaken": "level.paths[eBattlePassPath.Free].isRewardTaken"
+                    "canBeTaken": "isLevelPassedForAnimation"
+                    "isSelected": "isSelectedForAnimation"
+                    "bigEffect": "false"
+                eventActions:
+                - ["ON_REWARD_CLICKED", "ON_REWARD_CLICKED", "level.paths[eBattlePassPath.Free].stepId, _index"]
+                elementName: "\"freeReward_\" + str(_index)"
+        bindings:
+        - ["UIOpacityComponent.opacity", "additionalScrollOpacity"]
+        - ["SizePolicy.horizontalValue", "cellWidth"]
+        - ["SizePolicy.verticalValue", "when (isAnchoredSection and level.currentProgress == level.totalProgress) or (not isAnchoredSection and isSelectedForAnimation) -> cellHeightSelected, cellHeight"]
+    -   class: "UIControl"
+        name: "ProgressBar"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                verticalPolicy: "FixedSize"
+        bindings:
+        - ["SizePolicy.horizontalValue", "cellWidth"]
+        - ["SizePolicy.verticalValue", "progressHeight"]
+    -   class: "UIControl"
+        name: "PaidRewards"
+        input: false
+        components:
+            UIOpacityComponent: {}
+            LinearLayout:
+                orientation: "TopDown"
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                verticalPolicy: "FixedSize"
+            UIRepeatComponent:
+                control: "~res:/UI/Screens3/Lobby/BattlePass/BattlePassLevelRewardWithLock.yaml"
+                dataContainer: "level.paths[eBattlePassPath.Paid].reward"
+                args:
+                    "noOpacity": "not empty(backgroundImageUrl)"
+                    "attachId": "\"level_\" + str(level.index) + \"_\" + str(eBattlePassPath.Paid) + \"_\" + str(_index) + \"_\" + str(tag)"
+                    "isAnchoredSection": "isAnchoredSection"
+                    "size": "rewardSize"
+                    "isOpened": "pathsInfo[eBattlePassPath.Paid].isOpened"
+                    "reward": "_item"
+                    "isTaken": "level.paths[eBattlePassPath.Paid].isRewardTaken"
+                    "canBeTaken": "isLevelPassedForAnimation"
+                    "isSelected": "isSelectedForAnimation"
+                    "bigEffect": "false"
+                eventActions:
+                - ["ON_REWARD_CLICKED", "ON_REWARD_CLICKED", "level.paths[eBattlePassPath.Paid].stepId, _index"]
+                elementName: "\"paidReward_\" + str(_index)"
+        bindings:
+        - ["UIOpacityComponent.opacity", "additionalScrollOpacity"]
+        - ["SizePolicy.horizontalValue", "cellWidth"]
+        - ["SizePolicy.verticalValue", "cellHeight * 2"]

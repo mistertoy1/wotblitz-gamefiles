@@ -1,0 +1,9 @@
+action DISABLE_SELECTED()
+{
+	ChangeProperty(".", "SizePolicy", "verticalValue", cellHeight + progressHeight + (cellHeight * 2), 0.3);
+}
+
+action ENABLE_SELECTED()
+{
+	ChangeProperty(".", "SizePolicy", "verticalValue", cellHeightSelected + progressHeight + (cellHeight * 2), 0.3);
+}

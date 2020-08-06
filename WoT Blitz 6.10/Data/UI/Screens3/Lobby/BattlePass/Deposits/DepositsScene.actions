@@ -1,0 +1,116 @@
+action SpinLeft()
+{
+	ChangeProperty("**/Deposit0", "Anchor","leftAnchor", centerObjPos.X);
+	ChangeProperty("**/Deposit0", "Anchor","topAnchor", centerObjPos.Y);
+	Size("**/Deposit0", width=width, height=width);
+
+	ChangeProperty("**/Deposit1", "Anchor","leftAnchor", item1P.X - itemY0 * 0.5);
+	ChangeProperty("**/Deposit1", "Anchor","topAnchor", item1P.Y);
+	Size("**/Deposit1", width=itemY0, height=itemY0);
+
+	ChangeProperty("**/Deposit2", "Anchor","leftAnchor", item2P.X - itemY0 * 0.5);
+	ChangeProperty("**/Deposit2", "Anchor","topAnchor", item2P.Y);
+	Size("**/Deposit2", width=itemY0, height=itemY0);
+
+	BroadcastEvent("SetInfoVisisble", "**/Deposit0", arg1=false);
+	BroadcastEvent("SetInfoVisisble", "**/Deposit1", arg1=false);
+	BroadcastEvent("SetInfoVisisble", "**/Deposit2", arg1=false);
+
+	Event("UPDATE_CURRENT_INFO", arg1 = true);
+	Wait(0.3);
+	parallel
+	{
+		Pseudo3DWheel("**/Deposit1", sceneCenter = sceneCenter, camera = camera, radius = radius, time = timeAnim, angleFrom = 90 , angleTo  = 180, height = objHeight, focus = focus, interpolation = EASE_IN_EASE_OUT);
+		Pseudo3DWheel("**/Deposit0", sceneCenter = sceneCenter, camera = camera, radius = radius, time = timeAnim, angleFrom = 180 , angleTo  = 270, height = objHeight, focus = focus, interpolation = EASE_IN_EASE_OUT);
+		Pseudo3DWheel("**/Deposit2", sceneCenter = sceneCenter, camera = camera, radius = radius, time = timeAnim, angleFrom = 270 , angleTo  = 450, height = objHeight, focus = focus, interpolation = EASE_IN_EASE_OUT);
+	}
+
+	ChangeProperty("**/Deposit0", "Anchor","leftAnchor", centerObjPos.X);
+	ChangeProperty("**/Deposit0", "Anchor","topAnchor", centerObjPos.Y);
+	Size("**/Deposit0", width=width, height=width);
+
+	ChangeProperty("**/Deposit1", "Anchor","leftAnchor", item1P.X - itemY0 * 0.5);
+	ChangeProperty("**/Deposit1", "Anchor","topAnchor", item1P.Y);
+	Size("**/Deposit1", width=itemY0, height=itemY0);
+
+	ChangeProperty("**/Deposit2", "Anchor","leftAnchor", item2P.X - itemY0 * 0.5);
+	ChangeProperty("**/Deposit2", "Anchor","topAnchor", item2P.Y);
+	Size("**/Deposit2", width=itemY0, height=itemY0);
+
+	BroadcastEvent("SetInfoVisisble", "**/Deposit0", arg1=true);
+	BroadcastEvent("SetInfoVisisble", "**/Deposit1", arg1=true);
+	BroadcastEvent("SetInfoVisisble", "**/Deposit2", arg1=true);
+	Event("ROTATION_ENDED");
+}
+
+action SpinRight()
+{
+	ChangeProperty("**/Deposit0", "Anchor","leftAnchor", centerObjPos.X);
+	ChangeProperty("**/Deposit0", "Anchor","topAnchor", centerObjPos.Y);
+	Size("**/Deposit0", width=width, height=width);
+
+	ChangeProperty("**/Deposit1", "Anchor","leftAnchor", item2P.X - itemY0 * 0.5);
+	ChangeProperty("**/Deposit1", "Anchor","topAnchor", item2P.Y);
+	Size("**/Deposit1", width=itemY0, height=itemY0);
+
+	ChangeProperty("**/Deposit2", "Anchor","leftAnchor", item1P.X - itemY0 * 0.5);
+	ChangeProperty("**/Deposit2", "Anchor","topAnchor", item1P.Y);
+	Size("**/Deposit2", width=itemY0, height=itemY0);
+
+	BroadcastEvent("SetInfoVisisble", "**/Deposit0", arg1=false);
+	BroadcastEvent("SetInfoVisisble", "**/Deposit1", arg1=false);
+	BroadcastEvent("SetInfoVisisble", "**/Deposit2", arg1=false);
+
+	Event("UPDATE_CURRENT_INFO", arg1 = false);
+
+	Wait(0.3);
+
+	parallel
+	{
+		Pseudo3DWheel("**/Deposit1", sceneCenter = sceneCenter, camera = camera, radius = radius, time = timeAnim, angleFrom = -90 , angleTo  = -180, height = objHeight, focus = focus, interpolation = SINE_OUT);
+		Pseudo3DWheel("**/Deposit0", sceneCenter = sceneCenter, camera = camera, radius = radius, time = timeAnim, angleFrom = -180, angleTo  = -270, height = objHeight, focus = focus, interpolation = SINE_OUT);
+		Pseudo3DWheel("**/Deposit2", sceneCenter = sceneCenter, camera = camera, radius = radius, time = timeAnim, angleFrom = 90, angleTo  = -90, height = objHeight, focus = focus, interpolation = SINE_OUT);
+	}
+
+	ChangeProperty("**/Deposit0", "Anchor","leftAnchor", centerObjPos.X);
+	ChangeProperty("**/Deposit0", "Anchor","topAnchor", centerObjPos.Y);
+	Size("**/Deposit0", width=width, height=width);
+
+	ChangeProperty("**/Deposit1", "Anchor","leftAnchor", item2P.X - itemY0 * 0.5);
+	ChangeProperty("**/Deposit1", "Anchor","topAnchor", item2P.Y);
+	Size("**/Deposit1", width=itemY0, height=itemY0);
+
+	ChangeProperty("**/Deposit2", "Anchor","leftAnchor", item1P.X - itemY0 * 0.5);
+	ChangeProperty("**/Deposit2", "Anchor","topAnchor", item1P.Y);
+	Size("**/Deposit2", width=itemY0, height=itemY0);
+
+	BroadcastEvent("SetInfoVisisble", "**/Deposit0", arg1=true);
+	BroadcastEvent("SetInfoVisisble", "**/Deposit1", arg1=true);
+	BroadcastEvent("SetInfoVisisble", "**/Deposit2", arg1=true);
+	Event("ROTATION_ENDED");
+}
+
+action UpdateDataOnClicked(int index)
+{
+	if (positionIndexes[index] == 2) // move right
+	{
+		ChangeData(positionIndexes, rightZ);
+		PlaySound("GUI/buttons/choose");
+		Event("ROTATION_STARTED");
+		Event("SpinRight");
+	}
+	else 
+	{
+		if (positionIndexes[index] == 1) //move left
+		{
+			ChangeData(positionIndexes, leftZ);
+			PlaySound("GUI/buttons/choose");
+			Event("ROTATION_STARTED");
+			Event("SpinLeft");
+		}
+		if (positionIndexes[index] == 0) // clicked center
+		{
+			Event("CURRENT_BANK_CLICKED");
+		}
+	}
+}

@@ -1,0 +1,9 @@
+action DISABLE_SELECTED()
+{
+	ChangeProperty("**/FreeRewards", "SizePolicy", "verticalValue", cellHeight, 0.3);
+}
+
+action ENABLE_SELECTED()
+{
+	ChangeProperty("**/FreeRewards", "SizePolicy", "verticalValue", (when (isAnchoredSection and level.currentProgress == level.totalProgress) or (not isAnchoredSection and isSelectedForReal) -> cellHeightSelected, cellHeight), 0.3);
+}

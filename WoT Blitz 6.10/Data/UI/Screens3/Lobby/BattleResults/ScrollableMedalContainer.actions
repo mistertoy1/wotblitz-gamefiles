@@ -1,0 +1,7 @@
+action UpdateMedalsVisibility(FloatParamPack params)
+{
+  if (itemsCount > 0)
+  {
+    BroadcastEvent("UpdateOpacity", "./Medals", (params.first / float(itemsCount)), params.second, params.third);
+  }
+}

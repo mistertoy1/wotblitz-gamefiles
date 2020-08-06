@@ -1,0 +1,20 @@
+animation Init
+{
+    if (claimPopupVisible)
+    {
+        Event("ON_SHOW_DEPOSIT_FULL_POPUP");
+    }
+    if (extendedPopupVisible)
+    {
+        Event("ON_SHOW_DEPOSIT_EXTENDED_POPUP", arg1=extendedLevelIndex);
+    }
+
+    parallel
+    {
+      Opacity("./content/currentDeposit/currentValueWrapper", opacity=1.0, time=1.0, interpolation=EASE_OUT);
+      if (progressAnimationNeeded)
+      {
+        Event("AnimateProgress", arg1=false);
+      }
+    }
+}

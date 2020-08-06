@@ -1,0 +1,451 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/IconButton.yaml"
+- "~res:/UI/Screens3/Common/OverlayBlur.yaml"
+- "~res:/UI/Screens3/Lobby/Common/GradientPane.yaml"
+- "~res:/UI/Screens3/Lobby/BattlePass/BattlePassBackground.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "ReceivedRewards"
+    size: [1024.000000, 768.000000]
+    input: false
+    components:
+        UIAnimationComponent:
+            animations: "_INIT,~res:/UI/Screens3/Lobby/BattlePass/Animations/ReceivedRewards.animation"
+        LinearLayout:
+            orientation: "TopDown"
+            padding: "32"
+            spacing: 8.000000
+            dynamicSpacing: true
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["RemoteResources", "resources", "null", "{ graphics = { battlePassBackground = \"\"; }; }"]
+            - ["BattlePassReceivedRewards", "receivedRewards", "null", "{ }"]
+            events:
+            - "ON_REWARD_CLICKED(eBattlePassPath passPath, int rewardIndex)"
+        UIDataLocalsComponent:
+            locals:
+            - ["BattlePassResources", "emptyRewards", "{ }"]
+            - ["bool", "isFreeExists", "not Empty(receivedRewards.pathsRewards[eBattlePassPath.Free].resources)"]
+            - ["bool", "isPaidExists", "not Empty(receivedRewards.pathsRewards[eBattlePassPath.Paid].resources)"]
+            - ["bool", "isPaidOpened", "receivedRewards.pathsInfo[eBattlePassPath.Paid].isOpened"]
+            - ["BattlePassResources", "freeRewards", "when isFreeExists -> receivedRewards.pathsRewards[eBattlePassPath.Free], emptyRewards"]
+            - ["BattlePassResources", "paidRewards", "when isPaidExists -> receivedRewards.pathsRewards[eBattlePassPath.Paid], emptyRewards"]
+            - ["int", "freeRewardsCount", "Size(freeRewards.resources)"]
+            - ["int", "paidRewardsCount", "Size(paidRewards.resources)"]
+            - ["string", "caption", "when receivedRewards.minTakenLevel == receivedRewards.maxTakenLevel -> localize(\"BattlePass/ClaimReward/SingleLevel/Header\", { level1 = str(receivedRewards.minTakenLevel); }), localize(\"BattlePass/ClaimReward/MultipleLevels/Header\", { level1 = str(receivedRewards.minTakenLevel); level2 = str(receivedRewards.maxTakenLevel); })"]
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/BattlePass/Animations/ScrollableRewardsContainer.actions"
+    children:
+    -   class: "UIControl"
+        name: "Background"
+        input: false
+        components:
+            IgnoreLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   prototype: "BattlePassBackground/Bg"
+            name: "Bg"
+            components:
+                UIDataParamsComponent:
+                    args:
+                        "battlePassBackgroundUrl": "resources.graphics[\"battlePassBackground\"]"
+            children:
+            -   path: "Texture"
+                position: [512.000000, 384.000000]
+        -   class: "UIControl"
+            name: "Blur"
+            visible: true
+            input: false
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_TO_RECT"
+                    usePostProcessedSprite: true
+                UIOpacityComponent: {}
+                UIPostProcessTextureComponent0:
+                    materialPath: "~res:/Materials.custom/2d.Textured.Blur.material"
+                    needClearAlphaAfterRender: true
+                    scale: 0.200000
+                    useVirtualCoordinateSystem: true
+                    needDepth: true
+                    renderRequestingType: "ON_SIZE_CHANGED"
+                    minFilter: "Linear"
+                    magFilter: "Linear"
+                UIPostProcessTextureComponent1:
+                    materialPath: "~res:/Materials.custom/2d.Textured.HBlur.material"
+                    scale: 0.200000
+                    useVirtualCoordinateSystem: true
+                    renderRequestingType: "ON_SIZE_CHANGED"
+                    minFilter: "Linear"
+                    magFilter: "Linear"
+                UIPostProcessTextureComponent2:
+                    materialPath: "~res:/Materials/2d.Textured.Alphablend.material"
+                    scale: 0.200000
+                    useVirtualCoordinateSystem: true
+                    renderRequestingType: "ON_SIZE_CHANGED"
+                    minFilter: "Linear"
+                    magFilter: "Linear"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                IgnoreLayout: {}
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfParent"
+            bindings:
+            - ["UIPostProcessTextureComponent0.customParameters", "generateGaussParameter(1.000000)"]
+            - ["UIPostProcessTextureComponent1.customParameters", "generateGaussParameter(1.000000)"]
+    -   class: "UIControl"
+        name: "TopPart"
+        position: [338.000000, 32.000000]
+        size: [32.000000, 32.000000]
+        visible: true
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+            LinearLayout:
+                orientation: "TopDown"
+                spacing: 4.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfMaxChild"
+                verticalPolicy: "PercentOfChildrenSum"
+        children:
+        -   class: "UIControl"
+            name: "Title"
+            input: false
+            classes: "t-title light"
+            components:
+                UITextComponent: {}
+                Anchor:
+                    hCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+            bindings:
+            - ["UITextComponent.text", "caption"]
+    -   class: "UIControl"
+        name: "RewardsSection"
+        position: [0.000000, 214.000000]
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            ClipContent: {}
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            LinearLayout:
+                orientation: "TopDown"
+                dynamicPadding: true
+                spacing: 32.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfChildrenSum"
+        children:
+        -   class: "UIScrollView"
+            name: "FreeRewards"
+            position: [76.000000, 0.000000]
+            input: false
+            autoUpdate: true
+            centerContent: true
+            components:
+                ClipContent:
+                    enabled: false
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    horizontalValue: 85.000000
+                    verticalPolicy: "PercentOfMaxChild"
+            children:
+            -   class: "UIScrollViewContainer"
+                name: "scrollContainerControl"
+                scrollDirection: "kHorizontal"
+                components:
+                    Anchor: {}
+                    LinearLayout:
+                        spacing: 16.000000
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfChildrenSum"
+                        verticalPolicy: "PercentOfMaxChild"
+                    UILayoutEventComponent:
+                        positionChangedEvent: "UpdateFreeRewardsVisibility"
+                        positionChangedEventData: "{first=_size.X;second=_parentSize.X; third=_position.X;}"
+                children:
+                -   class: "UIControl"
+                    name: "Rewards"
+                    position: [0.000000, 0.000000]
+                    size: [32.000000, 32.000000]
+                    visible: true
+                    input: false
+                    components:
+                        UIOpacityComponent:
+                            opacity: 1.000000
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            vCenterAnchorEnabled: true
+                        LinearLayout:
+                            spacing: 8.000000
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfChildrenSum"
+                            verticalPolicy: "PercentOfMaxChild"
+                        UIRepeatComponent:
+                            control: "~res:/UI/Screens3/Lobby/BattlePass/BattlePassLevelReward.yaml"
+                            dataContainer: "freeRewards.resources"
+                            args:
+                                "attachId": "\"reward_\" + str(eBattlePassPath.Free) + \"_\" + str(_index)"
+                                "size": "eBattlePassRewardSize.Big"
+                                "isOpened": "receivedRewards.pathsInfo[eBattlePassPath.Free].isOpened"
+                                "isSelected": "true"
+                                "indexInScrollableContainer": "_index"
+                                "reward": "_item"
+                            eventActions:
+                            - ["ON_REWARD_CLICKED", "ON_REWARD_CLICKED", "eBattlePassPath.Free, _index"]
+        -   class: "UIControl"
+            name: "PaidRewardsSection"
+            position: [0.000000, 142.000000]
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                UIOpacityComponent: {}
+                Anchor:
+                    hCenterAnchorEnabled: true
+                LinearLayout:
+                    orientation: "TopDown"
+                    padding: "16"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    verticalPolicy: "PercentOfChildrenSum"
+            bindings:
+            - ["visible", "isPaidExists"]
+            children:
+            -   class: "UIControl"
+                name: "GoldGradient"
+                input: false
+                components:
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                children:
+                -   class: "UIControl"
+                    name: "LeftPart"
+                    position: [35.000000, 0.000000]
+                    size: [26.000000, 57.000000]
+                    input: false
+                    classes: "orange-50-bg"
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_TO_RECT"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_horizontal_0-100"
+                        Anchor:
+                            leftAnchorEnabled: true
+                            topAnchorEnabled: false
+                            topAnchor: 0.000000
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "parent/2"
+                            verticalPolicy: "PercentOfParent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+                -   class: "UIControl"
+                    name: "RightPart"
+                    position: [35.000000, 0.000000]
+                    size: [26.000000, 102.000000]
+                    input: false
+                    classes: "orange-50-bg"
+                    components:
+                        Background:
+                            drawType: "DRAW_SCALE_TO_RECT"
+                            sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_horizontal_0-100"
+                            spriteModification: ["FLIP_HORIZONTAL"]
+                        Anchor:
+                            rightAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "Formula"
+                            horizontalFormula: "parent/2"
+                            verticalPolicy: "PercentOfParent"
+                        StyleSheet:
+                            styles: "~res:/UI/Screens3/Color.style.yaml"
+            -   class: "UIControl"
+                name: "PaidRewardContent"
+                position: [0.000000, 16.000000]
+                size: [1024.000000, 214.000000]
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                    LinearLayout:
+                        orientation: "TopDown"
+                        spacing: 24.000000
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfChildrenSum"
+                children:
+                -   class: "UIControl"
+                    name: "PaidRewardTextWrapper"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    components:
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            vCenterAnchorEnabled: true
+                        LinearLayout:
+                            orientation: "TopDown"
+                            spacing: 4.000000
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfMaxChild"
+                            verticalPolicy: "PercentOfChildrenSum"
+                    children:
+                    -   class: "UIControl"
+                        name: "PaidRewardText"
+                        size: [32.000000, 32.000000]
+                        input: false
+                        classes: "t-headline bold"
+                        components:
+                            UITextComponent:
+                                text: "BattlePass/ClaimReward/PaidBattlePass/Title"
+                            Anchor:
+                                hCenterAnchorEnabled: true
+                                vCenterAnchorEnabled: true
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfContent"
+                                verticalPolicy: "PercentOfContent"
+                            StyleSheet:
+                                styles: "~res:/UI/Screens3/Font.style.yaml"
+                    -   class: "UIControl"
+                        name: "PaidRewardInfo"
+                        input: false
+                        classes: "t-subtitle regular color=white-wild-sand-text"
+                        components:
+                            UITextComponent:
+                                text: "BattlePass/ClaimReward/PaidBattlePass/Description"
+                                colorInheritType: "COLOR_IGNORE_PARENT"
+                                align: ["LEFT", "VCENTER"]
+                            Anchor:
+                                hCenterAnchorEnabled: true
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfContent"
+                                verticalPolicy: "PercentOfContent"
+                            StyleSheet:
+                                styles: "~res:/UI/Screens3/Font.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+                        bindings:
+                        - ["visible", "not isPaidOpened"]
+                -   class: "UIScrollView"
+                    name: "PaidRewards"
+                    position: [0.000000, 83.000000]
+                    input: false
+                    autoUpdate: true
+                    centerContent: true
+                    components:
+                        ClipContent:
+                            enabled: false
+                        Anchor:
+                            hCenterAnchorEnabled: true
+                            vCenterAnchorEnabled: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            horizontalValue: 85.000000
+                            verticalPolicy: "PercentOfMaxChild"
+                    children:
+                    -   class: "UIScrollViewContainer"
+                        name: "scrollContainerControl"
+                        position: [-33.000000, 0.000000]
+                        scrollDirection: "kHorizontal"
+                        components:
+                            Anchor: {}
+                            LinearLayout:
+                                spacing: 24.000000
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfChildrenSum"
+                                verticalPolicy: "PercentOfMaxChild"
+                            UILayoutEventComponent:
+                                positionChangedEvent: "UpdatePaidRewardsVisibility"
+                                positionChangedEventData: "{first=_size.X;second=_parentSize.X; third=_position.X;}"
+                        children:
+                        -   class: "UIControl"
+                            name: "Rewards"
+                            size: [32.000000, 32.000000]
+                            visible: true
+                            input: false
+                            components:
+                                UIOpacityComponent: {}
+                                Anchor:
+                                    hCenterAnchorEnabled: true
+                                    vCenterAnchorEnabled: true
+                                LinearLayout:
+                                    spacing: 8.000000
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfChildrenSum"
+                                    verticalPolicy: "PercentOfMaxChild"
+                                UIRepeatComponent:
+                                    control: "~res:/UI/Screens3/Lobby/BattlePass/BattlePassLevelRewardWithLock.yaml"
+                                    dataContainer: "paidRewards.resources"
+                                    args:
+                                        "canBeTaken": "not receivedRewards.pathsInfo[eBattlePassPath.Paid].isOpened"
+                                        "attachId": "\"reward_\" + str(eBattlePassPath.Paid) + \"_\" + str(_index)"
+                                        "size": "eBattlePassRewardSize.Big"
+                                        "isOpened": "receivedRewards.pathsInfo[eBattlePassPath.Paid].isOpened"
+                                        "isSelected": "true"
+                                        "indexInScrollableContainer": "_index"
+                                        "reward": "_item"
+                                    eventActions:
+                                    - ["ON_REWARD_CLICKED", "ON_REWARD_CLICKED", "eBattlePassPath.Paid, _index"]
+    -   class: "UIControl"
+        name: "Buttons"
+        position: [349.000000, 0.000000]
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                bottomAnchorEnabled: true
+            LinearLayout:
+                spacing: 24.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "BuyBattlePassButton"
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfChildrenSum"
+                    verticalPolicy: "PercentOfChildrenSum"
+                UIChildComponent0:
+                    condition: "not isPaidOpened"
+                    prototypePath: "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+                    args:
+                        "caption": "when isPaidOpened -> localize(\"BattlePass/ClaimReward/Button\"), localize(\"BattlePass/BuyPaidBattlePass/Button\")"
+                        "sound": "eButtonSound.OK"
+                        "type": "eButtonType.ALTERNATIVE"
+                    eventActions:
+                    - ["ON_CLICK_BUTTON", "BUY_BATTLEPASS", ""]
+            bindings:
+            - ["visible", "not isPaidOpened"]
+        -   class: "UIControl"
+            name: "OkButton"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                SizePolicy:
+                    horizontalPolicy: "PercentOfChildrenSum"
+                    verticalPolicy: "PercentOfChildrenSum"
+                UIChildComponent0:
+                    prototypePath: "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+                    args:
+                        "caption": "localize(\"BattlePass/ClaimReward/Ok/Button\")"
+                        "sound": "eButtonSound.OK"
+                        "type": "eButtonType.OPTIONAL_LIGHT"
+                    eventActions:
+                    - ["ON_CLICK_BUTTON", "CLOSE", ""]

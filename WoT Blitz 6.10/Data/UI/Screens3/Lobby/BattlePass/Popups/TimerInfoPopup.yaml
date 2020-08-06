@@ -1,0 +1,27 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Common/PopupMenuWithRichText.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "DepositClaimInfo"
+    input: false
+    components:
+        Anchor:
+            leftAnchorEnabled: true
+            rightAnchorEnabled: true
+            topAnchorEnabled: true
+            bottomAnchorEnabled: true
+        UIDataParamsComponent:
+            params:
+            - ["int", "battlePassLevel", "0", "0"]
+    children:
+    -   prototype: "PopupMenuWithRichText/Slave"
+        name: "Slave"
+        components:
+            UIDataParamsComponent:
+                args:
+                    "title": "\"\""
+                    "text": "localize(\"BattlePass/Timer/Popup\")"
+                    "slaveAlign": "ePositionAlign.Bottom"
+                    "masterId": "\"BATTLE_PASS_TIMER\""

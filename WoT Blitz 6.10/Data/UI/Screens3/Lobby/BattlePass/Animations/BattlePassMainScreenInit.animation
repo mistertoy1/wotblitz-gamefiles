@@ -1,0 +1,9 @@
+animation Init
+{
+	if (showDepositsPopup)
+	{
+		Event("SHOW_DEPOSITS_POPUP");
+	}
+
+	Event("ANIMATE_PROGRESS");
+}

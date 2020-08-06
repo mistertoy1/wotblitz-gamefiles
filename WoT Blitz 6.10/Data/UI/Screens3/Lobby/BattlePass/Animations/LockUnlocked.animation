@@ -1,0 +1,6 @@
+animation LOCK_UNLOCKED
+{
+    StartParticles(path="./Content/LockContainer/LockDisintegration");
+	Wait(2);
+    StopParticles(path="./Content/LockContainer/LockDisintegration");
+}

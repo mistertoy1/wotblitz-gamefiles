@@ -1,0 +1,51 @@
+Header:
+    version: "99"
+Prototypes:
+-   class: "UIControl"
+    name: "Extender"
+    input: false
+    components:
+        UIAnimationComponent:
+            animations: "_INIT,~res:/UI/Screens3/Lobby/BattlePass/Deposits/DepositExtender.animation"
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            horizontalValue: 30.000000
+            verticalPolicy: "FixedSize"
+            verticalValue: 30.000000
+    children:
+    -   class: "UIControl"
+        name: "arrows"
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                horizontalValue: 30.000000
+                verticalPolicy: "FixedSize"
+                verticalValue: 30.000000
+        children:
+        -   class: "UIControl"
+            name: "arrow1"
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                UITextureComponent:
+                    spritePath: "~res:/Gfx/Lobby/icons/icon_arrow_1"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    topAnchorEnabled: true
+                    topAnchor: -5.000000
+        -   class: "UIControl"
+            name: "arrow2"
+            position: [0.000000, 16.000000]
+            size: [32.000000, 32.000000]
+            input: false
+            components:
+                UITextureComponent:
+                    spritePath: "~res:/Gfx/Lobby/icons/icon_arrow_2"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    topAnchorEnabled: true
+                    topAnchor: 5.000000

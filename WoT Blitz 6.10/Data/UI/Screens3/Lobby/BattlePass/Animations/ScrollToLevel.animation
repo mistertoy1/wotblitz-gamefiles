@@ -1,0 +1,15 @@
+animation ScrollToLevel
+{
+   if (battlePassView.levelIndexForScroll >= 0)
+   {
+        ScrollToEnsureControlOnScreen("**/level" + str(battlePassView.levelIndexForScroll), 3, eScrollToControlPolicy.kCenter);
+   }
+   else
+   {
+        if (not battlePassView.returnedFromShowcase)
+        {
+             ScrollToEnsureControlOnScreen("**/level" + str(battlePass.activeLevelIndex), 0, eScrollToControlPolicy.kCenter);
+        }
+   }
+   Event("ON_SCROLL_ENDED");
+}

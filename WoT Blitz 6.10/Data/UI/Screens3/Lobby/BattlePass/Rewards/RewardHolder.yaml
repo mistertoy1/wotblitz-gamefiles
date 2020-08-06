@@ -1,0 +1,75 @@
+Header:
+    version: "100"
+Prototypes:
+-   class: "UIControl"
+    name: "RewardHolder"
+    size: [120.000000, 100.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "FixedSize"
+            verticalPolicy: "FixedSize"
+        UIDataParamsComponent:
+            params:
+            - ["float", "rewardOpacity", "1.000000", "1.000000"]
+            - ["eBattlePassRewardSize", "size", "eBattlePassRewardSize.Big", "eBattlePassRewardSize.Big"]
+            - ["ResourceDetailed", "resource", "null", "{ type = ResourceType.premium; }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "isBasicResource", "resource.type == ResourceType.gold or resource.type == ResourceType.free_xp or resource.type == ResourceType.premium or resource.type == ResourceType.xp or resource.type == ResourceType.tankmenXP or resource.type == ResourceType.credits or resource.type == ResourceType.slots or resource.type == ResourceType.equipment_slots"]
+            - ["string", "rewardPackage", "when isBasicResource -> \"~res:/UI/Screens3/Lobby/BattlePass/Rewards/BasicReward.yaml\", resource.type == ResourceType.stuff -> \"~res:/UI/Screens3/Lobby/BattlePass/Rewards/StuffReward.yaml\", resource.type == ResourceType.unlocks -> \"~res:/UI/Screens3/Lobby/BattlePass/Rewards/UnlockReward.yaml\", resource.type == ResourceType.vehicle -> \"~res:/UI/Screens3/Lobby/BattlePass/Rewards/VehicleReward.yaml\", \"\""]
+            - ["int", "quantity", "when isBasicResource -> resource.basic.quantity, resource.type == ResourceType.stuff -> resource.stuff.quantity, 1"]
+            - ["string", "text", "when resource.type == ResourceType.vehicle -> localize(resource.vehicle.info.shortName), resource.type == ResourceType.premium -> str(toDays(quantity)) + \" \" + localize(\"#common:Time/Days\"), when quantity > 1 -> str1000Separated(quantity), \"\""]
+            - ["string", "textColorStyle", "when resource.type == ResourceType.vehicle and resource.vehicle.info.isCollectible -> \"blue-rimmi-text\", resource.type == ResourceType.vehicle and resource.vehicle.info.isPremium -> \"yellow-lightning-text\", \"white-wild-sand-text\""]
+            - ["string", "textFontStyle", "when size == eBattlePassRewardSize.Big -> \"t-subtitle bold\", \"t-caption bold\""]
+            - ["string", "textStyle", "textFontStyle + \" \" + textColorStyle"]
+    bindings:
+    - ["SizePolicy.horizontalValue", "when size == eBattlePassRewardSize.Big -> 146, 120"]
+    - ["SizePolicy.verticalValue", "when size == eBattlePassRewardSize.Big -> 146, 108"]
+    children:
+    -   class: "UIControl"
+        name: "CustomReward"
+        position: [12.000000, 0.000000]
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                topAnchorEnabled: true
+                topAnchor: 8.000000
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "parent - 16"
+                verticalPolicy: "Formula"
+                verticalFormula: "parent - 30"
+            UIChildComponent0:
+                childType: "kOldExpression"
+                control: "rewardPackage"
+                args:
+                    "rewardOpacity": "rewardOpacity"
+                    "size": "size"
+                    "type": "resource.type"
+                    "basic": "resource.basic"
+                    "stuff": "resource.stuff"
+                    "unlock": "resource.unlock"
+                    "vehicle": "resource.vehicle"
+                    "useCustomIcon": "useCustomUnlockIcon"
+    -   class: "UIControl"
+        name: "Quantity"
+        position: [37.000000, 108.000000]
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            UITextComponent:
+                colorInheritType: "COLOR_IGNORE_PARENT"
+            Anchor:
+                hCenterAnchorEnabled: true
+                bottomAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfContent"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Font.style.yaml"
+        bindings:
+        - ["classes", "textStyle"]
+        - ["UITextComponent.text", "text"]
+        - ["Anchor.bottomAnchor", "when size == eBattlePassRewardSize.Big -> 0, 8"]

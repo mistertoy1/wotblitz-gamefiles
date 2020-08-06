@@ -1,0 +1,9 @@
+action UpdateLevelsPosition(FloatParamPack params)
+{
+	Event("UPDATE_LEVELS_POSITIONS", arg1 = itemWidth, arg2 = params.second, arg3 = params.third);
+}
+
+action ROUTE_SCROLL_TO_LVL
+{
+  DirectEvent("SCROLL_TO_LVL", "**/ScrollContainer/ScrollableArea/scrollContainerControl");
+}

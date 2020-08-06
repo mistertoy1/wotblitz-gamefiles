@@ -1,0 +1,21 @@
+animation ArrowsMove()
+{
+    repeat(100000000)
+    {
+        parallel
+        {
+            ChangeProperty("**/arrow1", "Anchor", "topAnchor", -15, 0.4, EASE_IN_EASE_OUT);
+            {
+                Wait(0.1);
+                ChangeProperty("**/arrow2", "Anchor", "topAnchor", -5, 0.4, EASE_IN_EASE_OUT);
+            }
+        }
+        parallel
+        {
+            ChangeProperty("**/arrow1", "Anchor", "topAnchor", -5, 0.4, EASE_IN_EASE_OUT);
+            {
+                ChangeProperty("**/arrow2", "Anchor", "topAnchor", 5, 0.4, EASE_IN_EASE_OUT);
+            }
+        }
+    }
+}

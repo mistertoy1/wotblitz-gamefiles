@@ -1,0 +1,54 @@
+animation ANIMATE_PROGRESS
+{
+	if (currentLevelIndex < oldLevelIndex or (currentLevelIndex == oldLevelIndex and currentLevelProgress < oldLevelProgress))
+	{
+		Event("BACK_BUTTON_CLICKED");
+	}
+	else 
+	{
+
+	Wait(0.1); // need because lazy loading
+
+	if (isPaidOpened and not serializationInfo.isDisplayedPaidUnlock)
+	{
+		Event("BATTLE_PASS_UNLOCKED");
+		BroadcastEvent("LOCK_UNLOCKED", "**/LevelsContainer");
+		BroadcastEvent("LOCK_UNLOCKED", "**/AnchoredLevels");
+		ChangeData(serializationInfo.isDisplayedPaidUnlock, true);
+	}
+
+	parallel
+	{
+		BroadcastEvent("SHOW_LEVEL_PROGRESS_ANIMATION", "**/LevelsContainer");
+		
+		if (currentLevelIndex == levelsCount - 1)
+		{
+			DirectEvent("SHOW_LEVEL_PROGRESS_ANIMATION", "**/AnchoredLevels/level_anchored" + str(currentLevelIndex));
+		}
+	
+		if (oldLevelIndex != currentLevelIndex)
+		{
+			sequence
+			{
+				DirectEvent("DISABLE_SELECTED", "**/LevelsContainer/LevelsForBlurMask/level_blur" + str(oldLevelIndex));
+				DirectEvent("DISABLE_SELECTED", "**/LevelsContainer/Levels/level" + str(oldLevelIndex));
+				DirectEvent("DISABLE_SELECTED", "**/LevelsContainer/*/levelRewardWithEffect" + str(oldLevelIndex));
+				Wait((currentLevelIndex * totalLevelProgress - oldLevelIndex * totalLevelProgress - oldLevelProgress) * 0.05);
+				DirectEvent("ENABLE_SELECTED", "**/LevelsContainer/LevelsForBlurMask/level_blur" + str(currentLevelIndex));
+				DirectEvent("ENABLE_SELECTED", "**/LevelsContainer/Levels/level" + str(currentLevelIndex));
+				DirectEvent("ENABLE_SELECTED", "**/LevelsContainer/*/levelRewardWithEffect" + str(currentLevelIndex));
+				
+				if (currentLevelIndex == levelsCount - 1)
+				{
+					DirectEvent("ENABLE_SELECTED", "**/AnchoredLevels/level_anchored" + str(currentLevelIndex));
+				}
+			}
+		}
+		
+		Wait((currentLevelProgress + currentLevelIndex * totalLevelProgress - oldLevelIndex * totalLevelProgress - oldLevelProgress) * 0.05);
+	}
+
+	DirectEvent("PROGRESS_ANIMATION_ENDED", ".");
+
+	}
+}

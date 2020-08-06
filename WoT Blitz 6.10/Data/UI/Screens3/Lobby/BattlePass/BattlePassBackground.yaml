@@ -1,0 +1,42 @@
+Header:
+    version: "99"
+Prototypes:
+-   class: "UIControl"
+    name: "Bg"
+    size: [1024.000000, 768.000000]
+    input: false
+    components:
+        ClipContent: {}
+        UIPostProcessSourceComponent0:
+            id: "BattlePassBackground"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["string", "battlePassBackgroundUrl", "\"\"", "\"\""]
+    children:
+    -   class: "UIControl"
+        name: "Texture"
+        size: [32.000000, 32.000000]
+        pivot: [0.500000, 0.500000]
+        input: false
+        classes: "battlepass-bg"
+        components:
+            Background:
+                drawType: "DRAW_SCALE_TO_RECT"
+            UIUrlImageComponent: {}
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "Formula"
+                horizontalFormula: "content / 0.75"
+                verticalPolicy: "PercentOfContent"
+            ScalePolicy:
+                horizontalFormula: "max(parentSize.X / size.X, parentSize.Y / size.Y)"
+                verticalFormula: "max(parentSize.X / size.X, parentSize.Y / size.Y)"
+            StyleSheet:
+                styles: "~res:/UI/Screens3/Background.style.yaml"
+        bindings:
+        - ["UIUrlImageComponent.imageUrl", "battlePassBackgroundUrl"]

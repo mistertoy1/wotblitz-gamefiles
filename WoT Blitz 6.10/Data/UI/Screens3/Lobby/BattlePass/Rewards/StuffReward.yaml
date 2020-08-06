@@ -1,0 +1,101 @@
+Header:
+    version: "100"
+Controls:
+-   class: "UIControl"
+    name: "Content"
+    size: [128.000000, 128.000000]
+    input: false
+    components:
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIDataParamsComponent:
+            params:
+            - ["float", "rewardOpacity", "1.000000", "1.000000"]
+            - ["eBattlePassRewardSize", "size", "eBattlePassRewardSize.Big", "eBattlePassRewardSize.Big"]
+            - ["StuffResource", "stuff", "null", "{ }"]
+        UIDataLocalsComponent:
+            locals:
+            - ["float", "threshold", "0.900000"]
+    children:
+    -   class: "UIControl"
+        name: "IconContainer"
+        input: false
+        components:
+            Anchor:
+                hCenterAnchorEnabled: true
+                vCenterAnchorEnabled: true
+            SizePolicy:
+                horizontalPolicy: "FixedSize"
+                verticalPolicy: "FixedSize"
+        bindings:
+        - ["SizePolicy.horizontalValue", "when size == eBattlePassRewardSize.Big -> 96, 64"]
+        - ["SizePolicy.verticalValue", "when size == eBattlePassRewardSize.Big -> 96, 64"]
+        children:
+        -   class: "UIControl"
+            name: "Grade"
+            input: false
+            components:
+                UITextureComponent:
+                    spritePath: "~res:/Gfx/UI/Storage/Items_back.psd"
+                    drawType: "DRAW_SCALE_PROPORTIONAL"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    horizontalMax: 96.000000
+                    verticalPolicy: "PercentOfParent"
+                    verticalMax: 96.000000
+            bindings:
+            - ["visible", "rewardOpacity >= threshold"]
+            - ["UITextureComponent.color", "when stuff.grade == ArtefactGrade.common -> rgba(4214879, 1.000000), stuff.grade == ArtefactGrade.rare -> rgba(408010, 1.000000), stuff.grade == ArtefactGrade.unique -> rgba(6948762, 1.000000), stuff.grade == ArtefactGrade.legendary -> rgba(14588165, 1.000000), rgba(16777215, 0.000000)"]
+        -   class: "UIControl"
+            name: "GradeGrad"
+            input: false
+            components:
+                UITextureComponent:
+                    spritePath: "~res:/Gfx/UI/Storage/Items_back.psd"
+                    materialPath: "~res:/Materials.custom/2d.Textured.AlphaGrad.material"
+                    materialParams: "maxU,0.77"
+                    drawType: "DRAW_SCALE_PROPORTIONAL"
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    horizontalMax: 96.000000
+                    verticalPolicy: "PercentOfParent"
+                    verticalMax: 96.000000
+            bindings:
+            - ["visible", "rewardOpacity < threshold"]
+            - ["UITextureComponent.color", "when stuff.grade == ArtefactGrade.common -> rgba(4214879, 1.000000), stuff.grade == ArtefactGrade.rare -> rgba(408010, 1.000000), stuff.grade == ArtefactGrade.unique -> rgba(6948762, 1.000000), stuff.grade == ArtefactGrade.legendary -> rgba(14588165, 1.000000), rgba(16777215, 0.000000)"]
+        -   class: "UIControl"
+            name: "Icon"
+            input: false
+            components:
+                UITextureComponent:
+                    drawType: "DRAW_SCALE_PROPORTIONAL_ONE"
+                Anchor:
+                    hCenterAnchorEnabled: true
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    horizontalMax: 96.000000
+                    verticalPolicy: "PercentOfParent"
+                    verticalMax: 116.000000
+            bindings:
+            - ["visible", "empty(stuff.iconUrl)"]
+            - ["UITextureComponent.spritePath", "stuff.icon"]
+        -   class: "UIControl"
+            name: "IconUrl"
+            input: false
+            components:
+                Background:
+                    drawType: "DRAW_SCALE_PROPORTIONAL_ONE"
+                UIUrlImageComponent:
+                    placeholderScenePath: "~res:/UI/Screens/Common/LoadingControl.yaml"
+                    placeholderControlName: "LoadingControl"
+                    downscaleEnabled: false
+                SizePolicy:
+                    horizontalPolicy: "PercentOfParent"
+                    horizontalMax: 96.000000
+                    verticalPolicy: "PercentOfParent"
+                    verticalMax: 116.000000
+            bindings:
+            - ["visible", "not empty(stuff.iconUrl)"]
+            - ["UIUrlImageComponent.imageUrl", "stuff.iconUrl"]

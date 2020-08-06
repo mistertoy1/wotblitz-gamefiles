@@ -1,0 +1,1094 @@
+Header:
+    version: "100"
+ImportedPackages:
+- "~res:/UI/Screens3/Lobby/Common/BackButton.yaml"
+- "~res:/UI/Screens3/Common/HorizontalScrollBar.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Resource/StuffWithIcon.yaml"
+- "~res:/UI/Screens3/Lobby/Common/BlurDynamic.yaml"
+- "~res:/UI/Screens3/Lobby/BattlePass/BattlePassBackground.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Button.yaml"
+- "~res:/UI/Screens3/Lobby/BattlePass/BattlePassLevel.yaml"
+- "~res:/UI/Screens3/Lobby/Common/Resource/Detailed/StuffIcon.yaml"
+- "~res:/UI/Screens3/Lobby/BattlePass/BattlePassZeroLevel.yaml"
+- "~res:/UI/Screens3/Lobby/BattlePass/BattlePassZeroLevelMask.yaml"
+Prototypes:
+-   class: "UIControl"
+    name: "BattlePassMainScreen"
+    size: [1000.000000, 700.000000]
+    input: false
+    classes: "back-shortcut"
+    components:
+        UIAnimationComponent:
+            animations: "_INIT,~res:/UI/Screens3/Lobby/BattlePass/Animations/BattlePassMainScreenInit.animation;ANIMATE_PROGRESS,~res:/UI/Screens3/Lobby/BattlePass/Animations/ScreenProgress.animation;BATTLE_PASS_UNLOCKED,~res:/UI/Screens3/Lobby/BattlePass/Animations/BattlePassUnlocked.animation"
+        LinearLayout:
+            orientation: "TopDown"
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIShortcutEventComponent:
+            shortcuts: "BACK_EVENT, Escape; BACK_EVENT, Back"
+        UIDataParamsComponent:
+            params:
+            - ["SessionDataModel", "session", "null", "{ }"]
+            - ["AppDataModel", "app", "null", "{ }"]
+            - ["AccountDataModel", "account", "null", "{ }"]
+            - ["BattlePass", "battlePass", "null", "{ }"]
+            - ["LobbyDataModel", "lobby", "null", "{ }"]
+            - ["BattlePassSerializationInfo", "serializationInfo", "null", "{ }"]
+            - ["BattlePassView", "battlePassView", "null", "{ }"]
+            events:
+            - "SHOW_DEPOSITS_POPUP"
+            - "ON_TIMER_CLICKED"
+            - "SHOW_OFFER(int64 id)"
+            - "ON_OFFER_CLICKED(int stepId)"
+            - "ON_REWARD_CLICKED(int levelIndex, int stepId, int rewardIndex)"
+            - "ON_SPEED_UP_BUTTON_CLICKED"
+            - "SHOW_LEVEL_WITH_TANK"
+        UIDataLocalsComponent:
+            locals:
+            - ["bool", "isPaidOpened", "battlePass.pathsInfo[eBattlePassPath.Paid].isOpened"]
+            - ["int", "levelsCount", "battlePass.levels.Size()"]
+            - ["int", "totalLevelProgress", "battlePass.levels[0].totalProgress"]
+            - ["int", "currentLevelIndex", "battlePass.activeLevelIndex"]
+            - ["int", "currentLevelProgress", "battlePass.levels[currentLevelIndex].currentProgress"]
+            - ["int", "oldLevelIndex", "serializationInfo.lastDisplayedLevelIndex"]
+            - ["int", "oldLevelProgress", "serializationInfo.lastDisplayedLevelProgress"]
+            - ["bool", "isCompleted", "(currentLevelIndex == levelsCount - 1) and (currentLevelProgress == totalLevelProgress)"]
+            - ["bool", "showSpeedUpButton", "not isCompleted"]
+            - ["float", "screenHeightThreshhold", "900.000000"]
+            - ["float", "additionalScale", "when battlePassView.screenHeight > screenHeightThreshhold -> 1.500000, 1.000000"]
+            - ["int", "itemWidth", "int(120.000000 * additionalScale)"]
+            - ["int", "itemHeight", "int(108.000000 * additionalScale)"]
+            - ["int", "itemHeightDelta", "int(20.000000 * additionalScale)"]
+            - ["int", "itemHeightSelected", "itemHeight + itemHeightDelta"]
+            - ["int", "progressHeight", "int(32.000000 * additionalScale)"]
+            - ["int", "levelsContainerHeight", "itemHeightSelected + progressHeight + 2 * itemHeight"]
+            - ["int", "bannerHeight", "when lobby.prmpOffersData.placements.Contains(ePrmpOfferPlacement.BattlePass) and not lobby.prmpOffersData.placements[ePrmpOfferPlacement.BattlePass].offers.Empty() and not isNull(lobby.prmpOffersData.placements[ePrmpOfferPlacement.BattlePass].offers[0].banner) -> 80, 0"]
+            - ["int", "topInfoAvailableHeight", "battlePassView.screenHeight - battlePassView.bottomInset - bannerHeight - levelsContainerHeight - 48"]
+            - ["int", "topInfoHeightThreshold", "140"]
+            - ["int", "bottomInset", "when topInfoAvailableHeight > topInfoHeightThreshold -> battlePassView.bottomInset, 0"]
+            - ["vector<BattlePassDeposit>", "deposits", "battlePass.deposits.deposits"]
+            - ["bool", "deposit1IsFull", "deposits.Size() > 0 and not isNull(deposits[0].bank) and deposits[0].bank.current.quantity == deposits[0].bank.max.quantity"]
+            - ["bool", "deposit2IsFull", "deposits.Size() > 1 and not isNull(deposits[1].bank) and deposits[1].bank.current.quantity == deposits[1].bank.max.quantity"]
+            - ["bool", "deposit3IsFull", "deposits.Size() > 2 and not isNull(deposits[2].bank) and deposits[2].bank.current.quantity == deposits[2].bank.max.quantity"]
+            - ["bool", "hasFullDeposit", "deposit1IsFull or deposit2IsFull or deposit3IsFull"]
+            - ["bool", "deposit1NeedExtender", "deposit1IsFull and deposits[0].limitLevels.Contains(deposits[0].level + 1)"]
+            - ["bool", "deposit2NeedExtender", "deposit2IsFull and deposits[1].limitLevels.Contains(deposits[1].level + 1)"]
+            - ["bool", "deposit3NeedExtender", "deposit3IsFull and deposits[2].limitLevels.Contains(deposits[2].level + 1)"]
+            - ["bool", "showDepositsPopup", "not serializationInfo.depositsHintCompleted and (deposit1NeedExtender or deposit2NeedExtender or deposit3NeedExtender)"]
+        UIActionComponent:
+            actionsPath: "~res:/UI/Screens3/Lobby/BattlePass/Animations/MainScreen.actions"
+        UIDataOnEventComponent0:
+            eventName: "BATTLE_PASS_UNLOCKED"
+            modelFieldExpression: "battlePass.battlePassUnlocked"
+            dataExpression: "true"
+        UIDataOnEventComponent1:
+            eventName: "PROGRESS_ANIMATION_ENDED"
+            modelFieldExpression: "serializationInfo.lastDisplayedLevelIndex"
+            dataExpression: "battlePass.activeLevelIndex"
+        UIDataOnEventComponent2:
+            eventName: "PROGRESS_ANIMATION_ENDED"
+            modelFieldExpression: "serializationInfo.lastDisplayedLevelProgress"
+            dataExpression: "battlePass.levels[battlePass.activeLevelIndex].currentProgress"
+        UIEventOnDataComponent0:
+            watchedDataExpression: "battlePass.pathsInfo[eBattlePassPath.Free].proxy.quantity"
+            eventName: "ANIMATE_PROGRESS"
+        UIEventOnDataComponent1:
+            watchedDataExpression: "isPaidOpened"
+            ifExpression: "isPaidOpened == true"
+            eventName: "BATTLE_PASS_UNLOCKED"
+        UIEventOnDataComponent2:
+            watchedDataExpression: "battlePassView.levelIndexForScroll"
+            ifExpression: "battlePassView.levelIndexForScroll >= 0"
+            eventName: "ROUTE_SCROLL_TO_LVL"
+        UIEventOnDataComponent3:
+            watchedDataExpression: "showDepositsPopup"
+            ifExpression: "showDepositsPopup"
+            eventName: "SHOW_DEPOSITS_POPUP"
+        StyleSheet:
+            styles: "~res:/UI/Screens3/BackShortcut.style.yaml;~res:/UI/Screens3/Color.style.yaml"
+    children:
+    -   prototype: "BattlePassBackground/Bg"
+        name: "Bg"
+        components:
+            IgnoreLayout: {}
+            UIDataParamsComponent:
+                args:
+                    "battlePassBackgroundUrl": "battlePass.resources.graphics[\"battlePassBackground\"]"
+        children:
+        -   path: "Texture"
+            position: [512.000000, 398.000000]
+            components:
+                Background:
+                    sprite: ""
+    -   class: "UIControl"
+        name: "SmokeContainer"
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            IgnoreLayout: {}
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+            UIChildComponent0:
+                childType: "kControl"
+                condition: "battlePassView.effectsEnabled"
+                control: "Smoke"
+        bindings:
+        - ["visible", "battlePassView.effectsEnabled"]
+    -   class: "UIControl"
+        name: "Header"
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfChildrenSum"
+            UIChildComponent0:
+                prototypePath: "~res:/UI/Screens3/Lobby/Common/Headers/BaseHeader.yaml"
+                args:
+                    "isFullScreen": "true"
+                    "showBackButton": "true"
+                    "statsData": "session.stats"
+                    "lobby": "lobby"
+                    "serverTime": "session.serverTime"
+                    "leftContent": "LeftHeaderContent"
+                    "background": "null"
+                    "bgStyle": "\"black-15-bg\""
+                    "isGeneralPackLoaded": "app.sDlc.isGeneralPackLoaded"
+                    "isTutorialActive": "account.tutorialData.isTutorialActive"
+                    "firstLessonCompleted": "account.tutorialData.currentLesson > eTutorialLesson.kTurretUnlock"
+                eventActions:
+                - ["PREMIUM_INFO_EVENT", "PREMIUM_INFO_EVENT", ""]
+                - ["SHOP_BUTTON", "SHOP_BUTTON", "_event.requiredResource"]
+                - ["BACK_EVENT", "BACK_BUTTON_CLICKED", ""]
+    -   class: "UIControl"
+        name: "Content"
+        position: [0.000000, 48.000000]
+        size: [32.000000, 32.000000]
+        input: false
+        components:
+            SizePolicy:
+                horizontalPolicy: "PercentOfParent"
+                verticalPolicy: "PercentOfParent"
+        children:
+        -   class: "UIControl"
+            name: "MainContentContainer"
+            position: [88.000000, 0.000000]
+            input: false
+            components:
+                Anchor:
+                    leftAnchorEnabled: true
+                    rightAnchorEnabled: true
+                    topAnchorEnabled: true
+                    bottomAnchorEnabled: true
+                UIAnchorSafeAreaComponent:
+                    leftSafeInset: "INSET"
+                    rightSafeInset: "INSET"
+            children:
+            -   class: "UIControl"
+                name: "InfoButton"
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    Anchor:
+                        leftAnchorEnabled: true
+                        leftAnchor: 24.000000
+                        topAnchorEnabled: true
+                        topAnchor: 24.000000
+                    IgnoreLayout: {}
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfChildrenSum"
+                        verticalPolicy: "PercentOfChildrenSum"
+                    UIChildComponent0:
+                        prototypePath: "~res:/UI/Screens3/Lobby/Common/IconButton.yaml"
+                        args:
+                            "locked": "false"
+                            "visible": "true"
+                            "isBgVisible": "true"
+                            "image": "\"~res:/Gfx/Lobby/icons/icon_info_xs\""
+                            "type": "eButtonType.OPTIONAL_LIGHT"
+                            "sound": "eButtonSound.UNKNOWN"
+                            "enabled": "true"
+                        eventActions:
+                        - ["ON_CLICK_BUTTON", "ON_INFO_BUTTON_CLICKED", "_event"]
+            -   class: "UIControl"
+                name: "MainContent"
+                position: [0.000000, 48.000000]
+                size: [32.000000, 32.000000]
+                input: false
+                components:
+                    Anchor:
+                        hCenterAnchorEnabled: true
+                        vCenterAnchorEnabled: true
+                    LinearLayout:
+                        orientation: "TopDown"
+                        padding: "0; 0"
+                        dynamicSpacing: true
+                    SizePolicy:
+                        horizontalPolicy: "PercentOfParent"
+                        verticalPolicy: "PercentOfParent"
+                children:
+                -   class: "UIControl"
+                    name: "TopPart"
+                    position: [104.000000, 0.000000]
+                    size: [32.000000, 32.000000]
+                    input: false
+                    components:
+                        Anchor:
+                            leftAnchorEnabled: true
+                            leftAnchor: 104.000000
+                        LinearLayout:
+                            orientation: "TopDown"
+                            padding: "14"
+                            dynamicPadding: true
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfMaxChild"
+                            verticalPolicy: "PercentOfParent"
+                    children:
+                    -   class: "UIControl"
+                        name: "Wrapper"
+                        position: [0.000000, 21.000000]
+                        size: [449.000000, 200.000000]
+                        input: false
+                        components:
+                            Anchor:
+                                vCenterAnchorEnabled: true
+                            LinearLayout:
+                                spacing: 48.000000
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfChildrenSum"
+                                verticalPolicy: "Formula"
+                                verticalFormula: "min(parentRest, 130)"
+                        children:
+                        -   class: "UIControl"
+                            name: "CurrentStatus"
+                            input: false
+                            components:
+                                LinearLayout:
+                                    orientation: "TopDown"
+                                    spacing: 6.000000
+                                SizePolicy:
+                                    horizontalPolicy: "FixedSize"
+                                    horizontalValue: 245.000000
+                                    verticalPolicy: "PercentOfParent"
+                            children:
+                            -   class: "UIControl"
+                                name: "MainInfo"
+                                size: [32.000000, 32.000000]
+                                components:
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfParent"
+                                children:
+                                -   class: "UIControl"
+                                    name: "CurrentLevel"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    components:
+                                        Anchor:
+                                            leftAnchorEnabled: true
+                                            topAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "Formula"
+                                            verticalFormula: "min(parent, childrenSum)"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "Wrapper"
+                                        size: [32.000000, 32.000000]
+                                        input: false
+                                        components:
+                                            Anchor:
+                                                bottomAnchorEnabled: true
+                                            LinearLayout:
+                                                orientation: "TopDown"
+                                                spacing: 4.000000
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfMaxChild"
+                                                verticalPolicy: "PercentOfChildrenSum"
+                                        children:
+                                        -   class: "UIControl"
+                                            name: "LevelNumber"
+                                            size: [32.000000, 32.000000]
+                                            input: false
+                                            classes: "t-content-h0 regular white-wild-sand-text align-left"
+                                            components:
+                                                UITextComponent: {}
+                                                SizePolicy:
+                                                    horizontalPolicy: "PercentOfContent"
+                                                    verticalPolicy: "FixedSize"
+                                                    verticalValue: 80.000000
+                                                StyleSheet:
+                                                    styles: "~res:/UI/Screens3/Font.style.yaml"
+                                            bindings:
+                                            - ["UITextComponent.text", "when isCompleted -> str(battlePass.activeLevelIndex + 1), str(battlePass.activeLevelIndex)"]
+                                        -   class: "UIControl"
+                                            name: "LevelTextBottom"
+                                            position: [0.000000, 84.000000]
+                                            size: [32.000000, 32.000000]
+                                            input: false
+                                            classes: "t-button bold white-wild-sand-text align-left"
+                                            components:
+                                                UITextComponent:
+                                                    text: "BattlePass/CurrentLevel"
+                                                SizePolicy:
+                                                    horizontalPolicy: "PercentOfContent"
+                                                    verticalPolicy: "PercentOfContent"
+                                                StyleSheet:
+                                                    styles: "~res:/UI/Screens3/Font.style.yaml"
+                                -   class: "UIControl"
+                                    name: "CurrentProgress"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    components:
+                                        Anchor:
+                                            rightAnchorEnabled: true
+                                            bottomAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfMaxChild"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "ProgressContainer"
+                                        position: [61.000000, 120.000000]
+                                        size: [50.000000, 24.000000]
+                                        input: false
+                                        components:
+                                            Anchor:
+                                                rightAnchorEnabled: true
+                                                bottomAnchorEnabled: true
+                                            LinearLayout:
+                                                spacing: 4.000000
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfChildrenSum"
+                                                verticalPolicy: "PercentOfMaxChild"
+                                        children:
+                                        -   class: "UIControl"
+                                            name: "DailyProgressAmount"
+                                            input: false
+                                            classes: "t-subtitle regular white-wild-sand-text align-right"
+                                            components:
+                                                UITextComponent:
+                                                    colorInheritType: "COLOR_IGNORE_PARENT"
+                                                Anchor:
+                                                    vCenterAnchorEnabled: true
+                                                SizePolicy:
+                                                    horizontalPolicy: "PercentOfContent"
+                                                    verticalPolicy: "PercentOfContent"
+                                                StyleSheet:
+                                                    styles: "~res:/UI/Screens3/Font.style.yaml"
+                                            bindings:
+                                            - ["UITextComponent.text", "currentLevelProgress"]
+                                        -   class: "UIControl"
+                                            name: "DailySeparator"
+                                            input: false
+                                            classes: "t-subtitle regular white-wild-sand-text"
+                                            components:
+                                                UITextComponent:
+                                                    text: "/"
+                                                    colorInheritType: "COLOR_IGNORE_PARENT"
+                                                Anchor:
+                                                    vCenterAnchorEnabled: true
+                                                SizePolicy:
+                                                    horizontalPolicy: "PercentOfContent"
+                                                    verticalPolicy: "PercentOfContent"
+                                                StyleSheet:
+                                                    styles: "~res:/UI/Screens3/Font.style.yaml"
+                                        -   class: "UIControl"
+                                            name: "DailyProgressTotal"
+                                            input: false
+                                            classes: "t-subtitle regular white-wild-sand-text align-left"
+                                            components:
+                                                UITextComponent:
+                                                    colorInheritType: "COLOR_IGNORE_PARENT"
+                                                Anchor:
+                                                    vCenterAnchorEnabled: true
+                                                SizePolicy:
+                                                    horizontalPolicy: "PercentOfContent"
+                                                    verticalPolicy: "PercentOfContent"
+                                                StyleSheet:
+                                                    styles: "~res:/UI/Screens3/Font.style.yaml"
+                                            bindings:
+                                            - ["UITextComponent.text", "totalLevelProgress"]
+                                        -   prototype: "StuffIcon/StuffIcon"
+                                            name: "StuffIcon"
+                                            components:
+                                                Anchor:
+                                                    vCenterAnchorEnabled: true
+                                                SizePolicy:
+                                                    horizontalPolicy: "FixedSize"
+                                                    horizontalValue: 20.000000
+                                                    verticalPolicy: "FixedSize"
+                                                    verticalValue: 20.000000
+                                                UIDataParamsComponent:
+                                                    args:
+                                                        "stuff": "battlePass.pathsInfo[eBattlePassPath.Free].proxy"
+                            -   class: "UIControl"
+                                name: "ProgressBar"
+                                position: [0.000000, 200.000000]
+                                size: [32.000000, 32.000000]
+                                components:
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "FixedSize"
+                                        verticalValue: 4.000000
+                                    UIChildComponent0:
+                                        prototypePath: "~res:/UI/Screens3/Lobby/Common/ProgressBar.yaml"
+                                        args:
+                                            "minimum": "0"
+                                            "maximum": "battlePass.levels[battlePass.activeLevelIndex].totalProgress"
+                                            "value": "battlePass.levels[battlePass.activeLevelIndex].currentProgress"
+                        -   class: "UIControl"
+                            name: "Buttons"
+                            size: [32.000000, 32.000000]
+                            input: false
+                            components:
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfMaxChild"
+                                    verticalPolicy: "PercentOfParent"
+                            children:
+                            -   class: "UIControl"
+                                name: "Wrapper"
+                                input: false
+                                components:
+                                    Anchor:
+                                        vCenterAnchorEnabled: true
+                                    LinearLayout:
+                                        orientation: "TopDown"
+                                        dynamicSpacing: true
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfMaxChild"
+                                        verticalPolicy: "Formula"
+                                        verticalFormula: "max(parent, childrenSum)"
+                                children:
+                                -   class: "UIControl"
+                                    name: "DepositeButton"
+                                    input: false
+                                    components:
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfMaxChild"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        UIAttachLayoutMasterComponent:
+                                            attachId: "DEPOSITS_BUTTON_ID"
+                                        UIChildComponent0:
+                                            prototypePath: "~res:/UI/Screens3/Lobby/Common/Button/TextIconButton.yaml"
+                                            args:
+                                                "enabled": "battlePass.deposits.deposits.Size() == battlePass.deposits.depositsQuantity"
+                                                "icon": "\"~res:/Gfx/Lobby/events/battle-pass/icon_battlepass_deposit\""
+                                                "caption": "localize(\"BattlePass/Bank/Button\")"
+                                                "sound": "eButtonSound.OK"
+                                                "type": "eButtonType.OPTIONAL_LIGHT"
+                                            eventActions:
+                                            - ["ON_CLICK_BUTTON", "DEPOSITE_BUTTON_CLICKED", "_event"]
+                                    children:
+                                    -   class: "UIParticles"
+                                        name: "SafeGlow"
+                                        input: false
+                                        effectPath: "~res:/3d/FX/UI/BattlePass/DepositGlow.sc2"
+                                        autoStart: true
+                                        components:
+                                            Anchor:
+                                                hCenterAnchorEnabled: true
+                                                vCenterAnchorEnabled: true
+                                                vCenterAnchor: 4.000000
+                                        bindings:
+                                        - ["visible", "battlePass.activeStage.type == eStageType.BUY or hasFullDeposit"]
+                                -   class: "UIControl"
+                                    name: "Spacer"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    components:
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "FixedSize"
+                                            verticalValue: 10.000000
+                                -   class: "UIControl"
+                                    name: "TaskJournalButton"
+                                    size: [32.000000, 32.000000]
+                                    input: false
+                                    components:
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfMaxChild"
+                                            verticalPolicy: "PercentOfMaxChild"
+                                        UIChildComponent0:
+                                            prototypePath: "~res:/UI/Screens3/Lobby/Common/Button/TextIconButton.yaml"
+                                            args:
+                                                "icon": "\"~res:/Gfx/Lobby/icons/icon_task-journal_s\""
+                                                "caption": "localize(\"BattlePass/Quests/Button\")"
+                                                "sound": "eButtonSound.OK"
+                                                "enabled": "true"
+                                                "type": "eButtonType.OPTIONAL_LIGHT"
+                                            eventActions:
+                                            - ["ON_CLICK_BUTTON", "TASK_JOURNAL_BUTTON_CLICKED", "_event"]
+                -   class: "UIControl"
+                    name: "BottomPart"
+                    position: [0.000000, 766.000000]
+                    input: false
+                    components:
+                        Anchor:
+                            bottomAnchorEnabled: true
+                            bottomAnchor: 0.000000
+                        LinearLayout:
+                            orientation: "TopDown"
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfChildrenSum"
+                    children:
+                    -   class: "UIControl"
+                        name: "Levels"
+                        input: false
+                        components:
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfParent"
+                                verticalPolicy: "FixedSize"
+                        bindings:
+                        - ["SizePolicy.verticalValue", "levelsContainerHeight"]
+                        children:
+                        -   class: "UIControl"
+                            name: "ScrollContainer"
+                            input: false
+                            components:
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "PercentOfParent"
+                            children:
+                            -   class: "UIControl"
+                                name: "MaskedBlur"
+                                visible: true
+                                input: false
+                                components:
+                                    UIPostProcessSourceComponent0:
+                                        id: "BattlePassMaskedBlur"
+                                    IgnoreLayout: {}
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfParent"
+                                children:
+                                -   prototype: "BlurDynamic/BlurDynamic"
+                                    name: "BlurDynamic"
+                                    components:
+                                        UIPostProcessInputComponent:
+                                            id: "BattlePassBackground"
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfParent"
+                                -   class: "UIControl"
+                                    name: "Mask"
+                                    input: false
+                                    components:
+                                        Background:
+                                            usePostProcessedSprite: true
+                                        UIPostProcessInputComponent:
+                                            id: "BattlePassLevels"
+                                        UIPostProcessTextureComponent0:
+                                            materialPath: "~res:/Materials.custom/2d.Textured.Mask.material"
+                                            needClear: true
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                            verticalPolicy: "PercentOfParent"
+                            -   class: "UIControl"
+                                name: "BackgroundUnderBlur"
+                                input: false
+                                components:
+                                    Background:
+                                        usePostProcessedSprite: true
+                                    UIPostProcessInputComponent:
+                                        id: "BattlePassBackground"
+                                    UIPostProcessTextureComponent0:
+                                        materialPath: "~res:/Materials/2d.Textured.material"
+                                    IgnoreLayout: {}
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfParent"
+                            -   class: "UIControl"
+                                name: "ShowMaskedBlur"
+                                input: false
+                                components:
+                                    Background:
+                                        usePostProcessedSprite: true
+                                    UIPostProcessInputComponent:
+                                        id: "BattlePassMaskedBlur"
+                                    UIPostProcessTextureComponent0:
+                                        materialPath: "~res:/Materials/2d.Textured.Alphablend.material"
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfParent"
+                            -   class: "UIScrollView"
+                                name: "ScrollableArea"
+                                autoUpdate: true
+                                returnSpeed: 0.000000
+                                components:
+                                    Anchor: {}
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfParent"
+                                children:
+                                -   class: "UIScrollViewContainer"
+                                    name: "scrollContainerControl"
+                                    scrollDirection: "kHorizontal"
+                                    components:
+                                        UIAnimationComponent:
+                                            animations: "_INIT,~res:/UI/Screens3/Lobby/BattlePass/Animations/ScrollToLevel.animation;SCROLL_TO_LVL,~res:/UI/Screens3/Lobby/BattlePass/Animations/ScrollToLevel.animation"
+                                        Anchor:
+                                            vCenterAnchorEnabled: true
+                                        SizePolicy:
+                                            horizontalPolicy: "FixedSize"
+                                            verticalPolicy: "PercentOfParent"
+                                        UILayoutEventComponent:
+                                            positionChangedEvent: "UpdateLevelsPosition"
+                                            positionChangedEventData: "{first=_size.X; second=_parentSize.X; third=_position.X;}"
+                                    bindings:
+                                    - ["SizePolicy.horizontalValue", "(itemWidth + 1) * (levelsCount + 1)"]
+                                    children:
+                                    -   class: "UIControl"
+                                        name: "InputContainer"
+                                        size: [32.000000, 32.000000]
+                                        components:
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfParent"
+                                    -   class: "UIControl"
+                                        name: "LevelsContainer"
+                                        input: false
+                                        components:
+                                            SizePolicy:
+                                                horizontalPolicy: "PercentOfParent"
+                                                verticalPolicy: "PercentOfParent"
+                                            UIChildComponent0:
+                                                childType: "kControl"
+                                                condition: "additionalScale < 1.010000"
+                                                control: "LevelsRewardsWithEffects"
+                                            UIChildComponent1:
+                                                childType: "kControl"
+                                                condition: "additionalScale > 1.010000"
+                                                control: "LevelsRewardsWithEffectsBig"
+                                        children:
+                                        -   class: "UIControl"
+                                            name: "LevelsForBlurMask"
+                                            visible: false
+                                            input: false
+                                            components:
+                                                UIPostProcessSourceComponent0:
+                                                    id: "BattlePassLevels"
+                                                LinearLayout:
+                                                    spacing: 1.000000
+                                                    skipInvisible: false
+                                                SizePolicy:
+                                                    horizontalPolicy: "PercentOfParent"
+                                                    verticalPolicy: "PercentOfParent"
+                                                UIRepeatComponent:
+                                                    control: "~res:/UI/Screens3/Lobby/BattlePass/BattlePassLevelMask.yaml"
+                                                    dataContainer: "battlePass.levels"
+                                                    args:
+                                                        "visible": "_index != levelsCount - 1"
+                                                        "isSelected": "_index == oldLevelIndex"
+                                                        "cellWidth": "itemWidth"
+                                                        "cellHeight": "itemHeight"
+                                                        "cellHeightSelected": "itemHeightSelected"
+                                                        "progressHeight": "progressHeight"
+                                                    elementName: "\"level_blur\" + str(_index)"
+                                            children:
+                                            -   prototype: "BattlePassZeroLevelMask/BattlePassLevelMask"
+                                                name: "BattlePassZeroLevelMask"
+                                                components:
+                                                    UIDataParamsComponent:
+                                                        args:
+                                                            "width": "itemWidth"
+                                                            "freeHeight": "itemHeight"
+                                                            "paidHeight": "itemHeight * 2 + progressHeight"
+                                        -   class: "UIControl"
+                                            name: "Levels"
+                                            position: [0.000000, 0.000000]
+                                            input: false
+                                            components:
+                                                LinearLayout:
+                                                    spacing: 1.000000
+                                                    skipInvisible: false
+                                                SizePolicy:
+                                                    horizontalPolicy: "PercentOfParent"
+                                                    verticalPolicy: "PercentOfParent"
+                                                UIRepeatComponent:
+                                                    control: "~res:/UI/Screens3/Lobby/BattlePass/BattlePassLevel.yaml"
+                                                    dataContainer: "battlePass.levels"
+                                                    args:
+                                                        "cellWidth": "itemWidth"
+                                                        "cellHeight": "itemHeight"
+                                                        "cellHeightSelected": "itemHeightSelected"
+                                                        "progressHeight": "progressHeight"
+                                                        "visible": "_index != levelsCount - 1"
+                                                        "additionalScrollOpacity": "1.000000"
+                                                        "tag": "0"
+                                                        "level": "_item"
+                                                        "pathsInfo": "battlePass.pathsInfo"
+                                                        "previousAnchoredIndex": "_item.previousAnchoredIndex"
+                                                        "oldLevelProgressIndex": "oldLevelIndex"
+                                                        "oldLevelProgressValue": "oldLevelProgress"
+                                                        "newLevelProgressIndex": "currentLevelIndex"
+                                                        "newLevelProgressValue": "currentLevelProgress"
+                                                        "backgroundImageUrl": "when not empty(_item.backgroundImageKey) -> battlePass.resources.graphics[_item.backgroundImageKey], \"\""
+                                                    eventActions:
+                                                    - ["ON_REWARD_CLICKED", "ON_REWARD_CLICKED", "_index, _event.stepId, _event.rewardIndex, 0"]
+                                                    elementName: "\"level\" + str(_index)"
+                                            children:
+                                            -   prototype: "BattlePassZeroLevel/BattlePassLevel"
+                                                name: "BattlePassZeroLevel"
+                                                components:
+                                                    UIDataParamsComponent:
+                                                        args:
+                                                            "additionalScale": "additionalScale"
+                                                            "passUrl": "battlePass.resources.graphics[\"battlePass\"]"
+                                                            "passUrlGold": "battlePass.resources.graphics[\"battlePassGold\"]"
+                                                            "width": "itemWidth"
+                                                            "freeHeight": "itemHeight"
+                                                            "paidHeight": "itemHeight * 2 + progressHeight"
+                        -   class: "UIControl"
+                            name: "AnchoredLevelsContainer"
+                            input: false
+                            components:
+                                Anchor:
+                                    rightAnchorEnabled: true
+                                    bottomAnchorEnabled: true
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfMaxChild"
+                                    verticalPolicy: "PercentOfParent"
+                            children:
+                            -   prototype: "BlurDynamic/BlurDynamic"
+                                name: "BlurDynamic"
+                                components:
+                                    Anchor:
+                                        rightAnchorEnabled: true
+                                    IgnoreLayout: {}
+                                    SizePolicy:
+                                        horizontalPolicy: "FixedSize"
+                                        verticalPolicy: "PercentOfParent"
+                                bindings:
+                                - ["SizePolicy.horizontalValue", "itemWidth"]
+                            -   class: "UIControl"
+                                name: "RightFade"
+                                input: false
+                                classes: "black-50-bg"
+                                components:
+                                    Background:
+                                        drawType: "DRAW_SCALE_TO_RECT"
+                                        sprite: "~res:/Gfx/Lobby/backgrounds/bg_gradient_horizontal_0-100"
+                                    Anchor:
+                                        leftAnchorEnabled: true
+                                        leftAnchor: -32.000000
+                                        bottomAnchorEnabled: true
+                                    SizePolicy:
+                                        horizontalPolicy: "FixedSize"
+                                        horizontalValue: 32.000000
+                                        verticalPolicy: "FixedSize"
+                                bindings:
+                                - ["SizePolicy.verticalValue", "3 * itemHeight + progressHeight"]
+                            -   class: "UIControl"
+                                name: "AnchoredLevels"
+                                input: false
+                                components:
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfFirstChild"
+                                        verticalPolicy: "PercentOfParent"
+                                    UIRepeatComponent:
+                                        control: "~res:/UI/Screens3/Lobby/BattlePass/BattlePassLevelAnchored.yaml"
+                                        dataContainer: "battlePass.anchoredLevelIndexes"
+                                        args:
+                                            "cellWidth": "itemWidth"
+                                            "cellHeight": "itemHeight"
+                                            "cellHeightSelected": "itemHeightSelected"
+                                            "progressHeight": "progressHeight"
+                                            "isAnchoredSection": "true"
+                                            "visible": "battlePassView.currentAnchoredLevelIndex == battlePass.levels[_item].index"
+                                            "additionalScrollOpacity": "battlePassView.currentAnchoredLevelOpacity"
+                                            "tag": "1"
+                                            "level": "battlePass.levels[_item]"
+                                            "pathsInfo": "battlePass.pathsInfo"
+                                            "previousAnchoredIndex": "battlePass.levels[_item].previousAnchoredIndex"
+                                            "oldLevelProgressIndex": "oldLevelIndex"
+                                            "oldLevelProgressValue": "oldLevelProgress"
+                                            "newLevelProgressIndex": "currentLevelIndex"
+                                            "newLevelProgressValue": "currentLevelProgress"
+                                            "backgroundImageUrl": "when not empty(battlePass.levels[_item].backgroundImageKey) -> battlePass.resources.graphics[battlePass.levels[_item].backgroundImageKey], \"\""
+                                        eventActions:
+                                        - ["ON_REWARD_CLICKED", "ON_REWARD_CLICKED", "battlePass.levels[_item].index, _event.stepId, _event.rewardIndex, 1"]
+                                        elementName: "\"level_anchored\" + str(battlePass.levels[_item].index)"
+                            -   class: "UIControl"
+                                name: "SpeedUpButtonHolder"
+                                input: false
+                                components:
+                                    Anchor:
+                                        rightAnchorEnabled: true
+                                        topAnchorEnabled: true
+                                    IgnoreLayout: {}
+                                    SizePolicy:
+                                        horizontalPolicy: "PercentOfParent"
+                                        verticalPolicy: "PercentOfFirstChild"
+                                    UIAttachLayoutMasterComponent:
+                                        attachId: "BATTLE_PASS_SPEEDUP_BUTTON"
+                                bindings:
+                                - ["visible", "showSpeedUpButton"]
+                                - ["Anchor.topAnchor", "-itemHeightDelta * 0.500000"]
+                                children:
+                                -   prototype: "Button/Button"
+                                    name: "SpeedUpButton"
+                                    components:
+                                        SizePolicy:
+                                            horizontalPolicy: "PercentOfParent"
+                                        UIDataParamsComponent:
+                                            args:
+                                                "caption": "localize(\"BattlePass/Button/SpeedUp\")"
+                                                "size": "when additionalScale > 1.100000 -> eButtonSize.NORMAL, eButtonSize.SMALL"
+                                            eventActions:
+                                            - ["ON_CLICK_BUTTON", "ON_SPEED_UP_BUTTON_CLICKED", ""]
+                        -   class: "UIControl"
+                            name: "PaidPathOpenAnimation"
+                            size: [32.000000, 32.000000]
+                            input: false
+                            components:
+                                ClipContent: {}
+                                Anchor:
+                                    bottomAnchorEnabled: true
+                                SizePolicy:
+                                    horizontalPolicy: "PercentOfParent"
+                                    verticalPolicy: "FixedSize"
+                            bindings:
+                            - ["SizePolicy.verticalValue", "progressHeight + itemHeight * 2"]
+                            children:
+                            -   class: "UIParticles"
+                                name: "MainLight"
+                                position: [512.000000, 247.000000]
+                                size: [912.000000, 500.000000]
+                                pivot: [0.500000, 0.500000]
+                                input: false
+                                effectPath: "~res:/3d/FX/UI/BattlePass/MainLight.sc2"
+                                components:
+                                    Anchor:
+                                        hCenterAnchorEnabled: true
+                                        vCenterAnchorEnabled: true
+                                    SizePolicy:
+                                        horizontalPolicy: "FixedSize"
+                                        horizontalValue: 1000.000000
+                                        verticalPolicy: "FixedSize"
+                                        verticalValue: 240.000000
+                                    ScalePolicy:
+                                        horizontalFormula: "parentSize.X / size.X"
+                                        verticalFormula: "parentSize.Y / size.Y"
+                    -   class: "UIControl"
+                        name: "PremiumPassBanner"
+                        size: [32.000000, 32.000000]
+                        input: false
+                        components:
+                            SizePolicy:
+                                horizontalPolicy: "PercentOfParent"
+                                verticalPolicy: "PercentOfFirstChild"
+                            UIChildComponent0:
+                                prototypePath: "~res:/UI/Screens3/Lobby/Hangar/Offers/PRMP/PrmpOfferBannerWrapper.yaml"
+                                args:
+                                    "placement": "ePrmpOfferPlacement.BattlePass"
+                                    "offerData": "lobby.prmpOffersData"
+                                eventActions:
+                                - ["BANNER_ACTION", "SHOW_LEVEL_WITH_TANK", ""]
+                                - ["SHOW_OFFER", "SHOW_OFFER", "_event.id"]
+                -   class: "UIControl"
+                    name: "BottomInset"
+                    input: false
+                    components:
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "FixedSize"
+                    bindings:
+                    - ["SizePolicy.verticalValue", "bottomInset"]
+                -   class: "UIControl"
+                    name: "SmokeConatiner2"
+                    size: [32.000000, 32.000000]
+                    input: false
+                    components:
+                        IgnoreLayout: {}
+                        SizePolicy:
+                            horizontalPolicy: "PercentOfParent"
+                            verticalPolicy: "PercentOfParent"
+                        UIChildComponent0:
+                            childType: "kControl"
+                            condition: "battlePassView.effectsEnabled"
+                            control: "Smoke_1"
+                    bindings:
+                    - ["visible", "battlePassView.effectsEnabled"]
+Slots:
+-   class: "UIControl"
+    name: "LeftHeaderContent"
+    size: [250.000000, 48.000000]
+    input: false
+    components:
+        ClipContent: {}
+        Anchor:
+            leftAnchorEnabled: true
+        SizePolicy:
+            horizontalPolicy: "Formula"
+            horizontalFormula: "when parent == 0 -> childrenSum, min(childrenSum, parent)"
+            verticalPolicy: "PercentOfParent"
+    children:
+    -   class: "UIControl"
+        name: "Content"
+        input: false
+        components:
+            Anchor:
+                vCenterAnchorEnabled: true
+            LinearLayout:
+                spacing: 24.000000
+            SizePolicy:
+                horizontalPolicy: "PercentOfChildrenSum"
+                verticalPolicy: "PercentOfMaxChild"
+        children:
+        -   class: "UIControl"
+            name: "Name"
+            input: false
+            classes: "t-subtitle regular white-wild-sand-text"
+            components:
+                UITextComponent: {}
+                Anchor:
+                    vCenterAnchorEnabled: true
+                SizePolicy:
+                    horizontalPolicy: "PercentOfContent"
+                    verticalPolicy: "PercentOfContent"
+                StyleSheet:
+                    styles: "~res:/UI/Screens3/Font.style.yaml"
+            bindings:
+            - ["UITextComponent.text", "localize(battlePass.resources.strings[\"longName\"])"]
+        -   class: "UIControl"
+            name: "Timer"
+            components:
+                Anchor:
+                    bottomAnchorEnabled: true
+                    bottomAnchor: -2.000000
+                SizePolicy:
+                    horizontalPolicy: "PercentOfChildrenSum"
+                    verticalPolicy: "PercentOfMaxChild"
+                UIAttachLayoutMasterComponent:
+                    attachId: "BATTLE_PASS_TIMER"
+                UIInputEventComponent:
+                    onTouchUpInside: "ON_TIMER_CLICKED"
+                UIChildComponent0:
+                    prototypePath: "~res:/UI/Screens3/Lobby/Common/Timer.yaml"
+                    args:
+                        "colorStyle": "\"white-wild-sand-50\""
+                        "serverTime": "session.serverTime"
+                        "time": "battlePass.activeStage.finishTime"
+                        "alertTime": "when battlePass.activeStage.type == eStageType.BUY -> 99999999L, 0L"
+-   class: "UIControl"
+    name: "LevelsRewardsWithEffects"
+    position: [0.000000, 0.000000]
+    input: false
+    components:
+        LinearLayout:
+            spacing: 1.000000
+            skipInvisible: false
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIRepeatComponent:
+            control: "~res:/UI/Screens3/Lobby/BattlePass/BattlePassLevelRewardsWithEffects.yaml"
+            dataContainer: "battlePass.levels"
+            args:
+                "cellWidth": "itemWidth"
+                "cellHeight": "itemHeight"
+                "cellHeightSelected": "itemHeightSelected"
+                "progressHeight": "progressHeight"
+                "visible": "_index != levelsCount - 1"
+                "additionalScrollOpacity": "1.000000"
+                "tag": "0"
+                "level": "_item"
+                "pathsInfo": "battlePass.pathsInfo"
+                "previousAnchoredIndex": "_item.previousAnchoredIndex"
+                "oldLevelProgressIndex": "oldLevelIndex"
+                "oldLevelProgressValue": "oldLevelProgress"
+                "newLevelProgressIndex": "currentLevelIndex"
+                "newLevelProgressValue": "currentLevelProgress"
+                "backgroundImageUrl": "when not empty(_item.backgroundImageKey) -> battlePass.resources.graphics[_item.backgroundImageKey], \"\""
+            eventActions:
+            - ["ON_REWARD_CLICKED", "ON_REWARD_CLICKED", "_index, _event.stepId, _event.rewardIndex, 0"]
+            elementName: "\"levelRewardWithEffect\" + str(_index)"
+            holderName: "\"levelRewardWithEffect\" + str(_index)"
+            lazyLoading: true
+            loadingDistance: 120.000000
+            unloadingDistance: 120.000000
+    bindings:
+    - ["visible", "additionalScale <= 1.000000"]
+    children:
+    -   prototype: "BattlePassZeroLevelMask/BattlePassLevelMask"
+        name: "BattlePassZeroLevelRewardsWithEffects"
+        visible: false
+        components:
+            UIDataParamsComponent:
+                args:
+                    "width": "itemWidth"
+                    "freeHeight": "itemHeight"
+                    "paidHeight": "itemHeight * 2 + progressHeight"
+-   class: "UIControl"
+    name: "LevelsRewardsWithEffectsBig"
+    position: [0.000000, 0.000000]
+    input: false
+    components:
+        LinearLayout:
+            spacing: 1.000000
+            skipInvisible: false
+        SizePolicy:
+            horizontalPolicy: "PercentOfParent"
+            verticalPolicy: "PercentOfParent"
+        UIRepeatComponent:
+            control: "~res:/UI/Screens3/Lobby/BattlePass/BattlePassLevelRewardsWithEffectsBig.yaml"
+            dataContainer: "battlePass.levels"
+            args:
+                "cellWidth": "itemWidth"
+                "cellHeight": "itemHeight"
+                "cellHeightSelected": "itemHeightSelected"
+                "progressHeight": "progressHeight"
+                "visible": "_index != levelsCount - 1"
+                "additionalScrollOpacity": "1.000000"
+                "tag": "0"
+                "level": "_item"
+                "pathsInfo": "battlePass.pathsInfo"
+                "previousAnchoredIndex": "_item.previousAnchoredIndex"
+                "oldLevelProgressIndex": "oldLevelIndex"
+                "oldLevelProgressValue": "oldLevelProgress"
+                "newLevelProgressIndex": "currentLevelIndex"
+                "newLevelProgressValue": "currentLevelProgress"
+                "backgroundImageUrl": "when not empty(_item.backgroundImageKey) -> battlePass.resources.graphics[_item.backgroundImageKey], \"\""
+            eventActions:
+            - ["ON_REWARD_CLICKED", "ON_REWARD_CLICKED", "_index, _event.stepId, _event.rewardIndex, 0"]
+            elementName: "\"levelRewardWithEffect\" + str(_index)"
+            holderName: "\"levelRewardWithEffect\" + str(_index)"
+            lazyLoading: true
+            loadingDistance: 180.000000
+            unloadingDistance: 180.000000
+    bindings:
+    - ["visible", "additionalScale > 1.000000"]
+    children:
+    -   prototype: "BattlePassZeroLevelMask/BattlePassLevelMask"
+        name: "BattlePassZeroLevelRewardsWithEffectsBig"
+        visible: false
+        components:
+            UIDataParamsComponent:
+                args:
+                    "width": "itemWidth"
+                    "freeHeight": "itemHeight"
+                    "paidHeight": "itemHeight * 2 + progressHeight"
+-   class: "UIParticles"
+    name: "Smoke"
+    position: [-418.000000, 94.000000]
+    size: [32.000000, 32.000000]
+    pivot: [0.500000, 0.500000]
+    visible: true
+    input: false
+    effectPath: "~res:/3d/FX/UI/BattlePass/SmokeAmbient.sc2"
+    autoStart: true
+    components:
+        IgnoreLayout: {}
+-   class: "UIParticles"
+    name: "Smoke_1"
+    position: [-181.000000, 202.000000]
+    size: [32.000000, 32.000000]
+    pivot: [0.500000, 0.500000]
+    input: false
+    effectPath: "~res:/3d/FX/UI/BattlePass/SmokeAmbient1.sc2"
+    autoStart: true
+    components:
+        IgnoreLayout: {}
