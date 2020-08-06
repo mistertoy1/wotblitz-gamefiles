@@ -1,0 +1,832 @@
+Header:
+    version: "92"
+ImportedPackages:
+- "~res:/UI/Screens3/Color.style.yaml"
+StyleSheets:
+-   selectors:
+    - ".bold"
+    - ".bold.ja.not-localize"
+    - ".bold.ko.not-localize"
+    - ".bold.ar.not-localize"
+    - ".bold.zh-Hant.not-localize"
+    - ".bold.zh-Hans.not-localize"
+    - ".bold.th.not-localize"
+    properties:
+        text-fontPath: "~res:/Fonts/HelveticaNeueWorld-75Bold.ttf"
+-   selectors:
+    - ".regular"
+    - ".regular.ja.not-localize"
+    - ".regular.ko.not-localize"
+    - ".regular.ar.not-localize"
+    - ".regular.zh-Hant.not-localize"
+    - ".regular.zh-Hans.not-localize"
+    - ".regular.th.not-localize"
+    properties:
+        text-fontPath: "~res:/Fonts/HelveticaNeueWorld-55Roman.ttf"
+-   selectors:
+    - ".light"
+    - ".light.ja.not-localize"
+    - ".light.ko.not-localize"
+    - ".light.ar.not-localize"
+    - ".light.zh-Hant.not-localize"
+    - ".light.zh-Hans.not-localize"
+    - ".light.th.not-localize"
+    properties:
+        text-fontPath: "~res:/Fonts/HelveticaNeueWorld-45Lt.ttf"
+-   selectors:
+    - ".t-caps"
+    - ".t-caps.ja.light.not-localize"
+    - ".t-caps.ja.regular.not-localize"
+    - ".t-caps.ja.bold.not-localize"
+    - ".t-caps.ko.light.not-localize"
+    - ".t-caps.ko.regular.not-localize"
+    - ".t-caps.ko.bold.not-localize"
+    - ".t-caps.ar.light.not-localize"
+    - ".t-caps.ar.regular.not-localize"
+    - ".t-caps.ar.bold.not-localize"
+    - ".t-caps.zh-Hant.light.not-localize"
+    - ".t-caps.zh-Hant.regular.not-localize"
+    - ".t-caps.zh-Hant.bold.not-localize"
+    - ".t-caps.zh-Hans.light.not-localize"
+    - ".t-caps.zh-Hans.regular.not-localize"
+    - ".t-caps.zh-Hans.bold.not-localize"
+    - ".t-caps.th.light.not-localize"
+    - ".t-caps.th.regular.not-localize"
+    - ".t-caps.th.bold.not-localize"
+    properties:
+        text-fontSize: 11.000000
+        text-letterSpacing: 0.600000
+        text-ascendScale: 0.700000
+        text-descendScale: 0.900000
+-   selectors:
+    - ".t-caption"
+    - ".t-caption.ja.light.not-localize"
+    - ".t-caption.ja.regular.not-localize"
+    - ".t-caption.ja.bold.not-localize"
+    - ".t-caption.ko.light.not-localize"
+    - ".t-caption.ko.regular.not-localize"
+    - ".t-caption.ko.bold.not-localize"
+    - ".t-caption.ar.light.not-localize"
+    - ".t-caption.ar.regular.not-localize"
+    - ".t-caption.ar.bold.not-localize"
+    - ".t-caption.zh-Hant.light.not-localize"
+    - ".t-caption.zh-Hant.regular.not-localize"
+    - ".t-caption.zh-Hant.bold.not-localize"
+    - ".t-caption.zh-Hans.light.not-localize"
+    - ".t-caption.zh-Hans.regular.not-localize"
+    - ".t-caption.zh-Hans.bold.not-localize"
+    - ".t-caption.th.light.not-localize"
+    - ".t-caption.th.regular.not-localize"
+    - ".t-caption.th.bold.not-localize"
+    properties:
+        text-fontSize: 13.000000
+        text-letterSpacing: 0.500000
+        text-ascendScale: 0.750000
+        text-descendScale: 1.000000
+-   selectors:
+    - ".t-overline"
+    - ".t-overline.ja.light.not-localize"
+    - ".t-overline.ja.regular.not-localize"
+    - ".t-overline.ja.bold.not-localize"
+    - ".t-overline.ko.light.not-localize"
+    - ".t-overline.ko.regular.not-localize"
+    - ".t-overline.ko.bold.not-localize"
+    - ".t-overline.ar.light.not-localize"
+    - ".t-overline.ar.regular.not-localize"
+    - ".t-overline.ar.bold.not-localize"
+    - ".t-overline.zh-Hant.light.not-localize"
+    - ".t-overline.zh-Hant.regular.not-localize"
+    - ".t-overline.zh-Hant.bold.not-localize"
+    - ".t-overline.zh-Hans.light.not-localize"
+    - ".t-overline.zh-Hans.regular.not-localize"
+    - ".t-overline.zh-Hans.bold.not-localize"
+    - ".t-overline.th.light.not-localize"
+    - ".t-overline.th.regular.not-localize"
+    - ".t-overline.th.bold.not-localize"
+    properties:
+        text-fontSize: 13.000000
+        text-letterSpacing: 0.400000
+        text-ascendScale: 0.750000
+        text-descendScale: 1.000000
+-   selectors:
+    - ".t-button"
+    - ".t-button.ja.light.not-localize"
+    - ".t-button.ja.regular.not-localize"
+    - ".t-button.ja.bold.not-localize"
+    - ".t-button.ko.light.not-localize"
+    - ".t-button.ko.regular.not-localize"
+    - ".t-button.ko.bold.not-localize"
+    - ".t-button.ar.light.not-localize"
+    - ".t-button.ar.regular.not-localize"
+    - ".t-button.ar.bold.not-localize"
+    - ".t-button.zh-Hant.light.not-localize"
+    - ".t-button.zh-Hant.regular.not-localize"
+    - ".t-button.zh-Hant.bold.not-localize"
+    - ".t-button.zh-Hans.light.not-localize"
+    - ".t-button.zh-Hans.regular.not-localize"
+    - ".t-button.zh-Hans.bold.not-localize"
+    - ".t-button.th.light.not-localize"
+    - ".t-button.th.regular.not-localize"
+    - ".t-button.th.bold.not-localize"
+    properties:
+        text-fontSize: 14.000000
+        text-letterSpacing: 0.500000
+        text-ascendScale: 0.750000
+        text-descendScale: 0.750000
+-   selectors:
+    - ".t-body"
+    - ".t-body.ja.light.not-localize"
+    - ".t-body.ja.regular.not-localize"
+    - ".t-body.ja.bold.not-localize"
+    - ".t-body.ko.light.not-localize"
+    - ".t-body.ko.regular.not-localize"
+    - ".t-body.ko.bold.not-localize"
+    - ".t-body.ar.light.not-localize"
+    - ".t-body.ar.regular.not-localize"
+    - ".t-body.ar.bold.not-localize"
+    - ".t-body.zh-Hant.light.not-localize"
+    - ".t-body.zh-Hant.regular.not-localize"
+    - ".t-body.zh-Hant.bold.not-localize"
+    - ".t-body.zh-Hans.light.not-localize"
+    - ".t-body.zh-Hans.regular.not-localize"
+    - ".t-body.zh-Hans.bold.not-localize"
+    - ".t-body.th.light.not-localize"
+    - ".t-body.th.regular.not-localize"
+    - ".t-body.th.bold.not-localize"
+    properties:
+        text-fontSize: 15.000000
+        text-letterSpacing: 0.120000
+        text-ascendScale: 0.650000
+        text-descendScale: 0.750000
+-   selectors:
+    - ".t-subtitle"
+    - ".t-subtitle.ja.light.not-localize"
+    - ".t-subtitle.ja.regular.not-localize"
+    - ".t-subtitle.ja.bold.not-localize"
+    - ".t-subtitle.ko.light.not-localize"
+    - ".t-subtitle.ko.regular.not-localize"
+    - ".t-subtitle.ko.bold.not-localize"
+    - ".t-subtitle.ar.light.not-localize"
+    - ".t-subtitle.ar.regular.not-localize"
+    - ".t-subtitle.ar.bold.not-localize"
+    - ".t-subtitle.zh-Hant.light.not-localize"
+    - ".t-subtitle.zh-Hant.regular.not-localize"
+    - ".t-subtitle.zh-Hant.bold.not-localize"
+    - ".t-subtitle.zh-Hans.light.not-localize"
+    - ".t-subtitle.zh-Hans.regular.not-localize"
+    - ".t-subtitle.zh-Hans.bold.not-localize"
+    - ".t-subtitle.th.light.not-localize"
+    - ".t-subtitle.th.regular.not-localize"
+    - ".t-subtitle.th.bold.not-localize"
+    properties:
+        text-fontSize: 17.000000
+        text-letterSpacing: 0.200000
+        text-ascendScale: 0.700000
+        text-descendScale: 0.750000
+-   selectors:
+    - ".t-headline"
+    - ".t-headline.ja.light.not-localize"
+    - ".t-headline.ja.regular.not-localize"
+    - ".t-headline.ja.bold.not-localize"
+    - ".t-headline.ko.light.not-localize"
+    - ".t-headline.ko.regular.not-localize"
+    - ".t-headline.ko.bold.not-localize"
+    - ".t-headline.ar.light.not-localize"
+    - ".t-headline.ar.regular.not-localize"
+    - ".t-headline.ar.bold.not-localize"
+    - ".t-headline.zh-Hant.light.not-localize"
+    - ".t-headline.zh-Hant.regular.not-localize"
+    - ".t-headline.zh-Hant.bold.not-localize"
+    - ".t-headline.zh-Hans.light.not-localize"
+    - ".t-headline.zh-Hans.regular.not-localize"
+    - ".t-headline.zh-Hans.bold.not-localize"
+    - ".t-headline.th.light.not-localize"
+    - ".t-headline.th.regular.not-localize"
+    - ".t-headline.th.bold.not-localize"
+    properties:
+        text-fontSize: 20.000000
+        text-letterSpacing: 0.400000
+        text-ascendScale: 0.650000
+        text-descendScale: 0.500000
+-   selectors:
+    - ".t-title"
+    - ".t-title.ja.light.not-localize"
+    - ".t-title.ja.regular.not-localize"
+    - ".t-title.ja.bold.not-localize"
+    - ".t-title.ko.light.not-localize"
+    - ".t-title.ko.regular.not-localize"
+    - ".t-title.ko.bold.not-localize"
+    - ".t-title.ar.light.not-localize"
+    - ".t-title.ar.regular.not-localize"
+    - ".t-title.ar.bold.not-localize"
+    - ".t-title.zh-Hant.light.not-localize"
+    - ".t-title.zh-Hant.regular.not-localize"
+    - ".t-title.zh-Hant.bold.not-localize"
+    - ".t-title.zh-Hans.light.not-localize"
+    - ".t-title.zh-Hans.regular.not-localize"
+    - ".t-title.zh-Hans.bold.not-localize"
+    - ".t-title.th.light.not-localize"
+    - ".t-title.th.regular.not-localize"
+    - ".t-title.th.bold.not-localize"
+    properties:
+        text-fontSize: 32.000000
+        text-letterSpacing: 0.400000
+        text-ascendScale: 0.640000
+        text-descendScale: 0.400000
+-   selectors:
+    - ".t-content-h0"
+    - ".t-content-h0.ja.light.not-localize"
+    - ".t-content-h0.ja.regular.not-localize"
+    - ".t-content-h0.ja.bold.not-localize"
+    - ".t-content-h0.ko.light.not-localize"
+    - ".t-content-h0.ko.regular.not-localize"
+    - ".t-content-h0.ko.bold.not-localize"
+    - ".t-content-h0.ar.light.not-localize"
+    - ".t-content-h0.ar.regular.not-localize"
+    - ".t-content-h0.ar.bold.not-localize"
+    - ".t-content-h0.zh-Hant.light.not-localize"
+    - ".t-content-h0.zh-Hant.regular.not-localize"
+    - ".t-content-h0.zh-Hant.bold.not-localize"
+    - ".t-content-h0.zh-Hans.light.not-localize"
+    - ".t-content-h0.zh-Hans.regular.not-localize"
+    - ".t-content-h0.zh-Hans.bold.not-localize"
+    - ".t-content-h0.th.light.not-localize"
+    - ".t-content-h0.th.regular.not-localize"
+    - ".t-content-h0.th.bold.not-localize"
+    properties:
+        text-fontSize: 100.000000
+        text-letterSpacing: 1.250000
+        text-ascendScale: 0.620000
+        text-descendScale: 0.460000
+-   selectors:
+    - ".t-content-h1"
+    - ".t-content-h1.ja.light.not-localize"
+    - ".t-content-h1.ja.regular.not-localize"
+    - ".t-content-h1.ja.bold.not-localize"
+    - ".t-content-h1.ko.light.not-localize"
+    - ".t-content-h1.ko.regular.not-localize"
+    - ".t-content-h1.ko.bold.not-localize"
+    - ".t-content-h1.ar.light.not-localize"
+    - ".t-content-h1.ar.regular.not-localize"
+    - ".t-content-h1.ar.bold.not-localize"
+    - ".t-content-h1.zh-Hant.light.not-localize"
+    - ".t-content-h1.zh-Hant.regular.not-localize"
+    - ".t-content-h1.zh-Hant.bold.not-localize"
+    - ".t-content-h1.zh-Hans.light.not-localize"
+    - ".t-content-h1.zh-Hans.regular.not-localize"
+    - ".t-content-h1.zh-Hans.bold.not-localize"
+    - ".t-content-h1.th.light.not-localize"
+    - ".t-content-h1.th.regular.not-localize"
+    - ".t-content-h1.th.bold.not-localize"
+    properties:
+        text-fontSize: 50.000000
+        text-letterSpacing: 0.630000
+        text-ascendScale: 0.620000
+        text-descendScale: 0.460000
+-   selectors:
+    - ".t-content-h2"
+    - ".t-content-h2.ja.light.not-localize"
+    - ".t-content-h2.ja.regular.not-localize"
+    - ".t-content-h2.ja.bold.not-localize"
+    - ".t-content-h2.ko.light.not-localize"
+    - ".t-content-h2.ko.regular.not-localize"
+    - ".t-content-h2.ko.bold.not-localize"
+    - ".t-content-h2.ar.light.not-localize"
+    - ".t-content-h2.ar.regular.not-localize"
+    - ".t-content-h2.ar.bold.not-localize"
+    - ".t-content-h2.zh-Hant.light.not-localize"
+    - ".t-content-h2.zh-Hant.regular.not-localize"
+    - ".t-content-h2.zh-Hant.bold.not-localize"
+    - ".t-content-h2.zh-Hans.light.not-localize"
+    - ".t-content-h2.zh-Hans.regular.not-localize"
+    - ".t-content-h2.zh-Hans.bold.not-localize"
+    - ".t-content-h2.th.light.not-localize"
+    - ".t-content-h2.th.regular.not-localize"
+    - ".t-content-h2.th.bold.not-localize"
+    properties:
+        text-fontSize: 40.000000
+        text-letterSpacing: 0.500000
+        text-ascendScale: 0.660000
+        text-descendScale: 0.500000
+-   selectors:
+    - ".t-content-h4"
+    - ".t-content-h4.ja.light.not-localize"
+    - ".t-content-h4.ja.regular.not-localize"
+    - ".t-content-h4.ja.bold.not-localize"
+    - ".t-content-h4.ko.light.not-localize"
+    - ".t-content-h4.ko.regular.not-localize"
+    - ".t-content-h4.ko.bold.not-localize"
+    - ".t-content-h4.ar.light.not-localize"
+    - ".t-content-h4.ar.regular.not-localize"
+    - ".t-content-h4.ar.bold.not-localize"
+    - ".t-content-h4.zh-Hant.light.not-localize"
+    - ".t-content-h4.zh-Hant.regular.not-localize"
+    - ".t-content-h4.zh-Hant.bold.not-localize"
+    - ".t-content-h4.zh-Hans.light.not-localize"
+    - ".t-content-h4.zh-Hans.regular.not-localize"
+    - ".t-content-h4.zh-Hans.bold.not-localize"
+    - ".t-content-h4.th.light.not-localize"
+    - ".t-content-h4.th.regular.not-localize"
+    - ".t-content-h4.th.bold.not-localize"
+    properties:
+        text-fontSize: 24.000000
+        text-letterSpacing: 0.550000
+        text-ascendScale: 0.630000
+        text-descendScale: 0.470000
+-   selectors:
+    - ".align-left"
+    properties:
+        text-align: ["LEFT", "VCENTER"]
+-   selectors:
+    - ".align-right"
+    properties:
+        text-align: ["RIGHT", "VCENTER"]
+-   selectors:
+    - ".bold.zh-Hant"
+    - ".regular.zh-Hant"
+    - ".light.zh-Hant"
+    properties:
+        text-fontPath: "~res:/Fonts/XinGothic-TC-W6.otf"
+-   selectors:
+    - ".bold.zh-Hans"
+    - ".regular.zh-Hans"
+    - ".light.zh-Hans"
+    properties:
+        text-fontPath: "~res:/Fonts/XinGothic-SC-W6.otf"
+-   selectors:
+    - ".bold.ko"
+    - ".regular.ko"
+    - ".light.ko"
+    properties:
+        text-fontPath: "~res:/Fonts/CoreSans.ttf"
+-   selectors:
+    - ".bold.ja"
+    properties:
+        text-fontPath: "~res:/Fonts/IwaGGoPro-Bd.otf"
+-   selectors:
+    - ".regular.ja"
+    - ".light.ja"
+    properties:
+        text-fontPath: "~res:/Fonts/IwaGGoPro-Md.otf"
+-   selectors:
+    - ".bold.th"
+    properties:
+        text-fontPath: "~res:/Fonts/SirichanaLT-Bold.ttf"
+-   selectors:
+    - ".regular.th"
+    - ".light.th"
+    properties:
+        text-fontPath: "~res:/Fonts/SirichanaLT-Regular.ttf"
+-   selectors:
+    - ".bold.ar"
+    properties:
+        text-fontPath: "~res:/Fonts/BadiyaLT-Bold.ttf"
+-   selectors:
+    - ".regular.ar"
+    - ".light.ar"
+    properties:
+        text-fontPath: "~res:/Fonts/BadiyaLT-Regular.ttf"
+-   selectors:
+    - ".t-caps.ja"
+    properties:
+        text-ascendScale: 1.100000
+        text-descendScale: 1.200000
+-   selectors:
+    - ".t-caps.ko"
+    properties:
+        text-ascendScale: 1.100000
+        text-descendScale: 1.700000
+-   selectors:
+    - ".t-caps.zh-Hant"
+    properties:
+        text-ascendScale: 1.000000
+        text-descendScale: 1.450000
+-   selectors:
+    - ".t-caps.zh-Hans"
+    properties:
+        text-ascendScale: 1.000000
+        text-descendScale: 1.400000
+-   selectors:
+    - ".t-caps.th"
+    properties:
+        text-fontSize: 18.000000
+-   selectors:
+    - ".t-caps.bold.th"
+    properties:
+        text-ascendScale: 0.650000
+        text-descendScale: 0.850000
+-   selectors:
+    - ".t-caps.regular.th"
+    properties:
+        text-ascendScale: 0.700000
+        text-descendScale: 0.850000
+-   selectors:
+    - ".t-caption.ja"
+    properties:
+        text-ascendScale: 0.900000
+        text-descendScale: 1.000000
+-   selectors:
+    - ".t-caption.ko"
+    properties:
+        text-ascendScale: 1.200000
+        text-descendScale: 1.700000
+-   selectors:
+    - ".t-caption.zh-Hant"
+    properties:
+        text-ascendScale: 1.200000
+        text-descendScale: 1.300000
+-   selectors:
+    - ".t-caption.zh-Hans"
+    properties:
+        text-ascendScale: 1.100000
+        text-descendScale: 1.400000
+-   selectors:
+    - ".t-caption.th"
+    properties:
+        text-fontSize: 21.000000
+-   selectors:
+    - ".t-caption.bold.th"
+    properties:
+        text-ascendScale: 0.700000
+        text-descendScale: 0.850000
+-   selectors:
+    - ".t-caption.regular.th"
+    properties:
+        text-ascendScale: 0.750000
+        text-descendScale: 0.900000
+-   selectors:
+    - ".t-caption.ar"
+    properties:
+        text-ascendScale: 0.700000
+        text-descendScale: 1.000000
+-   selectors:
+    - ".t-overline.ja"
+    properties:
+        text-ascendScale: 1.150000
+        text-descendScale: 1.350000
+-   selectors:
+    - ".t-overline.ko"
+    properties:
+        text-ascendScale: 1.100000
+        text-descendScale: 1.900000
+-   selectors:
+    - ".t-overline.zh-Hant"
+    properties:
+        text-ascendScale: 1.150000
+        text-descendScale: 1.450000
+-   selectors:
+    - ".t-overline.zh-Hans"
+    properties:
+        text-ascendScale: 1.100000
+        text-descendScale: 1.450000
+-   selectors:
+    - ".t-overline.th"
+    properties:
+        text-fontSize: 21.000000
+-   selectors:
+    - ".t-overline.bold.th"
+    properties:
+        text-ascendScale: 0.650000
+        text-descendScale: 1.000000
+-   selectors:
+    - ".t-overline.regular.th"
+    properties:
+        text-ascendScale: 0.750000
+        text-descendScale: 0.950000
+-   selectors:
+    - ".t-overline.ar"
+    properties:
+        text-ascendScale: 0.700000
+        text-descendScale: 1.000000
+-   selectors:
+    - ".t-button.ja"
+    properties:
+        text-ascendScale: 1.050000
+        text-descendScale: 1.200000
+-   selectors:
+    - ".t-button.ko"
+    properties:
+        text-ascendScale: 1.100000
+        text-descendScale: 1.700000
+-   selectors:
+    - ".t-button.zh-Hant"
+    properties:
+        text-ascendScale: 1.100000
+        text-descendScale: 1.250000
+-   selectors:
+    - ".t-button.zh-Hans"
+    properties:
+        text-ascendScale: 1.050000
+        text-descendScale: 1.200000
+-   selectors:
+    - ".t-button.th"
+    properties:
+        text-fontSize: 22.000000
+-   selectors:
+    - ".t-button.bold.th"
+    properties:
+        text-ascendScale: 0.700000
+        text-descendScale: 0.750000
+-   selectors:
+    - ".t-button.regular.th"
+    properties:
+        text-ascendScale: 0.700000
+        text-descendScale: 0.900000
+-   selectors:
+    - ".t-button.ar"
+    properties:
+        text-ascendScale: 0.700000
+        text-descendScale: 0.850000
+-   selectors:
+    - ".t-body.ar"
+    properties:
+        text-ascendScale: 0.700000
+        text-descendScale: 0.660000
+-   selectors:
+    - ".t-body.ja"
+    properties:
+        text-ascendScale: 1.000000
+        text-descendScale: 1.100000
+-   selectors:
+    - ".t-body.ko"
+    properties:
+        text-ascendScale: 1.000000
+        text-descendScale: 1.500000
+-   selectors:
+    - ".t-body.zh-Hant"
+    properties:
+        text-ascendScale: 1.050000
+        text-descendScale: 1.000000
+-   selectors:
+    - ".t-body.zh-Hans"
+    properties:
+        text-ascendScale: 1.000000
+        text-descendScale: 1.050000
+-   selectors:
+    - ".t-body.th"
+    properties:
+        text-fontSize: 22.000000
+-   selectors:
+    - ".t-body.bold.th"
+    properties:
+        text-ascendScale: 0.700000
+        text-descendScale: 0.700000
+-   selectors:
+    - ".t-body.regular.th"
+    properties:
+        text-ascendScale: 0.700000
+        text-descendScale: 0.850000
+-   selectors:
+    - ".t-subtitle.ja"
+    properties:
+        text-ascendScale: 1.100000
+        text-descendScale: 1.100000
+-   selectors:
+    - ".t-subtitle.ko"
+    properties:
+        text-ascendScale: 1.100000
+        text-descendScale: 1.500000
+-   selectors:
+    - ".t-subtitle.zh-Hant"
+    properties:
+        text-ascendScale: 1.150000
+        text-descendScale: 0.900000
+-   selectors:
+    - ".t-subtitle.zh-Hans"
+    properties:
+        text-ascendScale: 1.100000
+        text-descendScale: 1.100000
+-   selectors:
+    - ".t-subtitle.th"
+    properties:
+        text-fontSize: 26.000000
+-   selectors:
+    - ".t-subtitle.bold.th"
+    properties:
+        text-ascendScale: 0.750000
+        text-descendScale: 0.600000
+-   selectors:
+    - ".t-subtitle.regular.th"
+    properties:
+        text-ascendScale: 0.800000
+        text-descendScale: 0.650000
+-   selectors:
+    - ".t-subtitle.ar"
+    properties:
+        text-ascendScale: 0.740000
+        text-descendScale: 0.640000
+-   selectors:
+    - ".t-headline.ja"
+    properties:
+        text-ascendScale: 0.950000
+        text-descendScale: 0.800000
+-   selectors:
+    - ".t-headline.ko"
+    properties:
+        text-ascendScale: 0.950000
+        text-descendScale: 1.200000
+-   selectors:
+    - ".t-headline.zh-Hant"
+    properties:
+        text-ascendScale: 0.950000
+        text-descendScale: 0.850000
+-   selectors:
+    - ".t-headline.zh-Hans"
+    properties:
+        text-ascendScale: 0.950000
+        text-descendScale: 0.850000
+-   selectors:
+    - ".t-headline.th"
+    properties:
+        text-fontSize: 32.000000
+-   selectors:
+    - ".t-headline.bold.th"
+    properties:
+        text-ascendScale: 0.670000
+        text-descendScale: 0.300000
+-   selectors:
+    - ".t-headline.regular.th"
+    - ".t-headline.light.th"
+    properties:
+        text-ascendScale: 0.700000
+        text-descendScale: 0.350000
+-   selectors:
+    - ".t-headline.ar"
+    properties:
+        text-ascendScale: 0.600000
+        text-descendScale: 0.650000
+-   selectors:
+    - ".t-title.ja"
+    properties:
+        text-ascendScale: 0.900000
+        text-descendScale: 0.750000
+-   selectors:
+    - ".t-title.ko"
+    properties:
+        text-ascendScale: 0.900000
+        text-descendScale: 1.100000
+-   selectors:
+    - ".t-title.zh-Hant"
+    properties:
+        text-ascendScale: 0.950000
+        text-descendScale: 0.700000
+-   selectors:
+    - ".t-title.zh-Hans"
+    properties:
+        text-ascendScale: 0.900000
+        text-descendScale: 0.700000
+-   selectors:
+    - ".t-title.th"
+    properties:
+        text-fontSize: 51.000000
+-   selectors:
+    - ".t-title.bold.th"
+    properties:
+        text-ascendScale: 0.620000
+        text-descendScale: 0.300000
+-   selectors:
+    - ".t-title.regular.th"
+    - ".t-title.light.th"
+    properties:
+        text-ascendScale: 0.680000
+        text-descendScale: 0.250000
+-   selectors:
+    - ".t-title.ar"
+    properties:
+        text-ascendScale: 0.500000
+        text-descendScale: 0.820000
+-   selectors:
+    - ".t-content-h0.ja"
+    properties:
+        text-ascendScale: 0.890000
+        text-descendScale: 0.800000
+-   selectors:
+    - ".t-content-h0.zh-Hans"
+    properties:
+        text-ascendScale: 0.920000
+        text-descendScale: 0.700000
+-   selectors:
+    - ".t-content-h0.ko"
+    properties:
+        text-ascendScale: 0.920000
+        text-descendScale: 1.100000
+-   selectors:
+    - ".t-content-h0.ar"
+    properties:
+        text-ascendScale: 0.510000
+        text-descendScale: 0.780000
+-   selectors:
+    - ".t-content-h0.th"
+    properties:
+        text-ascendScale: 0.870000
+        text-descendScale: 0.900000
+-   selectors:
+    - ".t-content-h0.zh-Hant"
+    properties:
+        text-ascendScale: 0.920000
+        text-descendScale: 0.700000
+-   selectors:
+    - ".t-content-h1.ja"
+    properties:
+        text-ascendScale: 0.890000
+        text-descendScale: 0.800000
+-   selectors:
+    - ".t-content-h1.zh-Hans"
+    properties:
+        text-ascendScale: 0.920000
+        text-descendScale: 0.700000
+-   selectors:
+    - ".t-content-h1.ko"
+    properties:
+        text-ascendScale: 0.920000
+        text-descendScale: 1.100000
+-   selectors:
+    - ".t-content-h1.ar"
+    properties:
+        text-ascendScale: 0.510000
+        text-descendScale: 0.780000
+-   selectors:
+    - ".t-content-h1.th"
+    properties:
+        text-ascendScale: 0.870000
+        text-descendScale: 0.900000
+-   selectors:
+    - ".t-content-h1.zh-Hant"
+    properties:
+        text-ascendScale: 0.920000
+        text-descendScale: 0.700000
+-   selectors:
+    - ".t-content-h2.ja"
+    properties:
+        text-ascendScale: 0.980000
+        text-descendScale: 0.700000
+-   selectors:
+    - ".t-content-h2.zh-Hans"
+    properties:
+        text-ascendScale: 0.980000
+        text-descendScale: 0.700000
+-   selectors:
+    - ".t-content-h2.ko"
+    properties:
+        text-ascendScale: 1.000000
+        text-descendScale: 1.100000
+-   selectors:
+    - ".t-content-h2.ar"
+    properties:
+        text-ascendScale: 0.560000
+        text-descendScale: 0.800000
+-   selectors:
+    - ".t-content-h2.zh-Hant"
+    properties:
+        text-ascendScale: 1.020000
+        text-descendScale: 0.700000
+-   selectors:
+    - ".t-content-h2.th"
+    properties:
+        text-fontSize: 64.000000
+-   selectors:
+    - ".t-content-h2.bold.th"
+    properties:
+        text-ascendScale: 0.640000
+        text-descendScale: 0.360000
+-   selectors:
+    - ".t-content-h2.regular.th"
+    - ".t-content-h2.light.th"
+    properties:
+        text-ascendScale: 0.690000
+        text-descendScale: 0.400000
+-   selectors:
+    - ".t-content-h4.ja"
+    properties:
+        text-ascendScale: 0.930000
+        text-descendScale: 0.750000
+-   selectors:
+    - ".t-content-h4.zh-Hans"
+    properties:
+        text-ascendScale: 0.930000
+        text-descendScale: 0.750000
+-   selectors:
+    - ".t-content-h4.ko"
+    properties:
+        text-ascendScale: 0.980000
+        text-descendScale: 0.980000
+-   selectors:
+    - ".t-content-h4.ar"
+    properties:
+        text-ascendScale: 0.600000
+        text-descendScale: 0.600000
+-   selectors:
+    - ".t-content-h4.th"
+    properties:
+        text-fontSize: 38.000000
+-   selectors:
+    - ".t-content-h4.regular.th"
+    - ".t-content-h4.light.th"
+    properties:
+        text-ascendScale: 0.700000
+        text-descendScale: 0.300000
+-   selectors:
+    - ".t-content-h4.bold.th"
+    properties:
+        text-ascendScale: 0.650000
+        text-descendScale: 0.300000
